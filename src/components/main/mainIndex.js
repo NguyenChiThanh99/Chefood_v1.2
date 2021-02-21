@@ -5,12 +5,12 @@ import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 // import {useSelector, useDispatch} from 'react-redux';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import global from '../global';
+import Global from '../Global';
 
 import home from '../../icons/home.png';
 import homeS from '../../icons/homeS.png';
-import category from '../../icons/category.png';
-import categoryS from '../../icons/categoryS.png';
+import order from '../../icons/order.png';
+import orderS from '../../icons/orderS.png';
 import chat from '../../icons/chat.png';
 import chatS from '../../icons/chatS.png';
 import notification from '../../icons/notification.png';
@@ -20,11 +20,15 @@ import userS from '../../icons/userS.png';
 
 // import {updateCart} from '../actions';
 
-import Home from './home/home';
-import Category from './category/category';
-import Chat from './chat/chat';
-import Notification from './notification/notification';
-import User from './user/user';
+import Home from './home/Home';
+import Order from './order/Order';
+import Chat from './chat/Chat';
+import Notification from './notification/Notification';
+import User from './user/User';
+import Cart from './home/Cart';
+import Search from './home/Search';
+import Dish from './home/Dish';
+import Chef from './home/Chef';
 
 const Tab = createBottomTabNavigator();
 const MainStack = createStackNavigator();
@@ -42,11 +46,11 @@ function Tabs({navigation}) {
             ) : (
               <Image style={styles.iconTabbar} source={home} />
             );
-          } else if (route.name === 'Danh mục') {
+          } else if (route.name === 'Đơn hàng') {
             return focused ? (
-              <Image style={styles.iconTabbar} source={categoryS} />
+              <Image style={styles.iconTabbar} source={orderS} />
             ) : (
-              <Image style={styles.iconTabbar} source={category} />
+              <Image style={styles.iconTabbar} source={order} />
             );
           } else if (route.name === 'Chat') {
             return focused ? (
@@ -70,11 +74,11 @@ function Tabs({navigation}) {
         },
       })}
       tabBarOptions={{
-        activeTintColor: global.backgroundColor,
+        activeTintColor: Global.backgroundColor,
         inactiveTintColor: '#333333',
       }}>
       <Tab.Screen name="Trang chủ" component={Home} />
-      <Tab.Screen name="Danh mục" component={Category} />
+      <Tab.Screen name="Đơn hàng" component={Order} />
       <Tab.Screen name="Chat" component={Chat} />
       <Tab.Screen name="Thông báo" component={Notification} />
       <Tab.Screen name="Tài khoản" component={User} />
@@ -85,7 +89,7 @@ function Tabs({navigation}) {
 // var flag = false;
 // var preUser = 0;
 
-export default function mainIndex() {
+export default function MainIndex() {
   // const dispatch = useDispatch();
   // const userid = useSelector((state) => state.user);
   // const getData = async () => {
@@ -118,11 +122,43 @@ export default function mainIndex() {
         }}
         component={Tabs}
       />
+      <MainStack.Screen
+        name="CART"
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+        component={Cart}
+      />
+      <MainStack.Screen
+        name="SEARCH"
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+        component={Search}
+      />
+      <MainStack.Screen
+        name="CHEF"
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+        component={Chef}
+      />
+      <MainStack.Screen
+        name="DISH"
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+        component={Dish}
+      />
     </MainStack.Navigator>
   );
 }
 
-const {width} = global;
+const {width} = Global;
 const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: 'white',

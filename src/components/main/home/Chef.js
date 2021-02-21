@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-export default function category() {
+export default function Chef({navigation}) {
   return (
     <View>
-      <Text>Category</Text>
+      <Text>Chef</Text>
     </View>
   );
 }

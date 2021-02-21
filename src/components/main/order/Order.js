@@ -5,7 +5,7 @@ import Toast from 'react-native-root-toast';
 
 var countExit = 0;
 
-export default function User({navigation}) {
+export default function Order({navigation}) {
   useFocusEffect(
     React.useCallback(() => {
       const onBackPress = () => {
@@ -34,7 +34,7 @@ export default function User({navigation}) {
 
   return (
     <View>
-      <Text>User</Text>
+      <Text>Order</Text>
     </View>
   );
 }
