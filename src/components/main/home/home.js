@@ -116,17 +116,31 @@ export default function Home({navigation}) {
       id: 1,
       image:
         'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-      name: 'Hủ tiếu nam vang',
+      name: 'Hủ tiếu nam vang chuẩn vị nhà làm ngon như nhà làm',
       chef: 'Trần Bảo Toàn',
+      address:
+        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
+      ingredients:
+        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
       price: 231000,
+      prepare: ' Chuẩn bị: 10 phút',
+      perform: ' Thực hiện: 30 phút',
+      numOrder: '20',
     },
     {
       id: 2,
       image:
         'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-      name: 'Bún riêu cua',
+      name: 'Hủ tiếu nam vang',
       chef: 'Trần Bảo Toàn',
+      address:
+        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
+      ingredients:
+        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
       price: 231000,
+      prepare: ' Chuẩn bị: 10 phút',
+      perform: ' Thực hiện: 30 phút',
+      numOrder: '514',
     },
     {
       id: 3,
@@ -134,15 +148,29 @@ export default function Home({navigation}) {
         'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
       name: 'Hủ tiếu nam vang',
       chef: 'Trần Bảo Toàn',
+      address:
+        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
+      ingredients:
+        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
       price: 231000,
+      prepare: ' Chuẩn bị: 10 phút',
+      perform: ' Thực hiện: 30 phút',
+      numOrder: '855',
     },
     {
       id: 4,
       image:
         'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-      name: 'Bún riêu cua',
+      name: 'Hủ tiếu nam vang',
       chef: 'Trần Bảo Toàn',
+      address:
+        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
+      ingredients:
+        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
       price: 231000,
+      prepare: ' Chuẩn bị: 10 phút',
+      perform: ' Thực hiện: 30 phút',
+      numOrder: '55',
     },
     {
       id: 5,
@@ -150,31 +178,59 @@ export default function Home({navigation}) {
         'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
       name: 'Hủ tiếu nam vang',
       chef: 'Trần Bảo Toàn',
+      address:
+        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
+      ingredients:
+        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
       price: 231000,
+      prepare: ' Chuẩn bị: 10 phút',
+      perform: ' Thực hiện: 30 phút',
+      numOrder: '28',
     },
     {
       id: 6,
       image:
         'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-      name: 'Bún riêu cua',
+      name: 'Hủ tiếu nam vang',
       chef: 'Trần Bảo Toàn',
+      address:
+        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
+      ingredients:
+        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
       price: 231000,
+      prepare: ' Chuẩn bị: 10 phút',
+      perform: ' Thực hiện: 30 phút',
+      numOrder: '20',
     },
     {
       id: 7,
       image:
         'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-      name: 'Bún riêu cua',
+      name: 'Hủ tiếu nam vang',
       chef: 'Trần Bảo Toàn',
+      address:
+        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
+      ingredients:
+        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
       price: 231000,
+      prepare: ' Chuẩn bị: 10 phút',
+      perform: ' Thực hiện: 30 phút',
+      numOrder: '12',
     },
     {
       id: 8,
       image:
         'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-      name: 'Bún riêu cua',
+      name: 'Hủ tiếu nam vang',
       chef: 'Trần Bảo Toàn',
+      address:
+        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
+      ingredients:
+        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
       price: 231000,
+      prepare: ' Chuẩn bị: 10 phút',
+      perform: ' Thực hiện: 30 phút',
+      numOrder: '2',
     },
   ];
 
@@ -626,9 +682,7 @@ export default function Home({navigation}) {
         </TouchableOpacity>
       </View>
 
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <SliderBox
           images={imagesSlider}
           sliderBoxHeight={Global.height / 5.5}
@@ -861,7 +915,7 @@ export default function Home({navigation}) {
           />
         </View>
 
-        <View style={styles.cardView}>
+        <View style={styles.cardViewLast}>
           <Text style={styles.cardViewTitle}>Đầu bếp nổi bật</Text>
           <FlatList
             showsVerticalScrollIndicator={false}
@@ -900,6 +954,9 @@ const styles = StyleSheet.create({
     shadowRadius: 2.22,
     elevation: 1.5,
     marginBottom: 10,
+  },
+  cardViewLast: {
+    backgroundColor: 'white',
   },
   cardViewTitle: {
     fontFamily,

@@ -1,15 +1,21 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {StyleSheet, View, ImageBackground, Image, Text} from 'react-native';
 
 import Global from '../../../Global';
 
 import newIcon from '../../../../images/label_new.png';
+import prepareIcon from '../../../../icons/TimeSquare.png';
+import performIcon from '../../../../icons/TimeCircle.png';
 
 export default function DishViewHorizontal(props) {
-  const {image, name, chef, price} = props.dish;
+  const {image, name, chef, price, prepare, perform} = props.dish;
   return (
     <View style={styles.wrapper}>
-      <ImageBackground style={styles.image} source={{uri: image}}>
+      <ImageBackground
+        style={styles.image}
+        imageStyle={{borderTopLeftRadius: 7, borderTopRightRadius: 7}}
+        source={{uri: image}}>
         {props.flag === true ? (
           <Image source={newIcon} style={styles.new} />
         ) : null}
@@ -17,9 +23,26 @@ export default function DishViewHorizontal(props) {
       <Text style={styles.name} numberOfLines={2}>
         {name}
       </Text>
-      <Text style={styles.chef} numberOfLines={1}>
-        {chef}
-      </Text>
+      {props.chef === true ? (
+        <View style={styles.timeCont}>
+          <View style={styles.timeItem}>
+            <Image style={styles.timeImage} source={prepareIcon} />
+            <Text style={styles.timeText}>
+              {prepare.slice(10, prepare.lastIndexOf(' '))}ph
+            </Text>
+          </View>
+          <View style={styles.timeItem}>
+            <Image style={styles.timeImage} source={performIcon} />
+            <Text style={styles.timeText}>
+              {perform.slice(11, perform.lastIndexOf(' '))}ph
+            </Text>
+          </View>
+        </View>
+      ) : (
+        <Text style={styles.chef} numberOfLines={1}>
+          {chef}
+        </Text>
+      )}
       <Text style={styles.price}>{Global.currencyFormat(price)}đ</Text>
     </View>
   );
@@ -27,6 +50,24 @@ export default function DishViewHorizontal(props) {
 
 const {height, width, backgroundColor, fontFamily} = Global;
 const styles = StyleSheet.create({
+  timeCont: {
+    flexDirection: 'row',
+    marginHorizontal: 5,
+    justifyContent: 'space-between',
+  },
+  timeItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  timeImage: {
+    width: width / 28,
+    height: width / 28,
+  },
+  timeText: {
+    fontFamily,
+    color: '#333333',
+    fontSize: width / 40,
+  },
   new: {
     width: width / 12,
     height: height / 34,
@@ -42,8 +83,6 @@ const styles = StyleSheet.create({
   },
   image: {
     width: width / 3.8,
-    borderTopLeftRadius: 5,
-    borderTopRightRadius: 5,
     height: width / 3.8,
     alignItems: 'flex-end',
   },

@@ -9,7 +9,9 @@ export default function DishViewVertical(props) {
     <View style={styles.wrapper}>
       <Image style={styles.image} source={{uri: image}} />
       <View>
-        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.name} numberOfLines={2}>
+          {name}
+        </Text>
         <Text style={styles.chef}>{chef}</Text>
         <Text style={styles.price}>{Global.currencyFormat(price)}đ</Text>
       </View>
@@ -35,6 +37,7 @@ const styles = StyleSheet.create({
     fontSize: width / 30,
     fontWeight: 'bold',
     marginBottom: 3,
+    width: width / 1.35,
   },
   chef: {
     fontFamily,

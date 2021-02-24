@@ -2,9 +2,8 @@ import React from 'react';
 import {StyleSheet, View, Image, Text} from 'react-native';
 
 import Global from '../../../Global';
+import RatingStar from './RatingStar';
 
-import starBorder from '../../../../icons/star_border-f2c94c.png';
-import starIcon from '../../../../icons/star-f2c94c.png';
 import addressIcon from '../../../../icons/place-82.png';
 import phoneIcon from '../../../../icons/phone-82.png';
 import arrowIcon from '../../../../icons/arrow_right-82.png';
@@ -12,69 +11,11 @@ import arrowIcon from '../../../../icons/arrow_right-82.png';
 export default function ChefView(props) {
   const {image, star, name, address, phone} = props.chef;
 
-  const _1star = (
-    <View style={styles.starCont}>
-      <Image style={styles.star} source={starIcon} />
-      <Image style={styles.star} source={starBorder} />
-      <Image style={styles.star} source={starBorder} />
-      <Image style={styles.star} source={starBorder} />
-      <Image style={styles.star} source={starBorder} />
-    </View>
-  );
-
-  const _2star = (
-    <View style={styles.starCont}>
-      <Image style={styles.star} source={starIcon} />
-      <Image style={styles.star} source={starIcon} />
-      <Image style={styles.star} source={starBorder} />
-      <Image style={styles.star} source={starBorder} />
-      <Image style={styles.star} source={starBorder} />
-    </View>
-  );
-
-  const _3star = (
-    <View style={styles.starCont}>
-      <Image style={styles.star} source={starIcon} />
-      <Image style={styles.star} source={starIcon} />
-      <Image style={styles.star} source={starIcon} />
-      <Image style={styles.star} source={starBorder} />
-      <Image style={styles.star} source={starBorder} />
-    </View>
-  );
-
-  const _4star = (
-    <View style={styles.starCont}>
-      <Image style={styles.star} source={starIcon} />
-      <Image style={styles.star} source={starIcon} />
-      <Image style={styles.star} source={starIcon} />
-      <Image style={styles.star} source={starIcon} />
-      <Image style={styles.star} source={starBorder} />
-    </View>
-  );
-
-  const _5star = (
-    <View style={styles.starCont}>
-      <Image style={styles.star} source={starIcon} />
-      <Image style={styles.star} source={starIcon} />
-      <Image style={styles.star} source={starIcon} />
-      <Image style={styles.star} source={starIcon} />
-      <Image style={styles.star} source={starIcon} />
-    </View>
-  );
-
   return (
     <View style={styles.wrapper}>
       <View style={styles.avatarCont}>
         <Image style={styles.avatar} source={{uri: image}} />
-        {star === 1
-          ? _1star
-          : star === 2
-          ? _2star
-          : star === 3
-          ? _3star
-          : star === 4
-          ? _4star
-          : _5star}
+        <RatingStar star={star} />
       </View>
       <View style={styles.infoCont}>
         <Text style={styles.name}>{name}</Text>
@@ -87,7 +28,7 @@ export default function ChefView(props) {
           <Text style={styles.infoText}>{phone}</Text>
         </View>
       </View>
-      <View style={styles.arrowCont}>
+      <View>
         <Image style={styles.arrow} source={arrowIcon} />
       </View>
     </View>
@@ -136,7 +77,6 @@ const styles = StyleSheet.create({
     fontSize: width / 36,
     marginLeft: 3,
   },
-  arrowCont: {},
   arrow: {
     width: width / 24,
     height: width / 24,
