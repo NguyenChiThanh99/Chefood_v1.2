@@ -238,7 +238,10 @@ export default function Home({navigation}) {
     {
       id: 1,
       image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
-      star: 4,
+      email: 'ha.ntthuy@example.com',
+      cover:
+        'https://images.unsplash.com/photo-1612392062126-5cc76074df9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+      star: 5,
       name: 'Nguyễn Thị Thúy Hà',
       address: '299/11 Lý Thường Kiệt, F15, Q11',
       phone: '0986375176',
@@ -246,7 +249,10 @@ export default function Home({navigation}) {
     {
       id: 2,
       image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
-      star: 5,
+      email: 'ha.ntthuy@example.com',
+      cover:
+        'https://images.unsplash.com/photo-1612392062126-5cc76074df9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+      star: 4,
       name: 'Nguyễn Thị Thúy Hà',
       address: '299/11 Lý Thường Kiệt, F15, Q11',
       phone: '0986375176',
@@ -254,7 +260,10 @@ export default function Home({navigation}) {
     {
       id: 3,
       image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
-      star: 1,
+      email: 'ha.ntthuy@example.com',
+      cover:
+        'https://images.unsplash.com/photo-1612392062126-5cc76074df9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+      star: 3,
       name: 'Nguyễn Thị Thúy Hà',
       address: '299/11 Lý Thường Kiệt, F15, Q11',
       phone: '0986375176',
@@ -262,7 +271,10 @@ export default function Home({navigation}) {
     {
       id: 4,
       image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
-      star: 4,
+      email: 'ha.ntthuy@example.com',
+      cover:
+        'https://images.unsplash.com/photo-1612392062126-5cc76074df9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+      star: 5,
       name: 'Nguyễn Thị Thúy Hà',
       address: '299/11 Lý Thường Kiệt, F15, Q11',
       phone: '0986375176',
@@ -270,7 +282,10 @@ export default function Home({navigation}) {
     {
       id: 5,
       image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
-      star: 2,
+      email: 'ha.ntthuy@example.com',
+      cover:
+        'https://images.unsplash.com/photo-1612392062126-5cc76074df9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+      star: 5,
       name: 'Nguyễn Thị Thúy Hà',
       address: '299/11 Lý Thường Kiệt, F15, Q11',
       phone: '0986375176',
@@ -278,6 +293,9 @@ export default function Home({navigation}) {
     {
       id: 6,
       image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
+      email: 'ha.ntthuy@example.com',
+      cover:
+        'https://images.unsplash.com/photo-1612392062126-5cc76074df9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
       star: 1,
       name: 'Nguyễn Thị Thúy Hà',
       address: '299/11 Lý Thường Kiệt, F15, Q11',
@@ -286,7 +304,10 @@ export default function Home({navigation}) {
     {
       id: 7,
       image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
-      star: 5,
+      email: 'ha.ntthuy@example.com',
+      cover:
+        'https://images.unsplash.com/photo-1612392062126-5cc76074df9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+      star: 2,
       name: 'Nguyễn Thị Thúy Hà',
       address: '299/11 Lý Thường Kiệt, F15, Q11',
       phone: '0986375176',
@@ -294,6 +315,9 @@ export default function Home({navigation}) {
     {
       id: 8,
       image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
+      email: 'ha.ntthuy@example.com',
+      cover:
+        'https://images.unsplash.com/photo-1612392062126-5cc76074df9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
       star: 4,
       name: 'Nguyễn Thị Thúy Hà',
       address: '299/11 Lý Thường Kiệt, F15, Q11',
@@ -686,11 +710,11 @@ export default function Home({navigation}) {
         <SliderBox
           images={imagesSlider}
           sliderBoxHeight={Global.height / 5.5}
-          dotColor={Global.backgroundColor}
+          dotColor={Global.mainColor}
           inactiveDotColor="#f2f2f2"
           autoplay
           circleLoop
-          imageLoadingColor={Global.backgroundColor}
+          imageLoadingColor={Global.mainColor}
           ImageComponentStyle={styles.slider}
         />
 
@@ -937,7 +961,7 @@ export default function Home({navigation}) {
   );
 }
 
-const {width, heightHeader, backgroundColor, fontFamily} = Global;
+const {width, heightHeader, mainColor, fontFamily} = Global;
 const styles = StyleSheet.create({
   line: {
     borderColor: '#bdbdbd',
@@ -1018,7 +1042,7 @@ const styles = StyleSheet.create({
     color: '#6e6e6e',
     fontFamily,
     width: width / 1.6,
-    borderBottomColor: backgroundColor,
+    borderBottomColor: mainColor,
     borderBottomWidth: 1,
     height: width / 16,
     padding: 0,

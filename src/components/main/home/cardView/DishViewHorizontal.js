@@ -48,7 +48,7 @@ export default function DishViewHorizontal(props) {
   );
 }
 
-const {height, width, backgroundColor, fontFamily} = Global;
+const {height, width, mainColor, fontFamily} = Global;
 const styles = StyleSheet.create({
   timeCont: {
     flexDirection: 'row',
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   },
   price: {
     fontFamily,
-    color: backgroundColor,
+    color: mainColor,
     fontSize: width / 34,
     marginHorizontal: 5,
     marginBottom: 5,

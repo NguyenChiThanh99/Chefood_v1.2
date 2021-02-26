@@ -18,7 +18,7 @@ export default function DishViewRelated(props) {
   );
 }
 
-const {height, width, backgroundColor, fontFamily} = Global;
+const {height, width, mainColor, fontFamily} = Global;
 const styles = StyleSheet.create({
   wrapper: {
     width: width / 2 - 45 / 2,
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   price: {
     margin: 5,
     fontFamily,
-    color: backgroundColor,
+    color: mainColor,
     fontSize: width / 30,
   },
 });

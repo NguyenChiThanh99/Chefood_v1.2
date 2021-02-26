@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     fontSize: width / 32,
     marginLeft: width / 12 + 10,
     textAlign: 'justify',
+    marginTop: 10,
   },
   time: {
     fontFamily,

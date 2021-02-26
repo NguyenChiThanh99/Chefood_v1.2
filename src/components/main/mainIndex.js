@@ -74,7 +74,7 @@ function Tabs({navigation}) {
         },
       })}
       tabBarOptions={{
-        activeTintColor: Global.backgroundColor,
+        activeTintColor: Global.mainColor,
         inactiveTintColor: '#333333',
       }}>
       <Tab.Screen name="Trang chủ" component={Home} />

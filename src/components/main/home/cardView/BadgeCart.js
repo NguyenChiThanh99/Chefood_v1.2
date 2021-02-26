@@ -6,28 +6,34 @@ import {Badge} from 'react-native-elements';
 import Global from '../../../Global';
 
 import cartIcon from '../../../../icons/Buy.png';
+import cartIconWhite from '../../../../icons/Buy-ffffff.png';
 
-export default function BadgeCart() {
+export default function BadgeCart(props) {
   // const cartLength = useSelector((state) => state.cart.length);
   return (
     <View style={styles.cartCont}>
-      <Image source={cartIcon} style={styles.cartIcon} />
+      <Image
+        source={props.dish === true ? cartIconWhite : cartIcon}
+        style={styles.cartIcon}
+      />
       <Badge
         value={0}
         containerStyle={styles.containerStyle}
-        badgeStyle={styles.badgeStyle}
+        badgeStyle={
+          props.dish === true ? styles.badgeStyleWhite : styles.badgeStyle
+        }
       />
     </View>
   );
 }
 
-const {height, width, backgroundColor} = Global;
+const {height, mainColor, backButton} = Global;
 const styles = StyleSheet.create({
   cartCont: {
     marginRight: 4,
   },
   cartIcon: {
-    width: width / 16,
+    width: backButton,
     resizeMode: 'contain',
   },
   containerStyle: {
@@ -36,7 +42,11 @@ const styles = StyleSheet.create({
     right: -8,
   },
   badgeStyle: {
-    backgroundColor,
+    backgroundColor: mainColor,
+    borderWidth: 1,
+  },
+  badgeStyleWhite: {
+    backgroundColor: 'rgba(0,0,0,0.3)',
     borderWidth: 1,
   },
 });

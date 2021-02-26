@@ -3,11 +3,13 @@ import {Dimensions} from 'react-native';
 const {width, height} = Dimensions.get('window');
 
 module.exports = {
-  backgroundColor: '#FB5A23',
+  mainColor: '#FB5A23',
+  backgroundColor: '#F2F2F2',
   width: width,
   height: height,
   heightHeader: height / 14,
   fontFamily: 'Roboto',
+  backButton: width / 16,
   currencyFormat: (num) => {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
   },

@@ -17,9 +17,9 @@ import Global from '../../Global';
 import Comment from './cardView/Comment';
 import DishViewHorizontal from './cardView/DishViewHorizontal';
 import DishViewRelated from './cardView/DishViewRelated';
+import BadgeCart from './cardView/BadgeCart';
 
 import arrowBack from '../../../icons/arrow_back_ios-ffffff.png';
-import cartIcon from '../../../icons/Buy-ffffff.png';
 import saveIcon from '../../../icons/bookmark_border-82.png';
 import saveIconS from '../../../icons/bookmark-fb5a23.png';
 import minusDisable from '../../../icons/remove_circle_outline-e0.png';
@@ -619,14 +619,14 @@ export default function Dish({navigation, route}) {
         <TouchableOpacity
           style={styles.topBtnCont}
           onPress={() => navigation.navigate('CART')}>
-          <Image style={styles.topBtnImg} source={cartIcon} />
+          <BadgeCart dish />
         </TouchableOpacity>
       </View>
     </View>
   );
 }
 
-const {width, height, fontFamily} = Global;
+const {width, height, fontFamily, backgroundColor, backButton} = Global;
 const styles = StyleSheet.create({
   cardViewList2Col: {
     marginHorizontal: 15,
@@ -842,7 +842,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   wrapper: {
-    backgroundColor: '#f2f2f2',
+    backgroundColor,
     flex: 1,
   },
   image: {
@@ -865,7 +865,7 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   topBtnImg: {
-    width: width / 16,
-    height: width / 16,
+    width: backButton,
+    height: backButton,
   },
 });
