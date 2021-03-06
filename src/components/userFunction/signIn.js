@@ -11,8 +11,10 @@ import {
   Keyboard,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import {useDispatch} from 'react-redux';
 
 import Global from '../Global';
+import {updateUser} from '../../../actions';
 
 import background from '../../images/background.png';
 import emailIcon from '../../icons/mail-e0.png';
@@ -23,6 +25,20 @@ import google from '../../images/google.png';
 export default function SignIn({navigation}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+
+  const userInfo = {
+    avatar: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
+    name: 'Dương Tuấn Phong',
+    email: 'jessica.hanson@example.com',
+    phone: '0917749254',
+    cover:
+      'https://i.pinimg.com/originals/63/50/82/6350823ef088dbb25aa3acc155fa6e1c.png',
+    gender: 'Thiết lập ngay',
+    birthday: '12/02/1999',
+    address: '27 Quân Sự, F11, Q11',
+  };
+  dispatch(updateUser(userInfo));
 
   const signInHandle = () => {
     navigation.navigate('MAIN');

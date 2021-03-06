@@ -17,14 +17,12 @@ import Toast from 'react-native-root-toast';
 import {SliderBox} from 'react-native-image-slider-box';
 
 import Global from '../../Global';
-import BadgeCart from './cardView/BadgeCart';
+import MainHeader from './cardView/MainHeader';
 import DishViewHorizontal from './cardView/DishViewHorizontal';
 import DishViewVertical from './cardView/DishViewVertical';
 import ChefView from './cardView/ChefView';
 import Category from './cardView/Category';
 
-import logo from '../../../images/Logo2.png';
-import searchIcon from '../../../icons/Search.png';
 import barbecue from '../../../images/word/barbecue.png';
 import donut from '../../../images/word/donut.png';
 import chicken from '../../../images/word/fried-chicken.png';
@@ -84,7 +82,6 @@ export default function Home({navigation}) {
     LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
   }, []);
 
-  const [search, setSearch] = useState('');
   const [category, setCategory] = useState({
     all: true,
     pork: false,
@@ -346,13 +343,6 @@ export default function Home({navigation}) {
 
   const flatListItemSeparator = () => {
     return <View style={styles.line} />;
-  };
-
-  const searchHandle = () => {
-    if (search !== '') {
-      navigation.navigate('SEARCH', {search: search});
-      setSearch('');
-    }
   };
 
   const categoryHandle = (id) => {
@@ -682,29 +672,7 @@ export default function Home({navigation}) {
 
   return (
     <View style={styles.wrapper}>
-      <View style={styles.header}>
-        <Image style={styles.logo} source={logo} />
-        <View style={styles.searchCont}>
-          <TextInput
-            style={styles.textInputStyle}
-            underlineColorAndroid="transparent"
-            placeholder="Tìm kiếm"
-            placeholderTextColor="#bdbdbd"
-            autoCapitalize="none"
-            onChangeText={(text) => setSearch(text)}
-            value={search}
-            onSubmitEditing={(event) => {
-              searchHandle();
-            }}
-          />
-          <TouchableOpacity onPress={() => searchHandle()}>
-            <Image style={styles.searchImg} source={searchIcon} />
-          </TouchableOpacity>
-        </View>
-        <TouchableOpacity onPress={() => navigation.navigate('CART')}>
-          <BadgeCart />
-        </TouchableOpacity>
-      </View>
+      <MainHeader navigation={navigation} />
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <SliderBox
@@ -961,7 +929,7 @@ export default function Home({navigation}) {
   );
 }
 
-const {width, heightHeader, mainColor, fontFamily} = Global;
+const {width, fontFamily, backgroundColor} = Global;
 const styles = StyleSheet.create({
   line: {
     borderColor: '#bdbdbd',
@@ -1034,39 +1002,8 @@ const styles = StyleSheet.create({
     marginTop: 15,
     backgroundColor: 'transparent',
   },
-  searchImg: {
-    width: width / 16,
-    height: width / 16,
-  },
-  textInputStyle: {
-    color: '#6e6e6e',
-    fontFamily,
-    width: width / 1.6,
-    borderBottomColor: mainColor,
-    borderBottomWidth: 1,
-    height: width / 16,
-    padding: 0,
-    marginRight: 5,
-  },
-  searchCont: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  logo: {
-    width: width / 11,
-    height: width / 11,
-  },
-  header: {
-    backgroundColor: 'white',
-    flexDirection: 'row',
-    height: heightHeader,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-  },
   wrapper: {
-    backgroundColor: '#f2f2f2',
+    backgroundColor,
     flex: 1,
   },
 });

@@ -29,6 +29,16 @@ import Cart from './home/Cart';
 import Search from './home/Search';
 import Dish from './home/Dish';
 import Chef from './home/Chef';
+import ChangeAddress from './user/address/ChangeAddress';
+import OrderDetail from './order/OrderDetail';
+import ChangeInformation from './user/changeInfomation/ChangeInformation';
+import SavedDish from './user/SavedDish';
+import SavedChef from './user/SavedChef';
+import Setting from './user/Setting';
+import ChangeInfoDetail from './user/changeInfomation/ChangeInfoDetail';
+import Province from './user/address/Province';
+import District from './user/address/District';
+import Ward from './user/address/Ward';
 
 const Tab = createBottomTabNavigator();
 const MainStack = createStackNavigator();
@@ -153,6 +163,102 @@ export default function MainIndex() {
           ...TransitionPresets.SlideFromRightIOS,
         }}
         component={Dish}
+      />
+      <MainStack.Screen
+        name="ORDER_DETAIL"
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+        component={OrderDetail}
+      />
+      <MainStack.Screen
+        name="CHANGE_ADDRESS"
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+        component={ChangeAddress}
+      />
+      <MainStack.Screen
+        name="CHANGE_INFORMATION"
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+        component={ChangeInformation}
+      />
+      <MainStack.Screen
+        name="ORDER"
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+        component={Order}
+      />
+      <MainStack.Screen
+        name="SETTING"
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+        component={Setting}
+      />
+      <MainStack.Screen
+        name="SAVED_DISH"
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+        component={SavedDish}
+      />
+      <MainStack.Screen
+        name="SAVED_CHEF"
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+        component={SavedChef}
+      />
+      <MainStack.Screen
+        name="CHANGE_INFO_DETAIL"
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+        component={ChangeInfoDetail}
+      />
+      <MainStack.Screen
+        name="PROVINCE"
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+        component={Province}
+      />
+      <MainStack.Screen
+        name="DISTRICT"
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+        component={District}
+      />
+      <MainStack.Screen
+        name="WARD"
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+        component={Ward}
+      />
+      <MainStack.Screen
+        name="HOME"
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+        component={Home}
       />
     </MainStack.Navigator>
   );
