@@ -11,8 +11,10 @@ import {
   Keyboard,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import Toast from 'react-native-root-toast';
 
 import Global from '../Global';
+import verify_email_signup from '../../apis/verify_email_signup';
 
 import background from '../../images/background.png';
 import emailIcon from '../../icons/mail-e0.png';
@@ -30,8 +32,21 @@ export default function SignUp({navigation}) {
   const [phone, setPhone] = useState('');
 
   const signUpHandle = () => {
-    navigation.navigate('ENTER_SECRET_CODE', {from: 0});
+    verify_email_signup
+      .verify_email_signup('nguyenchithanh1999@gmail.com')
+      .then((responseJson) => {
+        console.log(responseJson);
+        navigation.navigate('ENTER_SECRET_CODE', {from: 0});
+      })
+      .catch((err) => {
+        console.log(err);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: -20,
+          duration: 2500,
+        });
+      });
   };
+
   return (
     <ImageBackground source={background} style={styles.wrapper}>
       <View style={styles.wrapper2}>

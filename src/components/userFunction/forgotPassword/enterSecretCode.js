@@ -10,8 +10,12 @@ import {
   Keyboard,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import Toast from 'react-native-root-toast';
 
 import Global from '../../Global';
+import sign_up from '../../../apis/sign_up';
+import verify_email_forgot_pass from '../../../apis/verify_email_forgot_pass';
+import forgot_password_change from '../../../apis/forgot_password_change';
 
 import background from '../../../images/background.png';
 import keyboardIcon from '../../../icons/keypad-e0.png';
@@ -21,7 +25,58 @@ export default function EnterSecretCode({navigation, route}) {
   const from = route.params.from;
 
   const verifyEmailHandle = () => {
-    navigation.navigate('SIGN_IN');
+    if (from === 0) {
+      sign_up
+        .sign_up(
+          'Nguyễn Chí Thanh',
+          'nguyenchithanh1999@gmail.com',
+          '17521049',
+          '0834999373',
+        )
+        .then((responseJson) => {
+          console.log(responseJson);
+          navigation.navigate('SIGN_IN');
+        })
+        .catch((err) => {
+          console.log(err);
+          return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+            position: -20,
+            duration: 2500,
+          });
+        });
+    } else {
+      //   verify_email_forgot_pass
+      //     .verify_email_forgot_pass('nguyenchithanh1999@gmail.com')
+      //     .then((response) => {
+      //       console.log('header: ' + response.headers.get('Auth-Token'));
+      //       response.json().then((responseJson) => {
+      //         console.log('data: ' + responseJson);
+      //       });
+      //     })
+      //     .catch((err) => {
+      //       console.log(err);
+      //       return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+      //         position: -20,
+      //         duration: 2500,
+      //       });
+      //     });
+
+      forgot_password_change
+        .forgot_password_change(
+          '12345678',
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ3YjMzMjJmN2IxNDAwMjRlYmI3OGUiLCJpYXQiOjE2MTUzMTMxOTZ9.-T1vWPXDaqvZeoDX0Uix1XdWt3u6kunSTy7qLv-cBcU',
+        )
+        .then((responseJson) => {
+          console.log(responseJson);
+        })
+        .catch((err) => {
+          console.log(err);
+          return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+            position: -20,
+            duration: 2500,
+          });
+        });
+    }
   };
   return (
     <ImageBackground source={background} style={styles.wrapper}>

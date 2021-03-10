@@ -47,5 +47,5 @@ module.exports = {
     }
   },
   addressLink: 'https://my-chefood-app.herokuapp.com/',
-  //link: 'http://192.168.43.39:8080/hotelbooking/',
+  link: 'https://chefood-mongo.herokuapp.com/',
 };

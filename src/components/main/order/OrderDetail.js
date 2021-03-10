@@ -22,7 +22,7 @@ import deliveryImage from '../../../images/ship.png';
 export default function OrderDetail({navigation}) {
   const data = {
     id: '1547865946145787',
-    deliveryStatus: 'Đang giao hàng',
+    deliveryStatus: 'Đang xác nhận',
     timeOrder: '13:06 26/10/2020',
     method: 'Tiền mặt',
     chef: 'Hoàng Phương Yến',
@@ -67,6 +67,14 @@ export default function OrderDetail({navigation}) {
     }
   };
 
+  const total = (dish) => {
+    var sum = 0;
+    for (let i = 0; i < dish.length; i++) {
+      sum += dish[i].price * dish[i].quantity;
+    }
+    return sum;
+  };
+
   const confirmJSX = (
     <TouchableOpacity style={styles.cancelBtn}>
       <Text style={styles.cancelText}>Hủy đơn hàng</Text>
@@ -80,64 +88,88 @@ export default function OrderDetail({navigation}) {
   return (
     <View style={styles.wrapper}>
       <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
-        <View style={styles.deliveryStatus}>
-          <View style={styles.deliveryTopView}>
-            <Text style={styles.description}>
-              {checkDelivery(data.deliveryStatus).description}
-            </Text>
-            <Text style={styles.title}>
-              {checkDelivery(data.deliveryStatus).title}
-            </Text>
-
-            {data.deliveryStatus === 'Đang giao hàng'
-              ? deliveryJSX
-              : data.deliveryStatus === 'Đang xác nhận'
-              ? confirmJSX
-              : prepareJSX}
-          </View>
-
-          <View>
-            <LinearGradient
-              style={styles.line}
-              colors={['#fb5a23', '#ffb038']}
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 0}}
-            />
-
-            <View style={styles.deliveryBottomView}>
-              <Text
-                style={
-                  data.deliveryStatus === 'Đang xác nhận'
-                    ? styles.statusTextActive
-                    : styles.statusText
-                }>
-                Đang xác nhận
+        {data.deliveryStatus === 'Đang xác nhận' ||
+        data.deliveryStatus === 'Đang chuẩn bị' ||
+        data.deliveryStatus === 'Đang giao hàng' ? (
+          <View style={styles.deliveryStatus}>
+            <View style={styles.deliveryTopView}>
+              <Text style={styles.description}>
+                {checkDelivery(data.deliveryStatus).description}
               </Text>
-              <Text
-                style={
-                  data.deliveryStatus === 'Đang chuẩn bị'
-                    ? styles.statusTextActive
-                    : styles.statusText
-                }>
-                Đang chuẩn bị
+              <Text style={styles.title}>
+                {checkDelivery(data.deliveryStatus).title}
               </Text>
-              <Text
-                style={
-                  data.deliveryStatus === 'Đang giao hàng'
-                    ? styles.statusTextActive
-                    : styles.statusText
-                }>
-                Đang giao hàng
-              </Text>
-              <Text style={styles.statusText}>Đã giao hàng</Text>
+
+              {data.deliveryStatus === 'Đang giao hàng'
+                ? deliveryJSX
+                : data.deliveryStatus === 'Đang xác nhận'
+                ? confirmJSX
+                : prepareJSX}
+            </View>
+
+            <View>
+              <LinearGradient
+                style={styles.line}
+                colors={['#fb5a23', '#ffb038']}
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}
+              />
+
+              <View style={styles.deliveryBottomView}>
+                <Text
+                  style={
+                    data.deliveryStatus === 'Đang xác nhận'
+                      ? styles.statusTextActive
+                      : styles.statusText
+                  }>
+                  Đang xác nhận
+                </Text>
+                <Text
+                  style={
+                    data.deliveryStatus === 'Đang chuẩn bị'
+                      ? styles.statusTextActive
+                      : styles.statusText
+                  }>
+                  Đang chuẩn bị
+                </Text>
+                <Text
+                  style={
+                    data.deliveryStatus === 'Đang giao hàng'
+                      ? styles.statusTextActive
+                      : styles.statusText
+                  }>
+                  Đang giao hàng
+                </Text>
+                <Text style={styles.statusText}>Đã giao hàng</Text>
+              </View>
             </View>
           </View>
-        </View>
+        ) : null}
 
-        <View style={styles.orderTitleCont}>
-          <Text style={styles.orderTitle}>{data.dish[0].name}</Text>
-          <Text style={styles.orderTime}>{data.timeOrder}</Text>
-        </View>
+        {data.deliveryStatus === 'Đang xác nhận' ||
+        data.deliveryStatus === 'Đang chuẩn bị' ||
+        data.deliveryStatus === 'Đang giao hàng' ? (
+          <View style={styles.orderTitleCont}>
+            <Text style={styles.orderTitle}>{data.dish[0].name}</Text>
+            <Text style={styles.orderTime}>{data.timeOrder}</Text>
+          </View>
+        ) : null}
+
+        {data.deliveryStatus === 'Đã hủy' ||
+        data.deliveryStatus === 'Đã giao' ? (
+          <View
+            style={
+              data.deliveryStatus === 'Đã hủy'
+                ? styles.canceledView
+                : styles.completedView
+            }>
+            {data.deliveryStatus === 'Đã hủy' ? (
+              <Text style={styles.cancelStatus}>ĐÃ HỦY</Text>
+            ) : null}
+            <Text style={styles.orderTitleCancel}>{data.dish[0].name}</Text>
+            <Text style={styles.orderTimeCancel}>{data.timeOrder}</Text>
+          </View>
+        ) : null}
 
         <View style={styles.orderDetailCont}>
           <Text style={styles.chef}>{data.chef}</Text>
@@ -166,8 +198,87 @@ export default function OrderDetail({navigation}) {
             }}
             keyExtractor={(item) => item.id.toString()}
           />
+
+          <View style={styles.row2}>
+            <Text style={styles.tempCalText}>
+              Tạm tính ({data.dish.length} món)
+            </Text>
+            <Text style={styles.tempCalPrice}>
+              {Global.currencyFormat(total(data.dish))}đ
+            </Text>
+          </View>
+          <View style={styles.lineList} />
+
+          <View style={[styles.row3, {marginTop: 31}]}>
+            <Text style={styles.methodTitle}>Phương thức</Text>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Image
+                style={styles.methodImg}
+                source={data.method === 'Tiền mặt' ? moneyIcon : cardIcon}
+              />
+              <Text style={styles.method}>{data.method}</Text>
+            </View>
+          </View>
+          <View style={[styles.row3, {marginTop: 12}]}>
+            <Text style={styles.methodTitle}>Thành tiền</Text>
+            <Text style={styles.total}>
+              {Global.currencyFormat(total(data.dish))}đ
+            </Text>
+          </View>
+
+          <View style={styles.userInfo}>
+            <View style={{flexDirection: 'row'}}>
+              <View>
+                <Text style={styles.userInfoTitle}>Mã đơn hàng</Text>
+                <Text style={styles.userInfoTitle}>Tên</Text>
+                <Text style={styles.userInfoTitle}>Số điện thoại</Text>
+                <Text style={styles.userInfoTitle}>Địa chỉ</Text>
+              </View>
+              <View style={{marginLeft: 32}}>
+                <Text style={styles.userInfoText}>{data.id}</Text>
+                <Text style={styles.userInfoText}>{data.user.name}</Text>
+                <Text style={styles.userInfoText}>{data.user.phone}</Text>
+                <Text style={styles.userInfoText}>{data.user.address}</Text>
+              </View>
+            </View>
+          </View>
         </View>
       </ScrollView>
+
+      {data.deliveryStatus === 'Đã hủy' ? (
+        <View style={styles.bottomBtn}>
+          <TouchableOpacity onPress={() => {}}>
+            <LinearGradient
+              style={styles.btn}
+              colors={['#fb5a23', '#ffb038']}
+              start={{x: 0, y: 0}}
+              end={{x: 1, y: 0}}>
+              <View>
+                <Text style={styles.btnText}>Đặt lại</Text>
+              </View>
+            </LinearGradient>
+          </TouchableOpacity>
+        </View>
+      ) : null}
+
+      {data.deliveryStatus === 'Đã giao' ? (
+        <View style={styles.bottomBtn2} onPress={() => {}}>
+          <TouchableOpacity style={styles.btnReview}>
+            <Text style={styles.btnReviewText}>Đánh giá</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <LinearGradient
+              style={styles.btnAgain}
+              colors={['#fb5a23', '#ffb038']}
+              start={{x: 0, y: 0}}
+              end={{x: 1, y: 0}}>
+              <View>
+                <Text style={styles.btnText}>Đặt lại</Text>
+              </View>
+            </LinearGradient>
+          </TouchableOpacity>
+        </View>
+      ) : null}
 
       <View style={styles.header}>
         <TouchableOpacity
@@ -190,6 +301,152 @@ const {
   backButton,
 } = Global;
 const styles = StyleSheet.create({
+  bottomBtn: {
+    backgroundColor: 'white',
+    height: height / 11.5,
+    justifyContent: 'center',
+    padding: 10,
+  },
+  bottomBtn2: {
+    backgroundColor: 'white',
+    height: height / 11.5,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 10,
+  },
+  btnReview: {
+    borderRadius: 5,
+    borderColor: '#828282',
+    borderWidth: 1,
+    width: width / 2 - 15,
+    height: height / 11.5 - 22,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  btnAgain: {
+    borderRadius: 5,
+    width: width / 2 - 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  btn: {
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  btnReviewText: {
+    fontFamily,
+    fontSize: width / 30,
+    color: '#828282',
+    marginVertical: 10,
+  },
+  btnText: {
+    fontFamily,
+    fontSize: width / 30,
+    color: 'white',
+    marginVertical: 10,
+  },
+  canceledView: {
+    backgroundColor: 'white',
+    alignItems: 'center',
+    height: height / 5,
+  },
+  completedView: {
+    backgroundColor: 'white',
+    alignItems: 'center',
+    height: height / 6.7,
+  },
+  cancelStatus: {
+    fontFamily,
+    color: '#ffffff',
+    fontSize: width / 34,
+    fontWeight: 'bold',
+    backgroundColor: '#bdbdbd',
+    borderRadius: 2,
+    paddingHorizontal: 18,
+    paddingVertical: 3,
+    marginBottom: 7,
+    marginTop: 7,
+  },
+  orderTitleCancel: {
+    fontFamily,
+    color: '#000000',
+    fontWeight: 'bold',
+    fontSize: width / 21,
+    width: width / 1.5,
+    textAlign: 'center',
+  },
+  orderTimeCancel: {
+    fontFamily,
+    color: '#4f4f4f',
+    fontSize: width / 30,
+    marginTop: 10,
+  },
+  userInfo: {
+    paddingHorizontal: 15,
+    paddingBottom: 15,
+    paddingTop: height / 15,
+    marginBottom: 14,
+  },
+  userInfoTitle: {
+    fontFamily,
+    color: '#4f4f4f',
+    fontWeight: 'bold',
+    fontSize: width / 35,
+    marginBottom: 7,
+  },
+  userInfoText: {
+    fontFamily,
+    color: '#828282',
+    fontSize: width / 35,
+    width: width / 1.5,
+    marginBottom: 7,
+  },
+  total: {
+    fontFamily,
+    color: mainColor,
+    fontWeight: 'bold',
+    fontSize: width / 28,
+  },
+  method: {
+    fontFamily,
+    color: '#333333',
+    fontSize: width / 30,
+  },
+  methodImg: {
+    width: width / 9,
+    height: height / 38,
+    resizeMode: 'contain',
+    marginRight: 8,
+  },
+  methodTitle: {
+    fontFamily,
+    color: '#333333',
+    fontWeight: 'bold',
+    fontSize: width / 30,
+  },
+  row3: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 15,
+  },
+  tempCalText: {
+    fontFamily,
+    color: '#4f4f4f',
+    fontSize: width / 35,
+  },
+  tempCalPrice: {
+    fontFamily,
+    color: '#4f4f4f',
+    fontSize: width / 30,
+  },
+  row2: {
+    flexDirection: 'row',
+    paddingVertical: 20,
+    paddingHorizontal: 15,
+    justifyContent: 'space-between',
+  },
   row: {
     flexDirection: 'row',
     padding: 15,
