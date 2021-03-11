@@ -1,5 +1,7 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useEffect} from 'react';
 import {StyleSheet, Image} from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 // import {useSelector, useDispatch} from 'react-redux';
@@ -99,7 +101,7 @@ function Tabs({navigation}) {
 // var flag = false;
 // var preUser = 0;
 
-export default function MainIndex() {
+export default function MainIndex({route}) {
   // const dispatch = useDispatch();
   // const userid = useSelector((state) => state.user);
   // const getData = async () => {
@@ -121,6 +123,12 @@ export default function MainIndex() {
   //   flag = true;
   //   preUser = userid.id;
   // }
+
+  useEffect(() => {
+    if (route.params.asyncStorage) {
+      SplashScreen.hide();
+    }
+  }, []);
 
   return (
     <MainStack.Navigator initialRouteName="TABS" style={styles.wrapper}>

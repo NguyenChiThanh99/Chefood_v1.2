@@ -1,16 +1,16 @@
 import Global from '../components/Global';
 
-const forgot_password_change = (password, token) =>
-  fetch(Global.link + 'user/forgotpasschange', {
+const sign_in = (email, password) =>
+  fetch(Global.link + 'user/login', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      'auth-token': token,
     },
     body: JSON.stringify({
+      email: email,
       password: password,
     }),
-  }).then((response) => response.json());
+  });
 
-module.exports = {forgot_password_change};
+module.exports = {sign_in};

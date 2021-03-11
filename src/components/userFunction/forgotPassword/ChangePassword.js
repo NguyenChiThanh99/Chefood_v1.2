@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -9,105 +8,64 @@ import {
   ImageBackground,
   Image,
   TextInput,
-  Keyboard,
   ActivityIndicator,
+  Keyboard,
 } from 'react-native';
-import SplashScreen from 'react-native-splash-screen';
 import LinearGradient from 'react-native-linear-gradient';
 import Toast from 'react-native-root-toast';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useDispatch} from 'react-redux';
 
-import Global from '../Global';
-import sign_in from '../../../src/apis/sign_in';
-import {updateUser} from '../../../actions';
+import Global from '../../Global';
+import forgot_password_change from '../../../apis/forgot_password_change';
 
-import background from '../../images/background.png';
-import emailIcon from '../../icons/mail-e0.png';
-import passwordIcon from '../../icons/lock-e0.png';
-import facebook from '../../images/facebook.png';
-import google from '../../images/google.png';
+import background from '../../../images/background.png';
+import passwordIcon from '../../../icons/lock-e0.png';
+import facebook from '../../../images/facebook.png';
+import google from '../../../images/google.png';
 
-export default function SignIn({navigation}) {
-  const [email, setEmail] = useState('');
+export default function ChangePassword({navigation, route}) {
   const [password, setPassword] = useState('');
+  const [rePassword, setRepassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    loadFirstScreen();
-  }, []);
-
-  const loadFirstScreen = async () => {
+  const changePassHandle = () => {
     setLoading(true);
-    try {
-      const jsonValue = await AsyncStorage.getItem('@user');
-      if (jsonValue === 'null' || jsonValue === null) {
-        setLoading(false);
-        dispatch(updateUser(null));
-        SplashScreen.hide();
-      } else {
-        dispatch(updateUser(JSON.parse(jsonValue)));
-        setLoading(false);
-        navigation.navigate('MAIN', {asyncStorage: true});
-      }
-    } catch (e) {
-      setLoading(false);
-      console.log('Error: ' + e);
-    }
-  };
-
-  const signInHandle = () => {
-    setLoading(true);
-    if (email.length === 0 || password.length === 0) {
+    if (password.length === 0 || rePassword.length === 0) {
       setLoading(false);
       return Toast.show('Vui lòng nhập tất cả các thông tin', {
         position: 0,
         duration: 2500,
       });
+    } else if (password.length < 8) {
+      setLoading(false);
+      return Toast.show('Mật khẩu cần ít nhất 8 ký tự', {
+        position: 0,
+        duration: 2500,
+      });
+    } else if (password !== rePassword) {
+      setLoading(false);
+      return Toast.show('Mật khẩu nhập lại không khớp', {
+        position: 0,
+        duration: 2500,
+      });
     } else {
-      sign_in
-        .sign_in(email, password)
-        .then((response) => {
-          var token = response.headers.get('Auth-Token');
-          response.json().then((responseJson) => {
-            setLoading(false);
-            if (responseJson.message === 'Invalid password!') {
-              return Toast.show('Mật khẩu không đúng', {
-                position: 0,
-                duration: 2500,
-              });
-            } else if (responseJson.message === 'Email is not found!') {
-              return Toast.show('Email không tồn tại trong hệ thống', {
-                position: 0,
-                duration: 2500,
-              });
-            } else {
-              dispatch(updateUser({token, userInfo: responseJson}));
-              storeData({token, userInfo: responseJson});
-              setEmail('');
-              setPassword('');
-              navigation.navigate('MAIN', {asyncStorage: false});
-            }
-          });
+      forgot_password_change
+        .forgot_password_change(password, route.params.header)
+        .then((responseJson) => {
+          setLoading(false);
+          if (responseJson.message === 'Password has been changed!') {
+            setPassword('');
+            setRepassword('');
+            navigation.navigate('SIGN_IN');
+          }
         })
         .catch((err) => {
           console.log(err);
           setLoading(false);
           return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-            position: 0,
+            position: -20,
             duration: 2500,
           });
         });
-    }
-  };
-
-  const storeData = async (value) => {
-    try {
-      const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem('@user', jsonValue);
-    } catch (e) {
-      console.log('Error: ' + e);
     }
   };
 
@@ -121,24 +79,13 @@ export default function SignIn({navigation}) {
     <ImageBackground source={background} style={styles.wrapper}>
       <View style={styles.wrapper2}>
         <View style={styles.cardview}>
-          <Text style={styles.title}>Đăng nhập</Text>
+          <Text style={styles.title}>Đổi mật khẩu</Text>
 
-          <View style={[styles.inputContainer, {marginBottom: 18}]}>
-            <TextInput
-              style={styles.textInputStyle}
-              underlineColorAndroid="transparent"
-              placeholder="Email"
-              placeholderTextColor="#bdbdbd"
-              autoCapitalize="none"
-              autoCompleteType="email"
-              keyboardType="email-address"
-              onChangeText={(text) => setEmail(text)}
-              value={email}
-            />
-            <Image style={styles.inputImg} source={emailIcon} />
-          </View>
+          <Text style={styles.subtitle}>
+            Nhập mật khẩu mới cho tài khoản của bạn
+          </Text>
 
-          <View style={styles.inputContainer}>
+          <View style={[styles.inputContainer, {marginBottom: height / 30}]}>
             <TextInput
               style={styles.textInputStyle}
               underlineColorAndroid="transparent"
@@ -151,16 +98,19 @@ export default function SignIn({navigation}) {
             />
             <Image style={styles.inputImg} source={passwordIcon} />
           </View>
-
-          <TouchableOpacity
-            onPress={() => {
-              setEmail('');
-              setPassword('');
-              Keyboard.dismiss();
-              navigation.navigate('ENTER_EMAIL');
-            }}>
-            <Text style={styles.forgotpass}>Quên mật khẩu?</Text>
-          </TouchableOpacity>
+          <View style={[styles.inputContainer, {marginBottom: height / 30}]}>
+            <TextInput
+              style={styles.textInputStyle}
+              underlineColorAndroid="transparent"
+              placeholder="Nhập lại mật khẩu"
+              secureTextEntry={true}
+              placeholderTextColor="#bdbdbd"
+              autoCapitalize="none"
+              onChangeText={(text) => setRepassword(text)}
+              value={rePassword}
+            />
+            <Image style={styles.inputImg} source={passwordIcon} />
+          </View>
 
           <LinearGradient
             style={[styles.btn, {marginBottom: height / 30}]}
@@ -170,13 +120,11 @@ export default function SignIn({navigation}) {
             <TouchableOpacity
               style={styles.btn}
               onPress={() => {
-                if (!loading) {
-                  Keyboard.dismiss();
-                  signInHandle();
-                }
+                Keyboard.dismiss();
+                changePassHandle();
               }}>
               <View style={{flexDirection: 'row'}}>
-                <Text style={styles.btnText}>Đăng nhập</Text>
+                <Text style={styles.btnText}>Đồng ý</Text>
                 {Loading}
               </View>
             </TouchableOpacity>
@@ -185,16 +133,16 @@ export default function SignIn({navigation}) {
 
         <View style={styles.bottomView}>
           <View style={styles.noAccCont}>
-            <Text style={styles.noAccText}>Chưa có tài khoản?</Text>
+            <Text style={styles.noAccText}>Quay lại</Text>
             <TouchableOpacity
               style={styles.noAccBtn}
               onPress={() => {
-                setEmail('');
                 setPassword('');
-                navigation.navigate('SIGN_UP');
+                setRepassword('');
+                navigation.navigate('SIGN_IN');
                 Keyboard.dismiss();
               }}>
-              <Text style={styles.register}>Đăng ký ngay</Text>
+              <Text style={styles.register}>Đăng nhập</Text>
             </TouchableOpacity>
           </View>
 
@@ -223,14 +171,8 @@ export default function SignIn({navigation}) {
 
 const {height, width, fontFamily} = Global;
 const styles = StyleSheet.create({
-  loading: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingRight: width / 16 - 10,
-    marginLeft: 10,
-  },
   bottomView: {
-    marginTop: height / 4.2,
+    marginTop: height / 5.5,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -263,6 +205,20 @@ const styles = StyleSheet.create({
   otherMethodImg: {
     width: width / 9,
     height: width / 9,
+  },
+  loading: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingRight: width / 16,
+    marginLeft: 10,
+  },
+  subtitle: {
+    fontFamily,
+    color: 'white',
+    fontSize: width / 28,
+    width: width / 1.6,
+    marginBottom: height / 40,
+    textAlign: 'center',
   },
   wrapper: {
     flex: 1,
@@ -318,18 +274,8 @@ const styles = StyleSheet.create({
     width: width / 1.65,
   },
   inputImg: {
-    width: width / 18,
+    width: width / 22,
     resizeMode: 'contain',
-  },
-  forgotpass: {
-    fontFamily,
-    color: 'white',
-    fontSize: width / 32,
-    marginTop: 8,
-    marginBottom: height / 25,
-    textAlign: 'right',
-    width: width / 1.42,
-    fontWeight: 'bold',
   },
   btn: {
     borderRadius: 5,
@@ -340,6 +286,6 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingLeft: width / 16,
     color: 'white',
-    marginLeft: 20,
+    marginLeft: 11,
   },
 });

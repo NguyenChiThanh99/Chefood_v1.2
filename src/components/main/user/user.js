@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Toast from 'react-native-root-toast';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useSelector} from 'react-redux';
 
 import Global from '../../Global';
@@ -59,7 +60,17 @@ export default function User({navigation}) {
 
   const logoutHandle = () => {
     setModal(false);
+    storeData(null);
     BackHandler.exitApp();
+  };
+
+  const storeData = async (value) => {
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem('@user', jsonValue);
+    } catch (e) {
+      console.log('Error: ' + e);
+    }
   };
 
   return (
@@ -70,16 +81,16 @@ export default function User({navigation}) {
         style={[styles.userCont, styles.cardView]}
         onPress={() => navigation.navigate('CHANGE_INFORMATION')}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Image style={styles.avatar} source={{uri: user.avatar}} />
+          <Image style={styles.avatar} source={{uri: user.userInfo.avatar}} />
           <View>
-            <Text style={styles.name}>{user.name}</Text>
+            <Text style={styles.name}>{user.userInfo.name}</Text>
             <View style={[styles.infoRow, {marginBottom: 3}]}>
               <Image style={styles.infoRowImg} source={emailIcon} />
-              <Text style={styles.infoRowText}>{user.email}</Text>
+              <Text style={styles.infoRowText}>{user.userInfo.email}</Text>
             </View>
             <View style={styles.infoRow}>
               <Image style={styles.infoRowImg} source={phoneIcon} />
-              <Text style={styles.infoRowText}>{user.phone}</Text>
+              <Text style={styles.infoRowText}>{user.userInfo.phone}</Text>
             </View>
           </View>
         </View>

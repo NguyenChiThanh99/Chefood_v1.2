@@ -9,6 +9,7 @@ import {
   Image,
   TextInput,
   Keyboard,
+  ActivityIndicator,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Toast from 'react-native-root-toast';
@@ -28,24 +29,94 @@ export default function SignUp({navigation}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repassword, setRepassword] = useState('');
-  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const signUpHandle = () => {
-    verify_email_signup
-      .verify_email_signup('nguyenchithanh1999@gmail.com')
-      .then((responseJson) => {
-        console.log(responseJson);
-        navigation.navigate('ENTER_SECRET_CODE', {from: 0});
-      })
-      .catch((err) => {
-        console.log(err);
-        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-          position: -20,
-          duration: 2500,
-        });
+    setLoading(true);
+    if (
+      name.length === 0 ||
+      email.length === 0 ||
+      password.length === 0 ||
+      repassword.length === 0 ||
+      phone.length === 0
+    ) {
+      setLoading(false);
+      return Toast.show('Vui lòng nhập tất cả các thông tin', {
+        position: 0,
+        duration: 2500,
       });
+    } else if (name.length < 5) {
+      setLoading(false);
+      return Toast.show('Họ tên cần ít nhất 5 ký tự', {
+        position: 0,
+        duration: 2500,
+      });
+    } else if (!Global.validateEmail(email)) {
+      setLoading(false);
+      return Toast.show('Vui lòng kiểm tra lại email', {
+        position: 0,
+        duration: 2500,
+      });
+    } else if (password.length < 8) {
+      setLoading(false);
+      return Toast.show('Mật khẩu cần ít nhất 8 ký tự', {
+        position: 0,
+        duration: 2500,
+      });
+    } else if (password !== repassword) {
+      setLoading(false);
+      return Toast.show('Mật khẩu nhập lại không khớp', {
+        position: 0,
+        duration: 2500,
+      });
+    } else if (phone.length !== 10) {
+      setLoading(false);
+      return Toast.show('Vui lòng kiểm tra lại số điện thoại', {
+        position: 0,
+        duration: 2500,
+      });
+    } else {
+      verify_email_signup
+        .verify_email_signup(email)
+        .then((responseJson) => {
+          if (responseJson.message === 'Email has been used!') {
+            setLoading(false);
+            return Toast.show('Email đã được sử dụng', {
+              position: 0,
+              duration: 2500,
+            });
+          } else {
+            setName('');
+            setEmail('');
+            setPassword('');
+            setRepassword('');
+            setPhone('');
+            setLoading(false);
+            navigation.navigate('ENTER_SECRET_CODE', {
+              from: 0,
+              code: responseJson.code,
+              info: {name, email, password, phone},
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+          return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+            position: -20,
+            duration: 2500,
+          });
+        });
+    }
   };
+
+  const Loading = (
+    <View style={styles.loading}>
+      <ActivityIndicator animating={loading} color="white" size="small" />
+    </View>
+  );
 
   return (
     <ImageBackground source={background} style={styles.wrapper}>
@@ -60,8 +131,8 @@ export default function SignUp({navigation}) {
               placeholder="Họ tên"
               placeholderTextColor="#bdbdbd"
               autoCapitalize="none"
-              onChangeText={(text) => setUsername(text)}
-              value={username}
+              onChangeText={(text) => setName(text)}
+              value={name}
               autoCompleteType="name"
             />
             <Image style={styles.inputImg} source={userIcon} />
@@ -136,7 +207,10 @@ export default function SignUp({navigation}) {
                 Keyboard.dismiss();
                 signUpHandle();
               }}>
-              <Text style={styles.btnText}>Đăng ký</Text>
+              <View style={{flexDirection: 'row'}}>
+                <Text style={styles.btnText}>Đăng ký</Text>
+                {Loading}
+              </View>
             </TouchableOpacity>
           </LinearGradient>
         </View>
@@ -181,6 +255,12 @@ export default function SignUp({navigation}) {
 
 const {height, width, fontFamily} = Global;
 const styles = StyleSheet.create({
+  loading: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingRight: width / 10 - 25,
+    marginLeft: 5,
+  },
   bottomView: {
     marginTop: height / 22,
     justifyContent: 'center',
@@ -227,7 +307,7 @@ const styles = StyleSheet.create({
   cardview: {
     backgroundColor: 'rgba(255,255,255,0.5)',
     borderRadius: 10,
-    marginTop: height / 9,
+    marginTop: height / 11.5,
     width: width / 1.2,
     shadowColor: 'rgba(0,0,0,0.25)',
     shadowOffset: {
@@ -290,7 +370,7 @@ const styles = StyleSheet.create({
     fontFamily,
     fontSize: width / 30,
     paddingVertical: 10,
-    paddingHorizontal: width / 10,
+    paddingLeft: width / 10,
     color: 'white',
   },
 });

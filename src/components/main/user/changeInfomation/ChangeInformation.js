@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -9,16 +9,77 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {useSelector} from 'react-redux';
+import * as ImagePicker from 'react-native-image-picker';
 
 import Global from '../../../Global';
 
 import arrowBack from '../../../../icons/arrow_back_ios-fb5a23.png';
 import camera from '../../../../icons/photo_camera.png';
 import arrowRight from '../../../../icons/arrow_right-82.png';
+import {add} from 'react-native-reanimated';
 
 export default function ChangeInformation({navigation}) {
   const user = useSelector((state) => state.user);
-  const {avatar, name, email, phone, cover, gender, birthday, address} = user;
+  const {
+    avatar,
+    name,
+    email,
+    phone,
+    cover_photo,
+    sex,
+    date_of_birth,
+    address,
+  } = user.userInfo;
+  const [imageURL, setImageURL] = useState('');
+  const [imageSource, setImageSource] = useState('');
+
+  const selectPhotoTapped = () => {
+    // console.log('object');
+    // const options = {
+    //   title: 'Select Photo',
+    //   storageOptions: {
+    //     skipBackup: true,
+    //     path: 'Chefood',
+    //   },
+    // };
+    // ImagePicker.showImagePicker(options, (response) => {
+    //   if (response.didCancel) {
+    //     console.log('User cancelled image picker');
+    //   } else if (response.error) {
+    //     console.log('ImagePicker Error: ', response.error);
+    //   } else {
+    //     const uri = response.uri;
+    //     const type = response.type;
+    //     const name = response.fileName;
+    //     const source = {
+    //       uri,
+    //       type,
+    //       name,
+    //     };
+    //     setImageURL(uri);
+    //     setImageSource(source);
+    //   }
+    // });
+  };
+
+  const cloudinaryUpload = (photo) => {
+    const dulieu = new FormData();
+    dulieu.append('file', photo);
+    dulieu.append('upload_preset', 'hotelbooking');
+    dulieu.append('cloud_name', 'dep0t5tcf');
+
+    fetch('https://api.cloudinary.com/v1_1/dep0t5tcf/upload', {
+      method: 'POST',
+      body: dulieu,
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        //Update photo
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <View style={styles.wrapper}>
@@ -29,7 +90,7 @@ export default function ChangeInformation({navigation}) {
         <Text style={styles.headerText}>Sửa thông tin</Text>
       </View>
 
-      <ImageBackground style={styles.cover} source={{uri: cover}}>
+      <ImageBackground style={styles.cover} source={{uri: cover_photo}}>
         <ImageBackground
           imageStyle={{
             borderRadius: width / 7.4,
@@ -38,11 +99,15 @@ export default function ChangeInformation({navigation}) {
           }}
           style={styles.avatar}
           source={{uri: avatar}}>
-          <TouchableOpacity style={styles.cameraCont}>
+          <TouchableOpacity
+            style={styles.cameraCont}
+            onPress={selectPhotoTapped}>
             <Image style={styles.camera} source={camera} />
           </TouchableOpacity>
         </ImageBackground>
-        <TouchableOpacity style={[styles.cameraCont, styles.cameraCover]}>
+        <TouchableOpacity
+          style={[styles.cameraCont, styles.cameraCover]}
+          onPress={selectPhotoTapped}>
           <Image style={styles.camera} source={camera} />
         </TouchableOpacity>
       </ImageBackground>
@@ -103,11 +168,18 @@ export default function ChangeInformation({navigation}) {
             onPress={() =>
               navigation.navigate('CHANGE_INFO_DETAIL', {
                 type: 'gender',
-                data: gender,
+                data: sex,
               })
             }
             style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={styles.rowContentDefault}>{gender}</Text>
+            <Text
+              style={
+                sex === 'Thiết lập ngay'
+                  ? styles.rowContentDefault
+                  : styles.rowContent
+              }>
+              {sex}
+            </Text>
             <Image style={styles.arrow} source={arrowRight} />
           </TouchableOpacity>
         </View>
@@ -119,12 +191,17 @@ export default function ChangeInformation({navigation}) {
             onPress={() =>
               navigation.navigate('CHANGE_INFO_DETAIL', {
                 type: 'birthday',
-                data: birthday,
+                data: date_of_birth,
               })
             }
             style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={[styles.rowContent, {width: width / 3}]}>
-              {birthday}
+            <Text
+              style={
+                date_of_birth === 'Thiết lập ngay'
+                  ? styles.rowContentDefault
+                  : styles.rowContent
+              }>
+              {date_of_birth}
             </Text>
             <Image style={styles.arrow} source={arrowRight} />
           </TouchableOpacity>
@@ -136,7 +213,20 @@ export default function ChangeInformation({navigation}) {
           <TouchableOpacity
             onPress={() => navigation.navigate('CHANGE_ADDRESS')}
             style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={styles.rowContent}>{address}</Text>
+            <Text
+              style={
+                address === 'Thiết lập ngay'
+                  ? [
+                      styles.rowContentDefault,
+                      {width: width / 1.4, textAlign: 'right'},
+                    ]
+                  : [
+                      styles.rowContent,
+                      {width: width / 1.4, textAlign: 'right'},
+                    ]
+              }>
+              {address}
+            </Text>
             <Image style={styles.arrow} source={arrowRight} />
           </TouchableOpacity>
         </View>

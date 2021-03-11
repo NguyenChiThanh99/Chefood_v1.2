@@ -1,28 +1,23 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {View, StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
-import SplashScreen from 'react-native-splash-screen';
 import {RootSiblingParent} from 'react-native-root-siblings';
 import {Provider} from 'react-redux';
 
 import store from './store/store';
 
-import main from './src/components/main/MainIndex';
+import main from './src/components/main/mainIndex';
 import signIn from './src/components/userFunction/SignIn';
 import signUp from './src/components/userFunction/SignUp';
 import enterEmail from './src/components/userFunction/forgotPassword/EnterEmail';
 import enterSecretCode from './src/components/userFunction/forgotPassword/EnterSecretCode';
+import changePassword from './src/components/userFunction/forgotPassword/ChangePassword';
 
 const RootStack = createStackNavigator();
 
 export default function App() {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    SplashScreen.hide();
-  }, [count]);
-
   return (
     <Provider store={store}>
       <RootSiblingParent>
@@ -69,6 +64,14 @@ export default function App() {
                   ...TransitionPresets.SlideFromRightIOS,
                 }}
                 component={enterSecretCode}
+              />
+              <RootStack.Screen
+                name="CHANGE_PASSWORD"
+                options={{
+                  headerShown: false,
+                  ...TransitionPresets.SlideFromRightIOS,
+                }}
+                component={changePassword}
               />
             </RootStack.Navigator>
           </NavigationContainer>

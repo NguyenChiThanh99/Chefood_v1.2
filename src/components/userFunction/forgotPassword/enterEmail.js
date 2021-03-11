@@ -9,10 +9,13 @@ import {
   Image,
   TextInput,
   Keyboard,
+  ActivityIndicator,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import Toast from 'react-native-root-toast';
 
 import Global from '../../Global';
+import verify_email_forgot_pass from '../../../apis/verify_email_forgot_pass';
 
 import background from '../../../images/background.png';
 import emailIcon from '../../../icons/mail-e0.png';
@@ -21,10 +24,60 @@ import google from '../../../images/google.png';
 
 export default function EnterEmail({navigation}) {
   const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const enterEmailHandle = () => {
-    navigation.navigate('ENTER_SECRET_CODE', {from: 1});
+    setLoading(true);
+    if (email.length === 0) {
+      setLoading(false);
+      return Toast.show('Vui lòng nhập email để nhận mật khẩu mới', {
+        position: 0,
+        duration: 2500,
+      });
+    } else if (!Global.validateEmail(email)) {
+      setLoading(false);
+      return Toast.show('Vui lòng nhập email đúng định dạng', {
+        position: 0,
+        duration: 2500,
+      });
+    } else {
+      verify_email_forgot_pass
+        .verify_email_forgot_pass(email)
+        .then((response) => {
+          var token = response.headers.get('Auth-Token');
+          response.json().then((responseJson) => {
+            setLoading(false);
+            if (responseJson.message === 'Email is not found!') {
+              return Toast.show('Email không tồn tại trong hệ thống', {
+                position: 0,
+                duration: 2500,
+              });
+            } else {
+              setEmail('');
+              navigation.navigate('ENTER_SECRET_CODE', {
+                from: 1,
+                header: token,
+                code: responseJson.code,
+              });
+            }
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+            position: 0,
+            duration: 2500,
+          });
+        });
+    }
   };
+
+  const Loading = (
+    <View style={styles.loading}>
+      <ActivityIndicator animating={loading} color="white" size="small" />
+    </View>
+  );
+
   return (
     <ImageBackground source={background} style={styles.wrapper}>
       <View style={styles.wrapper2}>
@@ -61,7 +114,10 @@ export default function EnterEmail({navigation}) {
                 Keyboard.dismiss();
                 enterEmailHandle();
               }}>
-              <Text style={styles.btnText}>Gửi</Text>
+              <View style={{flexDirection: 'row'}}>
+                <Text style={styles.btnText}>Gửi</Text>
+                {Loading}
+              </View>
             </TouchableOpacity>
           </LinearGradient>
         </View>
@@ -105,6 +161,12 @@ export default function EnterEmail({navigation}) {
 
 const {height, width, fontFamily} = Global;
 const styles = StyleSheet.create({
+  loading: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingRight: width / 10 - 18,
+    marginLeft: 10,
+  },
   subtitle: {
     fontFamily,
     color: 'white',
@@ -212,7 +274,8 @@ const styles = StyleSheet.create({
     fontFamily,
     fontSize: width / 30,
     paddingVertical: 10,
-    paddingHorizontal: width / 10,
+    paddingLeft: width / 10,
     color: 'white',
+    marginLeft: 12,
   },
 });

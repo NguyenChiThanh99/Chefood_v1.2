@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {
   View,
@@ -7,6 +8,7 @@ import {
   ImageBackground,
   Image,
   TextInput,
+  ActivityIndicator,
   Keyboard,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
@@ -14,70 +16,71 @@ import Toast from 'react-native-root-toast';
 
 import Global from '../../Global';
 import sign_up from '../../../apis/sign_up';
-import verify_email_forgot_pass from '../../../apis/verify_email_forgot_pass';
-import forgot_password_change from '../../../apis/forgot_password_change';
 
 import background from '../../../images/background.png';
 import keyboardIcon from '../../../icons/keypad-e0.png';
+import facebook from '../../../images/facebook.png';
+import google from '../../../images/google.png';
 
 export default function EnterSecretCode({navigation, route}) {
   const [secretCode, setSecretCode] = useState('');
+  const [loading, setLoading] = useState(false);
   const from = route.params.from;
 
   const verifyEmailHandle = () => {
+    setLoading(true);
     if (from === 0) {
-      sign_up
-        .sign_up(
-          'Nguyễn Chí Thanh',
-          'nguyenchithanh1999@gmail.com',
-          '17521049',
-          '0834999373',
-        )
-        .then((responseJson) => {
-          console.log(responseJson);
-          navigation.navigate('SIGN_IN');
-        })
-        .catch((err) => {
-          console.log(err);
-          return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-            position: -20,
-            duration: 2500,
+      if (secretCode === route.params.code.toString()) {
+        sign_up
+          .sign_up(
+            route.params.info.name,
+            route.params.info.email,
+            route.params.info.password,
+            route.params.info.phone,
+          )
+          .then((responseJson) => {
+            setLoading(false);
+            if (responseJson.message === 'Register successfully!') {
+              setSecretCode('');
+              navigation.navigate('SIGN_IN');
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            setLoading(false);
+            return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+              position: 0,
+              duration: 2500,
+            });
           });
+      } else {
+        setLoading(false);
+        return Toast.show('Mã kích hoạt không đúng', {
+          position: 0,
+          duration: 2500,
         });
+      }
     } else {
-      //   verify_email_forgot_pass
-      //     .verify_email_forgot_pass('nguyenchithanh1999@gmail.com')
-      //     .then((response) => {
-      //       console.log('header: ' + response.headers.get('Auth-Token'));
-      //       response.json().then((responseJson) => {
-      //         console.log('data: ' + responseJson);
-      //       });
-      //     })
-      //     .catch((err) => {
-      //       console.log(err);
-      //       return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-      //         position: -20,
-      //         duration: 2500,
-      //       });
-      //     });
-
-      forgot_password_change
-        .forgot_password_change(
-          '12345678',
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ3YjMzMjJmN2IxNDAwMjRlYmI3OGUiLCJpYXQiOjE2MTUzMTMxOTZ9.-T1vWPXDaqvZeoDX0Uix1XdWt3u6kunSTy7qLv-cBcU',
-        )
-        .then((responseJson) => {
-          console.log(responseJson);
-        })
-        .catch((err) => {
-          console.log(err);
-          return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-            position: -20,
-            duration: 2500,
-          });
+      if (secretCode === route.params.code.toString()) {
+        setLoading(false);
+        setSecretCode('');
+        navigation.navigate('CHANGE_PASSWORD', {header: route.params.header});
+      } else {
+        setLoading(false);
+        return Toast.show('Mã xác thực không đúng', {
+          position: 0,
+          duration: 2500,
         });
+      }
     }
   };
+
+  const Loading = (
+    <View style={styles.loading}>
+      <ActivityIndicator animating={loading} color="white" size="small" />
+    </View>
+  );
+
   return (
     <ImageBackground source={background} style={styles.wrapper}>
       <View style={styles.wrapper2}>
@@ -115,11 +118,47 @@ export default function EnterSecretCode({navigation, route}) {
                 Keyboard.dismiss();
                 verifyEmailHandle();
               }}>
-              <Text style={styles.btnText}>
-                {from === 0 ? 'Kích hoạt tài khoản' : 'Xác thực email'}
-              </Text>
+              <View style={{flexDirection: 'row'}}>
+                <Text style={styles.btnText}>
+                  {from === 0 ? 'Kích hoạt tài khoản' : 'Xác thực email'}
+                </Text>
+                {Loading}
+              </View>
             </TouchableOpacity>
           </LinearGradient>
+        </View>
+
+        <View style={styles.bottomView}>
+          <View style={styles.noAccCont}>
+            <Text style={styles.noAccText}>Quay lại</Text>
+            <TouchableOpacity
+              style={styles.noAccBtn}
+              onPress={() => {
+                setSecretCode('');
+                navigation.navigate('SIGN_IN');
+                Keyboard.dismiss();
+              }}>
+              <Text style={styles.register}>Đăng nhập</Text>
+            </TouchableOpacity>
+          </View>
+
+          <Text style={[styles.noAccText, {marginVertical: 10}]}>
+            Đăng nhập bằng
+          </Text>
+          <View style={styles.otherMethodCont}>
+            <TouchableOpacity>
+              <Image
+                style={[styles.otherMethodImg, {marginRight: 5}]}
+                source={facebook}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Image
+                style={[styles.otherMethodImg, {marginLeft: 5}]}
+                source={google}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </ImageBackground>
@@ -128,6 +167,47 @@ export default function EnterSecretCode({navigation, route}) {
 
 const {height, width, fontFamily} = Global;
 const styles = StyleSheet.create({
+  bottomView: {
+    marginTop: height / 3.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  noAccCont: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  noAccText: {
+    fontFamily,
+    fontSize: width / 28,
+    color: 'white',
+  },
+  noAccBtn: {
+    backgroundColor: 'rgba(255,255,255,0.25)',
+    borderRadius: 4,
+    marginLeft: 5,
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+  },
+  register: {
+    fontFamily,
+    fontSize: width / 28,
+    color: 'white',
+    fontStyle: 'italic',
+    fontWeight: 'bold',
+  },
+  otherMethodCont: {
+    flexDirection: 'row',
+  },
+  otherMethodImg: {
+    width: width / 9,
+    height: width / 9,
+  },
+  loading: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingRight: width / 16 - 18,
+    marginLeft: 10,
+  },
   subtitle: {
     fontFamily,
     color: 'white',
@@ -201,7 +281,8 @@ const styles = StyleSheet.create({
     fontFamily,
     fontSize: width / 30,
     paddingVertical: 10,
-    paddingHorizontal: width / 16,
+    paddingLeft: width / 16,
     color: 'white',
+    marginLeft: 11,
   },
 });
