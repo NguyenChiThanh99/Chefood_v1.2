@@ -7,16 +7,22 @@ import {
   Image,
   ImageBackground,
   TouchableOpacity,
+  Modal,
+  ActivityIndicator,
 } from 'react-native';
-import {useSelector} from 'react-redux';
-import * as ImagePicker from 'react-native-image-picker';
+import {useSelector, useDispatch} from 'react-redux';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import Toast from 'react-native-root-toast';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Global from '../../../Global';
+import change_avatar from '../../../../apis/change_avatar';
+import change_cover from '../../../../apis/change_cover';
+import {updateUser} from '../../../../../actions';
 
 import arrowBack from '../../../../icons/arrow_back_ios-fb5a23.png';
 import camera from '../../../../icons/photo_camera.png';
 import arrowRight from '../../../../icons/arrow_right-82.png';
-import {add} from 'react-native-reanimated';
 
 export default function ChangeInformation({navigation}) {
   const user = useSelector((state) => state.user);
@@ -30,42 +36,74 @@ export default function ChangeInformation({navigation}) {
     date_of_birth,
     address,
   } = user.userInfo;
-  const [imageURL, setImageURL] = useState('');
-  const [imageSource, setImageSource] = useState('');
+  const dispatch = useDispatch();
+  const [modal, setModal] = useState({status: false, type: 0});
+  const [loadingAvatar, setLoadingAvatar] = useState(false);
+  const [loadingCover, setLoadingCover] = useState(false);
 
-  const selectPhotoTapped = () => {
-    // console.log('object');
-    // const options = {
-    //   title: 'Select Photo',
-    //   storageOptions: {
-    //     skipBackup: true,
-    //     path: 'Chefood',
-    //   },
-    // };
-    // ImagePicker.showImagePicker(options, (response) => {
-    //   if (response.didCancel) {
-    //     console.log('User cancelled image picker');
-    //   } else if (response.error) {
-    //     console.log('ImagePicker Error: ', response.error);
-    //   } else {
-    //     const uri = response.uri;
-    //     const type = response.type;
-    //     const name = response.fileName;
-    //     const source = {
-    //       uri,
-    //       type,
-    //       name,
-    //     };
-    //     setImageURL(uri);
-    //     setImageSource(source);
-    //   }
-    // });
+  const selectPhoto = () => {
+    const options = {
+      mediaType: 'photo',
+      includeBase64: false,
+    };
+    launchCamera(options, (response) => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.errorMessage);
+      } else {
+        const uri = response.uri;
+        const type = response.type;
+        const name = response.fileName;
+        const source = {
+          uri,
+          type,
+          name,
+        };
+        setModal({status: false, type: 0});
+        cloudinaryUpload(source);
+      }
+    });
+  };
+
+  const selectLibrary = () => {
+    const options = {
+      mediaType: 'photo',
+      includeBase64: false,
+    };
+    launchImageLibrary(options, (response) => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.errorMessage);
+      } else {
+        const uri = response.uri;
+        const type = response.type;
+        const name = response.fileName;
+        const source = {
+          uri,
+          type,
+          name,
+        };
+        setModal({status: false, type: 0});
+        cloudinaryUpload(source);
+      }
+    });
   };
 
   const cloudinaryUpload = (photo) => {
+    if (modal.type === 0) {
+      setLoadingAvatar(true);
+    } else {
+      setLoadingCover(true);
+    }
     const dulieu = new FormData();
     dulieu.append('file', photo);
-    dulieu.append('upload_preset', 'hotelbooking');
+    if (modal.type === 0) {
+      dulieu.append('upload_preset', 'avatar');
+    } else {
+      dulieu.append('upload_preset', 'cover_photo');
+    }
     dulieu.append('cloud_name', 'dep0t5tcf');
 
     fetch('https://api.cloudinary.com/v1_1/dep0t5tcf/upload', {
@@ -74,12 +112,85 @@ export default function ChangeInformation({navigation}) {
     })
       .then((res) => res.json())
       .then((res) => {
-        //Update photo
+        if (modal.type === 0) {
+          change_avatar
+            .change_avatar(user.token, res.secure_url)
+            .then((responseJson) => {
+              dispatch(
+                updateUser({
+                  ...user,
+                  userInfo: {...user.userInfo, avatar: res.secure_url},
+                }),
+              );
+              storeData({
+                ...user,
+                userInfo: {...user.userInfo, avatar: res.secure_url},
+              });
+              setLoadingAvatar(false);
+            })
+            .catch((err) => {
+              console.log(err);
+              setLoadingAvatar(false);
+              return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+                position: 0,
+                duration: 2500,
+              });
+            });
+        } else {
+          change_cover
+            .change_cover(user.token, res.secure_url)
+            .then((responseJson) => {
+              dispatch(
+                updateUser({
+                  ...user,
+                  userInfo: {...user.userInfo, cover_photo: res.secure_url},
+                }),
+              );
+              storeData({
+                ...user,
+                userInfo: {...user.userInfo, cover_photo: res.secure_url},
+              });
+              setLoadingCover(false);
+            })
+            .catch((err) => {
+              console.log(err);
+              setLoadingCover(false);
+              return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+                position: 0,
+                duration: 2500,
+              });
+            });
+        }
       })
       .catch((err) => {
+        setLoadingAvatar(false);
         console.log(err);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
       });
   };
+
+  const storeData = async (value) => {
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem('@user', jsonValue);
+    } catch (e) {
+      console.log('Error: ' + e);
+    }
+  };
+
+  const LoadingAvatar = (
+    <View style={styles.loading}>
+      <ActivityIndicator animating={true} color="white" size="small" />
+    </View>
+  );
+  const LoadingCover = (
+    <View style={styles.loading}>
+      <ActivityIndicator animating={true} color="white" size="small" />
+    </View>
+  );
 
   return (
     <View style={styles.wrapper}>
@@ -101,14 +212,26 @@ export default function ChangeInformation({navigation}) {
           source={{uri: avatar}}>
           <TouchableOpacity
             style={styles.cameraCont}
-            onPress={selectPhotoTapped}>
-            <Image style={styles.camera} source={camera} />
+            onPress={() => {
+              loadingAvatar ? null : setModal({status: true, type: 0});
+            }}>
+            {loadingAvatar ? (
+              LoadingAvatar
+            ) : (
+              <Image style={styles.camera} source={camera} />
+            )}
           </TouchableOpacity>
         </ImageBackground>
         <TouchableOpacity
           style={[styles.cameraCont, styles.cameraCover]}
-          onPress={selectPhotoTapped}>
-          <Image style={styles.camera} source={camera} />
+          onPress={() => {
+            loadingCover ? null : setModal({status: true, type: 1});
+          }}>
+          {loadingCover ? (
+            LoadingCover
+          ) : (
+            <Image style={styles.camera} source={camera} />
+          )}
         </TouchableOpacity>
       </ImageBackground>
 
@@ -130,22 +253,6 @@ export default function ChangeInformation({navigation}) {
         <View style={styles.line} />
 
         <View style={styles.rowCont}>
-          <Text style={styles.rowText}>Email</Text>
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate('CHANGE_INFO_DETAIL', {
-                type: 'email',
-                data: email,
-              })
-            }
-            style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={styles.rowContent}>{email}</Text>
-            <Image style={styles.arrow} source={arrowRight} />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.line} />
-
-        <View style={styles.rowCont}>
           <Text style={styles.rowText}>Số điện thoại</Text>
           <TouchableOpacity
             onPress={() =>
@@ -158,6 +265,14 @@ export default function ChangeInformation({navigation}) {
             <Text style={[styles.rowContent, {width: width / 3}]}>{phone}</Text>
             <Image style={styles.arrow} source={arrowRight} />
           </TouchableOpacity>
+        </View>
+        <View style={styles.line} />
+
+        <View style={styles.rowCont}>
+          <Text style={styles.rowText}>Email</Text>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <Text style={styles.rowContent}>{email}</Text>
+          </View>
         </View>
       </View>
 
@@ -233,11 +348,33 @@ export default function ChangeInformation({navigation}) {
       </View>
 
       <View style={styles.cardView}>
-        <TouchableOpacity style={styles.rowCont}>
+        <TouchableOpacity
+          style={styles.rowCont}
+          onPress={() => navigation.navigate('CHANGE_PASSWORD')}>
           <Text style={styles.rowText}>Đổi mật khẩu</Text>
           <Image style={styles.arrow} source={arrowRight} />
         </TouchableOpacity>
       </View>
+
+      <Modal animationType="fade" transparent={true} visible={modal.status}>
+        <View style={styles.modalCont}>
+          <View style={styles.modal}>
+            <Text style={styles.title}>Nhập hình ảnh từ...</Text>
+            <View style={styles.btnCont}>
+              <TouchableOpacity onPress={() => selectPhoto()}>
+                <Text style={styles.btn}>Camera</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => selectLibrary()}>
+                <Text style={[styles.btn, {marginLeft: 25}]}>Thư viện ảnh</Text>
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity
+              onPress={() => setModal({status: false, type: 0})}>
+              <Text style={styles.btnCancel}>HUỶ</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -252,6 +389,52 @@ const {
   height,
 } = Global;
 const styles = StyleSheet.create({
+  loading: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalCont: {
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modal: {
+    width: width / 1.28,
+    backgroundColor: 'white',
+    borderRadius: 5,
+    padding: 20,
+    paddingBottom: 30,
+  },
+  title: {
+    fontFamily,
+    color: '#000000',
+    fontSize: width / 20,
+    fontWeight: 'bold',
+  },
+  btnCont: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 30,
+    marginTop: 20,
+  },
+  btn: {
+    fontFamily,
+    color: mainColor,
+    fontSize: width / 30,
+    borderColor: mainColor,
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingVertical: 3,
+    paddingHorizontal: 10,
+  },
+  btnCancel: {
+    marginRight: 10,
+    fontFamily,
+    color: '#828282',
+    fontSize: width / 28,
+    textAlign: 'right',
+  },
   line: {
     borderColor: '#bdbdbd',
     borderWidth: 0.25,

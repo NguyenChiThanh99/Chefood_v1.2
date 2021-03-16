@@ -791,7 +791,7 @@ export default function Home({navigation}) {
         </View>
 
         <View style={styles.cardView}>
-          <Text style={styles.cardViewTitle}>Món ăn mới nhất</Text>
+          <Text style={styles.cardViewTitle}>Món ăn nổi bật</Text>
           <FlatList
             style={styles.cardViewList}
             horizontal

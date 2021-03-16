@@ -7,14 +7,23 @@ import {
   TouchableOpacity,
   Image,
   TextInput,
+  Keyboard,
+  ActivityIndicator,
 } from 'react-native';
 import ModalDropdown from 'react-native-modal-dropdown';
 import CalendarPicker from 'react-native-calendar-picker';
+import {useSelector, useDispatch} from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Toast from 'react-native-root-toast';
 
 import Global from '../../../Global';
+import change_name from '../../../../apis/change_name';
+import change_gender from '../../../../apis/change_gender';
+import change_birthday from '../../../../apis/change_birthday';
+import change_phone from '../../../../apis/change_phone';
+import {updateUser} from '../../../../../actions';
 
 import arrowBack from '../../../../icons/arrow_back_ios-fb5a23.png';
-import emailIcon from '../../../../icons/mail-fb5a23.png';
 import userIcon from '../../../../icons/person-fb5a23.png';
 import phoneIcon from '../../../../icons/phone-fb5a23.png';
 import expandMoreArrow from '../../../../icons/expand_less-fb5a23.png';
@@ -22,10 +31,13 @@ import expandLessArrow from '../../../../icons/expand_more-fb5a23.png';
 
 export default function ChangeInfoDetail({route, navigation}) {
   const {type, data} = route.params;
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const [value, setValue] = useState(data);
   const [arrowIcon, setArrowIcon] = useState(expandMoreArrow);
   const [calendarStatus, setCalendarStatus] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const optionMethod = ['Nam', 'Nữ'];
   const today = new Date();
@@ -33,10 +45,7 @@ export default function ChangeInfoDetail({route, navigation}) {
   const checkType = () => {
     switch (type) {
       case 'name':
-        return 'tên';
-
-      case 'email':
-        return 'email';
+        return 'họ và tên';
 
       case 'phone':
         return 'số điện thoại';
@@ -54,6 +63,173 @@ export default function ChangeInfoDetail({route, navigation}) {
     setValue(Global.shortTimeFormat(date));
   };
 
+  const changeInfo = () => {
+    setLoading(true);
+    Keyboard.dismiss();
+    if (type === 'birthday' && !calendarStatus) {
+      setLoading(false);
+      return Toast.show('Bạn chưa chọn ngày sinh', {
+        position: 0,
+        duration: 2500,
+      });
+    }
+
+    if (value === data) {
+      setLoading(false);
+      return Toast.show('Dữ liệu không có sự thay đổi, vui lòng kiểm tra lại', {
+        position: 0,
+        duration: 2500,
+      });
+    } else {
+      if (type === 'name') {
+        if (value.length === 0) {
+          setLoading(false);
+          return Toast.show('Vui lòng nhập Họ và tên', {
+            position: 0,
+            duration: 2500,
+          });
+        } else {
+          change_name
+            .change_name(user.token, value)
+            .then((responseJson) => {
+              dispatch(
+                updateUser({
+                  ...user,
+                  userInfo: {...user.userInfo, name: value},
+                }),
+              );
+              storeData({
+                ...user,
+                userInfo: {...user.userInfo, name: value},
+              });
+              navigation.goBack();
+              setLoading(false);
+            })
+            .catch((err) => {
+              console.log(err);
+              setLoading(false);
+              return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+                position: 0,
+                duration: 2500,
+              });
+            });
+        }
+      } else if (type === 'phone') {
+        if (value.length === 0) {
+          setLoading(false);
+          return Toast.show('Vui lòng nhập Số điện thoại', {
+            position: 0,
+            duration: 2500,
+          });
+        } else if (value.length !== 10) {
+          setLoading(false);
+          return Toast.show('Số điện thoại cần có 10 chữ số', {
+            position: 0,
+            duration: 2500,
+          });
+        } else {
+          change_phone
+            .change_phone(user.token, value)
+            .then((responseJson) => {
+              dispatch(
+                updateUser({
+                  ...user,
+                  userInfo: {...user.userInfo, phone: value},
+                }),
+              );
+              storeData({
+                ...user,
+                userInfo: {...user.userInfo, phone: value},
+              });
+              navigation.goBack();
+              setLoading(false);
+            })
+            .catch((err) => {
+              console.log(err);
+              setLoading(false);
+              return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+                position: 0,
+                duration: 2500,
+              });
+            });
+        }
+      } else if (type === 'gender') {
+        if (value === 'Thiết lập ngay') {
+          setLoading(false);
+          return Toast.show('Vui lòng chọn Giới tính', {
+            position: 0,
+            duration: 2500,
+          });
+        } else {
+          change_gender
+            .change_gender(user.token, value)
+            .then((responseJson) => {
+              dispatch(
+                updateUser({
+                  ...user,
+                  userInfo: {...user.userInfo, sex: value},
+                }),
+              );
+              storeData({
+                ...user,
+                userInfo: {...user.userInfo, sex: value},
+              });
+              navigation.goBack();
+              setLoading(false);
+            })
+            .catch((err) => {
+              console.log(err);
+              setLoading(false);
+              return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+                position: 0,
+                duration: 2500,
+              });
+            });
+        }
+      } else {
+        change_birthday
+          .change_birthday(user.token, value)
+          .then((responseJson) => {
+            dispatch(
+              updateUser({
+                ...user,
+                userInfo: {...user.userInfo, date_of_birth: value},
+              }),
+            );
+            storeData({
+              ...user,
+              userInfo: {...user.userInfo, date_of_birth: value},
+            });
+            navigation.goBack();
+            setLoading(false);
+          })
+          .catch((err) => {
+            console.log(err);
+            setLoading(false);
+            return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+              position: 0,
+              duration: 2500,
+            });
+          });
+      }
+    }
+  };
+
+  const storeData = async (data_storage) => {
+    try {
+      const jsonValue = JSON.stringify(data_storage);
+      await AsyncStorage.setItem('@user', jsonValue);
+    } catch (e) {
+      console.log('Error: ' + e);
+    }
+  };
+
+  const Loading = (
+    <View style={styles.loading}>
+      <ActivityIndicator animating={loading} color="#fb5a23" size="small" />
+    </View>
+  );
+
   const editName = (
     <View style={styles.inputContainer}>
       <TextInput
@@ -67,22 +243,6 @@ export default function ChangeInfoDetail({route, navigation}) {
         autoCompleteType="name"
       />
       <Image style={styles.inputImg} source={userIcon} />
-    </View>
-  );
-  const editEmail = (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.textInputStyle}
-        underlineColorAndroid="transparent"
-        autoCapitalize="none"
-        onChangeText={(text) => setValue(text)}
-        value={value}
-        autoCompleteType="email"
-        keyboardType="email-address"
-        placeholder="Email"
-        placeholderTextColor="#bdbdbd"
-      />
-      <Image style={styles.inputImg} source={emailIcon} />
     </View>
   );
   const editPhone = (
@@ -149,15 +309,16 @@ export default function ChangeInfoDetail({route, navigation}) {
           </TouchableOpacity>
           <Text style={styles.headerText}>Sửa {checkType()}</Text>
         </View>
-        <TouchableOpacity>
-          <Text style={styles.saveBtn}>Lưu</Text>
-        </TouchableOpacity>
+        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+          {Loading}
+          <TouchableOpacity onPress={() => changeInfo()}>
+            <Text style={styles.saveBtn}>Lưu</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
       {type === 'name'
         ? editName
-        : type === 'email'
-        ? editEmail
         : type === 'phone'
         ? editPhone
         : type === 'gender'
@@ -177,6 +338,10 @@ const {
   height,
 } = Global;
 const styles = StyleSheet.create({
+  loading: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   arrowIcon: {
     width: width / 18,
     height: width / 18,
@@ -257,6 +422,7 @@ const styles = StyleSheet.create({
     fontFamily,
     color: mainColor,
     fontSize: width / 26,
+    marginLeft: 20,
   },
   cardView: {
     backgroundColor: 'white',

@@ -4,7 +4,7 @@ import {StyleSheet, View, ImageBackground, Image, Text} from 'react-native';
 
 import Global from '../../../Global';
 
-import newIcon from '../../../../images/label_new.png';
+import hotIcon from '../../../../images/label_hot.png';
 import prepareIcon from '../../../../icons/TimeSquare.png';
 import performIcon from '../../../../icons/TimeCircle.png';
 
@@ -17,7 +17,7 @@ export default function DishViewHorizontal(props) {
         imageStyle={{borderTopLeftRadius: 7, borderTopRightRadius: 7}}
         source={{uri: image}}>
         {props.flag === true ? (
-          <Image source={newIcon} style={styles.new} />
+          <Image source={hotIcon} style={styles.new} />
         ) : null}
       </ImageBackground>
       <Text style={styles.name} numberOfLines={2}>

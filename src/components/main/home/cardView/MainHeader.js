@@ -26,7 +26,7 @@ export default function MainHeader(props) {
 
   return (
     <View style={styles.header}>
-      <TouchableOpacity onPress={() => {}}>
+      <TouchableOpacity onPress={() => navigation.jumpTo('Trang chủ')}>
         <Image style={styles.logo} source={logo} />
       </TouchableOpacity>
       <View style={styles.searchCont}>

@@ -7,12 +7,16 @@ import {
   TouchableOpacity,
   StyleSheet,
   TextInput,
+  Keyboard,
+  ActivityIndicator,
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-root-toast';
 
 import Global from '../../../Global';
 import {updateAddressStatus, updateUser} from '../../../../../actions';
+import change_address from '../../../../apis/change_address';
 
 import arrowBack from '../../../../icons/arrow_back_ios-fb5a23.png';
 import arrowRight from '../../../../icons/arrow_right-82.png';
@@ -21,6 +25,7 @@ export default function ChangeAddress({navigation}) {
   const dispatch = useDispatch();
   const addressStatus = useSelector((state) => state.addressStatus);
   const [addressDetail, setAddressDetail] = useState(addressStatus.detail);
+  const [loading, setLoading] = useState(false);
   const user = useSelector((state) => state.user);
 
   const setAddressDetailHandle = (text) => {
@@ -56,12 +61,15 @@ export default function ChangeAddress({navigation}) {
   };
 
   const saveAddress = () => {
+    setLoading(true);
+    Keyboard.dismiss();
     if (
       addressStatus.province === null ||
       addressStatus.district === null ||
       addressStatus.ward === null ||
       addressStatus.detail === ''
     ) {
+      setLoading(false);
       Toast.show('Vui lòng nhập tất cả các thông tin', {
         position: 0,
         duration: 2000,
@@ -70,17 +78,54 @@ export default function ChangeAddress({navigation}) {
       addressStatus.province.id !== addressStatus.ward._province_id ||
       addressStatus.district.id !== addressStatus.ward._district_id
     ) {
+      setLoading(false);
       Toast.show('Vui lòng kiểm tra lại các thông tin', {
         position: 0,
         duration: 2000,
       });
     } else {
-      dispatch(
-        updateUser({...user, address: Global.addressFormat(addressStatus)}),
-      );
-      navigation.goBack();
+      var address = Global.addressFormat(addressStatus);
+      change_address
+        .change_address(user.token, address)
+        .then((responseJson) => {
+          dispatch(
+            updateUser({
+              ...user,
+              userInfo: {...user.userInfo, address: address},
+            }),
+          );
+          storeData({
+            ...user,
+            userInfo: {...user.userInfo, address: address},
+          });
+          navigation.goBack();
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+          return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+            position: 0,
+            duration: 2500,
+          });
+        });
     }
   };
+
+  const storeData = async (data_storage) => {
+    try {
+      const jsonValue = JSON.stringify(data_storage);
+      await AsyncStorage.setItem('@user', jsonValue);
+    } catch (e) {
+      console.log('Error: ' + e);
+    }
+  };
+
+  const Loading = (
+    <View style={styles.loading}>
+      <ActivityIndicator animating={loading} color="#fb5a23" size="small" />
+    </View>
+  );
 
   return (
     <View style={styles.wrapper}>
@@ -91,9 +136,12 @@ export default function ChangeAddress({navigation}) {
           </TouchableOpacity>
           <Text style={styles.headerText}>Địa chỉ</Text>
         </View>
-        <TouchableOpacity onPress={() => saveAddress()}>
-          <Text style={styles.saveBtn}>Lưu</Text>
-        </TouchableOpacity>
+        <View style={{flexDirection: 'row'}}>
+          {Loading}
+          <TouchableOpacity onPress={() => saveAddress()}>
+            <Text style={styles.saveBtn}>Lưu</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
       <View style={styles.cardView}>
@@ -187,6 +235,11 @@ const {
   mainColor,
 } = Global;
 const styles = StyleSheet.create({
+  loading: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 20,
+  },
   textInputStyle: {
     fontFamily,
     color: '#333333',

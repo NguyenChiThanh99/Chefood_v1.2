@@ -41,6 +41,7 @@ import ChangeInfoDetail from './user/changeInfomation/ChangeInfoDetail';
 import Province from './user/address/Province';
 import District from './user/address/District';
 import Ward from './user/address/Ward';
+import ChangePassword from './user/changeInfomation/ChangePassword';
 
 const Tab = createBottomTabNavigator();
 const MainStack = createStackNavigator();
@@ -267,6 +268,14 @@ export default function MainIndex({route}) {
           ...TransitionPresets.SlideFromRightIOS,
         }}
         component={Home}
+      />
+      <MainStack.Screen
+        name="CHANGE_PASSWORD"
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+        component={ChangePassword}
       />
     </MainStack.Navigator>
   );

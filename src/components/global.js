@@ -47,5 +47,6 @@ module.exports = {
     }
   },
   addressLink: 'https://my-chefood-app.herokuapp.com/',
+  chatLink: 'https://chefood-chat.herokuapp.com/',
   link: 'https://chefood-mongo.herokuapp.com/',
 };

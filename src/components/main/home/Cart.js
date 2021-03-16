@@ -44,9 +44,9 @@ export default function Cart({navigation}) {
   }, []);
 
   const shipmentInfo = {
-    name: user.name,
-    address: user.address,
-    phone: user.phone,
+    name: user.userInfo.name,
+    address: user.userInfo.address,
+    phone: user.userInfo.phone,
   };
   const optionMethod = ['Tiền mặt', 'Thẻ'];
   const cartData = [
