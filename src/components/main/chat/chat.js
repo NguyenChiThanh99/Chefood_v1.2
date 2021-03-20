@@ -1,12 +1,10 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {useFocusEffect} from '@react-navigation/native';
 import {
   View,
   Text,
+  Image,
   BackHandler,
-  Keyboard,
-  ImageBackground,
   FlatList,
   TouchableOpacity,
   StyleSheet,
@@ -15,9 +13,10 @@ import {
 import Toast from 'react-native-root-toast';
 
 import Global from '../../Global';
-import NodeChat from './cardView/NodeChat';
+import MainHeader from '../home/cardView/MainHeader';
+import ChatItem from './cardView/ChatItem';
 
-import background from '../../../images/background.png';
+import searchIcon from '../../../icons/search-bd.png';
 
 var countExit = 0;
 
@@ -42,134 +41,294 @@ export default function Chat({navigation}) {
       };
 
       BackHandler.addEventListener('hardwareBackPress', onBackPress);
-      const interval = setInterval(() => {
-        _getMessages();
-      }, 3000);
 
       return () => {
-        clearInterval(interval);
         BackHandler.removeEventListener('hardwareBackPress', onBackPress);
       };
     }, []),
   );
 
-  const [chatData, setChatData] = useState([]);
-  const [username, setUsername] = useState('bienthaikieusa');
-  const [chatInputContent, setChatInputContent] = useState('');
+  const [search, setSearch] = useState('');
+  const [menu, setMenu] = useState({all: true, save: false});
 
-  const _getMessages = () => {
-    fetch(Global.chatLink + 'messages')
-      .then((response) => response.json())
-      .then((json) => {
-        setChatData(json);
-        console.log(json);
-      })
-      .catch((error) => console.error(error));
-  };
+  const data = [
+    {
+      id: 1,
+      avatar: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
+      name: 'Trần Thanh Đức',
+      time: '1Th12',
+      content:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      status: true,
+    },
+    {
+      id: 2,
+      avatar: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
+      name: 'Trần Thanh Đức',
+      time: '1Th12',
+      content:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      status: true,
+    },
+    {
+      id: 3,
+      avatar: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
+      name: 'Trần Thanh Đức',
+      time: '1Th12',
+      content:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      status: false,
+    },
+    {
+      id: 4,
+      avatar: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
+      name: 'Trần Thanh Đức',
+      time: '1Th12',
+      content:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      status: false,
+    },
+    {
+      id: 5,
+      avatar: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
+      name: 'Trần Thanh Đức',
+      time: '1Th12',
+      content:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      status: false,
+    },
+    {
+      id: 6,
+      avatar: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
+      name: 'Trần Thanh Đức',
+      time: '1Th12',
+      content:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      status: true,
+    },
+    {
+      id: 7,
+      avatar: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
+      name: 'Trần Thanh Đức',
+      time: '1Th12',
+      content:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      status: false,
+    },
+    {
+      id: 8,
+      avatar: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
+      name: 'Trần Thanh Đức',
+      time: '1Th12',
+      content:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      status: true,
+    },
+    {
+      id: 9,
+      avatar: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
+      name: 'Trần Thanh Đức',
+      time: '1Th12',
+      content:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      status: false,
+    },
+    {
+      id: 10,
+      avatar: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
+      name: 'Trần Thanh Đức',
+      time: '1Th12',
+      content:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      status: false,
+    },
+  ];
+  const data2 = [
+    {
+      id: 1,
+      avatar: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
+      name: 'Trần Thanh Đức',
+      time: '1Th12',
+      content:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      status: true,
+    },
+    {
+      id: 2,
+      avatar: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
+      name: 'Trần Thanh Đức',
+      time: '1Th12',
+      content:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      status: true,
+    },
+    {
+      id: 3,
+      avatar: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
+      name: 'Trần Thanh Đức',
+      time: '1Th12',
+      content:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      status: false,
+    },
+    {
+      id: 4,
+      avatar: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
+      name: 'Trần Thanh Đức',
+      time: '1Th12',
+      content:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      status: false,
+    },
+  ];
 
-  const _sendMessage = () => {
-    fetch(Global.chatLink + 'message/chat', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username: username,
-        password: '123',
-        messages: chatInputContent,
-        status: 1,
-      }),
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        setChatInputContent('');
-        Keyboard.dismiss();
-      })
-      .catch((error) => console.error(error));
-  };
-
-  const _renderChatLine = (item) => {
-    if (item.username === username) {
-      return (
-        <View style={{alignItems: 'flex-end'}}>
-          <NodeChat sender="You" chatContent={item.messages} />
-        </View>
-      );
+  const menuHandle = (type) => {
+    if (type === 'all') {
+      setMenu({all: true, save: false});
+    } else {
+      setMenu({all: false, save: true});
     }
-    return <NodeChat sender={item.username} chatContent={item.messages} />;
   };
 
-  const _onChangeChatInput = (text) => {
-    setChatInputContent(text);
-  };
-
-  return (
-    <View style={styles.container}>
-      <ImageBackground
-        imageStyle={{opacity: 0.4}}
-        source={background}
-        style={styles.imgBackground}>
-        <FlatList
-          data={chatData}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({item}, index) => _renderChatLine(item)}
-        />
-      </ImageBackground>
-
-      <View style={{flex: 1 / 10}}>
-        <View style={styles.chatTextboxView}>
-          <View style={{flex: 8 / 10}}>
-            <TextInput
-              placeholder="Typing..."
-              value={chatInputContent}
-              onChangeText={(text) => _onChangeChatInput(text)}
-              style={{height: 100, fontSize: 18}}
-            />
-          </View>
-          <View style={{flex: 2 / 10}}>
-            <TouchableOpacity onPress={() => _sendMessage()}>
-              <View style={styles.button}>
-                <Text style={styles.touchText}>Send</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
+  const renderHeaderList = (
+    <View>
+      <View style={styles.searchSuperCont}>
+        <View style={styles.searchCont}>
+          <Image style={styles.searchImg} source={searchIcon} />
+          <TextInput
+            style={styles.searchInput}
+            onChangeText={(text) => setSearch(text)}
+            value={search}
+            placeholder="Tìm kiếm"
+            underlineColorAndroid="transparent"
+            placeholderTextColor="#bdbdbd"
+            autoCapitalize="none"
+          />
         </View>
       </View>
+
+      <View style={styles.menuCont}>
+        <TouchableOpacity onPress={() => menuHandle('all')}>
+          <Text style={menu.all ? styles.itemS : styles.item}>Tất cả</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => menuHandle('save')}>
+          <Text style={menu.save ? styles.itemS : styles.item}>
+            Đầu bếp đã lưu
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+
+  const allJSX = (
+    <FlatList
+      showsVerticalScrollIndicator={false}
+      ListHeaderComponent={renderHeaderList}
+      data={data.sort(function (a, b) {
+        if (a.status) {
+          return -1;
+        } else {
+          return 1;
+        }
+      })}
+      renderItem={({item, index}) => {
+        return (
+          <TouchableOpacity
+            onPress={() => navigation.navigate('CHAT_LIST', {item: item})}>
+            <ChatItem item={item} />
+          </TouchableOpacity>
+        );
+      }}
+      keyExtractor={(item) => item.id.toString()}
+    />
+  );
+  const saveJSX = (
+    <FlatList
+      showsVerticalScrollIndicator={false}
+      ListHeaderComponent={renderHeaderList}
+      data={data2.sort(function (a, b) {
+        if (a.status) {
+          return -1;
+        } else {
+          return 1;
+        }
+      })}
+      renderItem={({item, index}) => {
+        return (
+          <TouchableOpacity
+            onPress={() => navigation.navigate('CHAT_LIST', {item: item})}>
+            <ChatItem item={item} />
+          </TouchableOpacity>
+        );
+      }}
+      keyExtractor={(item) => item.id.toString()}
+    />
+  );
+
+  return (
+    <View style={styles.wrapper}>
+      <MainHeader navigation={navigation} />
+
+      {menu.all ? allJSX : saveJSX}
     </View>
   );
 }
 
+const {width, mainColor, fontFamily, backgroundColor} = Global;
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-end',
+  itemS: {
+    fontFamily,
+    color: mainColor,
+    fontSize: width / 28,
+    fontWeight: 'bold',
+    width: width / 2,
+    textAlign: 'center',
+    paddingBottom: 10,
+    paddingTop: 5,
+    borderBottomColor: mainColor,
+    borderBottomWidth: 1,
   },
-  imgBackground: {
-    flex: 9 / 10,
-    backgroundColor: '#f2f2f2',
-    justifyContent: 'center',
+  item: {
+    fontFamily,
+    color: '#bdbdbd',
+    fontSize: width / 30,
+    width: width / 2,
+    textAlign: 'center',
+    paddingBottom: 12,
+    paddingTop: 5,
+    borderBottomColor: '#f2f2f2',
+    borderBottomWidth: 1,
   },
-  chatTextboxView: {
+  menuCont: {
+    backgroundColor: 'white',
     flexDirection: 'row',
-    backgroundColor: '#FFF',
-    width: '100%',
-    height: '100%',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    marginLeft: 2,
   },
-  touchText: {
-    color: '#0099ff',
-    fontSize: 14,
-  },
-  button: {
-    height: 46,
-    width: 50,
-    borderRadius: 10,
-    marginRight: 20,
-    backgroundColor: '#0082c8',
-    justifyContent: 'center',
+  searchCont: {
+    backgroundColor: '#f2f2f2',
+    width: width - 30,
+    paddingVertical: 5,
+    paddingLeft: 20,
+    flexDirection: 'row',
     alignItems: 'center',
+    borderRadius: 30,
+  },
+  searchSuperCont: {
+    backgroundColor: 'white',
+    width,
+    padding: 15,
+  },
+  searchImg: {
+    width: width / 19,
+    height: width / 19,
+  },
+  searchInput: {
+    padding: 0,
+    fontSize: width / 30,
+    fontFamily,
+    marginLeft: 12,
+  },
+  wrapper: {
+    backgroundColor,
+    flex: 1,
   },
 });

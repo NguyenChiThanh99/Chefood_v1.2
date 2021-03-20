@@ -22,7 +22,7 @@ import deliveryImage from '../../../images/ship.png';
 export default function OrderDetail({navigation}) {
   const data = {
     id: '1547865946145787',
-    deliveryStatus: 'Đang xác nhận',
+    deliveryStatus: 'Đã giao',
     timeOrder: '13:06 26/10/2020',
     method: 'Tiền mặt',
     chef: 'Hoàng Phương Yến',
@@ -263,7 +263,9 @@ export default function OrderDetail({navigation}) {
 
       {data.deliveryStatus === 'Đã giao' ? (
         <View style={styles.bottomBtn2} onPress={() => {}}>
-          <TouchableOpacity style={styles.btnReview}>
+          <TouchableOpacity
+            style={styles.btnReview}
+            onPress={() => navigation.navigate('REVIEW')}>
             <Text style={styles.btnReviewText}>Đánh giá</Text>
           </TouchableOpacity>
           <TouchableOpacity>

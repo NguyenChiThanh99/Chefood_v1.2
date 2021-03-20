@@ -1,35 +1,70 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+
+import Global from '../../../Global';
 
 export default function NodeChat(props) {
-  return (
-    <View style={styles.chatLineView}>
-      <Text style={styles.itemUserName}>{props.sender}</Text>
-      <Text style={styles.itemText}>{props.chatContent}</Text>
-    </View>
-  );
+  const {messages, created_on, username} = props.item;
+  if (username === props.username) {
+    return (
+      <View style={{width, alignItems: 'flex-end'}}>
+        <View style={[styles.chatLineView, {alignItems: 'flex-end'}]}>
+          <Text style={styles.time}>{created_on}</Text>
+          <LinearGradient
+            style={styles.contentUserCont}
+            colors={['#fb5a23', '#ffb038']}
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 0}}>
+            <Text style={styles.contentUser}>{messages}</Text>
+          </LinearGradient>
+        </View>
+      </View>
+    );
+  } else {
+    return (
+      <View style={{width, alignItems: 'flex-start'}}>
+        <View style={styles.chatLineView}>
+          <Text style={styles.time}>{created_on}</Text>
+          <Text style={styles.content}>{messages}</Text>
+        </View>
+      </View>
+    );
+  }
 }
 
+const {width, fontFamily} = Global;
 const styles = StyleSheet.create({
   chatLineView: {
-    flex: 1,
-    width: '50%',
-    padding: 8,
-    backgroundColor: '#ffffff',
-    borderRadius: 8,
+    marginHorizontal: 15,
     marginBottom: 10,
-    marginTop: 10,
-    marginLeft: 5,
-    marginRight: 5,
+    maxWidth: width / 1.3,
   },
-  itemUserName: {
-    color: '#3399ff',
-    padding: 5,
-    fontSize: 14,
+  time: {
+    fontFamily,
+    fontSize: width / 35,
+    color: '#828282',
+    marginBottom: 5,
   },
-  itemText: {
-    color: '#000000',
-    padding: 5,
-    fontSize: 14,
+  content: {
+    fontFamily,
+    color: '#333333',
+    fontSize: width / 30,
+    backgroundColor: '#e0e0e0',
+    borderRadius: 18,
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+  },
+  contentUserCont: {
+    borderRadius: 18,
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+  },
+  contentUser: {
+    fontFamily,
+    fontWeight: 'bold',
+    color: '#fff',
+    fontSize: width / 30,
   },
 });

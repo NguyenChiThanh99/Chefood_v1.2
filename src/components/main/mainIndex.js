@@ -33,6 +33,7 @@ import Dish from './home/Dish';
 import Chef from './home/Chef';
 import ChangeAddress from './user/address/ChangeAddress';
 import OrderDetail from './order/OrderDetail';
+import Review from './order/Review';
 import ChangeInformation from './user/changeInfomation/ChangeInformation';
 import SavedDish from './user/SavedDish';
 import SavedChef from './user/SavedChef';
@@ -42,6 +43,7 @@ import Province from './user/address/Province';
 import District from './user/address/District';
 import Ward from './user/address/Ward';
 import ChangePassword from './user/changeInfomation/ChangePassword';
+import ChatList from './chat/ChatList';
 
 const Tab = createBottomTabNavigator();
 const MainStack = createStackNavigator();
@@ -276,6 +278,22 @@ export default function MainIndex({route}) {
           ...TransitionPresets.SlideFromRightIOS,
         }}
         component={ChangePassword}
+      />
+      <MainStack.Screen
+        name="REVIEW"
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+        component={Review}
+      />
+      <MainStack.Screen
+        name="CHAT_LIST"
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+        component={ChatList}
       />
     </MainStack.Navigator>
   );

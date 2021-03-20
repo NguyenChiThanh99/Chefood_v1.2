@@ -33,7 +33,7 @@ export default function MainHeader(props) {
         <TextInput
           style={styles.textInputStyle}
           underlineColorAndroid="transparent"
-          placeholder="Tìm kiếm"
+          // placeholder="Tìm kiếm"
           placeholderTextColor="#bdbdbd"
           autoCapitalize="none"
           onChangeText={(text) => setSearch(text)}
@@ -85,5 +85,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 10,
+
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+    elevation: 2,
   },
 });
