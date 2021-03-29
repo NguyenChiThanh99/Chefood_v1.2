@@ -8,6 +8,8 @@ target 'Chefood' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'RNExitApp', :path => '../node_modules/react-native-exit-app'
+
   target 'ChefoodTests' do
     inherit! :complete
     # Pods for testing

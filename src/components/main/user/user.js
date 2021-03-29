@@ -13,6 +13,7 @@ import {
 import Toast from 'react-native-root-toast';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useSelector} from 'react-redux';
+import RNExitApp from 'react-native-exit-app';
 
 import Global from '../../Global';
 import MainHeader from '../home/cardView/MainHeader';
@@ -61,7 +62,8 @@ export default function User({navigation}) {
   const logoutHandle = () => {
     setModal(false);
     storeData(null);
-    BackHandler.exitApp();
+    RNExitApp.exitApp();
+    // BackHandler.exitApp();
   };
 
   const storeData = async (value) => {
@@ -224,7 +226,8 @@ const styles = StyleSheet.create({
   },
   line: {
     borderColor: '#bdbdbd',
-    borderWidth: 0.25,
+    borderWidth: 0,
+    borderTopWidth: 0.5,
     marginHorizontal: 10,
   },
   rowCont: {

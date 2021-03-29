@@ -77,7 +77,8 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     borderColor: '#828282',
-    borderWidth: 0.25,
+    borderWidth: 0,
+    borderTopWidth: 0.5,
     borderRadius: 5,
     width: width / 3.8,
   },

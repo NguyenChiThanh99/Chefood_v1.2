@@ -69,7 +69,8 @@ const styles = StyleSheet.create({
   },
   line: {
     borderColor: '#bdbdbd',
-    borderWidth: 0.25,
+    borderWidth: 0,
+    borderTopWidth: 0.5,
     marginHorizontal: 15,
   },
 });

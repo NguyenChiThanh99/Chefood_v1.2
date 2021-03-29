@@ -472,7 +472,8 @@ const styles = StyleSheet.create({
   },
   lineList: {
     borderColor: '#bdbdbd',
-    borderWidth: 0.25,
+    borderWidth: 0,
+    borderTopWidth: 0.5,
     marginHorizontal: 15,
   },
   orderTitleCont: {

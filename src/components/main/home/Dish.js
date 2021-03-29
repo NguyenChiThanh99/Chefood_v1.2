@@ -653,7 +653,8 @@ const styles = StyleSheet.create({
   },
   line: {
     borderColor: '#bdbdbd',
-    borderWidth: 0.25,
+    borderWidth: 0,
+    borderTopWidth: 0.5,
     marginHorizontal: 15,
   },
   ingredient: {
@@ -666,7 +667,7 @@ const styles = StyleSheet.create({
   menu: {
     backgroundColor: 'white',
     flexDirection: 'row',
-    shadowColor: 'rgba(0,0,0,0.1)',
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 1,
@@ -779,7 +780,7 @@ const styles = StyleSheet.create({
   },
   generalInfo: {
     borderRadius: 10,
-    shadowColor: 'rgba(0,0,0,0.15)',
+    shadowColor: '#rgba(0,0,0,0.2)',
     shadowOffset: {
       width: 0,
       height: 1,

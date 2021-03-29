@@ -932,7 +932,8 @@ const {width, backgroundColor} = Global;
 const styles = StyleSheet.create({
   line: {
     borderColor: '#bdbdbd',
-    borderWidth: 0.25,
+    borderWidth: 0,
+    borderTopWidth: 0.5,
   },
   cardView: {
     backgroundColor: 'white',
@@ -966,7 +967,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 15,
     borderRadius: 10,
-    shadowColor: 'rgba(0,0,0,0.1)',
+
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 1,

@@ -650,19 +650,21 @@ const styles = StyleSheet.create({
   },
   line: {
     borderColor: '#bdbdbd',
-    borderWidth: 0.25,
+    borderWidth: 0,
+    borderTopWidth: 0.5,
   },
   menu: {
     backgroundColor: 'white',
     flexDirection: 'row',
-    shadowColor: 'rgba(0,0,0,0.1)',
+    shadowColor: '#rgba(0,0,0,0.2)',
     shadowOffset: {
       width: 0,
       height: 1,
     },
     shadowOpacity: 0.1,
-    shadowRadius: 1.41,
-    elevation: 1,
+    shadowRadius: 2.22,
+    elevation: 1.5,
+    marginBottom: 2,
   },
   menuItem: {
     justifyContent: 'center',

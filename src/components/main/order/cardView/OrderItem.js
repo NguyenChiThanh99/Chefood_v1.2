@@ -39,6 +39,14 @@ export default function Order(props) {
       <TouchableOpacity>
         <Text style={[styles.buttonComplete, styles.reviewBtn]}>Đánh giá</Text>
       </TouchableOpacity>
+      <View
+        style={{
+          borderColor: '#e0e0e0',
+          borderWidth: 0,
+          paddingVertical: 10,
+          borderLeftWidth: 0.5,
+        }}
+      />
       <TouchableOpacity>
         <Text style={[styles.buttonComplete, styles.againBtn]}>Đặt lại</Text>
       </TouchableOpacity>
@@ -106,7 +114,7 @@ const styles = StyleSheet.create({
   buttonComplete: {
     paddingVertical: 10,
     fontSize: width / 33,
-    width: width / 2,
+    width: width / 2 - 0.25,
     textAlign: 'center',
   },
   againBtn: {
@@ -116,11 +124,6 @@ const styles = StyleSheet.create({
   reviewBtn: {
     fontFamily: 'Roboto-Regular',
     color: '#828282',
-    borderRightColor: '#e0e0e0',
-    borderTopColor: 'transparent',
-    borderBottomColor: 'transparent',
-    borderLeftColor: 'transparent',
-    borderWidth: 0.5,
   },
   wrapper: {
     backgroundColor: 'white',
