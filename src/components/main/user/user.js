@@ -180,7 +180,7 @@ export default function User({navigation}) {
   );
 }
 
-const {width, fontFamily, backgroundColor, mainColor} = Global;
+const {width, backgroundColor, mainColor} = Global;
 const styles = StyleSheet.create({
   modalCont: {
     backgroundColor: 'rgba(0,0,0,0.5)',
@@ -196,13 +196,12 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
   },
   title: {
-    fontFamily,
+    fontFamily: 'Roboto-Bold',
     color: '#000000',
     fontSize: width / 20,
-    fontWeight: 'bold',
   },
   content: {
-    fontFamily,
+    fontFamily: 'Roboto-Light',
     color: '#333333',
     fontSize: width / 27,
     marginTop: 12,
@@ -213,12 +212,12 @@ const styles = StyleSheet.create({
     marginTop: 18,
   },
   btnCancel: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: '#828282',
     fontSize: width / 28,
   },
   btnAgree: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: mainColor,
     fontSize: width / 28,
     marginLeft: 40,
@@ -241,7 +240,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   rowText: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 30,
   },
@@ -260,7 +259,7 @@ const styles = StyleSheet.create({
     marginRight: 15,
   },
   name: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: '#333333',
     fontSize: width / 28.5,
     fontWeight: 'bold',
@@ -276,7 +275,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   infoRowText: {
-    fontFamily,
+    fontFamily: 'Roboto-Light',
     color: '#4f4f4f',
     fontSize: width / 33,
   },

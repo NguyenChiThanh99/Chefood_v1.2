@@ -253,7 +253,7 @@ export default function SignUp({navigation}) {
   );
 }
 
-const {height, width, fontFamily} = Global;
+const {height, width} = Global;
 const styles = StyleSheet.create({
   loading: {
     justifyContent: 'center',
@@ -271,7 +271,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   noAccText: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     fontSize: width / 28,
     color: 'white',
   },
@@ -283,11 +283,10 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
   },
   register: {
-    fontFamily,
+    fontFamily: 'Roboto-Bold',
     fontSize: width / 28,
     color: 'white',
     fontStyle: 'italic',
-    fontWeight: 'bold',
   },
   otherMethodCont: {
     flexDirection: 'row',
@@ -321,7 +320,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: 'white',
-    fontFamily: fontFamily,
+    fontFamily: 'Roboto-Black',
     fontWeight: 'bold',
     fontSize: width / 16,
     marginVertical: height / 30,
@@ -344,7 +343,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   textInputStyle: {
-    fontFamily: fontFamily,
+    fontFamily: 'Roboto-Light',
     fontSize: width / 30,
     color: '#6e6e6e',
     width: width / 1.65,
@@ -353,21 +352,11 @@ const styles = StyleSheet.create({
     width: width / 18,
     resizeMode: 'contain',
   },
-  forgotpass: {
-    fontFamily,
-    color: 'white',
-    fontSize: width / 32,
-    marginTop: 8,
-    marginBottom: height / 25,
-    textAlign: 'right',
-    width: width / 1.42,
-    fontWeight: 'bold',
-  },
   btn: {
     borderRadius: 5,
   },
   btnText: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     fontSize: width / 30,
     paddingVertical: 10,
     paddingLeft: width / 10,

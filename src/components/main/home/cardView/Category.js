@@ -23,7 +23,7 @@ export default function Category(props) {
       <Text
         style={[
           styles.name,
-          props.status[nickname] ? {fontWeight: 'bold'} : null,
+          props.status[nickname] ? {fontFamily: 'Roboto-Bold'} : null,
         ]}>
         {name}
       </Text>
@@ -31,7 +31,7 @@ export default function Category(props) {
   );
 }
 
-const {width, fontFamily} = Global;
+const {width} = Global;
 const styles = StyleSheet.create({
   wrapper: {
     justifyContent: 'center',
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     height: width / 12,
   },
   name: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 34,
     marginTop: 7,

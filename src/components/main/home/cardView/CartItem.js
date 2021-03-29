@@ -102,7 +102,7 @@ export default function CartItem(props) {
   );
 }
 
-const {width, fontFamily} = Global;
+const {width} = Global;
 const styles = StyleSheet.create({
   quantityCont: {
     flexDirection: 'row',
@@ -117,8 +117,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginHorizontal: width / 18,
     color: '#000',
-    fontFamily,
-    fontWeight: 'bold',
+    fontFamily: 'Roboto-Bold',
     fontSize: width / 28,
     padding: 0,
   },
@@ -132,19 +131,18 @@ const styles = StyleSheet.create({
     width: width / 1.65,
   },
   name: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: '#333333',
     fontSize: width / 28,
-    fontWeight: 'bold',
   },
   chef: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#828282',
     fontSize: width / 33,
     marginTop: 5,
   },
   price: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#4f4f4f',
     fontSize: width / 31,
   },

@@ -35,7 +35,7 @@ export default function ChefView(props) {
   );
 }
 
-const {width, fontFamily} = Global;
+const {width} = Global;
 const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: 'white',
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     width: width / 1.5,
   },
   name: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 30,
     marginBottom: 2,
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     height: width / 25,
   },
   infoText: {
-    fontFamily,
+    fontFamily: 'Roboto-Light',
     color: '#828282',
     fontSize: width / 36,
     marginLeft: 3,

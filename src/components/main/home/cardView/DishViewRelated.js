@@ -18,7 +18,7 @@ export default function DishViewRelated(props) {
   );
 }
 
-const {height, width, mainColor, fontFamily} = Global;
+const {height, width, mainColor} = Global;
 const styles = StyleSheet.create({
   wrapper: {
     width: width / 2 - 45 / 2,
@@ -35,23 +35,22 @@ const styles = StyleSheet.create({
   },
   name: {
     marginTop: 5,
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: '#333333',
-    fontWeight: 'bold',
     fontSize: width / 30,
-    height: height / 18.2,
+    height: 40,
     marginHorizontal: 5,
   },
   chef: {
-    marginTop: 3,
-    fontFamily,
+    marginTop: 2,
+    fontFamily: 'Roboto-Regular',
     color: '#828282',
     fontSize: width / 34,
     marginHorizontal: 5,
   },
   price: {
     margin: 5,
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: mainColor,
     fontSize: width / 30,
   },

@@ -12,14 +12,20 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1E17180B35226EE9C524CFCD /* libPods-Chefood-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0152CC4E9CB5BF1C8905868E /* libPods-Chefood-tvOS.a */; };
+		20DBF0CE773B469F8C93EF64 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FE53BE24ED14C0EA81B1359 /* Roboto-Thin.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* ChefoodTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ChefoodTests.m */; };
+		35596ADEBC1A43B39F3B366D /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DFC8FDD3ADBD4ADB99BA07C8 /* Roboto-Black.ttf */; };
 		45387C1B631AA00F4EA5D00A /* libPods-Chefood-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6097C5EC021D66D2AADF70 /* libPods-Chefood-tvOSTests.a */; };
 		766C0C37BCC12A7D3BE8EB1C /* libPods-Chefood-ChefoodTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1933458B9E50A37C1BB760B0 /* libPods-Chefood-ChefoodTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		B8B0A00A89434A8281E8C5BF /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 703BC23D78F849168127A644 /* Roboto-Medium.ttf */; };
+		BD475FC7DE1F4654AEF52222 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B2D56D2F6A84B66967E90D0 /* Roboto-Regular.ttf */; };
+		C6142E20522141548820821B /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C597EA9616C468A984B720B /* Roboto-Light.ttf */; };
 		C8B4D550E827DFFFDF566638 /* libPods-Chefood.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B95CDA8D318C7679D67B3FC4 /* libPods-Chefood.a */; };
+		E52E69B342834579BAEE6C6D /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 962F15C42ED541C2A141DF5C /* Roboto-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,12 +64,18 @@
 		32D3F8ED53C78670480D045E /* Pods-Chefood-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chefood-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Chefood-tvOSTests/Pods-Chefood-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		534C143EC43E842B2472BE0A /* Pods-Chefood-ChefoodTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chefood-ChefoodTests.release.xcconfig"; path = "Target Support Files/Pods-Chefood-ChefoodTests/Pods-Chefood-ChefoodTests.release.xcconfig"; sourceTree = "<group>"; };
 		53615FD2D0A808E07F5B1074 /* Pods-Chefood-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chefood-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-Chefood-tvOS/Pods-Chefood-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		6C597EA9616C468A984B720B /* Roboto-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Light.ttf"; path = "../src/fonts/Roboto-Light.ttf"; sourceTree = "<group>"; };
+		703BC23D78F849168127A644 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Medium.ttf"; path = "../src/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		7FCA83DD62205C3B02014087 /* Pods-Chefood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chefood.release.xcconfig"; path = "Target Support Files/Pods-Chefood/Pods-Chefood.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Chefood/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8FE53BE24ED14C0EA81B1359 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Thin.ttf"; path = "../src/fonts/Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		962F15C42ED541C2A141DF5C /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../src/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		9B2D56D2F6A84B66967E90D0 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../src/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		9F6097C5EC021D66D2AADF70 /* libPods-Chefood-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Chefood-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B95CDA8D318C7679D67B3FC4 /* libPods-Chefood.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Chefood.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9CA489664FC6BDBFB14DBB8 /* Pods-Chefood-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chefood-tvOS.release.xcconfig"; path = "Target Support Files/Pods-Chefood-tvOS/Pods-Chefood-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		CFC419531E2069AF75CD0D3A /* Pods-Chefood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chefood.debug.xcconfig"; path = "Target Support Files/Pods-Chefood/Pods-Chefood.debug.xcconfig"; sourceTree = "<group>"; };
+		DFC8FDD3ADBD4ADB99BA07C8 /* Roboto-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Black.ttf"; path = "../src/fonts/Roboto-Black.ttf"; sourceTree = "<group>"; };
 		EAAA89B69608A18BAD8451FD /* Pods-Chefood-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chefood-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-Chefood-tvOSTests/Pods-Chefood-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -148,7 +160,6 @@
 				32D3F8ED53C78670480D045E /* Pods-Chefood-tvOSTests.debug.xcconfig */,
 				EAAA89B69608A18BAD8451FD /* Pods-Chefood-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -181,6 +192,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				21B9EE58247980F05F7932BA /* Pods */,
+				ADE9A13061FE4D53BF6BEA2E /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -196,6 +208,19 @@
 				2D02E4901E0B4A5D006451C7 /* Chefood-tvOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		ADE9A13061FE4D53BF6BEA2E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DFC8FDD3ADBD4ADB99BA07C8 /* Roboto-Black.ttf */,
+				962F15C42ED541C2A141DF5C /* Roboto-Bold.ttf */,
+				6C597EA9616C468A984B720B /* Roboto-Light.ttf */,
+				703BC23D78F849168127A644 /* Roboto-Medium.ttf */,
+				9B2D56D2F6A84B66967E90D0 /* Roboto-Regular.ttf */,
+				8FE53BE24ED14C0EA81B1359 /* Roboto-Thin.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +321,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = 9ZN739U5VS;
 						LastSwiftMigration = 1120;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -344,6 +370,12 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				35596ADEBC1A43B39F3B366D /* Roboto-Black.ttf in Resources */,
+				E52E69B342834579BAEE6C6D /* Roboto-Bold.ttf in Resources */,
+				C6142E20522141548820821B /* Roboto-Light.ttf in Resources */,
+				B8B0A00A89434A8281E8C5BF /* Roboto-Medium.ttf in Resources */,
+				BD475FC7DE1F4654AEF52222 /* Roboto-Regular.ttf in Resources */,
+				20DBF0CE773B469F8C93EF64 /* Roboto-Thin.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,44 +476,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Chefood-ChefoodTests/Pods-Chefood-ChefoodTests-resources.sh",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 				"${PODS_ROOT}/Stripe/InternalFrameworks/Stripe3DS2.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/Stripe/Stripe.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Stripe3DS2.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Stripe.bundle",
@@ -542,44 +542,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Chefood/Pods-Chefood-resources.sh",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 				"${PODS_ROOT}/Stripe/InternalFrameworks/Stripe3DS2.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/Stripe/Stripe.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Stripe3DS2.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Stripe.bundle",
@@ -766,6 +734,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9ZN739U5VS;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Chefood/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -789,6 +758,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9ZN739U5VS;
 				INFOPLIST_FILE = Chefood/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (

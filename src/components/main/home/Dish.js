@@ -626,7 +626,7 @@ export default function Dish({navigation, route}) {
   );
 }
 
-const {width, height, fontFamily, backgroundColor, backButton} = Global;
+const {width, height, backgroundColor, backButton} = Global;
 const styles = StyleSheet.create({
   cardViewList2Col: {
     marginHorizontal: 15,
@@ -637,7 +637,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   cardViewTitle: {
-    fontFamily,
+    fontFamily: 'Roboto-Light',
     color: '#000000',
     fontSize: width / 26,
     margin: 10,
@@ -657,7 +657,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
   },
   ingredient: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#4f4f4f',
     fontSize: width / 30,
     marginLeft: width / 12,
@@ -682,13 +682,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   menuTextS: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: '#333333',
     fontSize: width / 28,
     fontWeight: 'bold',
   },
   menuText: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#828282',
     fontSize: width / 28,
   },
@@ -711,7 +711,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   btnText: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     fontSize: width / 30,
     color: 'white',
     marginVertical: 10,
@@ -723,10 +723,9 @@ const styles = StyleSheet.create({
     marginTop: height / 50,
   },
   price: {
-    fontFamily,
+    fontFamily: 'Roboto-Bold',
     fontSize: width / 19,
     color: '#fb5a23',
-    fontWeight: 'bold',
     marginRight: width / 8,
   },
   quantityCont: {
@@ -742,8 +741,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginHorizontal: width / 18,
     color: '#000',
-    fontFamily,
-    fontWeight: 'bold',
+    fontFamily: 'Roboto-Bold',
     fontSize: width / 28,
     padding: 0,
   },
@@ -762,12 +760,12 @@ const styles = StyleSheet.create({
     height: width / 16,
   },
   prepareText: {
-    fontFamily,
+    fontFamily: 'Roboto-Light',
     color: '#333333',
     fontSize: width / 32,
   },
   numOrder: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: '#828282',
     fontSize: width / 34,
     marginRight: 15,
@@ -799,21 +797,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   name: {
-    fontFamily,
+    fontFamily: 'Roboto-Bold',
     fontSize: width / 22,
     color: '#000000',
-    fontWeight: 'bold',
     textAlign: 'center',
   },
   chef: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     fontSize: width / 30,
     color: '#828282',
     textAlign: 'center',
     marginTop: 2,
   },
   address: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     fontSize: width / 32,
     color: '#219653',
     textAlign: 'center',
@@ -830,16 +827,14 @@ const styles = StyleSheet.create({
     height: width / 18,
   },
   saveTextS: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     fontSize: width / 28,
     color: '#fb5a23',
-    fontWeight: 'bold',
   },
   saveText: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     fontSize: width / 28,
     color: '#828282',
-    fontWeight: 'bold',
   },
   wrapper: {
     backgroundColor,

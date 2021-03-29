@@ -34,7 +34,7 @@ export default function NodeChat(props) {
   }
 }
 
-const {width, fontFamily} = Global;
+const {width} = Global;
 const styles = StyleSheet.create({
   chatLineView: {
     marginHorizontal: 15,
@@ -42,13 +42,13 @@ const styles = StyleSheet.create({
     maxWidth: width / 1.3,
   },
   time: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     fontSize: width / 35,
     color: '#828282',
     marginBottom: 5,
   },
   content: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 30,
     backgroundColor: '#e0e0e0',
@@ -62,8 +62,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   contentUser: {
-    fontFamily,
-    fontWeight: 'bold',
+    fontFamily: 'Roboto-Bold',
     color: '#fff',
     fontSize: width / 30,
   },

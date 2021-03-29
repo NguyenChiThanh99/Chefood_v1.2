@@ -24,7 +24,7 @@ export default function ChatItem(props) {
   );
 }
 
-const {width, fontFamily} = Global;
+const {width} = Global;
 const styles = StyleSheet.create({
   avatar: {
     width: width / 8.2,
@@ -33,40 +33,40 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   name: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     fontSize: width / 29,
     color: '#828282',
     marginBottom: 3,
   },
   nameActive: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     fontSize: width / 29,
     fontWeight: 'bold',
     color: '#000',
     marginBottom: 3,
   },
   contentActive: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     fontSize: width / 31,
     color: '#000',
     fontWeight: 'bold',
     width: width / 1.55,
   },
   content: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     fontSize: width / 31,
     color: '#828282',
     width: width / 1.55,
   },
   timeActive: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     fontSize: width / 31,
     color: '#000',
     fontWeight: 'bold',
     marginTop: 3,
   },
   time: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     fontSize: width / 31,
     color: '#828282',
     marginTop: 3,

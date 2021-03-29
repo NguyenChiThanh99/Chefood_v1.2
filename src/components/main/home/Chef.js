@@ -620,14 +620,7 @@ export default function Chef({navigation, route}) {
   );
 }
 
-const {
-  width,
-  fontFamily,
-  heightHeader,
-  backButton,
-  height,
-  backgroundColor,
-} = Global;
+const {width, heightHeader, backButton, height, backgroundColor} = Global;
 const styles = StyleSheet.create({
   infoItem: {
     flexDirection: 'row',
@@ -639,13 +632,13 @@ const styles = StyleSheet.create({
     height: width / 16,
   },
   infoText: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 30,
     marginLeft: 10,
   },
   cardViewTitle: {
-    fontFamily,
+    fontFamily: 'Roboto-Light',
     color: '#000000',
     fontSize: width / 26,
     margin: 10,
@@ -678,13 +671,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   menuTextS: {
-    fontFamily,
+    fontFamily: 'Roboto-Bold',
     color: '#333333',
     fontSize: width / 28,
-    fontWeight: 'bold',
   },
   menuText: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#828282',
     fontSize: width / 28,
   },
@@ -712,15 +704,14 @@ const styles = StyleSheet.create({
     marginBottom: 0,
   },
   name: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: '#000000',
     fontSize: width / 24,
-    fontWeight: 'bold',
   },
   follow: {
     marginLeft: 15,
     marginBottom: 20,
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#828282',
     fontSize: width / 31,
     marginTop: -2,
@@ -739,14 +730,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   btnTextS: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     fontSize: width / 30,
     color: 'white',
     marginHorizontal: 20,
     marginVertical: 5,
   },
   btnText: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     fontSize: width / 30,
     color: '#828282',
     marginHorizontal: 20,
@@ -779,8 +770,7 @@ const styles = StyleSheet.create({
     paddingBottom: 3.5,
   },
   ratingText: {
-    fontFamily,
-    fontWeight: 'bold',
+    fontFamily: 'Roboto-Bold',
     color: 'white',
     fontSize: width / 36,
     marginLeft: 4,
@@ -801,7 +791,7 @@ const styles = StyleSheet.create({
     height: backButton,
   },
   headerText: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 24,
     marginLeft: 10,

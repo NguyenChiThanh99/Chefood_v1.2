@@ -40,7 +40,7 @@ export default function CommentDish(props) {
   );
 }
 
-const {width, fontFamily} = Global;
+const {width} = Global;
 const styles = StyleSheet.create({
   viewMore: {
     width,
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   viewMoreText: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#828282',
     fontSize: width / 34,
   },
@@ -58,9 +58,8 @@ const styles = StyleSheet.create({
     height: width / 26,
   },
   name: {
-    fontFamily,
+    fontFamily: 'Roboto-Bold',
     color: '#333333',
-    fontWeight: 'bold',
     fontSize: width / 26,
     marginLeft: 15,
   },

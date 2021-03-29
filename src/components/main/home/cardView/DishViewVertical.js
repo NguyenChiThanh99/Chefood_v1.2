@@ -53,7 +53,7 @@ export default function DishViewVertical(props) {
   );
 }
 
-const {width, height, fontFamily, mainColor} = Global;
+const {width, height, mainColor} = Global;
 const styles = StyleSheet.create({
   timeCont: {
     flexDirection: 'row',
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     height: width / 25,
   },
   timeText: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#828282',
     fontSize: width / 35,
   },
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   name: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: '#333333',
     fontSize: width / 30,
     fontWeight: 'bold',
@@ -108,20 +108,19 @@ const styles = StyleSheet.create({
     width: width / 1.35,
   },
   nameChef: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: '#333333',
     fontSize: width / 30,
-    fontWeight: 'bold',
     marginBottom: 3,
     width: width / 1.5,
   },
   chef: {
-    fontFamily,
+    fontFamily: 'Roboto-Light',
     color: '#4f4f4f',
     fontSize: width / 34,
   },
   price: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: mainColor,
     fontSize: width / 34,
   },

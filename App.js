@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, StatusBar} from 'react-native';
+import {View, StatusBar, SafeAreaView} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import {RootSiblingParent} from 'react-native-root-siblings';
@@ -18,11 +18,23 @@ import changePassword from './src/components/userFunction/forgotPassword/ChangeP
 const RootStack = createStackNavigator();
 
 export default function App() {
+  const MyStatusBar = ({backgroundColor, ...props}) => (
+    <View style={{backgroundColor}}>
+      <SafeAreaView>
+        <StatusBar backgroundColor={backgroundColor} {...props} />
+      </SafeAreaView>
+    </View>
+  );
+
   return (
     <Provider store={store}>
       <RootSiblingParent>
         <View style={{flex: 1}}>
-          <StatusBar backgroundColor="rgba(130,130,130,1)" />
+          <MyStatusBar
+            backgroundColor="#828282"
+            barStyle="light-content"
+            animated
+          />
           <NavigationContainer>
             <RootStack.Navigator initialRouteName={'SIGN_IN'}>
               <RootStack.Screen

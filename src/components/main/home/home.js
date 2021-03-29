@@ -7,7 +7,6 @@ import {
   BackHandler,
   StyleSheet,
   Image,
-  TextInput,
   ScrollView,
   TouchableOpacity,
   FlatList,
@@ -929,7 +928,7 @@ export default function Home({navigation}) {
   );
 }
 
-const {width, fontFamily, backgroundColor} = Global;
+const {width, backgroundColor} = Global;
 const styles = StyleSheet.create({
   line: {
     borderColor: '#bdbdbd',
@@ -951,7 +950,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   cardViewTitle: {
-    fontFamily,
+    fontFamily: 'Roboto-Light',
     color: '#000000',
     fontSize: width / 26,
     margin: 10,
@@ -991,7 +990,7 @@ const styles = StyleSheet.create({
     height: width / 11,
   },
   wordMenuText: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 34,
     marginTop: 3,

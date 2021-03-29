@@ -1,0 +1,6 @@
+module Pods_Chefood {
+  umbrella header "Pods-Chefood-umbrella.h"
+
+  export *
+  module * { export * }
+}

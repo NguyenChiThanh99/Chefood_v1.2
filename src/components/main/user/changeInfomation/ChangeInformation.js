@@ -383,7 +383,6 @@ const {
   width,
   backgroundColor,
   mainColor,
-  fontFamily,
   backButton,
   heightHeader,
   height,
@@ -407,10 +406,9 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
   },
   title: {
-    fontFamily,
+    fontFamily: 'Roboto-Bold',
     color: '#000000',
     fontSize: width / 20,
-    fontWeight: 'bold',
   },
   btnCont: {
     flexDirection: 'row',
@@ -419,7 +417,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   btn: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: mainColor,
     fontSize: width / 30,
     borderColor: mainColor,
@@ -430,7 +428,7 @@ const styles = StyleSheet.create({
   },
   btnCancel: {
     marginRight: 10,
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: '#828282',
     fontSize: width / 28,
     textAlign: 'right',
@@ -453,7 +451,7 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   rowText: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 30,
   },
@@ -462,14 +460,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   rowContent: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#828282',
     fontSize: width / 30,
     width: width / 1.45,
     textAlign: 'right',
   },
   rowContentDefault: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: mainColor,
     fontSize: width / 30,
   },
@@ -516,7 +514,7 @@ const styles = StyleSheet.create({
     height: backButton,
   },
   headerText: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 24,
     marginLeft: 10,

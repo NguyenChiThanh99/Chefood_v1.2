@@ -117,7 +117,7 @@ export default function Province({navigation}) {
   );
 }
 
-const {width, fontFamily, heightHeader, backgroundColor, backButton} = Global;
+const {width, heightHeader, backgroundColor, backButton} = Global;
 const styles = StyleSheet.create({
   loading: {
     flex: 1,
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   rowText: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 30,
     backgroundColor: 'white',
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     height: backButton,
   },
   headerText: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 24,
     marginLeft: 10,

@@ -8,7 +8,6 @@ module.exports = {
   width: width,
   height: height,
   heightHeader: height / 14,
-  fontFamily: 'Roboto',
   backButton: width / 16,
   shortTimeFormat: (time) => {
     var date = new Date(time);

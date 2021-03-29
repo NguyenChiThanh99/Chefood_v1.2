@@ -87,7 +87,7 @@ export default function Order(props) {
   );
 }
 
-const {width, fontFamily, mainColor} = Global;
+const {width, mainColor} = Global;
 const styles = StyleSheet.create({
   cancelCont: {
     flexDirection: 'row',
@@ -99,23 +99,22 @@ const styles = StyleSheet.create({
   },
   buttonCancel: {
     marginVertical: 10,
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: mainColor,
     fontSize: width / 33,
-    fontWeight: 'bold',
   },
   buttonComplete: {
     paddingVertical: 10,
-    fontFamily,
     fontSize: width / 33,
     width: width / 2,
     textAlign: 'center',
   },
   againBtn: {
     color: mainColor,
-    fontWeight: 'bold',
+    fontFamily: 'Roboto-Bold',
   },
   reviewBtn: {
+    fontFamily: 'Roboto-Regular',
     color: '#828282',
     borderRightColor: '#e0e0e0',
     borderTopColor: 'transparent',
@@ -137,13 +136,13 @@ const styles = StyleSheet.create({
     width: width - 40 - width / 26,
   },
   title: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: '#333333',
     fontSize: width / 28,
     fontWeight: 'bold',
   },
   other: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#828282',
     fontSize: width / 31,
   },
@@ -157,17 +156,17 @@ const styles = StyleSheet.create({
     height: width / 23,
   },
   deliveryStatus: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     fontSize: width / 31,
     marginHorizontal: 5,
   },
   deliveryTime: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 31,
   },
   total: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 31,
     marginTop: 12,

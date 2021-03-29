@@ -226,14 +226,7 @@ export default function ChangeAddress({navigation}) {
   );
 }
 
-const {
-  width,
-  backgroundColor,
-  heightHeader,
-  backButton,
-  fontFamily,
-  mainColor,
-} = Global;
+const {width, backgroundColor, heightHeader, backButton, mainColor} = Global;
 const styles = StyleSheet.create({
   loading: {
     justifyContent: 'center',
@@ -241,17 +234,16 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
   textInputStyle: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 30,
     padding: 0,
     marginTop: 2,
   },
   title: {
-    fontFamily,
+    fontFamily: 'Roboto-Bold',
     color: '#333333',
     fontSize: width / 28,
-    fontWeight: 'bold',
     margin: 10,
   },
   line: {
@@ -272,17 +264,17 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   rowText: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 30,
   },
   rowTextDes: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 42,
   },
   rowContentDefault: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#bdbdbd',
     fontSize: width / 30,
   },
@@ -308,13 +300,13 @@ const styles = StyleSheet.create({
     height: backButton,
   },
   headerText: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 24,
     marginLeft: 10,
   },
   saveBtn: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: mainColor,
     fontSize: width / 26,
   },

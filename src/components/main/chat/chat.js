@@ -274,13 +274,12 @@ export default function Chat({navigation}) {
   );
 }
 
-const {width, mainColor, fontFamily, backgroundColor} = Global;
+const {width, mainColor, backgroundColor} = Global;
 const styles = StyleSheet.create({
   itemS: {
-    fontFamily,
+    fontFamily: 'Roboto-Bold',
     color: mainColor,
     fontSize: width / 28,
-    fontWeight: 'bold',
     width: width / 2,
     textAlign: 'center',
     paddingBottom: 10,
@@ -289,7 +288,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   item: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#bdbdbd',
     fontSize: width / 30,
     width: width / 2,
@@ -324,7 +323,7 @@ const styles = StyleSheet.create({
   searchInput: {
     padding: 0,
     fontSize: width / 30,
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     marginLeft: 12,
   },
   wrapper: {

@@ -119,14 +119,7 @@ export default function ChatList({navigation, route}) {
   );
 }
 
-const {
-  width,
-  height,
-  fontFamily,
-  backgroundColor,
-  heightHeader,
-  backButton,
-} = Global;
+const {width, height, backgroundColor, heightHeader, backButton} = Global;
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
@@ -150,7 +143,7 @@ const styles = StyleSheet.create({
     marginLeft: 11,
   },
   name: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 24,
     marginLeft: 12,
@@ -168,9 +161,9 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   chatInput: {
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 30,
-    padding: 0,
     backgroundColor: '#f2f2f2',
     borderRadius: 65,
     width: width - 45 - width / 14,

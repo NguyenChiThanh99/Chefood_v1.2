@@ -22,6 +22,8 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -37,8 +39,50 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>We need access to camera as it's the core app experience.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to photos as it's the core app experience.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>roboto.ttf</string>
+		<string>AntDesign.ttf</string>
+		<string>Entypo.ttf</string>
+		<string>EvilIcons.ttf</string>
+		<string>Feather.ttf</string>
+		<string>FontAwesome.ttf</string>
+		<string>FontAwesome5_Brands.ttf</string>
+		<string>FontAwesome5_Regular.ttf</string>
+		<string>FontAwesome5_Solid.ttf</string>
+		<string>Fontisto.ttf</string>
+		<string>Foundation.ttf</string>
+		<string>Ionicons.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>Octicons.ttf</string>
+		<string>SimpleLineIcons.ttf</string>
+		<string>Zocial.ttf</string>
+		<string>100.ttf</string>
+		<string>300.ttf</string>
+		<string>400.ttf</string>
+		<string>500.ttf</string>
+		<string>700.ttf</string>
+		<string>900.ttf</string>
+		<string>r100.ttf</string>
+		<string>r300.ttf</string>
+		<string>r400.ttf</string>
+		<string>r500.ttf</string>
+		<string>r700.ttf</string>
+		<string>r900.ttf</string>
+		<string>Roboto-Black.ttf</string>
+		<string>Roboto-Bold.ttf</string>
+		<string>Roboto-Light.ttf</string>
+		<string>Roboto-Medium.ttf</string>
+		<string>Roboto-Regular.ttf</string>
+		<string>Roboto-Thin.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

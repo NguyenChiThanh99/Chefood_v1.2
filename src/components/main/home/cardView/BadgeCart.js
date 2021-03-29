@@ -27,18 +27,18 @@ export default function BadgeCart(props) {
   );
 }
 
-const {height, mainColor, backButton} = Global;
+const {mainColor, backButton} = Global;
 const styles = StyleSheet.create({
   cartCont: {
     marginRight: 4,
   },
   cartIcon: {
     width: backButton,
-    resizeMode: 'contain',
+    height: backButton,
   },
   containerStyle: {
     position: 'absolute',
-    top: height / 3.1,
+    top: -5,
     right: -8,
   },
   badgeStyle: {

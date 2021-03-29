@@ -152,14 +152,13 @@ const {
   width,
   backgroundColor,
   mainColor,
-  fontFamily,
   backButton,
   heightHeader,
   height,
 } = Global;
 const styles = StyleSheet.create({
   title: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#828282',
     fontSize: width / 35,
     marginLeft: 20,
@@ -177,7 +176,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
   },
   textInputStyle: {
-    fontFamily: fontFamily,
+    fontFamily: 'Roboto-Regular',
     fontSize: width / 30,
     color: '#000000',
     width: width - 40,
@@ -205,13 +204,13 @@ const styles = StyleSheet.create({
     height: backButton,
   },
   headerText: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 24,
     marginLeft: 10,
   },
   saveBtn: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: mainColor,
     fontSize: width / 26,
     marginLeft: 20,

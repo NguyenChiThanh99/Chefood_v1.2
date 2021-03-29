@@ -319,7 +319,6 @@ export default function Cart({navigation}) {
 
 const {
   width,
-  fontFamily,
   height,
   heightHeader,
   backButton,
@@ -341,13 +340,12 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
   },
   title: {
-    fontFamily,
+    fontFamily: 'Roboto-Black',
     color: '#000000',
     fontSize: width / 20,
-    fontWeight: 'bold',
   },
   content: {
-    fontFamily,
+    fontFamily: 'Roboto-Light',
     color: '#333333',
     fontSize: width / 27,
   },
@@ -357,12 +355,12 @@ const styles = StyleSheet.create({
     marginTop: 18,
   },
   btnCancel: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: '#828282',
     fontSize: width / 28,
   },
   btnAgree: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: mainColor,
     fontSize: width / 28,
     marginLeft: 40,
@@ -378,7 +376,7 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   proSumsText: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#4f4f4f',
     fontSize: width / 31,
   },
@@ -399,7 +397,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   cardViewTitle: {
-    fontFamily,
+    fontFamily: 'Roboto-Light',
     color: '#000000',
     fontSize: width / 26,
     margin: 10,
@@ -431,11 +429,11 @@ const styles = StyleSheet.create({
     width: width / 6.7,
     marginRight: 10,
     color: '#333333',
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     fontSize: width / 30,
   },
   dropdownList: {
-    height: height / 9.7,
+    height: 75,
   },
   bottomItem: {
     flexDirection: 'row',
@@ -443,16 +441,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bottomText: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: '#333333',
     fontSize: width / 30,
-    fontWeight: 'bold',
   },
   total: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: mainColor,
     fontSize: width / 28,
-    fontWeight: 'bold',
   },
   bottomView: {
     backgroundColor: 'white',
@@ -465,13 +461,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   btnText: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     fontSize: width / 29,
     color: 'white',
     marginVertical: 10,
   },
   shipmentText: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: '#828282',
     fontSize: width / 29,
     marginBottom: 2,
@@ -484,10 +480,9 @@ const styles = StyleSheet.create({
     width: width / 1.35,
   },
   personalInfo: {
-    fontFamily,
+    fontFamily: 'Roboto-Bold',
     color: '#4f4f4f',
     fontSize: width / 30,
-    fontWeight: 'bold',
     marginTop: 5,
   },
   changeCont: {
@@ -502,12 +497,12 @@ const styles = StyleSheet.create({
     marginRight: 3,
   },
   changeText: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: '#2f80ed',
     fontSize: width / 36,
   },
   address: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: '#219653',
     fontSize: width / 26,
   },
@@ -532,7 +527,7 @@ const styles = StyleSheet.create({
     height: backButton,
   },
   headerText: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 24,
     marginLeft: 10,

@@ -12,7 +12,7 @@ export default function NotificationItem(props) {
       <Text style={styles.title}>Đơn hàng đang được vận chuyển</Text>
       <Text style={styles.description}>
         Shipper đang vận chuyển đơn hàng{' '}
-        <Text style={{fontWeight: 'bold'}}>{dish}</Text> giá{' '}
+        <Text style={{fontFamily: 'Roboto-Bold'}}>{dish}</Text> giá{' '}
         <Text style={styles.price}>{Global.currencyFormat(total)}đ</Text> đến
         địa chỉ của bạn
       </Text>
@@ -24,8 +24,8 @@ export default function NotificationItem(props) {
       <Text style={styles.title}>Đơn hàng đã được xác nhận</Text>
       <Text style={styles.description}>
         Đơn hàng đã được đầu bếp{' '}
-        <Text style={{fontWeight: 'bold'}}>{chef.name}</Text> xác nhận và đang
-        được chuẩn bị
+        <Text style={{fontFamily: 'Roboto-Bold'}}>{chef.name}</Text> xác nhận và
+        đang được chuẩn bị
       </Text>
     </View>
   );
@@ -34,10 +34,10 @@ export default function NotificationItem(props) {
     <View style={{width: width - 30 - width / 13.5}}>
       <Text style={styles.title}>Đơn hàng đang chờ xác nhận</Text>
       <Text style={styles.description}>
-        Đơn hàng <Text style={{fontWeight: 'bold'}}>{dish}</Text> giá{' '}
+        Đơn hàng <Text style={{fontFamily: 'Roboto-Bold'}}>{dish}</Text> giá{' '}
         <Text style={styles.price}>{Global.currencyFormat(total)}đ</Text> đang
-        chờ đầu bếp <Text style={{fontWeight: 'bold'}}>{chef.name}</Text> xác
-        nhận
+        chờ đầu bếp <Text style={{fontFamily: 'Roboto-Bold'}}>{chef.name}</Text>{' '}
+        xác nhận
       </Text>
     </View>
   );
@@ -47,8 +47,8 @@ export default function NotificationItem(props) {
       <Text style={styles.title}>Đơn hàng đã huỷ thành công</Text>
       <Text style={styles.description}>
         Bạn đã huỷ thành công đơn hàng{' '}
-        <Text style={{fontWeight: 'bold'}}>{dish}</Text> của đầu bếp{' '}
-        <Text style={{fontWeight: 'bold'}}>{chef.name}</Text>
+        <Text style={{fontFamily: 'Roboto-Bold'}}>{dish}</Text> của đầu bếp{' '}
+        <Text style={{fontFamily: 'Roboto-Bold'}}>{chef.name}</Text>
       </Text>
     </View>
   );
@@ -57,9 +57,9 @@ export default function NotificationItem(props) {
     <View style={{width: width - 30 - width / 13.5}}>
       <Text style={styles.title}>Đơn hàng đã được giao thành công</Text>
       <Text style={styles.description}>
-        Đơn hàng <Text style={{fontWeight: 'bold'}}>{dish}</Text> của đầu bếp{' '}
-        <Text style={{fontWeight: 'bold'}}>{chef.name}</Text> đã được giao thành
-        công
+        Đơn hàng <Text style={{fontFamily: 'Roboto-Bold'}}>{dish}</Text> của đầu
+        bếp <Text style={{fontFamily: 'Roboto-Bold'}}>{chef.name}</Text> đã được
+        giao thành công
       </Text>
     </View>
   );
@@ -83,21 +83,20 @@ export default function NotificationItem(props) {
   );
 }
 
-const {width, fontFamily, mainColor} = Global;
+const {width, mainColor} = Global;
 const styles = StyleSheet.create({
   price: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     fontSize: width / 32.5,
     color: mainColor,
   },
   title: {
-    fontFamily,
+    fontFamily: 'Roboto-Bold',
     fontSize: width / 28.5,
     color: '#333333',
-    fontWeight: 'bold',
   },
   description: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     fontSize: width / 32.5,
     color: '#4f4f4f',
     marginVertical: 8,
@@ -109,7 +108,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   time: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     fontSize: width / 36,
     color: '#828282',
   },

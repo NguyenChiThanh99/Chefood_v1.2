@@ -274,12 +274,11 @@ const {
   heightHeader,
   width,
   height,
-  fontFamily,
   backButton,
 } = Global;
 const styles = StyleSheet.create({
   itemRating: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     fontSize: width / 30,
     color: '#828282',
     textAlign: 'center',
@@ -291,7 +290,7 @@ const styles = StyleSheet.create({
     height: width / 13,
   },
   cameraText: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#bdbdbd',
     fontSize: width / 30,
   },
@@ -312,25 +311,23 @@ const styles = StyleSheet.create({
     marginTop: width / 16,
   },
   itemInput: {
-    backgroundColor: '#ededed',
+    backgroundColor: '#f5f5f5',
     textAlignVertical: 'top',
-    maxHeight: height / 8,
+    height: 90,
     marginTop: 14,
     color: '#4f4f4f',
     fontSize: width / 30,
   },
   itemTitle: {
-    fontFamily,
+    fontFamily: 'Roboto-Bold',
     color: '#4f4f4f',
     fontSize: width / 31,
-    fontWeight: 'bold',
   },
   itemStar: {
     marginTop: height / 34,
   },
   itemName: {
-    fontFamily,
-    fontWeight: 'bold',
+    fontFamily: 'Roboto-Bold',
     color: '#333333',
     textAlign: 'center',
     fontSize: width / 22,
@@ -350,10 +347,9 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
   },
   titleModal: {
-    fontFamily,
+    fontFamily: 'Roboto-Bold',
     color: '#000000',
     fontSize: width / 20,
-    fontWeight: 'bold',
   },
   btnCont: {
     flexDirection: 'row',
@@ -362,7 +358,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   btnModal: {
-    fontFamily,
+    fontFamily: 'Roboto-Light',
     color: mainColor,
     fontSize: width / 30,
     borderColor: mainColor,
@@ -373,7 +369,7 @@ const styles = StyleSheet.create({
   },
   btnCancel: {
     marginRight: 10,
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: '#828282',
     fontSize: width / 28,
     textAlign: 'right',
@@ -392,7 +388,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   btnText: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     fontSize: width / 30,
     color: 'white',
     marginVertical: 10,
@@ -419,8 +415,7 @@ const styles = StyleSheet.create({
   },
   chefName: {
     color: mainColor,
-    fontFamily,
-    fontWeight: 'bold',
+    fontFamily: 'Roboto-Bold',
     fontSize: width / 27,
     marginTop: 5,
   },
@@ -442,7 +437,7 @@ const styles = StyleSheet.create({
     height: backButton,
   },
   title: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 24,
     marginLeft: 10,

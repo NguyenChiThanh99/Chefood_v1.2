@@ -53,7 +53,7 @@ export default function MainHeader(props) {
   );
 }
 
-const {width, fontFamily, mainColor, heightHeader} = Global;
+const {width, mainColor, heightHeader} = Global;
 const styles = StyleSheet.create({
   searchImg: {
     width: width / 16,
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   textInputStyle: {
     color: '#6e6e6e',
-    fontFamily,
+    fontFamily: 'Roboto-Light',
     width: width / 1.6,
     borderBottomColor: mainColor,
     borderBottomWidth: 1,

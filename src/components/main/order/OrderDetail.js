@@ -22,7 +22,7 @@ import deliveryImage from '../../../images/ship.png';
 export default function OrderDetail({navigation}) {
   const data = {
     id: '1547865946145787',
-    deliveryStatus: 'Đã giao',
+    deliveryStatus: 'Đang xác nhận',
     timeOrder: '13:06 26/10/2020',
     method: 'Tiền mặt',
     chef: 'Hoàng Phương Yến',
@@ -295,7 +295,6 @@ export default function OrderDetail({navigation}) {
 
 const {
   width,
-  fontFamily,
   mainColor,
   height,
   backgroundColor,
@@ -322,7 +321,6 @@ const styles = StyleSheet.create({
     borderColor: '#828282',
     borderWidth: 1,
     width: width / 2 - 15,
-    height: height / 11.5 - 22,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -338,13 +336,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   btnReviewText: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     fontSize: width / 30,
     color: '#828282',
     marginVertical: 10,
   },
   btnText: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     fontSize: width / 30,
     color: 'white',
     marginVertical: 10,
@@ -360,10 +358,9 @@ const styles = StyleSheet.create({
     height: height / 6.7,
   },
   cancelStatus: {
-    fontFamily,
+    fontFamily: 'Roboto-Bold',
     color: '#ffffff',
     fontSize: width / 34,
-    fontWeight: 'bold',
     backgroundColor: '#bdbdbd',
     borderRadius: 2,
     paddingHorizontal: 18,
@@ -372,15 +369,14 @@ const styles = StyleSheet.create({
     marginTop: 7,
   },
   orderTitleCancel: {
-    fontFamily,
+    fontFamily: 'Roboto-Bold',
     color: '#000000',
-    fontWeight: 'bold',
     fontSize: width / 21,
     width: width / 1.5,
     textAlign: 'center',
   },
   orderTimeCancel: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#4f4f4f',
     fontSize: width / 30,
     marginTop: 10,
@@ -392,27 +388,25 @@ const styles = StyleSheet.create({
     marginBottom: 14,
   },
   userInfoTitle: {
-    fontFamily,
+    fontFamily: 'Roboto-Bold',
     color: '#4f4f4f',
-    fontWeight: 'bold',
     fontSize: width / 35,
     marginBottom: 7,
   },
   userInfoText: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#828282',
     fontSize: width / 35,
     width: width / 1.5,
     marginBottom: 7,
   },
   total: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: mainColor,
-    fontWeight: 'bold',
     fontSize: width / 28,
   },
   method: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 30,
   },
@@ -423,9 +417,8 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   methodTitle: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: '#333333',
-    fontWeight: 'bold',
     fontSize: width / 30,
   },
   row3: {
@@ -434,12 +427,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   tempCalText: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#4f4f4f',
     fontSize: width / 35,
   },
   tempCalPrice: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#4f4f4f',
     fontSize: width / 30,
   },
@@ -455,13 +448,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   quantity: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#828282',
     fontSize: width / 30,
     marginRight: 10,
   },
   name: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#333333',
     fontSize: width / 30,
   },
@@ -471,10 +464,9 @@ const styles = StyleSheet.create({
   },
   chef: {
     marginLeft: 10,
-    fontFamily,
+    fontFamily: 'Roboto-Bold',
     color: '#333333',
     fontSize: width / 28,
-    fontWeight: 'bold',
     marginTop: 2,
     marginBottom: 2,
   },
@@ -490,14 +482,13 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   orderTitle: {
-    fontFamily,
+    fontFamily: 'Roboto-Bold',
     color: '#333333',
     fontSize: width / 26.5,
     textAlign: 'center',
-    fontWeight: 'bold',
   },
   orderTime: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#4f4f4f',
     fontSize: width / 30,
     textAlign: 'center',
@@ -520,7 +511,7 @@ const styles = StyleSheet.create({
     width,
   },
   statusText: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#828282',
     fontSize: width / 34,
     textAlign: 'center',
@@ -528,13 +519,12 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   statusTextActive: {
-    fontFamily,
+    fontFamily: 'Roboto-Bold',
     fontSize: width / 34,
     textAlign: 'center',
     width: width / 6,
     marginTop: 5,
     color: mainColor,
-    fontWeight: 'bold',
   },
   deliveryBottomView: {
     flexDirection: 'row',
@@ -543,13 +533,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   title: {
-    fontFamily,
+    fontFamily: 'Roboto-Bold',
     color: '#000000',
     fontSize: width / 19.2,
-    fontWeight: 'bold',
   },
   description: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#828282',
     fontSize: width / 30,
     marginBottom: 2,
@@ -575,7 +564,7 @@ const styles = StyleSheet.create({
     marginTop: height / 34,
   },
   cancelText: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: '#828282',
     fontSize: width / 30,
   },

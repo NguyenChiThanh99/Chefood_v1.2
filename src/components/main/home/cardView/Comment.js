@@ -42,10 +42,10 @@ export default function Comment(props) {
   );
 }
 
-const {width, fontFamily} = Global;
+const {width} = Global;
 const styles = StyleSheet.create({
   content: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#828282',
     fontSize: width / 32,
     marginLeft: width / 12 + 10,
@@ -53,12 +53,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   time: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#828282',
     fontSize: width / 33,
   },
   rate: {
-    fontFamily,
+    fontFamily: 'Roboto-Regular',
     color: '#828282',
     fontSize: width / 38,
     marginLeft: 5,
@@ -68,9 +68,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   name: {
-    fontFamily,
+    fontFamily: 'Roboto-Medium',
     color: '#333333',
-    fontWeight: 'bold',
     fontSize: width / 32,
   },
   nameCont: {
