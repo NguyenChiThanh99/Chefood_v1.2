@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect, useRef} from 'react';
 import {
@@ -9,15 +10,28 @@ import {
   TextInput,
   ScrollView,
   Keyboard,
+  ActivityIndicator,
   FlatList,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import {useSelector, useDispatch} from 'react-redux';
+import Toast from 'react-native-root-toast';
+import {useIsFocused} from '@react-navigation/native';
 
 import Global from '../../Global';
 import Comment from './cardView/Comment';
 import DishViewHorizontal from './cardView/DishViewHorizontal';
 import DishViewRelated from './cardView/DishViewRelated';
 import BadgeCart from './cardView/BadgeCart';
+import view_dish from '../../../apis/view_dish';
+import get_comment_dish from '../../../apis/get_comment_dish';
+import get_other_dish_of_chef from '../../../apis/get_other_dish_of_chef';
+import get_dish_by_id from '../../../apis/get_dish_by_id';
+import get_all_dish from '../../../apis/get_all_dish';
+import get_type_dish from '../../../apis/get_type_dish';
+import add_saved_dish from '../../../apis/add_saved_dish';
+import remove_saved_dish from '../../../apis/remove_saved_dish';
+import {updateSavedDish} from '../../../../actions';
 
 import arrowBack from '../../../icons/arrow_back_ios-ffffff.png';
 import saveIcon from '../../../icons/bookmark_border-82.png';
@@ -27,33 +41,57 @@ import minus from '../../../icons/remove_circle_outline-fb5a23.png';
 import plus from '../../../icons/add_circle_outline-fb5a23.png';
 import prepareIcon from '../../../icons/TimeSquare.png';
 import performIcon from '../../../icons/TimeCircle.png';
+import arrow from '../../../icons/arrow_right-fb5a23.png';
 
 var soluong = 1;
+var type;
 
 export default function Dish({navigation, route}) {
+  const isFocused = useIsFocused();
   useEffect(() => {
+    const ac = new window.AbortController();
     Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
+    checkSavedStatus(dish.dishofchef.iddishofchef);
+    getOtherdishOfChef(dish.chef.number, 0);
+    viewDish(dish.dishofchef.iddishofchef);
+    determineTypeOfDish(dish.dish.name, 0);
 
+    if (isFocused) {
+      if (route.params.id !== undefined) {
+        getDishById(route.params.id);
+      }
+      if (route.params.fromChef === true) {
+        getCommentDish();
+        setMenu({ingredients: false, comments: true, images: false});
+      }
+    }
     // cleanup function
     return () => {
       Keyboard.removeListener('keyboardDidHide', _keyboardDidHide);
+      ac.abort(); // Abort both fetches on unmount
+      setSaveStatus(false);
+      setQuantity(1);
+      setMenu({
+        ingredients: true,
+        comments: false,
+        images: false,
+      });
+      setDataComment([]);
+      setLoadingComment(false);
+      setDataOtherDish([]);
+      setLoadingOtherDish(false);
+      setPageOtherDish(0);
+      setDataRelatedDish([]);
+      setLoadingRelatedDish(false);
+      setPageRelatedDish(0);
     };
-  }, []);
-
-  const {
-    image,
-    name,
-    chef,
-    address,
-    ingredients,
-    prepare,
-    perform,
-    price,
-    numOrder,
-  } = route.params.dish;
+  }, [isFocused]);
 
   const scrollRef = useRef();
 
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const savedDish = useSelector((state) => state.savedDish);
   const [saveStatus, setSaveStatus] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [menu, setMenu] = useState({
@@ -61,93 +99,15 @@ export default function Dish({navigation, route}) {
     comments: false,
     images: false,
   });
-
-  const dataComment = [
-    {
-      id: 1,
-      name: 'Lê Huỳnh Minh Hiệp',
-      image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
-      star: 4,
-      time: '18:22 23/11/2020',
-      imageCmt:
-        'https://image.thanhnien.vn/768/uploaded/minhnguyet/2019_12_01/nhanquan_wqmf.jpg',
-      content:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-    },
-    {
-      id: 2,
-      name: 'Lê Huỳnh Minh Hiệp',
-      image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
-      star: 5,
-      time: '18:22 23/11/2020',
-      imageCmt: '',
-      content:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-    },
-    {
-      id: 3,
-      name: 'Lê Huỳnh Minh Hiệp',
-      image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
-      star: 2,
-      time: '18:22 23/11/2020',
-      imageCmt:
-        'https://image.thanhnien.vn/768/uploaded/minhnguyet/2019_12_01/nhanquan_wqmf.jpg',
-      content:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-    },
-    {
-      id: 4,
-      name: 'Lê Huỳnh Minh Hiệp',
-      image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
-      star: 3,
-      time: '18:22 23/11/2020',
-      imageCmt: '',
-      content:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-    },
-    {
-      id: 5,
-      name: 'Lê Huỳnh Minh Hiệp',
-      image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
-      star: 4,
-      time: '18:22 23/11/2020',
-      imageCmt: '',
-      content:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-    },
-    {
-      id: 6,
-      name: 'Lê Huỳnh Minh Hiệp',
-      image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
-      star: 4,
-      time: '18:22 23/11/2020',
-      imageCmt:
-        'https://image.thanhnien.vn/768/uploaded/minhnguyet/2019_12_01/nhanquan_wqmf.jpg',
-      content:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-    },
-    {
-      id: 7,
-      name: 'Lê Huỳnh Minh Hiệp',
-      image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
-      star: 5,
-      time: '18:22 23/11/2020',
-      imageCmt: '',
-      content:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-    },
-    {
-      id: 8,
-      name: 'Lê Huỳnh Minh Hiệp',
-      image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
-      star: 1,
-      time: '18:22 23/11/2020',
-      imageCmt:
-        'https://image.thanhnien.vn/768/uploaded/minhnguyet/2019_12_01/nhanquan_wqmf.jpg',
-      content:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-    },
-  ];
+  const [dataComment, setDataComment] = useState([]);
+  const [loadingComment, setLoadingComment] = useState(false);
+  const [dataOtherDish, setDataOtherDish] = useState([]);
+  const [loadingOtherDish, setLoadingOtherDish] = useState(false);
+  const [pageOtherDish, setPageOtherDish] = useState(0);
+  const [dataRelatedDish, setDataRelatedDish] = useState([]);
+  const [loadingRelatedDish, setLoadingRelatedDish] = useState(false);
+  const [pageRelatedDish, setPageRelatedDish] = useState(0);
+  const [dish, setDish] = useState(route.params.dish);
 
   const dataImgDish = [
     {
@@ -158,7 +118,7 @@ export default function Dish({navigation, route}) {
     {
       id: 2,
       image:
-        'https://lh3.googleusercontent.com/proxy/Lq27ycnNFvzoQ_padTPU8xckfjnifRT1c4vPgqxNRoCAGTmyzN2YEOAwlPCkDyl86fNb2jEkMXpQcRiYoFtxIEn4UKFwh18Vek1TlvSxPgBslprxayA',
+        'https://daotaobeptruong.vn/wp-content/uploads/2018/08/cach-lam-cha-ca-thu.jpg',
     },
     {
       id: 3,
@@ -181,8 +141,7 @@ export default function Dish({navigation, route}) {
     },
     {
       id: 7,
-      image:
-        'https://lh3.googleusercontent.com/proxy/MCgfzPmsXQyywMbBdNkNfbal7jFAj6XbaAbhE_FcEKCl30M-cZWjj6d3hs9UBY8cOIzbQyI4WJO8Ec2zpfVnFLUQv7gqv3oTYtiGMq1BdAtk0ne9g2HOz3dB1rFgJtKwTYH8t6XcKJWQjgaiqoflHg',
+      image: 'https://i.ytimg.com/vi/VuZoI4WRW9Q/maxresdefault.jpg',
     },
     {
       id: 8,
@@ -191,136 +150,338 @@ export default function Dish({navigation, route}) {
     },
   ];
 
-  const dataDish = [
-    {
-      id: 1,
-      image:
-        'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-      name: 'Hủ tiếu nam vang chuẩn vị nhà làm ngon như nhà làm',
-      chef: 'Trần Bảo Toàn',
-      address:
-        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
-      ingredients:
-        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
-      price: 231000,
-      prepare: ' Chuẩn bị: 10 phút',
-      perform: ' Thực hiện: 30 phút',
-      numOrder: '20',
-    },
-    {
-      id: 2,
-      image:
-        'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-      name: 'Hủ tiếu nam vang',
-      chef: 'Trần Bảo Toàn',
-      address:
-        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
-      ingredients:
-        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
-      price: 231000,
-      prepare: ' Chuẩn bị: 10 phút',
-      perform: ' Thực hiện: 30 phút',
-      numOrder: '514',
-    },
-    {
-      id: 3,
-      image:
-        'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-      name: 'Hủ tiếu nam vang',
-      chef: 'Trần Bảo Toàn',
-      address:
-        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
-      ingredients:
-        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
-      price: 231000,
-      prepare: ' Chuẩn bị: 10 phút',
-      perform: ' Thực hiện: 30 phút',
-      numOrder: '855',
-    },
-    {
-      id: 4,
-      image:
-        'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-      name: 'Hủ tiếu nam vang',
-      chef: 'Trần Bảo Toàn',
-      address:
-        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
-      ingredients:
-        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
-      price: 231000,
-      prepare: ' Chuẩn bị: 10 phút',
-      perform: ' Thực hiện: 30 phút',
-      numOrder: '55',
-    },
-    {
-      id: 5,
-      image:
-        'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-      name: 'Hủ tiếu nam vang',
-      chef: 'Trần Bảo Toàn',
-      address:
-        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
-      ingredients:
-        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
-      price: 231000,
-      prepare: ' Chuẩn bị: 10 phút',
-      perform: ' Thực hiện: 30 phút',
-      numOrder: '28',
-    },
-    {
-      id: 6,
-      image:
-        'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-      name: 'Hủ tiếu nam vang',
-      chef: 'Trần Bảo Toàn',
-      address:
-        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
-      ingredients:
-        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
-      price: 231000,
-      prepare: ' Chuẩn bị: 10 phút',
-      perform: ' Thực hiện: 30 phút',
-      numOrder: '20',
-    },
-    {
-      id: 7,
-      image:
-        'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-      name: 'Hủ tiếu nam vang',
-      chef: 'Trần Bảo Toàn',
-      address:
-        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
-      ingredients:
-        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
-      price: 231000,
-      prepare: ' Chuẩn bị: 10 phút',
-      perform: ' Thực hiện: 30 phút',
-      numOrder: '12',
-    },
-    {
-      id: 8,
-      image:
-        'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-      name: 'Hủ tiếu nam vang',
-      chef: 'Trần Bảo Toàn',
-      address:
-        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
-      ingredients:
-        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
-      price: 231000,
-      prepare: ' Chuẩn bị: 10 phút',
-      perform: ' Thực hiện: 30 phút',
-      numOrder: '2',
-    },
-  ];
+  const checkSavedStatus = (id) => {
+    var found = savedDish.find((item) => item.id_dish_of_chef === id);
+    if (found === undefined) {
+      setSaveStatus(false);
+    } else {
+      setSaveStatus(true);
+    }
+  };
 
   const saveHandle = () => {
-    setSaveStatus(!saveStatus);
+    if (!saveStatus) {
+      setSaveStatus(!saveStatus);
+      add_saved_dish
+        .add_saved_dish(user.token, dish.dishofchef.iddishofchef)
+        .then((responseJson) => {
+          if (responseJson.message !== 'Add successfully!') {
+            return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+              position: 0,
+              duration: 2500,
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+            position: 0,
+            duration: 2500,
+          });
+        });
+
+      dispatch(
+        updateSavedDish(
+          savedDish.concat({
+            _id: '',
+            id_dish_of_chef: dish.dishofchef.iddishofchef,
+          }),
+        ),
+      );
+    } else {
+      setSaveStatus(!saveStatus);
+      remove_saved_dish
+        .remove_saved_dish(user.token, dish.dishofchef.iddishofchef)
+        .then((responseJson) => {
+          if (responseJson.message !== 'Deleted successfully!') {
+            return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+              position: 0,
+              duration: 2500,
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+            position: 0,
+            duration: 2500,
+          });
+        });
+
+      dispatch(
+        updateSavedDish(
+          savedDish.filter(
+            (item) => item.id_dish_of_chef !== dish.dishofchef.iddishofchef,
+          ),
+        ),
+      );
+    }
   };
 
   const addToCart = () => {};
 
-  const goToDish = (dish) => {
+  const viewDish = (id) => {
+    view_dish
+      .view_dish(user.token, id)
+      .then((responseJson) => {})
+      .catch((err) => {
+        console.log(err);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
+      });
+  };
+
+  const getCommentDish = () => {
+    setLoadingComment(true);
+    get_comment_dish
+      .get_comment_dish(user.token, dish.dishofchef.iddishofchef)
+      .then((responseJson) => {
+        setDataComment(responseJson);
+        setLoadingComment(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoadingComment(false);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
+      });
+  };
+
+  const getOtherdishOfChef = (id, page) => {
+    setLoadingOtherDish(true);
+    get_other_dish_of_chef
+      .get_other_dish_of_chef(user.token, id, page)
+      .then((responseJson) => {
+        if (responseJson.length === 0) {
+          setLoadingOtherDish(false);
+          return Toast.show('Đã tải đến cuối danh sách', {
+            position: 0,
+            duration: 2500,
+          });
+        } else {
+          if (page === 0) {
+            setDataOtherDish(responseJson);
+          } else {
+            setDataOtherDish(dataOtherDish.concat(responseJson));
+          }
+          setPageOtherDish(pageOtherDish + 1);
+          setLoadingOtherDish(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoadingOtherDish(false);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
+      });
+  };
+
+  const getDishById = (id) => {
+    get_dish_by_id
+      .get_dish_by_id(user.token, id)
+      .then((responseJson) => {
+        setDish(responseJson);
+
+        if (isFocused && route.params.id !== undefined) {
+          checkSavedStatus(id);
+          getOtherdishOfChef(responseJson.chef.number, 0);
+          viewDish(id);
+          determineTypeOfDish(responseJson.dish.name, 0);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
+      });
+  };
+
+  const determineTypeOfDish = (name, page) => {
+    var nameArr = name.toLowerCase().split(' ');
+    var result = '';
+    for (let i = 0; i < nameArr.length; i++) {
+      switch (nameArr[i]) {
+        case 'heo':
+          result = ' heo';
+          break;
+        case 'lợn':
+          result = ' heo';
+          break;
+        case 'chỉ':
+          result = ' heo';
+          break;
+        case 'bò':
+          result = ' bò';
+          break;
+        case 'gà':
+          result = ' gà';
+          break;
+        case 'vịt':
+          result = ' gà';
+          break;
+        case 'chim':
+          result = ' gà';
+          break;
+        case 'trứng':
+          result = ' gà';
+          break;
+        case 'cá':
+          result = ' cá';
+          break;
+        case 'salad':
+          result = ' salad';
+          break;
+        case 'gỏi':
+          result = ' salad';
+          break;
+        case 'nộm':
+          result = ' salad';
+          break;
+        case 'tôm':
+          result = ' tôm';
+          break;
+        case 'xúc':
+          result = ' xúc xích';
+          break;
+        case 'canh':
+          result = ' canh';
+          break;
+        case 'lẩu':
+          result = ' canh';
+          break;
+        case 'mỳ':
+          result = ' mỳ';
+          break;
+        case 'mì':
+          result = ' mỳ';
+          break;
+        case 'hủ':
+          result = ' mỳ';
+          break;
+        case 'tiếu':
+          result = ' mỳ';
+          break;
+        case 'phở':
+          result = ' mỳ';
+          break;
+        case 'bún':
+          result = ' mỳ';
+          break;
+        case 'hải':
+          result = ' hải sản';
+          break;
+        case 'sản':
+          result = ' hải sản';
+          break;
+        case 'mực':
+          result = ' hải sản';
+          break;
+        case 'nghiêu':
+          result = ' hải sản';
+          break;
+        case 'sò':
+          result = ' hải sản';
+          break;
+        case 'sushi':
+          result = ' sushi';
+          break;
+        case 'kem':
+          result = ' kem';
+          break;
+        case 'cơm':
+          result = ' cơm';
+          break;
+        case 'sandwich':
+          result = ' sandwich';
+          break;
+        case 'bánh':
+          result = ' bánh';
+          break;
+      }
+      if (result !== '') {
+        break;
+      }
+    }
+    if (result === '') {
+      type = 'all';
+      getAllDish(page);
+    } else {
+      type = result;
+      getTypeDish(result, page);
+    }
+  };
+
+  const getAllDish = (page) => {
+    setLoadingRelatedDish(true);
+    get_all_dish
+      .get_all_dish(user.token, page)
+      .then((responseJson) => {
+        if (responseJson.length === 0) {
+          setLoadingRelatedDish(false);
+          return Toast.show('Đã tải đến cuối danh sách', {
+            position: -20,
+            duration: 2500,
+          });
+        } else {
+          if (page === 0) {
+            setDataRelatedDish(responseJson);
+          } else {
+            setDataRelatedDish(dataRelatedDish.concat(responseJson));
+          }
+          setPageRelatedDish(pageRelatedDish + 1);
+          setLoadingRelatedDish(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoadingRelatedDish(false);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
+      });
+  };
+
+  const getTypeDish = (text, page) => {
+    setLoadingRelatedDish(true);
+    get_type_dish
+      .get_type_dish(user.token, text, page)
+      .then((responseJson) => {
+        if (responseJson.length === 0) {
+          setLoadingRelatedDish(false);
+          return Toast.show('Đã tải đến cuối danh sách', {
+            position: -20,
+            duration: 2500,
+          });
+        } else {
+          if (page === 0) {
+            setDataRelatedDish(responseJson);
+          } else {
+            setDataRelatedDish(dataRelatedDish.concat(responseJson));
+          }
+          setPageRelatedDish(pageRelatedDish + 1);
+          setLoadingRelatedDish(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoadingRelatedDish(false);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
+      });
+  };
+
+  const goToDish = (id, otherChef, numberChef, name) => {
     soluong = 1;
     setSaveStatus(false);
     setQuantity(1);
@@ -329,11 +490,29 @@ export default function Dish({navigation, route}) {
       comments: false,
       images: false,
     });
+    setDataComment([]);
+    setLoadingComment(false);
+    setDataOtherDish([]);
+    setLoadingOtherDish(false);
+    setPageOtherDish(0);
+    setDataRelatedDish([]);
+    setLoadingRelatedDish(false);
+    setPageRelatedDish(0);
+
+    if (otherChef === true) {
+      getOtherdishOfChef(dish.chef.number, 0);
+      determineTypeOfDish(name, 0);
+    } else {
+      getOtherdishOfChef(numberChef, 0);
+      determineTypeOfDish(name, 0);
+    }
+    getDishById(id);
+    viewDish(id);
+    checkSavedStatus(id);
     scrollRef.current?.scrollTo({
       y: 0,
       animated: true,
     });
-    navigation.navigate('DISH', {dish: dish});
   };
 
   const changeQuantity = (text) => {
@@ -353,12 +532,13 @@ export default function Dish({navigation, route}) {
     }
   };
 
-  const menuHandle = (type) => {
-    switch (type) {
+  const menuHandle = (loai) => {
+    switch (loai) {
       case 0:
         setMenu({ingredients: true, comments: false, images: false});
         break;
       case 1:
+        getCommentDish();
         setMenu({ingredients: false, comments: true, images: false});
         break;
       default:
@@ -371,23 +551,35 @@ export default function Dish({navigation, route}) {
     return <View style={styles.line} />;
   };
 
-  const ingredientsJSX = <Text style={styles.ingredient}>{ingredients}</Text>;
+  const Loading = (
+    <View style={styles.loading}>
+      <ActivityIndicator animating={true} color="#fb5a23" size="small" />
+    </View>
+  );
+
+  const ingredientsJSX = (
+    <Text style={styles.ingredient}>{dish.dish.ingredients}</Text>
+  );
   const commentsJSX = (
     <View>
-      <FlatList
-        key={'#'}
-        showsVerticalScrollIndicator={false}
-        data={dataComment}
-        ItemSeparatorComponent={flatListItemSeparator}
-        renderItem={({item, index}) => {
-          return (
-            <View>
-              <Comment comment={item} />
-            </View>
-          );
-        }}
-        keyExtractor={(item) => '#' + item.id.toString()}
-      />
+      {!loadingComment ? (
+        <FlatList
+          key={'#'}
+          showsVerticalScrollIndicator={false}
+          data={dataComment}
+          ItemSeparatorComponent={flatListItemSeparator}
+          renderItem={({item, index}) => {
+            return (
+              <View>
+                <Comment comment={item} />
+              </View>
+            );
+          }}
+          keyExtractor={(item) => '#' + item.comment.comment}
+        />
+      ) : (
+        <View style={{paddingVertical: 50}}>{Loading}</View>
+      )}
     </View>
   );
   const imagesJSX = (
@@ -414,15 +606,20 @@ export default function Dish({navigation, route}) {
     <View style={styles.wrapper}>
       <ScrollView showsVerticalScrollIndicator={false} ref={scrollRef}>
         <View style={styles.cardView}>
-          <Image style={styles.image} source={{uri: image}} />
+          <Image style={styles.image} source={{uri: dish.dish.picture}} />
 
           <View style={styles.generalInfo}>
             <Text style={styles.name} numberOfLines={2}>
-              {name}
+              {dish.dish.name}
             </Text>
-            <Text style={styles.chef}>{chef}</Text>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('CHEF', {id: dish.chef._id, fromDish: true})
+              }>
+              <Text style={styles.chef}>{dish.chef.name}</Text>
+            </TouchableOpacity>
             <Text style={styles.address} numberOfLines={1}>
-              {address}
+              {dish.chef.address}
             </Text>
             <TouchableOpacity
               style={styles.saveCont}
@@ -440,17 +637,19 @@ export default function Dish({navigation, route}) {
           <View style={styles.timeCont}>
             <View style={styles.prepareCont}>
               <Image style={styles.prepareImg} source={prepareIcon} />
-              <Text style={styles.prepareText}>{prepare}</Text>
+              <Text style={styles.prepareText}>{dish.dish.prepare}</Text>
             </View>
-            <Text style={styles.numOrder}>{numOrder} lần đặt nấu</Text>
+            <Text style={styles.numOrder}>{0} lần đặt nấu</Text>
           </View>
           <View style={styles.prepareCont}>
             <Image style={styles.prepareImg} source={performIcon} />
-            <Text style={styles.prepareText}>{perform}</Text>
+            <Text style={styles.prepareText}>{dish.dish.perform}</Text>
           </View>
 
           <View style={styles.priceCont}>
-            <Text style={styles.price}>{Global.currencyFormat(price)}đ</Text>
+            <Text style={styles.price}>
+              {Global.currencyFormat(dish.dishofchef.price)}đ
+            </Text>
             <View style={styles.quantityCont}>
               <TouchableOpacity
                 onPress={() => {
@@ -541,73 +740,130 @@ export default function Dish({navigation, route}) {
             : imagesJSX}
         </View>
 
-        <View style={styles.cardView}>
-          <Text style={styles.cardViewTitle}>Các món ăn khác của đầu bếp</Text>
-          <FlatList
-            key={'*'}
-            style={styles.cardViewList}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            data={dataDish}
-            renderItem={({item, index}) => {
-              if (index === 0) {
-                return (
+        {dataOtherDish.length !== 0 ? (
+          <View style={styles.cardView}>
+            <Text style={styles.cardViewTitle}>
+              Các món ăn khác của đầu bếp
+            </Text>
+            <FlatList
+              key={'*'}
+              style={styles.cardViewList}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              data={dataOtherDish}
+              ListFooterComponent={
+                loadingOtherDish ? (
+                  <View style={styles.viewMoreCont}>{Loading}</View>
+                ) : (
                   <TouchableOpacity
-                    onPress={() => goToDish(item)}
-                    style={{marginLeft: 15, marginRight: 10}}>
-                    <DishViewHorizontal dish={item} chef />
+                    style={styles.viewMoreCont}
+                    onPress={() =>
+                      getOtherdishOfChef(dish.chef.number, pageOtherDish)
+                    }>
+                    <View style={styles.viewMoreImgCont}>
+                      <Image style={styles.viewMoreImg} source={arrow} />
+                    </View>
+                    <Text style={styles.viewMoreText}>Xem thêm</Text>
                   </TouchableOpacity>
-                );
-              } else if (index === dataDish.length - 1) {
-                return (
-                  <TouchableOpacity
-                    onPress={() => goToDish(item)}
-                    style={{marginRight: 15}}>
-                    <DishViewHorizontal dish={item} chef />
-                  </TouchableOpacity>
-                );
-              } else {
-                return (
-                  <TouchableOpacity
-                    onPress={() => goToDish(item)}
-                    style={{marginRight: 10}}>
-                    <DishViewHorizontal dish={item} chef />
-                  </TouchableOpacity>
-                );
+                )
               }
-            }}
-            keyExtractor={(item) => '*' + item.id.toString()}
-          />
-        </View>
+              renderItem={({item, index}) => {
+                if (index === 0) {
+                  return (
+                    <TouchableOpacity
+                      onPress={() =>
+                        goToDish(item.iddishofchef, true, 0, item.name)
+                      }
+                      style={{marginLeft: 15, marginRight: 10}}>
+                      <DishViewHorizontal dish={item} chef />
+                    </TouchableOpacity>
+                  );
+                } else {
+                  return (
+                    <TouchableOpacity
+                      onPress={() =>
+                        goToDish(item.iddishofchef, true, 0, item.name)
+                      }
+                      style={{marginRight: 10}}>
+                      <DishViewHorizontal dish={item} chef />
+                    </TouchableOpacity>
+                  );
+                }
+              }}
+              keyExtractor={(item) => '*' + item.iddishofchef}
+            />
+          </View>
+        ) : null}
 
-        <View style={styles.cardViewLast}>
-          <Text style={styles.cardViewTitle}>Các món ăn liên quan</Text>
-          <FlatList
-            key={'/'}
-            style={styles.cardViewList2Col}
-            showsVerticalScrollIndicator={false}
-            data={dataDish}
-            numColumns={2}
-            renderItem={({item, index}) => {
-              if (index % 2 === 0) {
-                return (
-                  <TouchableOpacity
-                    onPress={() => goToDish(item)}
-                    style={{marginRight: 15}}>
-                    <DishViewRelated dish={item} />
-                  </TouchableOpacity>
-                );
-              } else {
-                return (
-                  <TouchableOpacity onPress={() => goToDish(item)}>
-                    <DishViewRelated dish={item} />
-                  </TouchableOpacity>
-                );
+        {dataRelatedDish.length !== 0 ? (
+          <View style={styles.cardViewLast}>
+            <Text style={styles.cardViewTitle}>Các món ăn liên quan</Text>
+            <FlatList
+              key={'/'}
+              style={styles.cardViewList2Col}
+              showsVerticalScrollIndicator={false}
+              data={dataRelatedDish}
+              numColumns={2}
+              ListFooterComponent={
+                <View style={{paddingBottom: 15}}>
+                  <View style={styles.line} />
+                  {loadingRelatedDish ? (
+                    <View style={{paddingVertical: 4.5}}>{Loading}</View>
+                  ) : (
+                    <TouchableOpacity
+                      onPress={() => {
+                        if (type === 'all') {
+                          getAllDish(pageRelatedDish);
+                        } else {
+                          getTypeDish(type, pageRelatedDish);
+                        }
+                      }}
+                      style={{
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}>
+                      <Text style={styles.viewMoreTextVertical}>Xem thêm</Text>
+                    </TouchableOpacity>
+                  )}
+                </View>
               }
-            }}
-            keyExtractor={(item) => '/' + item.id.toString()}
-          />
-        </View>
+              renderItem={({item, index}) => {
+                if (index % 2 === 0) {
+                  return (
+                    <TouchableOpacity
+                      onPress={() =>
+                        goToDish(
+                          item.dishofchef.iddishofchef,
+                          false,
+                          item.chef.number,
+                          item.dish.name,
+                        )
+                      }
+                      style={{marginRight: 15}}>
+                      <DishViewRelated dish={item} />
+                    </TouchableOpacity>
+                  );
+                } else {
+                  return (
+                    <TouchableOpacity
+                      onPress={() =>
+                        goToDish(
+                          item.dishofchef.iddishofchef,
+                          false,
+                          item.chef.number,
+                          item.dish.name,
+                        )
+                      }>
+                      <DishViewRelated dish={item} />
+                    </TouchableOpacity>
+                  );
+                }
+              }}
+              keyExtractor={(item) => '/' + item.dishofchef.iddishofchef}
+            />
+          </View>
+        ) : null}
       </ScrollView>
 
       <View style={styles.topBtn}>
@@ -626,8 +882,46 @@ export default function Dish({navigation, route}) {
   );
 }
 
-const {width, height, backgroundColor, backButton} = Global;
+const {width, height, mainColor, backgroundColor, backButton} = Global;
 const styles = StyleSheet.create({
+  viewMoreTextVertical: {
+    fontFamily: 'Roboto-Regular',
+    color: '#828282',
+    fontSize: width / 35,
+    paddingVertical: 6,
+  },
+  viewMoreImgCont: {
+    borderRadius: width / 40 + 3.5,
+    borderColor: mainColor,
+    borderWidth: 1,
+    padding: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  viewMoreImg: {
+    width: width / 20,
+    height: width / 20,
+  },
+  viewMoreText: {
+    fontFamily: 'Roboto-Regular',
+    marginTop: 5,
+    color: mainColor,
+    fontSize: width / 32,
+  },
+  viewMoreCont: {
+    marginRight: 15,
+    borderColor: '#828282',
+    borderWidth: 0.25,
+    borderRadius: 5,
+    width: width / 3.8,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loading: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   cardViewList2Col: {
     marginHorizontal: 15,
     marginBottom: -5,
@@ -780,7 +1074,7 @@ const styles = StyleSheet.create({
   },
   generalInfo: {
     borderRadius: 10,
-    shadowColor: '#rgba(0,0,0,0.2)',
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 1,

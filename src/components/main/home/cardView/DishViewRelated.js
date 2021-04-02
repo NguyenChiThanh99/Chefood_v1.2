@@ -1,36 +1,36 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {StyleSheet, View, Image, Text} from 'react-native';
 
 import Global from '../../../Global';
 
 export default function DishViewRelated(props) {
-  const {image, name, chef, price} = props.dish;
+  const {picture, name} = props.dish.dish;
   return (
     <View style={styles.wrapper}>
-      <Image style={styles.image} source={{uri: image}} />
+      <Image style={styles.image} source={{uri: picture}} />
       <Text style={styles.name} numberOfLines={2}>
         {name}
       </Text>
-      <Text style={styles.chef}>{chef}</Text>
-      <Text style={styles.price}>{Global.currencyFormat(price)}đ</Text>
+      <Text style={styles.chef}>{props.dish.chef.name}</Text>
+      <Text style={styles.price}>
+        {Global.currencyFormat(props.dish.dishofchef.price)}đ
+      </Text>
     </View>
   );
 }
 
-const {height, width, mainColor} = Global;
+const {width, mainColor} = Global;
 const styles = StyleSheet.create({
   wrapper: {
     width: width / 2 - 45 / 2,
     marginBottom: 15,
     borderColor: '#828282',
-    borderWidth: 0,
-    borderTopWidth: 0.5,
+    borderWidth: 0.25,
     borderRadius: 5,
   },
   image: {
-    width: width / 2 - 45 / 2,
-    height: width / 2 - 45 / 2,
+    width: width / 2 - 45 / 2 - 0.75,
+    height: width / 2 - 45 / 2 - 0.75,
     borderTopLeftRadius: 7,
     borderTopRightRadius: 7,
   },

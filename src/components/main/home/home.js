@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
 import {useFocusEffect} from '@react-navigation/native';
@@ -11,9 +12,11 @@ import {
   TouchableOpacity,
   FlatList,
   LogBox,
+  ActivityIndicator,
 } from 'react-native';
 import Toast from 'react-native-root-toast';
 import {SliderBox} from 'react-native-image-slider-box';
+import {useSelector, useDispatch} from 'react-redux';
 
 import Global from '../../Global';
 import MainHeader from './cardView/MainHeader';
@@ -21,6 +24,13 @@ import DishViewHorizontal from './cardView/DishViewHorizontal';
 import DishViewVertical from './cardView/DishViewVertical';
 import ChefView from './cardView/ChefView';
 import Category from './cardView/Category';
+import hot_dish from '../../../apis/hot_dish';
+import get_viewed_dish from '../../../apis/get_viewed_dish';
+import get_all_dish from '../../../apis/get_all_dish';
+import get_type_dish from '../../../apis/get_type_dish';
+import get_saved_dish from '../../../apis/get_saved_dish';
+import get_following_chef from '../../../apis/get_following_chef';
+import {updateSavedDish, updateSavedChef} from '../../../../actions';
 
 import barbecue from '../../../images/word/barbecue.png';
 import donut from '../../../images/word/donut.png';
@@ -47,6 +57,8 @@ import iceCream from '../../../images/category/ice-cream.png';
 import rice from '../../../images/category/rice.png';
 import sandwich from '../../../images/category/sandwich.png';
 import cake from '../../../images/category/cake.png';
+
+import arrow from '../../../icons/arrow_right-fb5a23.png';
 
 var countExit = 0;
 
@@ -79,8 +91,25 @@ export default function Home({navigation}) {
 
   useEffect(() => {
     LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+    loadHotDish();
+    getViewedDish();
+    getAllDish(true);
+    getSavedDish();
+    getFollowingChef();
   }, []);
 
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const [pageHotDish, setPageHotDish] = useState(0);
+  const [dataHotDish, setDataHotDish] = useState([]);
+  const [loadingHotDish, setLoadingHotDish] = useState(false);
+  const [pageViewedDish, setPageViewedDish] = useState(0);
+  const [dataViewedDish, setDataViewedDish] = useState([]);
+  const [loadingViewedDish, setLoadingViewedDish] = useState(false);
+  const [pageDishCategory, setPageDishCategory] = useState(0);
+  const [dataDishCategory, setDataDishCategory] = useState([]);
+  const [loadingDishCategory, setLoadingDishCategory] = useState(false);
+  const [loadingCategoryFirst, setLoadingCategoryFirst] = useState(false);
   const [category, setCategory] = useState({
     all: true,
     pork: false,
@@ -105,129 +134,6 @@ export default function Home({navigation}) {
     'https://i.pinimg.com/originals/3f/8e/48/3f8e48a0b20f4dc0671a8e5e8dd861a4.jpg',
     'https://branding360.vn/wp-content/uploads/2019/09/Food_05-e1568694831723.jpg',
     'https://traungonquan.vn/wp-content/uploads/2018/12/trau-ngon-co-banner-web.jpg',
-  ];
-
-  const dataDish = [
-    {
-      id: 1,
-      image:
-        'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-      name: 'Hủ tiếu nam vang chuẩn vị nhà làm ngon như nhà làm',
-      chef: 'Trần Bảo Toàn',
-      address:
-        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
-      ingredients:
-        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
-      price: 231000,
-      prepare: ' Chuẩn bị: 10 phút',
-      perform: ' Thực hiện: 30 phút',
-      numOrder: '20',
-    },
-    {
-      id: 2,
-      image:
-        'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-      name: 'Hủ tiếu nam vang',
-      chef: 'Trần Bảo Toàn',
-      address:
-        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
-      ingredients:
-        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
-      price: 231000,
-      prepare: ' Chuẩn bị: 10 phút',
-      perform: ' Thực hiện: 30 phút',
-      numOrder: '514',
-    },
-    {
-      id: 3,
-      image:
-        'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-      name: 'Hủ tiếu nam vang',
-      chef: 'Trần Bảo Toàn',
-      address:
-        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
-      ingredients:
-        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
-      price: 231000,
-      prepare: ' Chuẩn bị: 10 phút',
-      perform: ' Thực hiện: 30 phút',
-      numOrder: '855',
-    },
-    {
-      id: 4,
-      image:
-        'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-      name: 'Hủ tiếu nam vang',
-      chef: 'Trần Bảo Toàn',
-      address:
-        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
-      ingredients:
-        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
-      price: 231000,
-      prepare: ' Chuẩn bị: 10 phút',
-      perform: ' Thực hiện: 30 phút',
-      numOrder: '55',
-    },
-    {
-      id: 5,
-      image:
-        'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-      name: 'Hủ tiếu nam vang',
-      chef: 'Trần Bảo Toàn',
-      address:
-        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
-      ingredients:
-        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
-      price: 231000,
-      prepare: ' Chuẩn bị: 10 phút',
-      perform: ' Thực hiện: 30 phút',
-      numOrder: '28',
-    },
-    {
-      id: 6,
-      image:
-        'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-      name: 'Hủ tiếu nam vang',
-      chef: 'Trần Bảo Toàn',
-      address:
-        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
-      ingredients:
-        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
-      price: 231000,
-      prepare: ' Chuẩn bị: 10 phút',
-      perform: ' Thực hiện: 30 phút',
-      numOrder: '20',
-    },
-    {
-      id: 7,
-      image:
-        'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-      name: 'Hủ tiếu nam vang',
-      chef: 'Trần Bảo Toàn',
-      address:
-        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
-      ingredients:
-        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
-      price: 231000,
-      prepare: ' Chuẩn bị: 10 phút',
-      perform: ' Thực hiện: 30 phút',
-      numOrder: '12',
-    },
-    {
-      id: 8,
-      image:
-        'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-      name: 'Hủ tiếu nam vang',
-      chef: 'Trần Bảo Toàn',
-      address:
-        '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
-      ingredients:
-        '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
-      price: 231000,
-      prepare: ' Chuẩn bị: 10 phút',
-      perform: ' Thực hiện: 30 phút',
-      numOrder: '2',
-    },
   ];
 
   const dataChef = [
@@ -340,13 +246,255 @@ export default function Home({navigation}) {
     {id: 15, name: 'Bánh ngọt', nickname: 'cake', image: cake},
   ];
 
+  const loadHotDish = () => {
+    setLoadingHotDish(true);
+    hot_dish
+      .hot_dish(user.token, pageHotDish)
+      .then((responseJson) => {
+        if (responseJson.length === 0) {
+          setLoadingHotDish(false);
+          return Toast.show('Đã tải đến cuối danh sách', {
+            position: 0,
+            duration: 2500,
+          });
+        } else {
+          setDataHotDish(dataHotDish.concat(responseJson));
+          setPageHotDish(pageHotDish + 1);
+          setLoadingHotDish(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoadingHotDish(false);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
+      });
+  };
+
+  const getViewedDish = () => {
+    setLoadingViewedDish(true);
+    get_viewed_dish
+      .get_viewed_dish(user.token, pageViewedDish)
+      .then((responseJson) => {
+        if (responseJson.length === 0) {
+          setLoadingViewedDish(false);
+          return Toast.show('Đã tải đến cuối danh sách', {
+            position: 0,
+            duration: 2500,
+          });
+        } else {
+          var dishArr = [...dataViewedDish];
+          for (let i = 0; i < responseJson.length; i++) {
+            var found = dataViewedDish.find(
+              (dish) =>
+                dish.dishofchef.iddishofchef ===
+                responseJson[i].dishofchef.iddishofchef,
+            );
+            if (found === undefined) {
+              dishArr.push(responseJson[i]);
+            }
+          }
+          setDataViewedDish(dishArr);
+          setPageViewedDish(pageViewedDish + 1);
+          setLoadingViewedDish(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoadingViewedDish(false);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
+      });
+  };
+
+  const getSavedDish = () => {
+    get_saved_dish
+      .get_saved_dish(user.token)
+      .then((responseJson) => {
+        dispatch(updateSavedDish(responseJson));
+      })
+      .catch((err) => {
+        console.log(err);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
+      });
+  };
+
+  const getFollowingChef = () => {
+    get_following_chef
+      .get_following_chef(user.token)
+      .then((responseJson) => {
+        dispatch(updateSavedChef(responseJson));
+      })
+      .catch((err) => {
+        console.log(err);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
+      });
+  };
+
+  const getAllDish = (first) => {
+    if (first) {
+      setLoadingCategoryFirst(true);
+      get_all_dish
+        .get_all_dish(user.token, 0)
+        .then((responseJson) => {
+          if (responseJson.length === 0) {
+            setLoadingCategoryFirst(false);
+            setDataDishCategory([]);
+            return Toast.show('Đã tải đến cuối danh sách', {
+              position: 0,
+              duration: 2500,
+            });
+          } else {
+            setDataDishCategory(responseJson);
+            setPageDishCategory(pageDishCategory + 1);
+            setLoadingCategoryFirst(false);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoadingCategoryFirst(false);
+          return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+            position: 0,
+            duration: 2500,
+          });
+        });
+    } else {
+      setLoadingDishCategory(true);
+      get_all_dish
+        .get_all_dish(user.token, pageDishCategory)
+        .then((responseJson) => {
+          if (responseJson.length === 0) {
+            setLoadingDishCategory(false);
+            return Toast.show('Đã tải đến cuối danh sách', {
+              position: 0,
+              duration: 2500,
+            });
+          } else {
+            setDataDishCategory(dataDishCategory.concat(responseJson));
+            setPageDishCategory(pageDishCategory + 1);
+            setLoadingDishCategory(false);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoadingDishCategory(false);
+          return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+            position: 0,
+            duration: 2500,
+          });
+        });
+    }
+  };
+
+  const getTypeDish = (first, text) => {
+    if (first) {
+      setLoadingCategoryFirst(true);
+      get_type_dish
+        .get_type_dish(user.token, text, 0)
+        .then((responseJson) => {
+          if (responseJson.length === 0) {
+            setLoadingCategoryFirst(false);
+            setDataDishCategory([]);
+            return Toast.show('Đã tải đến cuối danh sách', {
+              position: 0,
+              duration: 2500,
+            });
+          } else {
+            setDataDishCategory(responseJson);
+            setPageDishCategory(pageDishCategory + 1);
+            setLoadingCategoryFirst(false);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoadingCategoryFirst(false);
+          return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+            position: 0,
+            duration: 2500,
+          });
+        });
+    } else {
+      setLoadingDishCategory(true);
+      get_type_dish
+        .get_type_dish(user.token, text, pageDishCategory)
+        .then((responseJson) => {
+          if (responseJson.length === 0) {
+            setLoadingDishCategory(false);
+            return Toast.show('Đã tải đến cuối danh sách', {
+              position: 0,
+              duration: 2500,
+            });
+          } else {
+            setDataDishCategory(dataDishCategory.concat(responseJson));
+            setPageDishCategory(pageDishCategory + 1);
+            setLoadingDishCategory(false);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoadingDishCategory(false);
+          return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+            position: 0,
+            duration: 2500,
+          });
+        });
+    }
+  };
+
   const flatListItemSeparator = () => {
     return <View style={styles.line} />;
+  };
+
+  const viewDishCategoreMore = () => {
+    if (category.all) {
+      getAllDish(false);
+    } else if (category.pork) {
+      getTypeDish(false, ' heo');
+    } else if (category.steakCategory) {
+      getTypeDish(false, ' bò');
+    } else if (category.roastChicken) {
+      getTypeDish(false, ' gà');
+    } else if (category.fish) {
+      getTypeDish(false, ' cá');
+    } else if (category.saladCategory) {
+      getTypeDish(false, ' salad');
+    } else if (category.shrimp) {
+      getTypeDish(false, ' tôm');
+    } else if (category.sausage) {
+      getTypeDish(false, ' xúc xích');
+    } else if (category.soupCategory) {
+      getTypeDish(false, ' canh');
+    } else if (category.spaghetti) {
+      getTypeDish(false, ' mỳ');
+    } else if (category.squid) {
+      getTypeDish(false, ' hải sản');
+    } else if (category.sushi) {
+      getTypeDish(false, ' sushi');
+    } else if (category.iceCream) {
+      getTypeDish(false, ' kem');
+    } else if (category.rice) {
+      getTypeDish(false, ' cơm');
+    } else if (category.sandwich) {
+      getTypeDish(false, ' sandwich');
+    } else {
+      getTypeDish(false, ' bánh');
+    }
   };
 
   const categoryHandle = (id) => {
     switch (id) {
       case 0:
+        getAllDish(true);
         setCategory({
           all: true,
           pork: false,
@@ -367,6 +515,7 @@ export default function Home({navigation}) {
         });
         break;
       case 1:
+        getTypeDish(true, ' heo');
         setCategory({
           all: false,
           pork: true,
@@ -387,6 +536,7 @@ export default function Home({navigation}) {
         });
         break;
       case 2:
+        getTypeDish(true, ' bò');
         setCategory({
           all: false,
           pork: false,
@@ -407,6 +557,7 @@ export default function Home({navigation}) {
         });
         break;
       case 3:
+        getTypeDish(true, ' gà');
         setCategory({
           all: false,
           pork: false,
@@ -427,6 +578,7 @@ export default function Home({navigation}) {
         });
         break;
       case 4:
+        getTypeDish(true, ' cá');
         setCategory({
           all: false,
           pork: false,
@@ -447,6 +599,7 @@ export default function Home({navigation}) {
         });
         break;
       case 5:
+        getTypeDish(true, ' salad');
         setCategory({
           all: false,
           pork: false,
@@ -467,6 +620,7 @@ export default function Home({navigation}) {
         });
         break;
       case 6:
+        getTypeDish(true, ' tôm');
         setCategory({
           all: false,
           pork: false,
@@ -487,6 +641,7 @@ export default function Home({navigation}) {
         });
         break;
       case 7:
+        getTypeDish(true, ' xúc xích');
         setCategory({
           all: false,
           pork: false,
@@ -507,6 +662,7 @@ export default function Home({navigation}) {
         });
         break;
       case 8:
+        getTypeDish(true, ' canh');
         setCategory({
           all: false,
           pork: false,
@@ -527,6 +683,7 @@ export default function Home({navigation}) {
         });
         break;
       case 9:
+        getTypeDish(true, ' mỳ');
         setCategory({
           all: false,
           pork: false,
@@ -547,6 +704,7 @@ export default function Home({navigation}) {
         });
         break;
       case 10:
+        getTypeDish(true, ' hải sản');
         setCategory({
           all: false,
           pork: false,
@@ -567,6 +725,7 @@ export default function Home({navigation}) {
         });
         break;
       case 11:
+        getTypeDish(true, ' sushi');
         setCategory({
           all: false,
           pork: false,
@@ -587,6 +746,7 @@ export default function Home({navigation}) {
         });
         break;
       case 12:
+        getTypeDish(true, ' kem');
         setCategory({
           all: false,
           pork: false,
@@ -607,6 +767,7 @@ export default function Home({navigation}) {
         });
         break;
       case 13:
+        getTypeDish(true, ' cơm');
         setCategory({
           all: false,
           pork: false,
@@ -627,6 +788,7 @@ export default function Home({navigation}) {
         });
         break;
       case 14:
+        getTypeDish(true, ' sandwich');
         setCategory({
           all: false,
           pork: false,
@@ -646,7 +808,8 @@ export default function Home({navigation}) {
           cake: false,
         });
         break;
-      default:
+      case 15:
+        getTypeDish(true, ' bánh');
         setCategory({
           all: false,
           pork: false,
@@ -668,6 +831,12 @@ export default function Home({navigation}) {
         break;
     }
   };
+
+  const Loading = (
+    <View style={styles.loading}>
+      <ActivityIndicator animating={true} color="#fb5a23" size="small" />
+    </View>
+  );
 
   return (
     <View style={styles.wrapper}>
@@ -751,7 +920,7 @@ export default function Home({navigation}) {
           </View>
         </View>
 
-        <View style={styles.cardView}>
+        {/* <View style={styles.cardView}>
           <Text style={styles.cardViewTitle}>Gợi ý các món ăn hôm nay</Text>
           <FlatList
             style={styles.cardViewList}
@@ -785,85 +954,107 @@ export default function Home({navigation}) {
                 );
               }
             }}
-            keyExtractor={(item) => item.id.toString()}
+            keyExtractor={(item) => item.iddishofchef}
           />
-        </View>
+        </View> */}
 
-        <View style={styles.cardView}>
-          <Text style={styles.cardViewTitle}>Món ăn nổi bật</Text>
-          <FlatList
-            style={styles.cardViewList}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            data={dataDish}
-            renderItem={({item, index}) => {
-              if (index === 0) {
-                return (
-                  <TouchableOpacity
-                    onPress={() => navigation.navigate('DISH', {dish: item})}
-                    style={{marginLeft: 15, marginRight: 10}}>
-                    <DishViewHorizontal dish={item} flag />
-                  </TouchableOpacity>
-                );
-              } else if (index === dataDish.length - 1) {
-                return (
-                  <TouchableOpacity
-                    onPress={() => navigation.navigate('DISH', {dish: item})}
-                    style={{marginRight: 15}}>
-                    <DishViewHorizontal dish={item} flag />
-                  </TouchableOpacity>
-                );
-              } else {
-                return (
-                  <TouchableOpacity
-                    onPress={() => navigation.navigate('DISH', {dish: item})}
-                    style={{marginRight: 10}}>
-                    <DishViewHorizontal dish={item} flag />
-                  </TouchableOpacity>
-                );
-              }
-            }}
-            keyExtractor={(item) => item.id.toString()}
-          />
-        </View>
+        {dataHotDish.length !== 0 ? (
+          <View style={styles.cardView}>
+            <Text style={styles.cardViewTitle}>Món ăn nổi bật</Text>
+            <View>
+              <FlatList
+                style={styles.cardViewList}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                data={dataHotDish}
+                ListFooterComponent={
+                  loadingHotDish ? (
+                    <View style={styles.viewMoreCont}>{Loading}</View>
+                  ) : (
+                    <TouchableOpacity
+                      style={styles.viewMoreCont}
+                      onPress={() => loadHotDish()}>
+                      <View style={styles.viewMoreImgCont}>
+                        <Image style={styles.viewMoreImg} source={arrow} />
+                      </View>
+                      <Text style={styles.viewMoreText}>Xem thêm</Text>
+                    </TouchableOpacity>
+                  )
+                }
+                renderItem={({item, index}) => {
+                  if (index === 0) {
+                    return (
+                      <TouchableOpacity
+                        onPress={() =>
+                          navigation.navigate('DISH', {dish: item})
+                        }
+                        style={{marginLeft: 15, marginRight: 10}}>
+                        <DishViewHorizontal dish={item} flag />
+                      </TouchableOpacity>
+                    );
+                  } else {
+                    return (
+                      <TouchableOpacity
+                        onPress={() =>
+                          navigation.navigate('DISH', {dish: item})
+                        }
+                        style={{marginRight: 10}}>
+                        <DishViewHorizontal dish={item} flag />
+                      </TouchableOpacity>
+                    );
+                  }
+                }}
+                keyExtractor={(item) => item.dishofchef.iddishofchef}
+              />
+            </View>
+          </View>
+        ) : null}
 
-        <View style={styles.cardView}>
-          <Text style={styles.cardViewTitle}>Món ăn đã xem</Text>
-          <FlatList
-            style={styles.cardViewList}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            data={dataDish}
-            renderItem={({item, index}) => {
-              if (index === 0) {
-                return (
+        {dataViewedDish.length !== 0 ? (
+          <View style={styles.cardView}>
+            <Text style={styles.cardViewTitle}>Món ăn đã xem</Text>
+            <FlatList
+              style={styles.cardViewList}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              data={dataViewedDish}
+              ListFooterComponent={
+                loadingViewedDish ? (
+                  <View style={styles.viewMoreCont}>{Loading}</View>
+                ) : (
                   <TouchableOpacity
-                    onPress={() => navigation.navigate('DISH', {dish: item})}
-                    style={{marginLeft: 15, marginRight: 10}}>
-                    <DishViewHorizontal dish={item} />
+                    style={styles.viewMoreCont}
+                    onPress={() => getViewedDish()}>
+                    <View style={styles.viewMoreImgCont}>
+                      <Image style={styles.viewMoreImg} source={arrow} />
+                    </View>
+                    <Text style={styles.viewMoreText}>Xem thêm</Text>
                   </TouchableOpacity>
-                );
-              } else if (index === dataDish.length - 1) {
-                return (
-                  <TouchableOpacity
-                    onPress={() => navigation.navigate('DISH', {dish: item})}
-                    style={{marginRight: 15}}>
-                    <DishViewHorizontal dish={item} />
-                  </TouchableOpacity>
-                );
-              } else {
-                return (
-                  <TouchableOpacity
-                    onPress={() => navigation.navigate('DISH', {dish: item})}
-                    style={{marginRight: 10}}>
-                    <DishViewHorizontal dish={item} />
-                  </TouchableOpacity>
-                );
+                )
               }
-            }}
-            keyExtractor={(item) => item.id.toString()}
-          />
-        </View>
+              renderItem={({item, index}) => {
+                if (index === 0) {
+                  return (
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('DISH', {dish: item})}
+                      style={{marginLeft: 15, marginRight: 10}}>
+                      <DishViewHorizontal dish={item} />
+                    </TouchableOpacity>
+                  );
+                } else {
+                  return (
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('DISH', {dish: item})}
+                      style={{marginRight: 10}}>
+                      <DishViewHorizontal dish={item} />
+                    </TouchableOpacity>
+                  );
+                }
+              }}
+              keyExtractor={(item) => item.dishofchef.iddishofchef}
+            />
+          </View>
+        ) : null}
 
         <View style={styles.cardView}>
           <FlatList
@@ -890,23 +1081,53 @@ export default function Home({navigation}) {
             keyExtractor={(item) => item.id.toString()}
           />
 
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            data={dataDish}
-            ItemSeparatorComponent={flatListItemSeparator}
-            renderItem={({item, index}) => {
-              return (
-                <TouchableOpacity
-                  onPress={() => navigation.navigate('DISH', {dish: item})}>
-                  <DishViewVertical dish={item} />
-                </TouchableOpacity>
-              );
-            }}
-            keyExtractor={(item) => item.id.toString()}
-          />
+          {!loadingCategoryFirst ? (
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              data={dataDishCategory}
+              ListFooterComponent={
+                <View>
+                  <View style={styles.line} />
+                  {loadingDishCategory ? (
+                    <View style={{paddingVertical: 4.5}}>{Loading}</View>
+                  ) : (
+                    <TouchableOpacity
+                      onPress={() => viewDishCategoreMore()}
+                      style={{
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}>
+                      <Text style={styles.viewMoreTextVertical}>Xem thêm</Text>
+                    </TouchableOpacity>
+                  )}
+                </View>
+              }
+              ItemSeparatorComponent={flatListItemSeparator}
+              renderItem={({item, index}) => {
+                return (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('DISH', {dish: item})}>
+                    <DishViewVertical dish={item} />
+                  </TouchableOpacity>
+                );
+              }}
+              keyExtractor={(item) => item.dishofchef.iddishofchef}
+            />
+          ) : (
+            <View
+              style={{
+                width,
+                height: 80,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              {Loading}
+            </View>
+          )}
         </View>
 
-        <View style={styles.cardViewLast}>
+        {/* <View style={styles.cardViewLast}>
           <Text style={styles.cardViewTitle}>Đầu bếp nổi bật</Text>
           <FlatList
             showsVerticalScrollIndicator={false}
@@ -922,14 +1143,52 @@ export default function Home({navigation}) {
             }}
             keyExtractor={(item) => item.id.toString()}
           />
-        </View>
+        </View> */}
       </ScrollView>
     </View>
   );
 }
 
-const {width, backgroundColor} = Global;
+const {width, backgroundColor, mainColor} = Global;
 const styles = StyleSheet.create({
+  viewMoreTextVertical: {
+    fontFamily: 'Roboto-Regular',
+    color: '#828282',
+    fontSize: width / 35,
+    paddingVertical: 6,
+  },
+  loading: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  viewMoreCont: {
+    marginRight: 15,
+    borderColor: '#828282',
+    borderWidth: 0.25,
+    borderRadius: 5,
+    width: width / 3.8,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  viewMoreImgCont: {
+    borderRadius: width / 40 + 3.5,
+    borderColor: mainColor,
+    borderWidth: 1,
+    padding: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  viewMoreImg: {
+    width: width / 20,
+    height: width / 20,
+  },
+  viewMoreText: {
+    fontFamily: 'Roboto-Regular',
+    marginTop: 5,
+    color: mainColor,
+    fontSize: width / 32,
+  },
   line: {
     borderColor: '#bdbdbd',
     borderWidth: 0,

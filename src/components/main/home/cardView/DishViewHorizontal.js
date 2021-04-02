@@ -9,13 +9,26 @@ import prepareIcon from '../../../../icons/TimeSquare.png';
 import performIcon from '../../../../icons/TimeCircle.png';
 
 export default function DishViewHorizontal(props) {
-  const {image, name, chef, price, prepare, perform} = props.dish;
+  var picture, name, prepare, perform, price;
+  if (props.chef === true) {
+    picture = props.dish.picture;
+    name = props.dish.name;
+    prepare = props.dish.prepare;
+    perform = props.dish.perform;
+    price = props.dish.price;
+  } else {
+    picture = props.dish.dish.picture;
+    name = props.dish.dish.name;
+    prepare = props.dish.dish.prepare;
+    perform = props.dish.dish.perform;
+    price = props.dish.dishofchef.price;
+  }
   return (
     <View style={styles.wrapper}>
       <ImageBackground
         style={styles.image}
         imageStyle={{borderTopLeftRadius: 7, borderTopRightRadius: 7}}
-        source={{uri: image}}>
+        source={{uri: picture}}>
         {props.flag === true ? (
           <Image source={hotIcon} style={styles.new} />
         ) : null}
@@ -40,7 +53,7 @@ export default function DishViewHorizontal(props) {
         </View>
       ) : (
         <Text style={styles.chef} numberOfLines={1}>
-          {chef}
+          {props.dish.chef.name}
         </Text>
       )}
       <Text style={styles.price}>{Global.currencyFormat(price)}đ</Text>
@@ -77,14 +90,13 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     borderColor: '#828282',
-    borderWidth: 0,
-    borderTopWidth: 0.5,
+    borderWidth: 0.25,
     borderRadius: 5,
     width: width / 3.8,
   },
   image: {
-    width: width / 3.8,
-    height: width / 3.8,
+    width: width / 3.8 - 1,
+    height: width / 3.8 - 1,
     alignItems: 'flex-end',
   },
   name: {

@@ -2,19 +2,26 @@ import React from 'react';
 import {StyleSheet, View, Image, Text} from 'react-native';
 
 import Global from '../../../Global';
-
 import RatingStar from './RatingStar';
 
+import avt from '../../../../images/avt.png';
+
 export default function Comment(props) {
-  const {name, image, star, time, content, imageCmt} = props.comment;
+  const {user_name, user_avatar} = props.comment.user;
+  const {comment, star, date, image} = props.comment.comment;
 
   return (
     <View style={styles.wrapper}>
       <View style={styles.topInfo}>
         <View style={styles.infoUser}>
-          <Image style={styles.image} source={{uri: image}} />
+          <Image
+            style={styles.image}
+            source={user_avatar === null ? avt : {uri: user_avatar}}
+          />
           <View style={styles.nameCont}>
-            <Text style={styles.name}>{name}</Text>
+            <Text style={styles.name}>
+              {user_name === null ? 'Người dùng Chefood' : user_name}
+            </Text>
             <View style={styles.starSuperCont}>
               <RatingStar star={star} />
               <Text style={styles.rate}>
@@ -27,16 +34,20 @@ export default function Comment(props) {
                   ? ' Bình thường'
                   : star === 4
                   ? ' Tốt'
-                  : ' Tuyệt vời'}
+                  : star === 5
+                  ? ' Tuyệt vời'
+                  : 'Chưa có đánh giá'}
               </Text>
             </View>
           </View>
         </View>
-        <Text style={styles.time}>{time}</Text>
+        <Text style={styles.time}>
+          {date === null ? null : Global.longTimeFormat(date)}
+        </Text>
       </View>
-      <Text style={styles.content}>{content}</Text>
-      {imageCmt !== '' ? (
-        <Image source={{uri: imageCmt}} style={styles.imageCmt} />
+      <Text style={styles.content}>{comment}</Text>
+      {image !== null ? (
+        <Image source={{uri: image}} style={styles.imageCmt} />
       ) : null}
     </View>
   );

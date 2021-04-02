@@ -19,6 +19,20 @@ module.exports = {
       date.getFullYear()
     );
   },
+  longTimeFormat: (time) => {
+    var date = new Date(time);
+    return (
+      ('0' + date.getHours()).slice(-2) +
+      ':' +
+      ('0' + date.getMinutes()).slice(-2) +
+      ' ' +
+      ('0' + date.getDate()).slice(-2) +
+      '/' +
+      ('0' + (date.getMonth() + 1)).slice(-2) +
+      '/' +
+      date.getFullYear()
+    );
+  },
   currencyFormat: (num) => {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
   },

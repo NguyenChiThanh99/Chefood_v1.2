@@ -14,7 +14,7 @@ import Comment from './Comment';
 import arrowRight from '../../../../icons/arrow_right-82.png';
 
 export default function CommentDish(props) {
-  const {name, comment} = props.commentDish;
+  const {namedish, iddishofchef, comment} = props.commentDish;
 
   const flatListItemSeparator = () => {
     return <View style={styles.line} />;
@@ -22,7 +22,7 @@ export default function CommentDish(props) {
 
   return (
     <View style={styles.wrapper}>
-      <Text style={styles.name}>{name}</Text>
+      <Text style={styles.name}>{namedish}</Text>
       <FlatList
         showsVerticalScrollIndicator={false}
         data={comment}
@@ -30,9 +30,13 @@ export default function CommentDish(props) {
         renderItem={({item, index}) => {
           return <Comment comment={item} />;
         }}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.comment.comment}
       />
-      <TouchableOpacity style={styles.viewMore}>
+      <TouchableOpacity
+        style={styles.viewMore}
+        onPress={() =>
+          props.navigation.navigate('DISH', {id: iddishofchef, fromChef: true})
+        }>
         <Text style={styles.viewMoreText}>Xem thêm</Text>
         <Image style={styles.viewMoreImg} source={arrowRight} />
       </TouchableOpacity>

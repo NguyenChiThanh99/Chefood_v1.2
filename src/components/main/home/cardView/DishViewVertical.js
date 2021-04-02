@@ -8,11 +8,11 @@ import prepareIcon from '../../../../icons/TimeSquare.png';
 import performIcon from '../../../../icons/TimeCircle.png';
 
 export default function DishViewVertical(props) {
-  const {image, name, chef, price, prepare, perform} = props.dish;
+  const {picture, name, price, prepare, perform} = props.dish.dish;
 
   const addToCart = () => {};
 
-  const chefJSX = <Text style={styles.chef}>{chef}</Text>;
+  const chefJSX = <Text style={styles.chef}>{props.dish.chef.name}</Text>;
   const timeJSX = (
     <View style={styles.timeCont}>
       <View style={styles.timeItem}>
@@ -33,7 +33,7 @@ export default function DishViewVertical(props) {
   return (
     <View style={styles.wrapper}>
       <View style={styles.wrapperInfo}>
-        <Image style={styles.image} source={{uri: image}} />
+        <Image style={styles.image} source={{uri: picture}} />
         <View>
           <Text
             style={props.chef === true ? styles.nameChef : styles.name}

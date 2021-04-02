@@ -9,13 +9,23 @@ import phoneIcon from '../../../../icons/phone-82.png';
 import arrowIcon from '../../../../icons/arrow_right-82.png';
 
 export default function ChefView(props) {
-  const {image, star, name, address, phone} = props.chef;
+  const {avatar, level, name, address, phone} = props.chef;
 
   return (
     <View style={styles.wrapper}>
       <View style={styles.avatarCont}>
-        <Image style={styles.avatar} source={{uri: image}} />
-        <RatingStar star={star} />
+        <Image
+          style={styles.avatar}
+          source={
+            avatar === 'Thiết lập ngay'
+              ? {
+                  uri:
+                    'https://res.cloudinary.com/chefood/image/upload/v1614660200/avatar/avt_h3mm3z.png',
+                }
+              : {uri: avatar}
+          }
+        />
+        <RatingStar star={Math.round(level)} />
       </View>
       <View style={styles.infoCont}>
         <Text style={styles.name}>{name}</Text>

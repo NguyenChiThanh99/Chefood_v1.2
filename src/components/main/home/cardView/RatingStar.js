@@ -5,6 +5,7 @@ import Global from '../../../Global';
 
 import starBorder from '../../../../icons/star_border-f2c94c.png';
 import starIcon from '../../../../icons/star-f2c94c.png';
+import noStar from '../../../../icons/star-82.png';
 
 export default function Category(props) {
   const {star} = props;
@@ -57,6 +58,17 @@ export default function Category(props) {
       <Image style={styles.star} source={starIcon} />
     </View>
   );
+
+  const _0star = (
+    <View style={styles.starCont}>
+      <Image style={styles.star} source={noStar} />
+      <Image style={styles.star} source={noStar} />
+      <Image style={styles.star} source={noStar} />
+      <Image style={styles.star} source={noStar} />
+      <Image style={styles.star} source={noStar} />
+    </View>
+  );
+
   return (
     <View>
       {star === 1
@@ -67,7 +79,9 @@ export default function Category(props) {
         ? _3star
         : star === 4
         ? _4star
-        : _5star}
+        : star === 5
+        ? _5star
+        : _0star}
     </View>
   );
 }
