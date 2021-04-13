@@ -12,6 +12,7 @@ import BadgeCart from './BadgeCart';
 
 import logo from '../../../../images/Logo2.png';
 import searchIcon from '../../../../icons/Search.png';
+import backIcon from '../../../../icons/arrow_back_ios-fb5a23.png';
 
 export default function MainHeader(props) {
   const {navigation} = props;
@@ -26,9 +27,15 @@ export default function MainHeader(props) {
 
   return (
     <View style={styles.header}>
-      <TouchableOpacity onPress={() => navigation.jumpTo('Trang chủ')}>
-        <Image style={styles.logo} source={logo} />
-      </TouchableOpacity>
+      {props.fromUser ? (
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Image source={backIcon} style={styles.searchImg} />
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity onPress={() => navigation.jumpTo('Trang chủ')}>
+          <Image style={styles.logo} source={logo} />
+        </TouchableOpacity>
+      )}
       <View style={styles.searchCont}>
         <TextInput
           style={styles.textInputStyle}
@@ -46,18 +53,19 @@ export default function MainHeader(props) {
           <Image style={styles.searchImg} source={searchIcon} />
         </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate('CART')}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('CART', {address: ''})}>
         <BadgeCart />
       </TouchableOpacity>
     </View>
   );
 }
 
-const {width, mainColor, heightHeader} = Global;
+const {width, mainColor, heightHeader, backButton} = Global;
 const styles = StyleSheet.create({
   searchImg: {
-    width: width / 16,
-    height: width / 16,
+    width: backButton,
+    height: backButton,
   },
   textInputStyle: {
     color: '#6e6e6e',

@@ -1,7 +1,15 @@
 import Global from '../components/Global';
 
-const get_comment_dish = (token, iddishofchef, page) =>
-  fetch(Global.link + 'dish/getcommentdish', {
+const submit_comment = (
+  token,
+  iddishofchef,
+  id_order,
+  comment,
+  star,
+  image,
+  status,
+) =>
+  fetch(Global.link + 'user/submitcommentdish', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -10,8 +18,12 @@ const get_comment_dish = (token, iddishofchef, page) =>
     },
     body: JSON.stringify({
       iddishofchef: iddishofchef,
-      page: page,
+      id_order: id_order,
+      comment: comment,
+      star: star,
+      image: image,
+      status: status,
     }),
   }).then((response) => response.json());
 
-module.exports = {get_comment_dish};
+module.exports = {submit_comment};

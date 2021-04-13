@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -21,7 +22,20 @@ import change_address from '../../../../apis/change_address';
 import arrowBack from '../../../../icons/arrow_back_ios-fb5a23.png';
 import arrowRight from '../../../../icons/arrow_right-82.png';
 
-export default function ChangeAddress({navigation}) {
+export default function ChangeAddress({navigation, route}) {
+  useEffect(() => {
+    // cleanup function
+    return () => {
+      dispatch(
+        updateAddressStatus({
+          province: null,
+          district: null,
+          ward: null,
+          detail: '',
+        }),
+      );
+    };
+  }, []);
   const dispatch = useDispatch();
   const addressStatus = useSelector((state) => state.addressStatus);
   const [addressDetail, setAddressDetail] = useState(addressStatus.detail);
@@ -85,30 +99,34 @@ export default function ChangeAddress({navigation}) {
       });
     } else {
       var address = Global.addressFormat(addressStatus);
-      change_address
-        .change_address(user.token, address)
-        .then((responseJson) => {
-          dispatch(
-            updateUser({
+      if (route.params.fromCart) {
+        navigation.navigate('CART', {address});
+      } else {
+        change_address
+          .change_address(user.token, address)
+          .then((responseJson) => {
+            dispatch(
+              updateUser({
+                ...user,
+                userInfo: {...user.userInfo, address: address},
+              }),
+            );
+            storeData({
               ...user,
               userInfo: {...user.userInfo, address: address},
-            }),
-          );
-          storeData({
-            ...user,
-            userInfo: {...user.userInfo, address: address},
+            });
+            navigation.goBack();
+            setLoading(false);
+          })
+          .catch((err) => {
+            console.log(err);
+            setLoading(false);
+            return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+              position: 0,
+              duration: 2500,
+            });
           });
-          navigation.goBack();
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.log(err);
-          setLoading(false);
-          return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-            position: 0,
-            duration: 2500,
-          });
-        });
+      }
     }
   };
 

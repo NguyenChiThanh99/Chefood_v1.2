@@ -60,6 +60,9 @@ module.exports = {
     }
   },
   addressLink: 'https://my-chefood-app.herokuapp.com/',
-  chatLink: 'https://chefood-chat.herokuapp.com/',
+  commentLink: 'http://nguyenchithanh.pythonanywhere.com/',
+  relatedDishLink: 'http://17521049.pythonanywhere.com/',
   link: 'https://chefood-mongo.herokuapp.com/',
+
+  chatLink: 'https://chefood-chat.herokuapp.com/',
 };

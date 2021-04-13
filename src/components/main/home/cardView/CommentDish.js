@@ -35,7 +35,25 @@ export default function CommentDish(props) {
       <TouchableOpacity
         style={styles.viewMore}
         onPress={() =>
-          props.navigation.navigate('DISH', {id: iddishofchef, fromChef: true})
+          props.navigation.navigate('DISH', {
+            id: iddishofchef,
+            dish: {
+              dish: {
+                ingredients: '',
+                name: '',
+                prepare: '',
+                perform: '',
+                picture:
+                  'https://res.cloudinary.com/chefood/image/upload/v1614660312/cover_photo/cover_photo_tmgnhx.png',
+              },
+              dishofchef: {
+                order: 0,
+                price: 0,
+                iddishofchef: iddishofchef,
+              },
+            },
+            fromChef: true,
+          })
         }>
         <Text style={styles.viewMoreText}>Xem thêm</Text>
         <Image style={styles.viewMoreImg} source={arrowRight} />

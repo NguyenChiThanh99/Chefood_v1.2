@@ -1,8 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Global from '../../../Global';
+import get_order_detail from '../../../../apis/get_order_detail';
+import {updateCart} from '../../../../../actions';
+import {useSelector, useDispatch} from 'react-redux';
+import Toast from 'react-native-root-toast';
 
 import arrowRight from '../../../../icons/arrow_right-82.png';
 import deliveryIcon from '../../../../icons/assistant_navigation.png';
@@ -12,10 +18,28 @@ import cancelIcon from '../../../../icons/error.png';
 import completeIcon from '../../../../icons/check_circle.png';
 
 export default function Order(props) {
-  const {delivery, total, method, dish} = props.order;
+  const {
+    id_order,
+    status,
+    date,
+    total_money,
+    payment,
+    order_name,
+    so_mon_con_lai,
+    checkcomment,
+  } = props.order;
 
-  const checkDelivery = (status) => {
-    switch (status) {
+  useEffect(() => {
+    getOrdersDetail();
+  }, []);
+
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.user);
+  const [dataDetail, setDataDetail] = useState([]);
+
+  const checkDelivery = (trangThai) => {
+    switch (trangThai) {
       case 'Đang giao hàng':
         return {image: deliveryIcon, color: '#f2994a'};
       case 'Đang chuẩn bị':
@@ -29,14 +53,104 @@ export default function Order(props) {
     }
   };
 
+  const getOrdersDetail = () => {
+    get_order_detail
+      .get_order_detail(user.token, id_order)
+      .then((responseJson) => {
+        setDataDetail(responseJson);
+      })
+      .catch((err) => {
+        console.log(err);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
+      });
+  };
+
+  const orderAgain = () => {
+    for (let i = 0; i < dataDetail.dishes.length; i++) {
+      const newCart = {
+        dish: {
+          dish: {
+            name: dataDetail.dishes[i].dish_name,
+            picture: dataDetail.dishes[i].image,
+          },
+          chef: {
+            _id: dataDetail.chef.idchef,
+            name: dataDetail.chef.chef_name,
+          },
+          dishofchef: {
+            iddishofchef: dataDetail.dishes[i].iddishofchef,
+            price: dataDetail.dishes[i].price,
+          },
+        },
+        quantity: dataDetail.dishes[i].amount,
+      };
+      var flag = false;
+      if (cart.length === 0) {
+        dispatch(updateCart([newCart]));
+        storeData([newCart]);
+        Toast.show('Đã thêm món ăn vào giỏ hàng', {
+          position: 0,
+          duration: 2000,
+        });
+      } else {
+        for (var j = 0; j < cart.length; j++) {
+          if (
+            cart[j].dish.dishofchef.iddishofchef ===
+            dataDetail.dishes[i].iddishofchef
+          ) {
+            flag = true;
+            cart[j].quantity += dataDetail.dishes[i].amount;
+            dispatch(updateCart(cart));
+            storeData(cart);
+            Toast.show('Đã tăng số lượng món ăn trong giỏ hàng', {
+              position: 0,
+              duration: 2000,
+            });
+            break;
+          }
+        }
+        if (flag === false) {
+          cart.push(newCart);
+          dispatch(updateCart(cart));
+          storeData(cart);
+          Toast.show('Đã thêm món ăn vào giỏ hàng', {
+            position: 0,
+            duration: 2000,
+          });
+        }
+      }
+    }
+    props.navigation.navigate('CART', {address: ''});
+  };
+
+  const storeData = async (value) => {
+    var key = '@cart' + '_' + user.userInfo._id;
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem(key, jsonValue);
+    } catch (e) {
+      console.log('Error: ' + e);
+    }
+  };
+
   const cancelJSX = (
-    <TouchableOpacity style={styles.cancelCont}>
+    <TouchableOpacity style={styles.cancelCont} onPress={() => orderAgain()}>
       <Text style={styles.buttonCancel}>Đặt lại</Text>
     </TouchableOpacity>
   );
   const completeJSX = (
     <View style={styles.cancelCont}>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate('REVIEW', {
+            chef: null,
+            dish: null,
+            orderInfo: props.order,
+          });
+        }}>
         <Text style={[styles.buttonComplete, styles.reviewBtn]}>Đánh giá</Text>
       </TouchableOpacity>
       <View
@@ -47,7 +161,7 @@ export default function Order(props) {
           borderLeftWidth: 0.5,
         }}
       />
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => orderAgain()}>
         <Text style={[styles.buttonComplete, styles.againBtn]}>Đặt lại</Text>
       </TouchableOpacity>
     </View>
@@ -58,38 +172,42 @@ export default function Order(props) {
       <View style={styles.topView}>
         <View style={styles.leftView}>
           <Text style={styles.title} numberOfLines={1}>
-            {dish[0]}
+            {order_name}
           </Text>
-          {dish.length > 1 ? (
-            <Text style={styles.other}>và {dish.length - 1} món ăn khác</Text>
+          {so_mon_con_lai > 0 ? (
+            <Text style={styles.other}>và {so_mon_con_lai} món ăn khác</Text>
           ) : null}
 
           <View style={styles.deliveryCont}>
             <Image
               style={styles.deliveryImg}
-              source={checkDelivery(delivery.status).image}
+              source={checkDelivery(status).image}
             />
             <Text
               style={[
                 styles.deliveryStatus,
-                {color: checkDelivery(delivery.status).color},
+                {color: checkDelivery(status).color},
               ]}>
-              {delivery.status}
+              {status}
             </Text>
-            <Text style={styles.deliveryTime}>• {delivery.time}</Text>
+            <Text style={styles.deliveryTime}>
+              • {Global.longTimeFormat(date)}
+            </Text>
           </View>
 
           <Text style={styles.total}>
-            {Global.currencyFormat(total)}đ ({method})
+            {Global.currencyFormat(total_money)}đ ({payment})
           </Text>
         </View>
 
         <Image style={styles.arrowIcon} source={arrowRight} />
       </View>
-      {delivery.status === 'Đã hủy'
+      {status === 'Đã hủy'
         ? cancelJSX
-        : delivery.status === 'Đã giao'
+        : status === 'Đã giao' && checkcomment === 0
         ? completeJSX
+        : status === 'Đã giao' && checkcomment === 1
+        ? cancelJSX
         : null}
     </View>
   );
@@ -107,7 +225,7 @@ const styles = StyleSheet.create({
   },
   buttonCancel: {
     marginVertical: 10,
-    fontFamily: 'Roboto-Regular',
+    fontFamily: 'Roboto-Bold',
     color: mainColor,
     fontSize: width / 33,
   },

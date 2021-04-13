@@ -1,17 +1,24 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
   Image,
   StyleSheet,
   TouchableOpacity,
+  ActivityIndicator,
   ScrollView,
   FlatList,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import Toast from 'react-native-root-toast';
+import {useSelector, useDispatch} from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Global from '../../Global';
+import get_order_detail from '../../../apis/get_order_detail';
+import {updateCart} from '../../../../actions';
 
 import closeIcon from '../../../icons/close.png';
 import moneyIcon from '../../../icons/money.png';
@@ -19,36 +26,59 @@ import cardIcon from '../../../icons/atm.png';
 import chefImage from '../../../images/cook.png';
 import deliveryImage from '../../../images/ship.png';
 
-export default function OrderDetail({navigation}) {
+export default function OrderDetail({navigation, route}) {
+  useEffect(() => {
+    getOrdersDetail();
+  }, []);
+
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.user);
+  const [dataDetail, setDataDetail] = useState([]);
+  const {
+    order_name,
+    id_order,
+    status,
+    date,
+    total_money,
+    payment,
+    checkcomment,
+  } = route.params.order;
+
   const data = {
-    id: '1547865946145787',
-    deliveryStatus: 'Đang xác nhận',
-    timeOrder: '13:06 26/10/2020',
-    method: 'Tiền mặt',
-    chef: 'Hoàng Phương Yến',
-    user: {
-      name: 'Lê Quốc Việt',
-      phone: '0834999373',
-      address: '35/39 Bế Văn Cấm, Tân Kiểng, Quận 7, Thành phố Hồ Chí Minh',
-    },
-    dish: [
-      {
-        id: 1,
-        name: 'Thịt heo ba rọi kho dưa cải chua tỏi ớt',
-        quantity: 1,
-        price: 110000,
-      },
-      {
-        id: 5,
-        name: 'Mỳ quảng tôm thịt nướng thịt gà chính gốc miền Trung',
-        quantity: 2,
-        price: 190000,
-      },
-    ],
+    id: id_order,
+    deliveryStatus: status,
+    timeOrder: Global.longTimeFormat(date),
+    method: payment,
+    chef: dataDetail.length !== 0 ? dataDetail.chef.chef_name : '',
+    user:
+      dataDetail.length !== 0
+        ? dataDetail.user
+        : {
+            address: '',
+            phone: '',
+            user_name: '',
+          },
+    dish: dataDetail.length !== 0 ? dataDetail.dishes : [],
   };
 
-  const checkDelivery = (status) => {
-    switch (status) {
+  const getOrdersDetail = () => {
+    get_order_detail
+      .get_order_detail(user.token, id_order)
+      .then((responseJson) => {
+        setDataDetail(responseJson);
+      })
+      .catch((err) => {
+        console.log(err);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
+      });
+  };
+
+  const checkDelivery = (statusDelivery) => {
+    switch (statusDelivery) {
       case 'Đang xác nhận':
         return {
           description: 'Đơn hàng đang chờ xác nhận',
@@ -67,12 +97,72 @@ export default function OrderDetail({navigation}) {
     }
   };
 
-  const total = (dish) => {
-    var sum = 0;
-    for (let i = 0; i < dish.length; i++) {
-      sum += dish[i].price * dish[i].quantity;
+  const orderAgain = () => {
+    for (let i = 0; i < dataDetail.dishes.length; i++) {
+      const newCart = {
+        dish: {
+          dish: {
+            name: dataDetail.dishes[i].dish_name,
+            picture: dataDetail.dishes[i].image,
+          },
+          chef: {
+            _id: dataDetail.chef.idchef,
+            name: dataDetail.chef.chef_name,
+          },
+          dishofchef: {
+            iddishofchef: dataDetail.dishes[i].iddishofchef,
+            price: dataDetail.dishes[i].price,
+          },
+        },
+        quantity: dataDetail.dishes[i].amount,
+      };
+      var flag = false;
+      if (cart.length === 0) {
+        dispatch(updateCart([newCart]));
+        storeData([newCart]);
+        Toast.show('Đã thêm món ăn vào giỏ hàng', {
+          position: 0,
+          duration: 2000,
+        });
+      } else {
+        for (var j = 0; j < cart.length; j++) {
+          if (
+            cart[j].dish.dishofchef.iddishofchef ===
+            dataDetail.dishes[i].iddishofchef
+          ) {
+            flag = true;
+            cart[j].quantity += dataDetail.dishes[i].amount;
+            dispatch(updateCart(cart));
+            storeData(cart);
+            Toast.show('Đã tăng số lượng món ăn trong giỏ hàng', {
+              position: 0,
+              duration: 2000,
+            });
+            break;
+          }
+        }
+        if (flag === false) {
+          cart.push(newCart);
+          dispatch(updateCart(cart));
+          storeData(cart);
+          Toast.show('Đã thêm món ăn vào giỏ hàng', {
+            position: 0,
+            duration: 2000,
+          });
+        }
+      }
     }
-    return sum;
+    navigation.navigate('CART', {address: ''});
+  };
+
+  const storeData = async (value) => {
+    var key = '@cart' + '_' + user.userInfo._id;
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem(key, jsonValue);
+    } catch (e) {
+      console.log('Error: ' + e);
+    }
   };
 
   const confirmJSX = (
@@ -83,6 +173,12 @@ export default function OrderDetail({navigation}) {
   const prepareJSX = <Image style={styles.chefImage} source={chefImage} />;
   const deliveryJSX = (
     <Image style={styles.deliveryImage} source={deliveryImage} />
+  );
+
+  const Loading = (
+    <View style={styles.loading}>
+      <ActivityIndicator animating={true} color="#fb5a23" size="small" />
+    </View>
   );
 
   return (
@@ -150,7 +246,7 @@ export default function OrderDetail({navigation}) {
         data.deliveryStatus === 'Đang chuẩn bị' ||
         data.deliveryStatus === 'Đang giao hàng' ? (
           <View style={styles.orderTitleCont}>
-            <Text style={styles.orderTitle}>{data.dish[0].name}</Text>
+            <Text style={styles.orderTitle}>{order_name}</Text>
             <Text style={styles.orderTime}>{data.timeOrder}</Text>
           </View>
         ) : null}
@@ -166,45 +262,80 @@ export default function OrderDetail({navigation}) {
             {data.deliveryStatus === 'Đã hủy' ? (
               <Text style={styles.cancelStatus}>ĐÃ HỦY</Text>
             ) : null}
-            <Text style={styles.orderTitleCancel}>{data.dish[0].name}</Text>
+            <Text style={styles.orderTitleCancel}>{order_name}</Text>
             <Text style={styles.orderTimeCancel}>{data.timeOrder}</Text>
           </View>
         ) : null}
 
         <View style={styles.orderDetailCont}>
-          <Text style={styles.chef}>{data.chef}</Text>
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            data={data.dish}
-            renderItem={({item, index}) => {
-              return (
-                <View>
-                  <TouchableOpacity style={styles.row}>
-                    <View style={{flexDirection: 'row'}}>
-                      <Text style={styles.quantity}>{item.quantity}x</Text>
-                      <Text
-                        style={[styles.name, {width: width / 1.5}]}
-                        numberOfLines={1}>
-                        {item.name}
-                      </Text>
+          {dataDetail.length !== 0 ? (
+            <View>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('CHEF', {
+                    id: dataDetail.chef.idchef,
+                    fromDish: true,
+                  })
+                }>
+                <Text style={styles.chef}>{data.chef}</Text>
+              </TouchableOpacity>
+              <FlatList
+                showsVerticalScrollIndicator={false}
+                data={data.dish}
+                renderItem={({item, index}) => {
+                  return (
+                    <View>
+                      <TouchableOpacity
+                        style={styles.row}
+                        onPress={() => {
+                          navigation.navigate('DISH', {
+                            dish: {
+                              dish: {
+                                ingredients: '',
+                                name: '',
+                                prepare: '',
+                                perform: '',
+                                picture:
+                                  'https://res.cloudinary.com/chefood/image/upload/v1614660312/cover_photo/cover_photo_tmgnhx.png',
+                              },
+                              dishofchef: {
+                                order: 0,
+                                price: 0,
+                                iddishofchef: item.iddishofchef,
+                              },
+                            },
+                            id: item.iddishofchef,
+                          });
+                        }}>
+                        <View style={{flexDirection: 'row'}}>
+                          <Text style={styles.quantity}>{item.amount}x</Text>
+                          <Text
+                            style={[styles.name, {width: width / 1.5}]}
+                            numberOfLines={1}>
+                            {item.dish_name}
+                          </Text>
+                        </View>
+                        <Text style={styles.name}>
+                          {Global.currencyFormat(item.price)}đ
+                        </Text>
+                      </TouchableOpacity>
+                      <View style={styles.lineList} />
                     </View>
-                    <Text style={styles.name}>
-                      {Global.currencyFormat(item.price)}đ
-                    </Text>
-                  </TouchableOpacity>
-                  <View style={styles.lineList} />
-                </View>
-              );
-            }}
-            keyExtractor={(item) => item.id.toString()}
-          />
+                  );
+                }}
+                keyExtractor={(item) => item.iddishofchef}
+              />
+            </View>
+          ) : (
+            <View>{Loading}</View>
+          )}
 
           <View style={styles.row2}>
             <Text style={styles.tempCalText}>
               Tạm tính ({data.dish.length} món)
             </Text>
             <Text style={styles.tempCalPrice}>
-              {Global.currencyFormat(total(data.dish))}đ
+              {Global.currencyFormat(total_money)}đ
             </Text>
           </View>
           <View style={styles.lineList} />
@@ -222,7 +353,7 @@ export default function OrderDetail({navigation}) {
           <View style={[styles.row3, {marginTop: 12}]}>
             <Text style={styles.methodTitle}>Thành tiền</Text>
             <Text style={styles.total}>
-              {Global.currencyFormat(total(data.dish))}đ
+              {Global.currencyFormat(total_money)}đ
             </Text>
           </View>
 
@@ -236,7 +367,7 @@ export default function OrderDetail({navigation}) {
               </View>
               <View style={{marginLeft: 32}}>
                 <Text style={styles.userInfoText}>{data.id}</Text>
-                <Text style={styles.userInfoText}>{data.user.name}</Text>
+                <Text style={styles.userInfoText}>{data.user.user_name}</Text>
                 <Text style={styles.userInfoText}>{data.user.phone}</Text>
                 <Text style={styles.userInfoText}>{data.user.address}</Text>
               </View>
@@ -245,9 +376,9 @@ export default function OrderDetail({navigation}) {
         </View>
       </ScrollView>
 
-      {data.deliveryStatus === 'Đã hủy' ? (
+      {data.deliveryStatus === 'Đã hủy' || checkcomment === 1 ? (
         <View style={styles.bottomBtn}>
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity onPress={() => orderAgain()}>
             <LinearGradient
               style={styles.btn}
               colors={['#fb5a23', '#ffb038']}
@@ -261,14 +392,22 @@ export default function OrderDetail({navigation}) {
         </View>
       ) : null}
 
-      {data.deliveryStatus === 'Đã giao' ? (
+      {data.deliveryStatus === 'Đã giao' && checkcomment === 0 ? (
         <View style={styles.bottomBtn2} onPress={() => {}}>
           <TouchableOpacity
             style={styles.btnReview}
-            onPress={() => navigation.navigate('REVIEW')}>
+            onPress={() => {
+              if (dataDetail.length !== 0) {
+                navigation.navigate('REVIEW', {
+                  chef: dataDetail.chef,
+                  dish: data.dish,
+                  orderInfo: route.params.order,
+                });
+              }
+            }}>
             <Text style={styles.btnReviewText}>Đánh giá</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => orderAgain()}>
             <LinearGradient
               style={styles.btnAgain}
               colors={['#fb5a23', '#ffb038']}
@@ -302,6 +441,10 @@ const {
   backButton,
 } = Global;
 const styles = StyleSheet.create({
+  loading: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   bottomBtn: {
     backgroundColor: 'white',
     height: height / 11.5,

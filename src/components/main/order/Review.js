@@ -10,47 +10,67 @@ import {
   FlatList,
   Modal,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {AirbnbRating} from 'react-native-elements';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import Toast from 'react-native-root-toast';
+import {useSelector} from 'react-redux';
 
 import Global from '../../Global';
+import check_comment from '../../../apis/check_comment';
+import submit_comment from '../../../apis/submit_comment';
+import get_order_detail from '../../../apis/get_order_detail';
 
 import closeIcon from '../../../icons/close.png';
 import cameraIcon from '../../../icons/photo_camera-bd.png';
 
-export default function Review({navigation}) {
+export default function Review({navigation, route}) {
   useEffect(() => {
-    initReview();
+    initReview(orderDetail.dishes);
+    if (route.params.chef === null) {
+      getOrdersDetail();
+    }
   }, []);
-  const initReview = () => {
+  const initReview = (dishes) => {
     var arrTemp = [];
-    for (let i = 0; i < data.dish.length; i++) {
+    for (let i = 0; i < dishes.length; i++) {
       arrTemp.push({rating: 0, comment: '', image: ''});
     }
     setReview(arrTemp);
   };
 
+  const user = useSelector((state) => state.user);
   const [review, setReview] = useState([]);
   const [modal, setModal] = useState({status: false, index: 0});
-
-  const data = {
+  const [loading, setLoading] = useState(false);
+  const [orderDetail, setOrderDetail] = useState({
     chef: {
-      image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
-      name: 'Trần Thanh Đức',
+      avatar:
+        route.params.chef !== null
+          ? route.params.chef.avatar
+          : 'Thiết lập ngay',
+      chef_name: route.params.chef !== null ? route.params.chef.chef_name : '',
     },
-    dish: [
-      {
-        id: 1,
-        name: 'Thịt heo ba rọi kho dưa cải chua tỏi ớt',
-      },
-      {
-        id: 2,
-        name: 'Mỳ Quảng tôm thịt nướng thịt gà trứng cút',
-      },
-    ],
+    dishes: route.params.chef !== null ? route.params.dish : [],
+  });
+  const orderInfo = route.params.orderInfo;
+
+  const getOrdersDetail = () => {
+    get_order_detail
+      .get_order_detail(user.token, route.params.orderInfo.id_order)
+      .then((responseJson) => {
+        setOrderDetail(responseJson);
+        initReview(responseJson.dishes);
+      })
+      .catch((err) => {
+        console.log(err);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
+      });
   };
 
   const checkRating = (index) => {
@@ -88,8 +108,7 @@ export default function Review({navigation}) {
           name,
         };
         setModal({status: false, index: 0});
-        commentImage(uri);
-        // cloudinaryUpload(source);
+        commentImage(source);
       }
     });
   };
@@ -113,36 +132,153 @@ export default function Review({navigation}) {
           name,
         };
         setModal({status: false, index: 0});
-        commentImage(uri);
-        // cloudinaryUpload(source);
+        commentImage(source);
       }
     });
   };
-  const cloudinaryUpload = (photo) => {
-    const dulieu = new FormData();
-    dulieu.append('file', photo);
-    if (modal.type === 0) {
-      dulieu.append('upload_preset', 'avatar');
-    } else {
-      dulieu.append('upload_preset', 'review');
-    }
-    dulieu.append('cloud_name', 'dep0t5tcf');
 
-    fetch('https://api.cloudinary.com/v1_1/dep0t5tcf/upload', {
-      method: 'POST',
-      body: dulieu,
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res.secure_url);
-      })
-      .catch((err) => {
-        console.log(err);
-        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-          position: 0,
+  const submitComment = () => {
+    setLoading(true);
+    for (let i = 0; i < review.length; i++) {
+      if (review[i].rating === 0) {
+        setLoading(false);
+        return Toast.show('Vui lòng đánh giá sao cho món ăn', {
+          position: -20,
           duration: 2500,
         });
-      });
+      } else if (review[i].comment === '') {
+        setLoading(false);
+        return Toast.show('Vui lòng chia sẻ đánh giá về món ăn', {
+          position: -20,
+          duration: 2500,
+        });
+      }
+    }
+
+    var count = 0;
+    for (let i = 0; i < review.length; i++) {
+      if (review[i].image !== '') {
+        //Upload image
+        const dulieu = new FormData();
+        dulieu.append('file', review[i].image);
+        if (modal.type === 0) {
+          dulieu.append('upload_preset', 'avatar');
+        } else {
+          dulieu.append('upload_preset', 'review');
+        }
+        dulieu.append('cloud_name', 'dep0t5tcf');
+
+        fetch('https://api.cloudinary.com/v1_1/dep0t5tcf/upload', {
+          method: 'POST',
+          body: dulieu,
+        })
+          .then((res) => res.json())
+          .then((responseJson1) => {
+            check_comment
+              .check_comment(review[i].comment)
+              .then((responseJson2) => {
+                submit_comment
+                  .submit_comment(
+                    user.token,
+                    orderDetail.dishes[i].iddishofchef,
+                    orderInfo.id_order,
+                    review[i].comment,
+                    review[i].rating,
+                    responseJson1.secure_url,
+                    responseJson2.predict,
+                  )
+                  .then((responseJson3) => {
+                    setLoading(false);
+                    if (responseJson3.message === 'Add successfully!') {
+                      count += 1;
+                    }
+                    if (count === review.length) {
+                      if (route.params.chef !== null) {
+                        navigation.navigate('ORDER_DETAIL', {
+                          order: {...orderInfo, checkcomment: 1},
+                        });
+                      } else {
+                        navigation.goBack();
+                      }
+                    }
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                    setLoading(false);
+                    return Toast.show(
+                      'Lỗi! Vui lòng kiểm tra kết nối internet',
+                      {
+                        position: 0,
+                        duration: 2500,
+                      },
+                    );
+                  });
+              })
+              .catch((err) => {
+                console.log(err);
+                setLoading(false);
+                return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+                  position: 0,
+                  duration: 2500,
+                });
+              });
+          })
+          .catch((err) => {
+            console.log(err);
+            setLoading(false);
+            return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+              position: 0,
+              duration: 2500,
+            });
+          });
+      } else {
+        check_comment
+          .check_comment(review[i].comment)
+          .then((responseJson1) => {
+            submit_comment
+              .submit_comment(
+                user.token,
+                orderDetail.dishes[i].iddishofchef,
+                orderInfo.id_order,
+                review[i].comment,
+                review[i].rating,
+                null,
+                responseJson1.predict,
+              )
+              .then((responseJson2) => {
+                setLoading(false);
+                if (responseJson2.message === 'Add successfully!') {
+                  count += 1;
+                }
+                if (count === review.length) {
+                  if (route.params.chef !== null) {
+                    navigation.navigate('ORDER_DETAIL', {
+                      order: {...orderInfo, checkcomment: 1},
+                    });
+                  } else {
+                    navigation.goBack();
+                  }
+                }
+              })
+              .catch((err) => {
+                console.log(err);
+                setLoading(false);
+                return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+                  position: 0,
+                  duration: 2500,
+                });
+              });
+          })
+          .catch((err) => {
+            console.log(err);
+            setLoading(false);
+            return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+              position: 0,
+              duration: 2500,
+            });
+          });
+      }
+    }
   };
 
   const ratingCompleted = (rate, index) => {
@@ -155,21 +291,31 @@ export default function Review({navigation}) {
     arrTemp[index].comment = text;
     setReview(arrTemp);
   };
-  const commentImage = (image) => {
+  const commentImage = (source) => {
     var arrTemp = [...review];
-    arrTemp[modal.index].image = image;
+    arrTemp[modal.index].image = source;
     setReview(arrTemp);
   };
 
   const renderHeaderList = () => (
     <View style={styles.chefInfo}>
-      <Image style={styles.chefImg} source={{uri: data.chef.image}} />
-      <Text style={styles.chefName}>{data.chef.name}</Text>
+      <Image
+        style={styles.chefImg}
+        source={
+          orderDetail.chef.avatar === 'Thiết lập ngay'
+            ? {
+                uri:
+                  'https://res.cloudinary.com/chefood/image/upload/v1614660200/avatar/avt_h3mm3z.png',
+              }
+            : {uri: orderDetail.chef.avatar}
+        }
+      />
+      <Text style={styles.chefName}>{orderDetail.chef.chef_name}</Text>
     </View>
   );
   const renderItem = ({item, index}) => (
     <View style={styles.item}>
-      <Text style={styles.itemName}>{item.name}</Text>
+      <Text style={styles.itemName}>{item.dish_name}</Text>
       <AirbnbRating
         starContainerStyle={
           review[index].rating === 0
@@ -181,6 +327,7 @@ export default function Review({navigation}) {
         selectedColor={'#F2C94C'}
         reviewColor={'#E0E0E0'}
         size={22}
+        isDisabled={loading}
         showRating={false}
         onFinishRating={(rate) => ratingCompleted(rate, index)}
       />
@@ -192,18 +339,39 @@ export default function Review({navigation}) {
         style={styles.itemInput}
         multiline={true}
         numberOfLines={4}
+        editable={!loading}
         onChangeText={(text) => commentCompleted(text, index)}
       />
       {review[index].image === '' ? (
         <TouchableOpacity
           style={styles.itemImgSelect}
-          onPress={() => setModal({status: true, index: index})}>
+          onPress={() => {
+            if (!loading) {
+              setModal({status: true, index: index});
+            }
+          }}>
           <Image style={styles.cameraImg} source={cameraIcon} />
           <Text style={styles.cameraText}>Ảnh</Text>
         </TouchableOpacity>
       ) : (
-        <Image style={styles.itemImg} source={{uri: review[index].image}} />
+        <TouchableOpacity
+          onPress={() => {
+            if (!loading) {
+              setModal({status: true, index: index});
+            }
+          }}>
+          <Image
+            style={styles.itemImg}
+            source={{uri: review[index].image.uri}}
+          />
+        </TouchableOpacity>
       )}
+    </View>
+  );
+
+  const Loading = (
+    <View style={styles.loading}>
+      <ActivityIndicator animating={loading} color="#fff" size="small" />
     </View>
   );
 
@@ -212,32 +380,40 @@ export default function Review({navigation}) {
       {review.length !== 0 ? (
         <FlatList
           showsVerticalScrollIndicator={false}
-          data={data.dish}
+          data={orderDetail.dishes}
           ListHeaderComponent={renderHeaderList}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={(item) => item.iddishofchef}
         />
       ) : null}
 
       <View style={styles.bottomView}>
         <TouchableOpacity
           onPress={() => {
-            console.log(review);
+            if (!loading) {
+              submitComment();
+            }
           }}>
           <LinearGradient
             style={styles.btn}
             colors={['#fb5a23', '#ffb038']}
             start={{x: 0, y: 0}}
             end={{x: 1, y: 0}}>
-            <View>
+            <View style={{flexDirection: 'row'}}>
               <Text style={styles.btnText}>Gửi</Text>
+              {Loading}
             </View>
           </LinearGradient>
         </TouchableOpacity>
       </View>
 
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <TouchableOpacity
+          onPress={() => {
+            if (!loading) {
+              navigation.goBack();
+            }
+          }}>
           <Image style={styles.backIcon} source={closeIcon} />
         </TouchableOpacity>
         <Text style={styles.title}>Đánh giá</Text>
@@ -277,6 +453,10 @@ const {
   backButton,
 } = Global;
 const styles = StyleSheet.create({
+  loading: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   itemRating: {
     fontFamily: 'Roboto-Regular',
     fontSize: width / 30,
@@ -315,6 +495,7 @@ const styles = StyleSheet.create({
     textAlignVertical: 'top',
     height: 90,
     marginTop: 14,
+    padding: 6,
     color: '#4f4f4f',
     fontSize: width / 30,
   },
@@ -392,6 +573,8 @@ const styles = StyleSheet.create({
     fontSize: width / 30,
     color: 'white',
     marginVertical: 10,
+    marginLeft: 35,
+    marginRight: 15,
   },
   btn: {
     width: width - 20,

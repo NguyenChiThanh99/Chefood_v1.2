@@ -17,6 +17,7 @@ import {
 import Toast from 'react-native-root-toast';
 import {SliderBox} from 'react-native-image-slider-box';
 import {useSelector, useDispatch} from 'react-redux';
+import {useIsFocused} from '@react-navigation/native';
 
 import Global from '../../Global';
 import MainHeader from './cardView/MainHeader';
@@ -30,6 +31,11 @@ import get_all_dish from '../../../apis/get_all_dish';
 import get_type_dish from '../../../apis/get_type_dish';
 import get_saved_dish from '../../../apis/get_saved_dish';
 import get_following_chef from '../../../apis/get_following_chef';
+import get_name_viewed_dish from '../../../apis/get_name_viewed_dish';
+import get_related_dish from '../../../apis/get_related_dish';
+import get_recommended_dish from '../../../apis/get_recommended_dish';
+import get_today_dish from '../../../apis/get_today_dish';
+import get_hot_chef from '../../../apis/get_hot_chef';
 import {updateSavedDish, updateSavedChef} from '../../../../actions';
 
 import barbecue from '../../../images/word/barbecue.png';
@@ -61,6 +67,7 @@ import cake from '../../../images/category/cake.png';
 import arrow from '../../../icons/arrow_right-fb5a23.png';
 
 var countExit = 0;
+var firstLoad = false;
 
 export default function Home({navigation}) {
   useFocusEffect(
@@ -89,20 +96,38 @@ export default function Home({navigation}) {
     }, []),
   );
 
+  const isFocused = useIsFocused();
   useEffect(() => {
-    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
-    loadHotDish();
-    getViewedDish();
-    getAllDish(true);
-    getSavedDish();
-    getFollowingChef();
-  }, []);
+    if (!firstLoad) {
+      LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+      loadHotDish();
+      getTodayDish();
+      getAllDish(true);
+      getHotChef();
+      getSavedDish();
+      getFollowingChef();
+      firstLoad = true;
+    }
+    if (isFocused) {
+      getRecommendation(0);
+      getViewedDish(0);
+    }
+  }, [isFocused]);
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [pageHotDish, setPageHotDish] = useState(0);
   const [dataHotDish, setDataHotDish] = useState([]);
   const [loadingHotDish, setLoadingHotDish] = useState(false);
+  const [pageHotChef, setPageHotChef] = useState(0);
+  const [dataHotChef, setDataHotChef] = useState([]);
+  const [loadingHotChef, setLoadingHotChef] = useState(false);
+  const [pageTodayDish, setPageTodayDish] = useState(0);
+  const [dataTodayDish, setDataTodayDish] = useState([]);
+  const [loadingTodayDish, setLoadingTodayDish] = useState(false);
+  const [pageRecommendation, setPageRecommendation] = useState(0);
+  const [dataRecommendation, setDataRecommendation] = useState([]);
+  const [loadingRecommendation, setLoadingRecommendation] = useState(false);
   const [pageViewedDish, setPageViewedDish] = useState(0);
   const [dataViewedDish, setDataViewedDish] = useState([]);
   const [loadingViewedDish, setLoadingViewedDish] = useState(false);
@@ -134,97 +159,6 @@ export default function Home({navigation}) {
     'https://i.pinimg.com/originals/3f/8e/48/3f8e48a0b20f4dc0671a8e5e8dd861a4.jpg',
     'https://branding360.vn/wp-content/uploads/2019/09/Food_05-e1568694831723.jpg',
     'https://traungonquan.vn/wp-content/uploads/2018/12/trau-ngon-co-banner-web.jpg',
-  ];
-
-  const dataChef = [
-    {
-      id: 1,
-      image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
-      email: 'ha.ntthuy@example.com',
-      cover:
-        'https://images.unsplash.com/photo-1612392062126-5cc76074df9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-      star: 5,
-      name: 'Nguyễn Thị Thúy Hà',
-      address: '299/11 Lý Thường Kiệt, F15, Q11',
-      phone: '0986375176',
-    },
-    {
-      id: 2,
-      image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
-      email: 'ha.ntthuy@example.com',
-      cover:
-        'https://images.unsplash.com/photo-1612392062126-5cc76074df9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-      star: 4,
-      name: 'Nguyễn Thị Thúy Hà',
-      address: '299/11 Lý Thường Kiệt, F15, Q11',
-      phone: '0986375176',
-    },
-    {
-      id: 3,
-      image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
-      email: 'ha.ntthuy@example.com',
-      cover:
-        'https://images.unsplash.com/photo-1612392062126-5cc76074df9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-      star: 3,
-      name: 'Nguyễn Thị Thúy Hà',
-      address: '299/11 Lý Thường Kiệt, F15, Q11',
-      phone: '0986375176',
-    },
-    {
-      id: 4,
-      image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
-      email: 'ha.ntthuy@example.com',
-      cover:
-        'https://images.unsplash.com/photo-1612392062126-5cc76074df9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-      star: 5,
-      name: 'Nguyễn Thị Thúy Hà',
-      address: '299/11 Lý Thường Kiệt, F15, Q11',
-      phone: '0986375176',
-    },
-    {
-      id: 5,
-      image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
-      email: 'ha.ntthuy@example.com',
-      cover:
-        'https://images.unsplash.com/photo-1612392062126-5cc76074df9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-      star: 5,
-      name: 'Nguyễn Thị Thúy Hà',
-      address: '299/11 Lý Thường Kiệt, F15, Q11',
-      phone: '0986375176',
-    },
-    {
-      id: 6,
-      image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
-      email: 'ha.ntthuy@example.com',
-      cover:
-        'https://images.unsplash.com/photo-1612392062126-5cc76074df9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-      star: 1,
-      name: 'Nguyễn Thị Thúy Hà',
-      address: '299/11 Lý Thường Kiệt, F15, Q11',
-      phone: '0986375176',
-    },
-    {
-      id: 7,
-      image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
-      email: 'ha.ntthuy@example.com',
-      cover:
-        'https://images.unsplash.com/photo-1612392062126-5cc76074df9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-      star: 2,
-      name: 'Nguyễn Thị Thúy Hà',
-      address: '299/11 Lý Thường Kiệt, F15, Q11',
-      phone: '0986375176',
-    },
-    {
-      id: 8,
-      image: 'https://www2.lina.review/storage/avatars/1608883853.jpg',
-      email: 'ha.ntthuy@example.com',
-      cover:
-        'https://images.unsplash.com/photo-1612392062126-5cc76074df9c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-      star: 4,
-      name: 'Nguyễn Thị Thúy Hà',
-      address: '299/11 Lý Thường Kiệt, F15, Q11',
-      phone: '0986375176',
-    },
   ];
 
   const dataCategory = [
@@ -273,31 +207,90 @@ export default function Home({navigation}) {
       });
   };
 
-  const getViewedDish = () => {
+  const getTodayDish = () => {
+    setLoadingTodayDish(true);
+    get_today_dish
+      .get_today_dish(user.token, pageTodayDish)
+      .then((responseJson) => {
+        if (responseJson.length === 0 && pageTodayDish !== 0) {
+          setLoadingTodayDish(false);
+          return Toast.show('Đã tải đến cuối danh sách', {
+            position: 0,
+            duration: 2500,
+          });
+        } else {
+          setDataTodayDish(dataTodayDish.concat(responseJson));
+          setPageTodayDish(pageTodayDish + 1);
+          setLoadingTodayDish(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoadingTodayDish(false);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
+      });
+  };
+
+  const getHotChef = () => {
+    setLoadingHotChef(true);
+    get_hot_chef
+      .get_hot_chef(user.token, pageHotChef)
+      .then((responseJson) => {
+        if (responseJson.length === 0 && pageHotChef !== 0) {
+          setLoadingHotChef(false);
+          return Toast.show('Đã tải đến cuối danh sách', {
+            position: 0,
+            duration: 2500,
+          });
+        } else {
+          setDataHotChef(dataHotChef.concat(responseJson));
+          setPageHotChef(pageHotChef + 1);
+          setLoadingHotChef(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoadingHotChef(false);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
+      });
+  };
+
+  const getViewedDish = (page) => {
     setLoadingViewedDish(true);
     get_viewed_dish
-      .get_viewed_dish(user.token, pageViewedDish)
+      .get_viewed_dish(user.token, page)
       .then((responseJson) => {
-        if (responseJson.length === 0) {
+        if (page !== 0 && responseJson.length === 0) {
           setLoadingViewedDish(false);
           return Toast.show('Đã tải đến cuối danh sách', {
             position: 0,
             duration: 2500,
           });
         } else {
-          var dishArr = [...dataViewedDish];
-          for (let i = 0; i < responseJson.length; i++) {
-            var found = dataViewedDish.find(
-              (dish) =>
-                dish.dishofchef.iddishofchef ===
-                responseJson[i].dishofchef.iddishofchef,
-            );
-            if (found === undefined) {
-              dishArr.push(responseJson[i]);
+          if (page === 0) {
+            setDataViewedDish(responseJson);
+            setPageViewedDish(1);
+          } else {
+            var dishArr = [...dataViewedDish];
+            for (let i = 0; i < responseJson.length; i++) {
+              var found = dataViewedDish.find(
+                (dish) =>
+                  dish.dishofchef.iddishofchef ===
+                  responseJson[i].dishofchef.iddishofchef,
+              );
+              if (found === undefined) {
+                dishArr.push(responseJson[i]);
+              }
             }
+            setDataViewedDish(dishArr);
+            setPageViewedDish(pageViewedDish + 1);
           }
-          setDataViewedDish(dishArr);
-          setPageViewedDish(pageViewedDish + 1);
           setLoadingViewedDish(false);
         }
       })
@@ -324,6 +317,85 @@ export default function Home({navigation}) {
           duration: 2500,
         });
       });
+  };
+
+  const getRecommendation = (page) => {
+    setLoadingRecommendation(true);
+    get_name_viewed_dish
+      .get_name_viewed_dish(user.token, page)
+      .then((responseJson1) => {
+        if (responseJson1.message === 'No more viewed dish!' && page !== 0) {
+          setLoadingRecommendation(false);
+          return Toast.show('Đã tải đến cuối danh sách', {
+            position: 0,
+            duration: 2500,
+          });
+        } else {
+          get_related_dish
+            .get_related_dish(responseJson1.dish_name)
+            .then((responseJson2) => {
+              get_recommended_dish
+                .get_recommended_dish(
+                  user.token,
+                  checkDataRecommendation(responseJson2),
+                )
+                .then((responseJson3) => {
+                  setLoadingRecommendation(false);
+
+                  if (page === 0) {
+                    setDataRecommendation(responseJson3);
+                    setPageRecommendation(1);
+                  } else {
+                    setDataRecommendation(
+                      dataRecommendation.concat(responseJson3),
+                    );
+                    setPageRecommendation(page + 1);
+                  }
+                })
+                .catch((err) => {
+                  console.log(err);
+                  setLoadingRecommendation(false);
+                  return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+                    position: 0,
+                    duration: 2500,
+                  });
+                });
+            })
+            .catch((err) => {
+              console.log(err);
+              setLoadingRecommendation(false);
+              return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+                position: 0,
+                duration: 2500,
+              });
+            });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoadingRecommendation(false);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
+      });
+  };
+
+  const checkDataRecommendation = (res) => {
+    var output = [];
+    for (let i = 0; i < res.length; i++) {
+      var number = 0;
+      for (let j = 0; j < dataRecommendation.length; j++) {
+        if (res[i] === dataRecommendation[j].dish.name) {
+          number += 1;
+        }
+      }
+      output.push({
+        dish_name: res[i],
+        number: number,
+      });
+    }
+    return output;
   };
 
   const getFollowingChef = () => {
@@ -920,43 +992,51 @@ export default function Home({navigation}) {
           </View>
         </View>
 
-        {/* <View style={styles.cardView}>
-          <Text style={styles.cardViewTitle}>Gợi ý các món ăn hôm nay</Text>
-          <FlatList
-            style={styles.cardViewList}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            data={dataDish}
-            renderItem={({item, index}) => {
-              if (index === 0) {
-                return (
+        {dataRecommendation.length !== 0 ? (
+          <View style={styles.cardView}>
+            <Text style={styles.cardViewTitle}>Món ăn đề xuất cho bạn</Text>
+            <FlatList
+              style={styles.cardViewList}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              data={dataRecommendation}
+              ListFooterComponent={
+                loadingRecommendation ? (
+                  <View style={styles.viewMoreCont}>{Loading}</View>
+                ) : (
                   <TouchableOpacity
-                    onPress={() => navigation.navigate('DISH', {dish: item})}
-                    style={{marginLeft: 15, marginRight: 10}}>
-                    <DishViewHorizontal dish={item} />
+                    style={styles.viewMoreCont}
+                    onPress={() => getRecommendation(pageRecommendation)}>
+                    <View style={styles.viewMoreImgCont}>
+                      <Image style={styles.viewMoreImg} source={arrow} />
+                    </View>
+                    <Text style={styles.viewMoreText}>Xem thêm</Text>
                   </TouchableOpacity>
-                );
-              } else if (index === dataDish.length - 1) {
-                return (
-                  <TouchableOpacity
-                    onPress={() => navigation.navigate('DISH', {dish: item})}
-                    style={{marginRight: 15}}>
-                    <DishViewHorizontal dish={item} />
-                  </TouchableOpacity>
-                );
-              } else {
-                return (
-                  <TouchableOpacity
-                    onPress={() => navigation.navigate('DISH', {dish: item})}
-                    style={{marginRight: 10}}>
-                    <DishViewHorizontal dish={item} />
-                  </TouchableOpacity>
-                );
+                )
               }
-            }}
-            keyExtractor={(item) => item.iddishofchef}
-          />
-        </View> */}
+              renderItem={({item, index}) => {
+                if (index === 0) {
+                  return (
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('DISH', {dish: item})}
+                      style={{marginLeft: 15, marginRight: 10}}>
+                      <DishViewHorizontal dish={item} />
+                    </TouchableOpacity>
+                  );
+                } else {
+                  return (
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('DISH', {dish: item})}
+                      style={{marginRight: 10}}>
+                      <DishViewHorizontal dish={item} />
+                    </TouchableOpacity>
+                  );
+                }
+              }}
+              keyExtractor={(item) => item.dishofchef.iddishofchef}
+            />
+          </View>
+        ) : null}
 
         {dataHotDish.length !== 0 ? (
           <View style={styles.cardView}>
@@ -1010,6 +1090,52 @@ export default function Home({navigation}) {
           </View>
         ) : null}
 
+        {dataTodayDish.length !== 0 ? (
+          <View style={styles.cardView}>
+            <Text style={styles.cardViewTitle}>Gợi ý các món ăn hôm nay</Text>
+            <FlatList
+              style={styles.cardViewList}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              data={dataTodayDish}
+              ListFooterComponent={
+                loadingTodayDish ? (
+                  <View style={styles.viewMoreCont}>{Loading}</View>
+                ) : (
+                  <TouchableOpacity
+                    style={styles.viewMoreCont}
+                    onPress={() => getTodayDish()}>
+                    <View style={styles.viewMoreImgCont}>
+                      <Image style={styles.viewMoreImg} source={arrow} />
+                    </View>
+                    <Text style={styles.viewMoreText}>Xem thêm</Text>
+                  </TouchableOpacity>
+                )
+              }
+              renderItem={({item, index}) => {
+                if (index === 0) {
+                  return (
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('DISH', {dish: item})}
+                      style={{marginLeft: 15, marginRight: 10}}>
+                      <DishViewHorizontal dish={item} />
+                    </TouchableOpacity>
+                  );
+                } else {
+                  return (
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('DISH', {dish: item})}
+                      style={{marginRight: 10}}>
+                      <DishViewHorizontal dish={item} />
+                    </TouchableOpacity>
+                  );
+                }
+              }}
+              keyExtractor={(item) => item.dishofchef.iddishofchef}
+            />
+          </View>
+        ) : null}
+
         {dataViewedDish.length !== 0 ? (
           <View style={styles.cardView}>
             <Text style={styles.cardViewTitle}>Món ăn đã xem</Text>
@@ -1024,7 +1150,7 @@ export default function Home({navigation}) {
                 ) : (
                   <TouchableOpacity
                     style={styles.viewMoreCont}
-                    onPress={() => getViewedDish()}>
+                    onPress={() => getViewedDish(pageViewedDish)}>
                     <View style={styles.viewMoreImgCont}>
                       <Image style={styles.viewMoreImg} source={arrow} />
                     </View>
@@ -1127,23 +1253,45 @@ export default function Home({navigation}) {
           )}
         </View>
 
-        {/* <View style={styles.cardViewLast}>
-          <Text style={styles.cardViewTitle}>Đầu bếp nổi bật</Text>
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            data={dataChef}
-            ItemSeparatorComponent={flatListItemSeparator}
-            renderItem={({item, index}) => {
-              return (
-                <TouchableOpacity
-                  onPress={() => navigation.navigate('CHEF', {chef: item})}>
-                  <ChefView chef={item} />
-                </TouchableOpacity>
-              );
-            }}
-            keyExtractor={(item) => item.id.toString()}
-          />
-        </View> */}
+        {dataHotChef.length !== 0 ? (
+          <View style={styles.cardViewLast}>
+            <Text style={styles.cardViewTitle}>Đầu bếp nổi bật</Text>
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              data={dataHotChef}
+              ItemSeparatorComponent={flatListItemSeparator}
+              ListFooterComponent={
+                <View>
+                  <View style={styles.line} />
+                  {loadingHotChef ? (
+                    <View style={{paddingVertical: 4.5}}>{Loading}</View>
+                  ) : (
+                    <TouchableOpacity
+                      onPress={() => getHotChef()}
+                      style={{
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}>
+                      <Text style={styles.viewMoreTextVertical}>Xem thêm</Text>
+                    </TouchableOpacity>
+                  )}
+                </View>
+              }
+              renderItem={({item, index}) => {
+                return (
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate('CHEF', {chef: item, fromDish: false})
+                    }>
+                    <ChefView chef={item} />
+                  </TouchableOpacity>
+                );
+              }}
+              keyExtractor={(item) => item._id}
+            />
+          </View>
+        ) : null}
       </ScrollView>
     </View>
   );

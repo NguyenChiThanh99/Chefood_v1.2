@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
 import {
@@ -9,16 +8,20 @@ import {
   Image,
   ScrollView,
   Modal,
+  ActivityIndicator,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import ModalDropdown from 'react-native-modal-dropdown';
 import {SwipeListView} from 'react-native-swipe-list-view';
 import stripe from 'tipsi-stripe';
 import Toast from 'react-native-root-toast';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Global from '../../Global';
 import CartItem from './cardView/CartItem';
+import {updateCart} from '../../../../actions';
+import submit_order from '../../../apis/submit_order';
 
 import arrowBack from '../../../icons/arrow_back_ios-fb5a23.png';
 import editIcon from '../../../icons/edit.png';
@@ -31,17 +34,21 @@ stripe.setOptions({
   publishableKey: 'pk_test_nNsT1Tapm2K01DErmIgoCYka00Xl2AhJAY',
 });
 
-export default function Cart({navigation}) {
-  const [total, setTotal] = useState(636000);
+export default function Cart({navigation, route}) {
+  const [total, setTotal] = useState(0);
   const [numOrder, setNumOrder] = useState(0);
   const [method, setMethod] = useState('Tiền mặt');
+  const [loading, setLoading] = useState(false);
   const [arrowIcon, setArrowIcon] = useState(expandMoreArrow);
   const [itemSelected, setItemSelected] = useState(null);
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const cart = useSelector((state) => state.cart);
 
   useEffect(() => {
     numOrderHandel();
-  }, []);
+    totalHandel();
+  });
 
   const shipmentInfo = {
     name: user.userInfo.name,
@@ -49,69 +56,90 @@ export default function Cart({navigation}) {
     phone: user.userInfo.phone,
   };
   const optionMethod = ['Tiền mặt', 'Thẻ'];
-  const cartData = [
-    {
-      id: 1,
-      dish: {
-        id: 1,
-        image:
-          'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-        name: 'Thịt heo ba rọi kho dưa cải chua tỏi ớt',
-        chef: 'Trần Bảo Toàn',
-        address:
-          '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
-        ingredients:
-          '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
-        price: 149000,
-        prepare: ' Chuẩn bị: 10 phút',
-        perform: ' Thực hiện: 30 phút',
-        numOrder: '20',
-      },
-      quantity: 1,
-    },
-    {
-      id: 2,
-      dish: {
-        id: 5,
-        image:
-          'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-        name: 'Hủ tiếu nam vang chuẩn vị nhà làm ngon như nhà làm',
-        chef: 'Nguyễn Chí Thanh',
-        address:
-          '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
-        ingredients:
-          '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
-        price: 200000,
-        prepare: ' Chuẩn bị: 10 phút',
-        perform: ' Thực hiện: 30 phút',
-        numOrder: '20',
-      },
-      quantity: 1,
-    },
-    {
-      id: 3,
-      dish: {
-        id: 4,
-        image:
-          'https://image.xahoi.com.vn/news/2017/11/09/bun-rieu-cua-suon-sun-cach-lam-bun-rieu-suon-sun-12-1509075771-width650height488-xahoi.com.vn-w650-h488.jpg',
-        name: 'Tôm kho mắm',
-        chef: 'Nguyễn Trí Hiền',
-        address:
-          '1400 Hoàng Văn Thụ, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh',
-        ingredients:
-          '500 ml    Sữa tươi  \n500 ml    Nước sôi  \n240 ml    Kem whipping  \n20 gram    Trà đen  \n1 thanh    Quế  \n1 cái    Hoa hồi  \n1 quả    Bạch đậu khấu  \n10 quả    Bạch quả  \n3 thìa canh    Đường nâu  \n2 thìa canh    Đường trắng  \n1 thìa cà phê    Vani  \n2 thìa cà phê    Nhục đậu khấu  \n1/2 thìa cà phê    Bột gừng  \n2 thìa cà phê    Bột quế',
-        price: 213000,
-        prepare: ' Chuẩn bị: 10 phút',
-        perform: ' Thực hiện: 30 phút',
-        numOrder: '20',
-      },
-      quantity: 1,
-    },
-  ];
+
+  const separateCart = () => {
+    var cartSeparate = [];
+    for (let i = 0; i < cart.length; i++) {
+      const found = cartSeparate.findIndex(
+        (element) => element.idchef === cart[i].dish.chef._id,
+      );
+      if (found === -1) {
+        cartSeparate.push({
+          idchef: cart[i].dish.chef._id,
+          dishes: [
+            {
+              iddishofchef: cart[i].dish.dishofchef.iddishofchef,
+              price: cart[i].dish.dishofchef.price,
+              amount: cart[i].quantity,
+            },
+          ],
+        });
+      } else {
+        cartSeparate[found] = {
+          ...cartSeparate[found],
+          dishes: [
+            ...cartSeparate[found].dishes,
+            {
+              iddishofchef: cart[i].dish.dishofchef.iddishofchef,
+              price: cart[i].dish.dishofchef.price,
+              amount: cart[i].quantity,
+            },
+          ],
+        };
+      }
+    }
+    return cartSeparate;
+  };
 
   const orderHandle = () => {
+    setLoading(true);
     if (method === 'Thẻ') {
       paymentByCard();
+    } else {
+      var cartSeparate = separateCart();
+      var count = 0;
+      for (let i = 0; i < cartSeparate.length; i++) {
+        var totalSubOrder = 0;
+        for (let j = 0; j < cartSeparate[i].dishes.length; j++) {
+          totalSubOrder +=
+            cartSeparate[i].dishes[j].price * cartSeparate[i].dishes[j].amount;
+        }
+        var diaChi;
+        if (route.params.address !== '') {
+          diaChi = route.params.address;
+        } else {
+          diaChi = shipmentInfo.address;
+        }
+
+        submit_order
+          .submit_order(
+            user.token,
+            diaChi,
+            cartSeparate[i].idchef,
+            method,
+            totalSubOrder,
+            cartSeparate[i].dishes,
+          )
+          .then((responseJson) => {
+            if (responseJson.message === 'Add successfully!') {
+              count += 1;
+              if (count === cartSeparate.length) {
+                dispatch(updateCart([]));
+                storeData([]);
+                navigation.navigate('ORDER', {fromUser: true});
+                setLoading(false);
+              }
+            }
+          })
+          .catch((err) => {
+            setLoading(false);
+            console.log(err);
+            return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+              position: 0,
+              duration: 2500,
+            });
+          });
+      }
     }
   };
 
@@ -162,19 +190,44 @@ export default function Cart({navigation}) {
   );
 
   const deleteItem = () => {
-    itemSelected.rowMap[itemSelected.data.id].closeRow();
+    var index = cart.indexOf(itemSelected.data);
+    cart.splice(index, 1);
+    dispatch(updateCart(cart));
+    storeData(cart);
+
+    itemSelected.rowMap[
+      itemSelected.data.dish.dishofchef.iddishofchef
+    ].closeRow();
     setItemSelected(null);
+  };
+
+  const storeData = async (value) => {
+    var key = '@cart' + '_' + user.userInfo._id;
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem(key, jsonValue);
+    } catch (e) {
+      console.log('Error: ' + e);
+    }
   };
 
   const numOrderHandel = () => {
     var temp = [];
-    for (let i = 0; i < cartData.length; i++) {
-      const found = temp.find((element) => element === cartData[i].dish.chef);
+    for (let i = 0; i < cart.length; i++) {
+      const found = temp.find((element) => element === cart[i].dish.chef._id);
       if (found === undefined) {
-        temp.push(cartData[i].dish.chef);
+        temp.push(cart[i].dish.chef._id);
       }
     }
     setNumOrder(temp.length);
+  };
+
+  const totalHandel = () => {
+    var temp = 0;
+    for (let i = 0; i < cart.length; i++) {
+      temp += cart[i].dish.dishofchef.price * cart[i].quantity;
+    }
+    setTotal(temp);
   };
 
   return (
@@ -187,18 +240,24 @@ export default function Cart({navigation}) {
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={[styles.cartView, {padding: 15}]}>
+        <View style={[styles.cartView, {padding: 15, marginTop: 10}]}>
           <Text style={styles.shipmentText}>Giao hàng đến</Text>
           <View style={styles.shipmentCont}>
             <View style={styles.shipmentInfo}>
-              <Text style={styles.address}>{shipmentInfo.address}</Text>
+              <Text style={styles.address}>
+                {route.params.address !== ''
+                  ? route.params.address
+                  : shipmentInfo.address}
+              </Text>
               <Text style={styles.personalInfo}>
                 {shipmentInfo.name} | {shipmentInfo.phone}
               </Text>
             </View>
 
             <TouchableOpacity
-              onPress={() => navigation.navigate('CHANGE_ADDRESS')}>
+              onPress={() =>
+                navigation.navigate('CHANGE_ADDRESS', {fromCart: true})
+              }>
               <View style={styles.changeCont}>
                 <Image style={styles.changeIcon} source={editIcon} />
                 <Text style={styles.changeText}>Thay đổi</Text>
@@ -207,34 +266,45 @@ export default function Cart({navigation}) {
           </View>
         </View>
 
-        <View style={styles.cartView}>
-          <Text style={styles.cardViewTitle}>Đơn hàng của bạn</Text>
-          <SwipeListView
-            contentContainerStyle={styles.listHotel}
-            data={cartData}
-            renderItem={renderItem}
-            renderHiddenItem={renderHiddenItem}
-            ItemSeparatorComponent={renderItemSeparator}
-            rightOpenValue={-width / 6}
-            previewRowKey={'0'}
-            previewOpenValue={-40}
-            previewOpenDelay={3000}
-            keyExtractor={(item) => item.id.toString()}
-          />
-          <View style={styles.provisionalSums}>
-            <View style={styles.proSumsLine}>
+        {cart.length !== 0 ? (
+          <View style={styles.cartView}>
+            <Text style={styles.cardViewTitle}>Đơn hàng của bạn</Text>
+            <SwipeListView
+              contentContainerStyle={styles.listHotel}
+              data={cart}
+              renderItem={renderItem}
+              renderHiddenItem={renderHiddenItem}
+              ItemSeparatorComponent={renderItemSeparator}
+              rightOpenValue={-width / 6}
+              previewRowKey={'0'}
+              previewOpenValue={-40}
+              previewOpenDelay={3000}
+              keyExtractor={(item) => item.dish.dishofchef.iddishofchef}
+            />
+            <View style={styles.provisionalSums}>
+              <View style={styles.proSumsLine}>
+                <Text style={styles.proSumsText}>
+                  Tạm tính ({cart.length} món)
+                </Text>
+                <Text style={[styles.proSumsText, {fontWeight: 'bold'}]}>
+                  {Global.currencyFormat(total)}đ
+                </Text>
+              </View>
               <Text style={styles.proSumsText}>
-                Tạm tính ({cartData.length} món)
-              </Text>
-              <Text style={[styles.proSumsText, {fontWeight: 'bold'}]}>
-                {Global.currencyFormat(total)}đ
+                Sẽ có {numOrder} đơn hàng do {numOrder} đầu bếp thực hiện
               </Text>
             </View>
-            <Text style={styles.proSumsText}>
-              Sẽ có {numOrder} đơn hàng do {numOrder} đầu bếp thực hiện
-            </Text>
           </View>
-        </View>
+        ) : (
+          <View
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: height / 2,
+            }}>
+            <Text style={styles.noItem}>Giỏ hàng của bạn đang trống!</Text>
+          </View>
+        )}
       </ScrollView>
 
       <View style={styles.bottomView}>
@@ -268,20 +338,37 @@ export default function Cart({navigation}) {
           </Text>
         </View>
 
-        <TouchableOpacity
-          onPress={() => {
-            orderHandle();
-          }}>
+        {cart.length !== 0 ? (
+          <TouchableOpacity
+            onPress={() => {
+              orderHandle();
+            }}>
+            <LinearGradient
+              style={styles.btn}
+              colors={['#fb5a23', '#ffb038']}
+              start={{x: 0, y: 0}}
+              end={{x: 1, y: 0}}>
+              <View style={{flexDirection: 'row'}}>
+                <Text style={styles.btnText}>Đặt hàng</Text>
+                <ActivityIndicator
+                  animating={loading}
+                  color="#fff"
+                  size="small"
+                />
+              </View>
+            </LinearGradient>
+          </TouchableOpacity>
+        ) : (
           <LinearGradient
             style={styles.btn}
-            colors={['#fb5a23', '#ffb038']}
+            colors={['#828282', '#d1d1d1']}
             start={{x: 0, y: 0}}
             end={{x: 1, y: 0}}>
             <View>
               <Text style={styles.btnText}>Đặt hàng</Text>
             </View>
           </LinearGradient>
-        </TouchableOpacity>
+        )}
       </View>
 
       <Modal
@@ -294,14 +381,16 @@ export default function Cart({navigation}) {
             <Text style={{marginTop: 14}}>
               <Text style={styles.content}>Bạn có chắc chắn muốn xóa món </Text>
               <Text style={[styles.content, {fontWeight: 'bold'}]}>
-                {itemSelected !== null ? itemSelected.data.dish.name : ''}
+                {itemSelected !== null ? itemSelected.data.dish.dish.name : ''}
               </Text>
               <Text style={styles.content}> khỏi giỏ hàng?</Text>
             </Text>
             <View style={styles.btnCont}>
               <TouchableOpacity
                 onPress={() => {
-                  itemSelected.rowMap[itemSelected.data.id].closeRow();
+                  itemSelected.rowMap[
+                    itemSelected.data.dish.dishofchef.iddishofchef
+                  ].closeRow();
                   setItemSelected(null);
                 }}>
                 <Text style={styles.btnCancel}>HỦY</Text>
@@ -326,6 +415,11 @@ const {
   mainColor,
 } = Global;
 const styles = StyleSheet.create({
+  noItem: {
+    fontFamily: 'Roboto-Regular',
+    color: '#828282',
+    fontSize: width / 32,
+  },
   modalCont: {
     backgroundColor: 'rgba(0,0,0,0.5)',
     flex: 1,
@@ -466,6 +560,8 @@ const styles = StyleSheet.create({
     fontSize: width / 29,
     color: 'white',
     marginVertical: 10,
+    marginLeft: 35,
+    marginRight: 13,
   },
   shipmentText: {
     fontFamily: 'Roboto-Medium',
@@ -521,7 +617,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: 10,
-    marginBottom: 10,
   },
   backIcon: {
     width: backButton,

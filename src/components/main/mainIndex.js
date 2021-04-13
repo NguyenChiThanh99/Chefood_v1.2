@@ -4,10 +4,11 @@ import {StyleSheet, Image} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
-// import {useSelector, useDispatch} from 'react-redux';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useSelector, useDispatch} from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Global from '../Global';
+import {updateCart} from '../../../actions';
 
 import home from '../../icons/home.png';
 import homeS from '../../icons/homeS.png';
@@ -19,8 +20,6 @@ import notification from '../../icons/notification.png';
 import notificationS from '../../icons/notificationS.png';
 import user from '../../icons/user.png';
 import userS from '../../icons/userS.png';
-
-// import {updateCart} from '../actions';
 
 import Home from './home/Home';
 import Order from './order/Order';
@@ -49,7 +48,6 @@ const Tab = createBottomTabNavigator();
 const MainStack = createStackNavigator();
 
 function Tabs({navigation}) {
-  // const cartLength = useSelector((state) => state.cart.length);
   return (
     <Tab.Navigator
       initialRouteName={'Trang chủ'}
@@ -101,31 +99,33 @@ function Tabs({navigation}) {
   );
 }
 
-// var flag = false;
-// var preUser = 0;
+var flag = false;
+var preUser = 0;
 
 export default function MainIndex({route}) {
-  // const dispatch = useDispatch();
-  // const userid = useSelector((state) => state.user);
-  // const getData = async () => {
-  //   var key = '@cart' + '_' + userid.id.toString();
-  //   try {
-  //     const jsonValue = await AsyncStorage.getItem(key);
-  //     dispatch(updateCart(jsonValue !== null ? JSON.parse(jsonValue) : []));
-  //     return jsonValue !== null ? JSON.parse(jsonValue) : null;
-  //   } catch (e) {
-  //     console.log('Error: ' + e);
-  //   }
-  // };
+  const dispatch = useDispatch();
+  const userId = useSelector((state) => state.user.userInfo); //User hien tai
 
-  // if (preUser !== userid.id) {
-  //   flag = false;
-  // }
-  // if (flag === false && userid !== null) {
-  //   getData();
-  //   flag = true;
-  //   preUser = userid.id;
-  // }
+  const getData = async () => {
+    var key = '@cart' + '_' + userId._id;
+    try {
+      const jsonValue = await AsyncStorage.getItem(key);
+      dispatch(updateCart(jsonValue !== null ? JSON.parse(jsonValue) : []));
+      return jsonValue !== null ? JSON.parse(jsonValue) : null;
+    } catch (e) {
+      console.log('Error: ' + e);
+    }
+  };
+
+  //Dang nhap tai khoan khac
+  if (preUser !== userId._id) {
+    flag = false;
+  }
+  if (flag === false && userId !== null) {
+    getData();
+    flag = true;
+    preUser = userId._id;
+  }
 
   useEffect(() => {
     if (route.params.asyncStorage) {

@@ -3,7 +3,6 @@ import {StyleSheet, View, Image, Text, TouchableOpacity} from 'react-native';
 
 import Global from '../../../Global';
 
-import addIcon from '../../../../icons/add_circle-fb5a23.png';
 import prepareIcon from '../../../../icons/TimeSquare.png';
 import performIcon from '../../../../icons/TimeCircle.png';
 
@@ -12,7 +11,11 @@ export default function DishViewVertical(props) {
 
   const addToCart = () => {};
 
-  const chefJSX = <Text style={styles.chef}>{props.dish.chef.name}</Text>;
+  const chefJSX = (
+    <Text style={styles.chef}>
+      {props.chef === true ? '' : props.dish.chef.name}
+    </Text>
+  );
   const timeJSX = (
     <View style={styles.timeCont}>
       <View style={styles.timeItem}>
@@ -35,20 +38,18 @@ export default function DishViewVertical(props) {
       <View style={styles.wrapperInfo}>
         <Image style={styles.image} source={{uri: picture}} />
         <View>
-          <Text
-            style={props.chef === true ? styles.nameChef : styles.name}
-            numberOfLines={2}>
+          <Text style={styles.name} numberOfLines={2}>
             {name}
           </Text>
           {props.chef === true ? timeJSX : chefJSX}
-          <Text style={styles.price}>{Global.currencyFormat(price)}đ</Text>
+          <Text style={styles.price}>
+            {props.chef === true
+              ? Global.currencyFormat(props.dish.dishofchef.price)
+              : Global.currencyFormat(price)}
+            đ
+          </Text>
         </View>
       </View>
-      {props.chef === true ? (
-        <TouchableOpacity onPress={() => addToCart()} style={styles.addBtn}>
-          <Image source={addIcon} style={styles.addIcon} />
-        </TouchableOpacity>
-      ) : null}
     </View>
   );
 }
@@ -79,11 +80,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  addIcon: {
-    width: width / 16,
-    height: width / 16,
-    marginLeft: 5,
-  },
   wrapper: {
     flexDirection: 'row',
     padding: 10,
@@ -103,16 +99,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto-Medium',
     color: '#333333',
     fontSize: width / 30,
-    fontWeight: 'bold',
     marginBottom: 3,
     width: width / 1.35,
-  },
-  nameChef: {
-    fontFamily: 'Roboto-Medium',
-    color: '#333333',
-    fontSize: width / 30,
-    marginBottom: 3,
-    width: width / 1.5,
   },
   chef: {
     fontFamily: 'Roboto-Light',

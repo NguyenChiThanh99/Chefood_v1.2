@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
 import {
@@ -9,8 +10,11 @@ import {
   TextInput,
   Keyboard,
 } from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Global from '../../../Global';
+import {updateCart} from '../../../../../actions';
 
 import minusDisable from '../../../../icons/remove_circle_outline-e0.png';
 import minus from '../../../../icons/remove_circle_outline-fb5a23.png';
@@ -19,21 +23,24 @@ import plus from '../../../../icons/add_circle_outline-fb5a23.png';
 var soluong = 1;
 
 export default function CartItem(props) {
-  const {name, image, chef, price} = props.cartItem.dish;
+  const {name, picture} = props.cartItem.dish.dish;
 
   useEffect(() => {
     Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
-
     // cleanup function
     return () => {
       Keyboard.removeListener('keyboardDidHide', _keyboardDidHide);
     };
   }, []);
 
+  const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(props.cartItem.quantity);
+  const cart = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.user);
 
   const changeQuantity = (text) => {
     if (!isNaN(parseInt(text, 10))) {
+      updateQuantity(parseInt(text, 10));
       setQuantity(parseInt(text, 10));
       soluong = text;
     } else {
@@ -46,26 +53,46 @@ export default function CartItem(props) {
     if (isNaN(parseInt(soluong, 10)) || parseInt(soluong, 10) <= 1) {
       setQuantity(1);
       soluong = 1;
+      updateQuantity(1);
     }
   };
 
   const touchQuantity = (type) => {
     if (type === 0) {
+      updateQuantity(quantity - 1);
       setQuantity(quantity - 1);
       soluong = soluong - 1;
     } else {
+      updateQuantity(quantity + 1);
       setQuantity(quantity + 1);
       soluong = soluong + 1;
+    }
+  };
+
+  const updateQuantity = (sl) => {
+    var i = cart.indexOf(props.cartItem);
+    cart[i].quantity = sl;
+    dispatch(updateCart(cart));
+    storeData(cart);
+  };
+
+  const storeData = async (value) => {
+    var key = '@cart' + '_' + user.userInfo._id;
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem(key, jsonValue);
+    } catch (e) {
+      console.log('Error: ' + e);
     }
   };
 
   return (
     <View style={styles.wrapper}>
       <View style={{flexDirection: 'row'}}>
-        <Image source={{uri: image}} style={styles.image} />
+        <Image source={{uri: picture}} style={styles.image} />
         <View style={styles.infoCont}>
           <Text style={styles.name}>{name}</Text>
-          <Text style={styles.chef}>{chef}</Text>
+          <Text style={styles.chef}>{props.cartItem.dish.chef.name}</Text>
 
           <View style={styles.quantityCont}>
             <TouchableOpacity
@@ -97,7 +124,9 @@ export default function CartItem(props) {
           </View>
         </View>
       </View>
-      <Text style={styles.price}>{Global.currencyFormat(price)}đ</Text>
+      <Text style={styles.price}>
+        {Global.currencyFormat(props.cartItem.dish.dishofchef.price)}đ
+      </Text>
     </View>
   );
 }

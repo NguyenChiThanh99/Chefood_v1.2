@@ -24,6 +24,9 @@ import get_chef_by_id from '../../../apis/get_chef_by_id';
 import add_following_chef from '../../../apis/add_following_chef';
 import remove_following_chef from '../../../apis/remove_following_chef';
 import get_comment_chef from '../../../apis/get_comment_chef';
+import get_follower_order_chef from '../../../apis/get_follower_order_chef';
+import get_hot_dish_chef from '../../../apis/get_hot_dish_chef';
+import get_other_dish_chef from '../../../apis/get_other_dish_chef';
 import {updateSavedChef} from '../../../../actions';
 
 import arrowBack from '../../../icons/arrow_back_ios-fb5a23.png';
@@ -40,6 +43,9 @@ export default function Chef({navigation, route}) {
     } else {
       checkFollowStatus(route.params.chef._id);
     }
+    getHotDish();
+    getOtherDish();
+    getFollowerAndOrder();
     getCommentChef();
   }, []);
 
@@ -49,6 +55,11 @@ export default function Chef({navigation, route}) {
   const [pageComment, setPageComment] = useState(0);
   const [dataComment, setDataComment] = useState([]);
   const [loadingComment, setLoadingComment] = useState(false);
+  const [pageOtherDish, setPageOtherDish] = useState(0);
+  const [dataOtherDish, setDataOtherDish] = useState([]);
+  const [loadingOtherDish, setLoadingOtherDish] = useState(false);
+  const [dataHotDish, setDataHotDish] = useState([]);
+  const [numberDish, setNumberDish] = useState(0);
   const [chef, setChef] = useState({
     image: '',
     email: '',
@@ -59,8 +70,8 @@ export default function Chef({navigation, route}) {
     phone: '',
   });
   const [follow, setFollow] = useState(false);
-  const [follower, setFollower] = useState(45);
-  const [order, setOrder] = useState(98);
+  const [follower, setFollower] = useState(0);
+  const [order, setOrder] = useState(0);
   const [menu, setMenu] = useState({
     dishes: true,
     comments: false,
@@ -94,278 +105,13 @@ export default function Chef({navigation, route}) {
     }
   };
 
-  const dataDish = [
-    {
-      dish: {
-        _id: '5fd639e74c30750ea086f462',
-        number: 49,
-        name: 'Trứng hấp bí ngô hấp dẫn đón Halloween',
-        picture:
-          'http://gl.amthuc365.vn/thumbnails/850/590//uploads/i/Vao-bep-che-bien-mon-trung-bi-ngo-hap-dan-don-Halloween.jpg?v=4.1',
-        prepare: ' Chuẩn bị: 5 phút',
-        perform: ' Thực hiện: 15 phút',
-        ingredients:
-          '\t6 quả \tTrứng  \r\n\t3 thìa canh \tMù tạt dijon  \r\n\t60 gram \tMayonnaise  \r\n\t1 thìa cà phê \tỚt cựa gà  \r\n \tMuối  \r\n \tHạt tiêu  \r\n \tHành lá  ',
-        price: 167337,
-      },
-      chef: {
-        _id: '5fe871eb3316fb1f20a6fcbf',
-        number: 5,
-        name: 'Võ Thị Xuân Phương',
-        email: 'phuongvtx@gmail.com',
-        password: 'ea2b3507e2100b7080d01eaa189f0922',
-        phone: '0977666035',
-        address:
-          '20/28/44 Hồ Đắc Di, Tây Thạnh, Tân Phú, Thành phố Hồ Chí Minh',
-        latitude: 10.8068999,
-        longitude: 106.6331267,
-        avatar: 'Thiết lập ngay',
-        cover_photo: 'Thiết lập ngay',
-        introduce: 'Thiết lập ngay',
-        sex: 'Thiết lập ngay',
-        social_network: 'Thiết lập ngay',
-        date_of_birth: 'Thiết lập ngay',
-        level: 3,
-      },
-      dishofchef: {
-        iddishofchef: '15fd65413524abd351c39da01',
-        price: 170040,
-      },
-    },
-    {
-      dish: {
-        _id: '5fd639e74c30750ea086f462',
-        number: 49,
-        name: 'Trứng hấp bí ngô hấp dẫn đón Halloween',
-        picture:
-          'http://gl.amthuc365.vn/thumbnails/850/590//uploads/i/Vao-bep-che-bien-mon-trung-bi-ngo-hap-dan-don-Halloween.jpg?v=4.1',
-        prepare: ' Chuẩn bị: 5 phút',
-        perform: ' Thực hiện: 15 phút',
-        ingredients:
-          '\t6 quả \tTrứng  \r\n\t3 thìa canh \tMù tạt dijon  \r\n\t60 gram \tMayonnaise  \r\n\t1 thìa cà phê \tỚt cựa gà  \r\n \tMuối  \r\n \tHạt tiêu  \r\n \tHành lá  ',
-        price: 167337,
-      },
-      chef: {
-        _id: '5fe871eb3316fb1f20a6fcbf',
-        number: 5,
-        name: 'Võ Thị Xuân Phương',
-        email: 'phuongvtx@gmail.com',
-        password: 'ea2b3507e2100b7080d01eaa189f0922',
-        phone: '0977666035',
-        address:
-          '20/28/44 Hồ Đắc Di, Tây Thạnh, Tân Phú, Thành phố Hồ Chí Minh',
-        latitude: 10.8068999,
-        longitude: 106.6331267,
-        avatar: 'Thiết lập ngay',
-        cover_photo: 'Thiết lập ngay',
-        introduce: 'Thiết lập ngay',
-        sex: 'Thiết lập ngay',
-        social_network: 'Thiết lập ngay',
-        date_of_birth: 'Thiết lập ngay',
-        level: 3,
-      },
-      dishofchef: {
-        iddishofchef: '25fd65413524abd351c39da01',
-        price: 170040,
-      },
-    },
-    {
-      dish: {
-        _id: '5fd639e74c30750ea086f462',
-        number: 49,
-        name: 'Trứng hấp bí ngô hấp dẫn đón Halloween',
-        picture:
-          'http://gl.amthuc365.vn/thumbnails/850/590//uploads/i/Vao-bep-che-bien-mon-trung-bi-ngo-hap-dan-don-Halloween.jpg?v=4.1',
-        prepare: ' Chuẩn bị: 5 phút',
-        perform: ' Thực hiện: 15 phút',
-        ingredients:
-          '\t6 quả \tTrứng  \r\n\t3 thìa canh \tMù tạt dijon  \r\n\t60 gram \tMayonnaise  \r\n\t1 thìa cà phê \tỚt cựa gà  \r\n \tMuối  \r\n \tHạt tiêu  \r\n \tHành lá  ',
-        price: 167337,
-      },
-      chef: {
-        _id: '5fe871eb3316fb1f20a6fcbf',
-        number: 5,
-        name: 'Võ Thị Xuân Phương',
-        email: 'phuongvtx@gmail.com',
-        password: 'ea2b3507e2100b7080d01eaa189f0922',
-        phone: '0977666035',
-        address:
-          '20/28/44 Hồ Đắc Di, Tây Thạnh, Tân Phú, Thành phố Hồ Chí Minh',
-        latitude: 10.8068999,
-        longitude: 106.6331267,
-        avatar: 'Thiết lập ngay',
-        cover_photo: 'Thiết lập ngay',
-        introduce: 'Thiết lập ngay',
-        sex: 'Thiết lập ngay',
-        social_network: 'Thiết lập ngay',
-        date_of_birth: 'Thiết lập ngay',
-        level: 3,
-      },
-      dishofchef: {
-        iddishofchef: '35fd65413524abd351c39da01',
-        price: 170040,
-      },
-    },
-    {
-      dish: {
-        _id: '5fd639e74c30750ea086f462',
-        number: 49,
-        name: 'Trứng hấp bí ngô hấp dẫn đón Halloween',
-        picture:
-          'http://gl.amthuc365.vn/thumbnails/850/590//uploads/i/Vao-bep-che-bien-mon-trung-bi-ngo-hap-dan-don-Halloween.jpg?v=4.1',
-        prepare: ' Chuẩn bị: 5 phút',
-        perform: ' Thực hiện: 15 phút',
-        ingredients:
-          '\t6 quả \tTrứng  \r\n\t3 thìa canh \tMù tạt dijon  \r\n\t60 gram \tMayonnaise  \r\n\t1 thìa cà phê \tỚt cựa gà  \r\n \tMuối  \r\n \tHạt tiêu  \r\n \tHành lá  ',
-        price: 167337,
-      },
-      chef: {
-        _id: '5fe871eb3316fb1f20a6fcbf',
-        number: 5,
-        name: 'Võ Thị Xuân Phương',
-        email: 'phuongvtx@gmail.com',
-        password: 'ea2b3507e2100b7080d01eaa189f0922',
-        phone: '0977666035',
-        address:
-          '20/28/44 Hồ Đắc Di, Tây Thạnh, Tân Phú, Thành phố Hồ Chí Minh',
-        latitude: 10.8068999,
-        longitude: 106.6331267,
-        avatar: 'Thiết lập ngay',
-        cover_photo: 'Thiết lập ngay',
-        introduce: 'Thiết lập ngay',
-        sex: 'Thiết lập ngay',
-        social_network: 'Thiết lập ngay',
-        date_of_birth: 'Thiết lập ngay',
-        level: 3,
-      },
-      dishofchef: {
-        iddishofchef: '45fd65413524abd351c39da01',
-        price: 170040,
-      },
-    },
-  ];
-
-  const dataHotDish = [
-    {
-      dish: {
-        _id: '5fd639e74c30750ea086f462',
-        number: 49,
-        name: 'Trứng hấp bí ngô hấp dẫn đón Halloween',
-        picture:
-          'http://gl.amthuc365.vn/thumbnails/850/590//uploads/i/Vao-bep-che-bien-mon-trung-bi-ngo-hap-dan-don-Halloween.jpg?v=4.1',
-        prepare: ' Chuẩn bị: 5 phút',
-        perform: ' Thực hiện: 15 phút',
-        ingredients:
-          '\t6 quả \tTrứng  \r\n\t3 thìa canh \tMù tạt dijon  \r\n\t60 gram \tMayonnaise  \r\n\t1 thìa cà phê \tỚt cựa gà  \r\n \tMuối  \r\n \tHạt tiêu  \r\n \tHành lá  ',
-        price: 167337,
-      },
-      chef: {
-        _id: '5fe871eb3316fb1f20a6fcbf',
-        number: 5,
-        name: 'Võ Thị Xuân Phương',
-        email: 'phuongvtx@gmail.com',
-        password: 'ea2b3507e2100b7080d01eaa189f0922',
-        phone: '0977666035',
-        address:
-          '20/28/44 Hồ Đắc Di, Tây Thạnh, Tân Phú, Thành phố Hồ Chí Minh',
-        latitude: 10.8068999,
-        longitude: 106.6331267,
-        avatar: 'Thiết lập ngay',
-        cover_photo: 'Thiết lập ngay',
-        introduce: 'Thiết lập ngay',
-        sex: 'Thiết lập ngay',
-        social_network: 'Thiết lập ngay',
-        date_of_birth: 'Thiết lập ngay',
-        level: 3,
-      },
-      dishofchef: {
-        iddishofchef: '35fd65413524abd351c39da01',
-        price: 170040,
-      },
-    },
-    {
-      dish: {
-        _id: '5fd639e74c30750ea086f462',
-        number: 49,
-        name: 'Trứng hấp bí ngô hấp dẫn đón Halloween',
-        picture:
-          'http://gl.amthuc365.vn/thumbnails/850/590//uploads/i/Vao-bep-che-bien-mon-trung-bi-ngo-hap-dan-don-Halloween.jpg?v=4.1',
-        prepare: ' Chuẩn bị: 5 phút',
-        perform: ' Thực hiện: 15 phút',
-        ingredients:
-          '\t6 quả \tTrứng  \r\n\t3 thìa canh \tMù tạt dijon  \r\n\t60 gram \tMayonnaise  \r\n\t1 thìa cà phê \tỚt cựa gà  \r\n \tMuối  \r\n \tHạt tiêu  \r\n \tHành lá  ',
-        price: 167337,
-      },
-      chef: {
-        _id: '5fe871eb3316fb1f20a6fcbf',
-        number: 5,
-        name: 'Võ Thị Xuân Phương',
-        email: 'phuongvtx@gmail.com',
-        password: 'ea2b3507e2100b7080d01eaa189f0922',
-        phone: '0977666035',
-        address:
-          '20/28/44 Hồ Đắc Di, Tây Thạnh, Tân Phú, Thành phố Hồ Chí Minh',
-        latitude: 10.8068999,
-        longitude: 106.6331267,
-        avatar: 'Thiết lập ngay',
-        cover_photo: 'Thiết lập ngay',
-        introduce: 'Thiết lập ngay',
-        sex: 'Thiết lập ngay',
-        social_network: 'Thiết lập ngay',
-        date_of_birth: 'Thiết lập ngay',
-        level: 3,
-      },
-      dishofchef: {
-        iddishofchef: '25fd65413524abd351c39da01',
-        price: 170040,
-      },
-    },
-    {
-      dish: {
-        _id: '5fd639e74c30750ea086f462',
-        number: 49,
-        name: 'Trứng hấp bí ngô hấp dẫn đón Halloween',
-        picture:
-          'http://gl.amthuc365.vn/thumbnails/850/590//uploads/i/Vao-bep-che-bien-mon-trung-bi-ngo-hap-dan-don-Halloween.jpg?v=4.1',
-        prepare: ' Chuẩn bị: 5 phút',
-        perform: ' Thực hiện: 15 phút',
-        ingredients:
-          '\t6 quả \tTrứng  \r\n\t3 thìa canh \tMù tạt dijon  \r\n\t60 gram \tMayonnaise  \r\n\t1 thìa cà phê \tỚt cựa gà  \r\n \tMuối  \r\n \tHạt tiêu  \r\n \tHành lá  ',
-        price: 167337,
-      },
-      chef: {
-        _id: '5fe871eb3316fb1f20a6fcbf',
-        number: 5,
-        name: 'Võ Thị Xuân Phương',
-        email: 'phuongvtx@gmail.com',
-        password: 'ea2b3507e2100b7080d01eaa189f0922',
-        phone: '0977666035',
-        address:
-          '20/28/44 Hồ Đắc Di, Tây Thạnh, Tân Phú, Thành phố Hồ Chí Minh',
-        latitude: 10.8068999,
-        longitude: 106.6331267,
-        avatar: 'Thiết lập ngay',
-        cover_photo: 'Thiết lập ngay',
-        introduce: 'Thiết lập ngay',
-        sex: 'Thiết lập ngay',
-        social_network: 'Thiết lập ngay',
-        date_of_birth: 'Thiết lập ngay',
-        level: 3,
-      },
-      dishofchef: {
-        iddishofchef: '15fd65413524abd351c39da01',
-        price: 170040,
-      },
-    },
-  ];
-
   const flatListItemSeparatorDish = () => {
     return <View style={styles.line} />;
   };
 
   const getCommentChef = () => {
     var id;
-    if (route.params.fromDish !== undefined) {
+    if (route.params.fromDish === true) {
       id = route.params.id;
     } else {
       id = route.params.chef._id;
@@ -396,6 +142,83 @@ export default function Chef({navigation, route}) {
       });
   };
 
+  const getOtherDish = () => {
+    var id;
+    if (route.params.fromDish === true) {
+      id = route.params.id;
+    } else {
+      id = route.params.chef._id;
+    }
+    setLoadingOtherDish(true);
+    get_other_dish_chef
+      .get_other_dish_chef(user.token, id, pageOtherDish)
+      .then((responseJson) => {
+        if (responseJson.dishes.length === 0) {
+          setLoadingOtherDish(false);
+          return Toast.show('Đã tải đến cuối danh sách', {
+            position: -20,
+            duration: 2500,
+          });
+        } else {
+          setNumberDish(responseJson.soluong);
+          setDataOtherDish(dataOtherDish.concat(responseJson.dishes));
+          setPageOtherDish(pageOtherDish + 1);
+          setLoadingOtherDish(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoadingOtherDish(false);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
+      });
+  };
+
+  const getHotDish = () => {
+    var id;
+    if (route.params.fromDish === true) {
+      id = route.params.id;
+    } else {
+      id = route.params.chef._id;
+    }
+    get_hot_dish_chef
+      .get_hot_dish_chef(user.token, id)
+      .then((responseJson) => {
+        setDataHotDish(responseJson);
+      })
+      .catch((err) => {
+        console.log(err);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
+      });
+  };
+
+  const getFollowerAndOrder = () => {
+    var id;
+    if (route.params.fromDish === true) {
+      id = route.params.id;
+    } else {
+      id = route.params.chef._id;
+    }
+    get_follower_order_chef
+      .get_follower_order_chef(user.token, id)
+      .then((responseJson) => {
+        setFollower(responseJson.followers);
+        setOrder(responseJson.orders);
+      })
+      .catch((err) => {
+        console.log(err);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
+      });
+  };
+
   const checkFollowStatus = (id) => {
     var found = savedChef.find((item) => item.id_chef === id);
     if (found === undefined) {
@@ -408,6 +231,7 @@ export default function Chef({navigation, route}) {
   const followHandle = () => {
     if (!follow) {
       setFollow(!follow);
+      setFollower(follower + 1);
       add_following_chef
         .add_following_chef(user.token, _id)
         .then((responseJson) => {
@@ -436,6 +260,7 @@ export default function Chef({navigation, route}) {
       );
     } else {
       setFollow(!follow);
+      setFollower(follower - 1);
       remove_following_chef
         .remove_following_chef(user.token, _id)
         .then((responseJson) => {
@@ -515,47 +340,87 @@ export default function Chef({navigation, route}) {
       <Text style={styles.btnText}>Đang theo dõi</Text>
     </TouchableOpacity>
   );
-
   const dishesJSX = (
     <View>
-      <View style={styles.cardView}>
-        <Text style={styles.cardViewTitle}>
-          Món ăn nổi bật ({dataHotDish.length})
-        </Text>
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          data={dataHotDish}
-          ItemSeparatorComponent={flatListItemSeparatorDish}
-          renderItem={({item, index}) => {
-            return (
-              <TouchableOpacity
-                onPress={() => navigation.navigate('DISH', {dish: item})}>
-                <DishViewVertical dish={item} chef />
-              </TouchableOpacity>
-            );
-          }}
-          keyExtractor={(item) => item.dishofchef.iddishofchef}
-        />
-      </View>
-      <View style={styles.cardViewLast}>
-        <Text style={styles.cardViewTitle}>
-          Danh sách món ăn ({dataDish.length})
-        </Text>
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          data={dataDish}
-          ItemSeparatorComponent={flatListItemSeparatorDish}
-          renderItem={({item, index}) => {
-            return (
-              <TouchableOpacity
-                onPress={() => navigation.navigate('DISH', {dish: item})}>
-                <DishViewVertical dish={item} chef />
-              </TouchableOpacity>
-            );
-          }}
-          keyExtractor={(item) => item.dishofchef.iddishofchef}
-        />
-      </View>
+      {dataHotDish.length !== 0 ? (
+        <View style={styles.cardView}>
+          <Text style={styles.cardViewTitle}>Món ăn nổi bật (4)</Text>
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            data={dataHotDish}
+            ItemSeparatorComponent={flatListItemSeparatorDish}
+            renderItem={({item, index}) => {
+              return (
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('DISH', {
+                      dish: item,
+                      id: item.dishofchef.id_dish_chef,
+                    })
+                  }>
+                  <DishViewVertical dish={item} chef />
+                </TouchableOpacity>
+              );
+            }}
+            keyExtractor={(item) => item.dishofchef.id_dish_chef}
+          />
+        </View>
+      ) : (
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: 100,
+            backgroundColor: 'white',
+          }}>
+          <ActivityIndicator animating={true} color="#fb5a23" size="small" />
+        </View>
+      )}
+
+      {dataOtherDish.length !== 0 ? (
+        <View style={styles.cardViewLast}>
+          <Text style={styles.cardViewTitle}>
+            Danh sách món ăn ({numberDish})
+          </Text>
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            data={dataOtherDish}
+            ListFooterComponent={
+              <View style={{backgroundColor: 'white'}}>
+                <View style={styles.line} />
+                {loadingOtherDish ? (
+                  <View style={{paddingVertical: 4.5}}>{Loading}</View>
+                ) : (
+                  <TouchableOpacity
+                    onPress={() => getOtherDish()}
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}>
+                    <Text style={styles.viewMoreTextVertical}>Xem thêm</Text>
+                  </TouchableOpacity>
+                )}
+              </View>
+            }
+            ItemSeparatorComponent={flatListItemSeparatorDish}
+            renderItem={({item, index}) => {
+              return (
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('DISH', {
+                      dish: item,
+                      id: item.dishofchef.id_dish_chef,
+                    })
+                  }>
+                  <DishViewVertical dish={item} chef />
+                </TouchableOpacity>
+              );
+            }}
+            keyExtractor={(item) => item.dishofchef.id_dish_chef}
+          />
+        </View>
+      ) : null}
     </View>
   );
   const commentsJSX = () => {
@@ -696,7 +561,7 @@ export default function Chef({navigation, route}) {
               style={styles.menuItem}
               onPress={() => menuHandle(0)}>
               <Text style={menu.dishes ? styles.menuTextS : styles.menuText}>
-                Món ăn ({dataDish.length + dataHotDish.length})
+                Món ăn ({numberDish + 4})
               </Text>
               <View style={menu.dishes ? styles.menuLine : styles.menuNoLine} />
             </TouchableOpacity>

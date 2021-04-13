@@ -1,5 +1,6 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {useFocusEffect} from '@react-navigation/native';
 import {
   View,
@@ -7,12 +8,16 @@ import {
   BackHandler,
   FlatList,
   TouchableOpacity,
+  ActivityIndicator,
+  Text,
 } from 'react-native';
 import Toast from 'react-native-root-toast';
+import {useSelector} from 'react-redux';
 
 import Global from '../../Global';
 import MainHeader from '../home/cardView/MainHeader';
 import OrderItem from './cardView/OrderItem';
+import get_orders from '../../../apis/get_orders';
 
 var countExit = 0;
 
@@ -38,122 +43,161 @@ export default function Order({navigation, route}) {
         }
       };
 
+      var interval = setInterval(() => {
+        getOrders(0, true);
+      }, 3000);
       BackHandler.addEventListener('hardwareBackPress', onBackPress);
 
-      return () =>
+      return () => {
+        clearInterval(interval);
         BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+      };
     }, []),
   );
 
-  const dataOrder = [
-    {
-      id: 1,
-      delivery: {status: 'Đang giao hàng', time: '13:06 26/10/2020'},
-      total: 594100,
-      method: 'Tiền mặt',
-      dish: [
-        'Mỳ Quảng tôm thịt nướng thịt gà trứng cút',
-        'Thịt heo ba rọi kho dưa cải chua tỏi ớt',
-        'Cá ba sa chiên xừ sốt chua ngọt',
-        'Mỳ vịt tiềm nấm đông cô, đậu hũ, táo',
-      ],
-    },
-    {
-      id: 2,
-      delivery: {status: 'Đang chuẩn bị', time: '13:06 26/10/2020'},
-      total: 129000,
-      method: 'Tiền mặt',
-      dish: [
-        'Mỳ Quảng tôm thịt nướng thịt gà trứng cút',
-        'Mỳ vịt tiềm nấm đông cô, đậu hũ, táo',
-      ],
-    },
-    {
-      id: 3,
-      delivery: {status: 'Đang xác nhận', time: '13:06 26/10/2020'},
-      total: 134000,
-      method: 'Tiền mặt',
-      dish: ['Thịt heo ba rọi kho dưa cải chua tỏi ớt'],
-    },
-    {
-      id: 4,
-      delivery: {status: 'Đã hủy', time: '13:06 26/10/2020'},
-      total: 213400,
-      method: 'Tiền mặt',
-      dish: [
-        'Mỳ Quảng tôm thịt nướng thịt gà trứng cút',
-        'Cá ba sa chiên xừ sốt chua ngọt',
-        'Mỳ vịt tiềm nấm đông cô, đậu hũ, táo',
-      ],
-    },
-    {
-      id: 5,
-      delivery: {status: 'Đã giao', time: '13:06 26/10/2020'},
-      total: 402000,
-      method: 'Thẻ',
-      dish: [
-        'Mỳ Quảng tôm thịt nướng thịt gà trứng cút',
-        'Thịt heo ba rọi kho dưa cải chua tỏi ớt',
-        'Cá ba sa chiên xừ sốt chua ngọt',
-        'Mỳ vịt tiềm nấm đông cô, đậu hũ, táo',
-      ],
-    },
-    {
-      id: 6,
-      delivery: {status: 'Đã giao', time: '13:06 26/10/2020'},
-      total: 594100,
-      method: 'Tiền mặt',
-      dish: [
-        'Cá ba sa chiên xừ sốt chua ngọt',
-        'Mỳ Quảng tôm thịt nướng thịt gà trứng cút',
-        'Thịt heo ba rọi kho dưa cải chua tỏi ớt',
-      ],
-    },
-    {
-      id: 7,
-      delivery: {status: 'Đã hủy', time: '13:06 26/10/2020'},
-      total: 159000,
-      method: 'Thẻ',
-      dish: ['Mỳ vịt tiềm nấm đông cô, đậu hũ, táo'],
-    },
-    {
-      id: 8,
-      delivery: {status: 'Đã giao', time: '13:06 26/10/2020'},
-      total: 594100,
-      method: 'Tiền mặt',
-      dish: [
-        'Thịt heo ba rọi kho dưa cải chua tỏi ớt',
-        'Mỳ Quảng tôm thịt nướng thịt gà trứng cút',
-      ],
-    },
-  ];
+  useEffect(() => {
+    getOrders(0, false);
+  }, []);
+
+  const user = useSelector((state) => state.user);
+  const [dataOrders, setDataOrders] = useState([]);
+  const [pageOrders, setPageOrders] = useState(0);
+  const [loadingOrder, setLoadingOrder] = useState(false);
+
+  const getOrders = (page, backgound) => {
+    if (!backgound) {
+      setLoadingOrder(true);
+    }
+    get_orders
+      .get_orders(user.token, page)
+      .then((responseJson) => {
+        if (!backgound) {
+          setLoadingOrder(false);
+        }
+        if (responseJson.length === 0 && page !== 0) {
+          return Toast.show('Đã tải đến cuối danh sách', {
+            position: -20,
+            duration: 2500,
+          });
+        } else {
+          if (page === 0) {
+            setDataOrders(responseJson);
+            setPageOrders(1);
+          } else {
+            setDataOrders(dataOrders.concat(responseJson));
+            setPageOrders(pageOrders + 1);
+          }
+        }
+      })
+      .catch((err) => {
+        if (!backgound) {
+          setLoadingOrder(false);
+        }
+        console.log(err);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
+      });
+  };
+
+  const Loading = (
+    <View style={styles.loading}>
+      <ActivityIndicator animating={true} color="#fb5a23" size="small" />
+    </View>
+  );
+
+  const bodyJSX = () => {
+    if (dataOrders.length === 0 && loadingOrder) {
+      return (
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: height / 1.2,
+          }}>
+          {Loading}
+        </View>
+      );
+    } else if (dataOrders.length === 0) {
+      return (
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: height / 1.2,
+          }}>
+          <Text style={styles.noComment}>Bạn chưa có đơn đặt hàng nào</Text>
+        </View>
+      );
+    } else {
+      return (
+        <FlatList
+          style={styles.listStyle}
+          showsVerticalScrollIndicator={false}
+          data={dataOrders}
+          ListFooterComponent={
+            <View style={{marginTop: 10, backgroundColor: 'white'}}>
+              {loadingOrder ? (
+                <View style={{paddingVertical: 4.5}}>{Loading}</View>
+              ) : (
+                <TouchableOpacity
+                  onPress={() => getOrders(pageOrders, false)}
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <Text style={styles.viewMoreTextVertical}>Xem thêm</Text>
+                </TouchableOpacity>
+              )}
+            </View>
+          }
+          renderItem={({item, index}) => {
+            return (
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('ORDER_DETAIL', {order: item})
+                }>
+                <OrderItem order={item} navigation={navigation} />
+              </TouchableOpacity>
+            );
+          }}
+          keyExtractor={(item) => item.id_order}
+        />
+      );
+    }
+  };
 
   return (
     <View style={styles.wrapper}>
-      <MainHeader navigation={navigation} />
-
-      <FlatList
-        style={styles.listStyle}
-        showsVerticalScrollIndicator={false}
-        data={dataOrder}
-        renderItem={({item, index}) => {
-          return (
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate('ORDER_DETAIL', {order: item.id})
-              }>
-              <OrderItem order={item} />
-            </TouchableOpacity>
-          );
-        }}
-        keyExtractor={(item) => item.id.toString()}
+      <MainHeader
+        navigation={navigation}
+        fromUser={route.params !== undefined ? true : false}
       />
+
+      {bodyJSX()}
     </View>
   );
 }
 
-const {backgroundColor} = Global;
+const {backgroundColor, height, width} = Global;
 const styles = StyleSheet.create({
+  viewMoreTextVertical: {
+    fontFamily: 'Roboto-Regular',
+    color: '#828282',
+    fontSize: width / 34,
+    paddingVertical: 6,
+  },
+  noComment: {
+    fontFamily: 'Roboto-Regular',
+    fontSize: width / 30,
+    color: '#828282',
+  },
+  loading: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   wrapper: {
     backgroundColor,
     flex: 1,

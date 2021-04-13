@@ -326,7 +326,9 @@ export default function ChangeInformation({navigation}) {
         <View style={styles.rowCont}>
           <Text style={styles.rowText}>Địa chỉ</Text>
           <TouchableOpacity
-            onPress={() => navigation.navigate('CHANGE_ADDRESS')}
+            onPress={() =>
+              navigation.navigate('CHANGE_ADDRESS', {fromCart: false})
+            }
             style={{flexDirection: 'row', alignItems: 'center'}}>
             <Text
               style={

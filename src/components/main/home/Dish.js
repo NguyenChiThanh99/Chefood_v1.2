@@ -17,6 +17,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {useSelector, useDispatch} from 'react-redux';
 import Toast from 'react-native-root-toast';
 import {useIsFocused} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Global from '../../Global';
 import Comment from './cardView/Comment';
@@ -31,7 +32,7 @@ import get_all_dish from '../../../apis/get_all_dish';
 import get_type_dish from '../../../apis/get_type_dish';
 import add_saved_dish from '../../../apis/add_saved_dish';
 import remove_saved_dish from '../../../apis/remove_saved_dish';
-import {updateSavedDish} from '../../../../actions';
+import {updateSavedDish, updateCart} from '../../../../actions';
 
 import arrowBack from '../../../icons/arrow_back_ios-ffffff.png';
 import saveIcon from '../../../icons/bookmark_border-82.png';
@@ -52,7 +53,9 @@ export default function Dish({navigation, route}) {
     const ac = new window.AbortController();
     Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
     checkSavedStatus(dish.dishofchef.iddishofchef);
-    getOtherdishOfChef(dish.chef.number, 0);
+    if (dish.chef !== undefined) {
+      getOtherdishOfChef(dish.chef.number, 0);
+    }
     viewDish(dish.dishofchef.iddishofchef);
     determineTypeOfDish(dish.dish.name, 0);
 
@@ -91,6 +94,7 @@ export default function Dish({navigation, route}) {
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const cart = useSelector((state) => state.cart);
   const savedDish = useSelector((state) => state.savedDish);
   const [saveStatus, setSaveStatus] = useState(false);
   const [quantity, setQuantity] = useState(1);
@@ -101,6 +105,7 @@ export default function Dish({navigation, route}) {
   });
   const [dataComment, setDataComment] = useState([]);
   const [loadingComment, setLoadingComment] = useState(false);
+  const [pageComment, setPageComment] = useState(0);
   const [dataOtherDish, setDataOtherDish] = useState([]);
   const [loadingOtherDish, setLoadingOtherDish] = useState(false);
   const [pageOtherDish, setPageOtherDish] = useState(0);
@@ -218,7 +223,56 @@ export default function Dish({navigation, route}) {
     }
   };
 
-  const addToCart = () => {};
+  const addToCart = () => {
+    const newCart = {
+      dish: dish,
+      quantity: quantity,
+    };
+    var flag = false;
+    if (cart.length === 0) {
+      dispatch(updateCart([newCart]));
+      storeData([newCart]);
+      Toast.show('Đã thêm món ăn vào giỏ hàng', {
+        position: 0,
+        duration: 2000,
+      });
+    } else {
+      for (var i = 0; i < cart.length; i++) {
+        if (
+          cart[i].dish.dishofchef.iddishofchef === dish.dishofchef.iddishofchef
+        ) {
+          flag = true;
+          cart[i].quantity += quantity;
+          dispatch(updateCart(cart));
+          storeData(cart);
+          Toast.show('Đã tăng số lượng món ăn trong giỏ hàng', {
+            position: 0,
+            duration: 2000,
+          });
+          break;
+        }
+      }
+      if (flag === false) {
+        cart.push(newCart);
+        dispatch(updateCart(cart));
+        storeData(cart);
+        Toast.show('Đã thêm món ăn vào giỏ hàng', {
+          position: 0,
+          duration: 2000,
+        });
+      }
+    }
+  };
+
+  const storeData = async (value) => {
+    var key = '@cart' + '_' + user.userInfo._id;
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem(key, jsonValue);
+    } catch (e) {
+      console.log('Error: ' + e);
+    }
+  };
 
   const viewDish = (id) => {
     view_dish
@@ -236,10 +290,19 @@ export default function Dish({navigation, route}) {
   const getCommentDish = () => {
     setLoadingComment(true);
     get_comment_dish
-      .get_comment_dish(user.token, dish.dishofchef.iddishofchef)
+      .get_comment_dish(user.token, dish.dishofchef.iddishofchef, pageComment)
       .then((responseJson) => {
-        setDataComment(responseJson);
-        setLoadingComment(false);
+        if (responseJson.length === 0) {
+          setLoadingComment(false);
+          return Toast.show('Đã tải đến cuối danh sách', {
+            position: -20,
+            duration: 2500,
+          });
+        } else {
+          setDataComment(dataComment.concat(responseJson));
+          setPageComment(pageComment + 1);
+          setLoadingComment(false);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -492,6 +555,7 @@ export default function Dish({navigation, route}) {
     });
     setDataComment([]);
     setLoadingComment(false);
+    setPageComment(0);
     setDataOtherDish([]);
     setLoadingOtherDish(false);
     setPageOtherDish(0);
@@ -562,11 +626,29 @@ export default function Dish({navigation, route}) {
   );
   const commentsJSX = (
     <View>
-      {!loadingComment ? (
+      {dataComment.length !== 0 ? (
         <FlatList
           key={'#'}
           showsVerticalScrollIndicator={false}
           data={dataComment}
+          ListFooterComponent={
+            <View style={{backgroundColor: 'white'}}>
+              <View style={styles.line} />
+              {loadingComment ? (
+                <View style={{paddingVertical: 4.5}}>{Loading}</View>
+              ) : (
+                <TouchableOpacity
+                  onPress={() => getCommentDish()}
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <Text style={styles.viewMoreTextVertical}>Xem thêm</Text>
+                </TouchableOpacity>
+              )}
+            </View>
+          }
           ItemSeparatorComponent={flatListItemSeparator}
           renderItem={({item, index}) => {
             return (
@@ -616,10 +698,12 @@ export default function Dish({navigation, route}) {
               onPress={() =>
                 navigation.navigate('CHEF', {id: dish.chef._id, fromDish: true})
               }>
-              <Text style={styles.chef}>{dish.chef.name}</Text>
+              <Text style={styles.chef}>
+                {dish.chef !== undefined ? dish.chef.name : ''}
+              </Text>
             </TouchableOpacity>
             <Text style={styles.address} numberOfLines={1}>
-              {dish.chef.address}
+              {dish.chef !== undefined ? dish.chef.address : ''}
             </Text>
             <TouchableOpacity
               style={styles.saveCont}
@@ -639,7 +723,9 @@ export default function Dish({navigation, route}) {
               <Image style={styles.prepareImg} source={prepareIcon} />
               <Text style={styles.prepareText}>{dish.dish.prepare}</Text>
             </View>
-            <Text style={styles.numOrder}>{0} lần đặt nấu</Text>
+            <Text style={styles.numOrder}>
+              {dish.dishofchef.orders} lần đặt nấu
+            </Text>
           </View>
           <View style={styles.prepareCont}>
             <Image style={styles.prepareImg} source={performIcon} />
@@ -874,7 +960,7 @@ export default function Dish({navigation, route}) {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.topBtnCont}
-          onPress={() => navigation.navigate('CART')}>
+          onPress={() => navigation.navigate('CART', {address: ''})}>
           <BadgeCart dish />
         </TouchableOpacity>
       </View>

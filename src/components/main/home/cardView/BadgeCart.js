@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Image} from 'react-native';
 import {Badge} from 'react-native-elements';
-// import {useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 
 import Global from '../../../Global';
 
@@ -9,7 +9,7 @@ import cartIcon from '../../../../icons/Buy.png';
 import cartIconWhite from '../../../../icons/Buy-ffffff.png';
 
 export default function BadgeCart(props) {
-  // const cartLength = useSelector((state) => state.cart.length);
+  const cartLength = useSelector((state) => state.cart.length);
   return (
     <View style={styles.cartCont}>
       <Image
@@ -17,7 +17,7 @@ export default function BadgeCart(props) {
         style={styles.cartIcon}
       />
       <Badge
-        value={0}
+        value={cartLength}
         containerStyle={styles.containerStyle}
         badgeStyle={
           props.dish === true ? styles.badgeStyleWhite : styles.badgeStyle
