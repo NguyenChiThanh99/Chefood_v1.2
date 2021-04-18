@@ -40,7 +40,7 @@ export default function MainHeader(props) {
         <TextInput
           style={styles.textInputStyle}
           underlineColorAndroid="transparent"
-          // placeholder="Tìm kiếm"
+          placeholder="Tìm kiếm món ăn"
           placeholderTextColor="#bdbdbd"
           autoCapitalize="none"
           onChangeText={(text) => setSearch(text)}
@@ -68,12 +68,13 @@ const styles = StyleSheet.create({
     height: backButton,
   },
   textInputStyle: {
-    color: '#6e6e6e',
-    fontFamily: 'Roboto-Light',
+    color: '#333333',
+    fontFamily: 'Roboto-Regular',
     width: width / 1.6,
+    fontSize: width / 28,
     borderBottomColor: mainColor,
     borderBottomWidth: 1,
-    height: width / 16,
+    height: width / 14,
     padding: 0,
     marginRight: 5,
   },

@@ -25,7 +25,7 @@ export default function ChefView(props) {
               : {uri: avatar}
           }
         />
-        <RatingStar star={Math.round(level)} />
+        <RatingStar star={Math.round(level * 10) / 10} />
       </View>
       <View style={styles.infoCont}>
         <Text style={styles.name}>{name}</Text>

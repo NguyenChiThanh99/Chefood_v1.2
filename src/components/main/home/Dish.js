@@ -54,10 +54,10 @@ export default function Dish({navigation, route}) {
     Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
     checkSavedStatus(dish.dishofchef.iddishofchef);
     if (dish.chef !== undefined) {
-      getOtherdishOfChef(dish.chef.number, 0);
+      getOtherdishOfChef(dish.chef.number, 0, dish.dishofchef.iddishofchef);
     }
     viewDish(dish.dishofchef.iddishofchef);
-    determineTypeOfDish(dish.dish.name, 0);
+    determineTypeOfDish(dish.dish.name, 0, dish.dishofchef.iddishofchef);
 
     if (isFocused) {
       if (route.params.id !== undefined) {
@@ -314,7 +314,7 @@ export default function Dish({navigation, route}) {
       });
   };
 
-  const getOtherdishOfChef = (id, page) => {
+  const getOtherdishOfChef = (id, page, idDish) => {
     setLoadingOtherDish(true);
     get_other_dish_of_chef
       .get_other_dish_of_chef(user.token, id, page)
@@ -326,11 +326,18 @@ export default function Dish({navigation, route}) {
             duration: 2500,
           });
         } else {
+          var otherDish;
           if (page === 0) {
-            setDataOtherDish(responseJson);
+            otherDish = [];
           } else {
-            setDataOtherDish(dataOtherDish.concat(responseJson));
+            otherDish = [...dataOtherDish];
           }
+          for (let i = 0; i < responseJson.length; i++) {
+            if (responseJson[i].iddishofchef !== idDish) {
+              otherDish.push(responseJson[i]);
+            }
+          }
+          setDataOtherDish(otherDish);
           setPageOtherDish(pageOtherDish + 1);
           setLoadingOtherDish(false);
         }
@@ -353,9 +360,13 @@ export default function Dish({navigation, route}) {
 
         if (isFocused && route.params.id !== undefined) {
           checkSavedStatus(id);
-          getOtherdishOfChef(responseJson.chef.number, 0);
+          getOtherdishOfChef(responseJson.chef.number, 0, id);
           viewDish(id);
-          determineTypeOfDish(responseJson.dish.name, 0);
+          determineTypeOfDish(
+            responseJson.dish.name,
+            0,
+            responseJson.dishofchef.iddishofchef,
+          );
         }
       })
       .catch((err) => {
@@ -367,7 +378,7 @@ export default function Dish({navigation, route}) {
       });
   };
 
-  const determineTypeOfDish = (name, page) => {
+  const determineTypeOfDish = (name, page, idDish) => {
     var nameArr = name.toLowerCase().split(' ');
     var result = '';
     for (let i = 0; i < nameArr.length; i++) {
@@ -475,14 +486,14 @@ export default function Dish({navigation, route}) {
     }
     if (result === '') {
       type = 'all';
-      getAllDish(page);
+      getAllDish(page, idDish);
     } else {
       type = result;
-      getTypeDish(result, page);
+      getTypeDish(result, page, idDish);
     }
   };
 
-  const getAllDish = (page) => {
+  const getAllDish = (page, idDish) => {
     setLoadingRelatedDish(true);
     get_all_dish
       .get_all_dish(user.token, page)
@@ -494,11 +505,18 @@ export default function Dish({navigation, route}) {
             duration: 2500,
           });
         } else {
+          var relatedDish;
           if (page === 0) {
-            setDataRelatedDish(responseJson);
+            relatedDish = [];
           } else {
-            setDataRelatedDish(dataRelatedDish.concat(responseJson));
+            relatedDish = [...dataRelatedDish];
           }
+          for (let i = 0; i < responseJson.length; i++) {
+            if (responseJson[i].dishofchef.iddishofchef !== idDish) {
+              relatedDish.push(responseJson[i]);
+            }
+          }
+          setDataRelatedDish(relatedDish);
           setPageRelatedDish(pageRelatedDish + 1);
           setLoadingRelatedDish(false);
         }
@@ -513,7 +531,7 @@ export default function Dish({navigation, route}) {
       });
   };
 
-  const getTypeDish = (text, page) => {
+  const getTypeDish = (text, page, idDish) => {
     setLoadingRelatedDish(true);
     get_type_dish
       .get_type_dish(user.token, text, page)
@@ -525,11 +543,18 @@ export default function Dish({navigation, route}) {
             duration: 2500,
           });
         } else {
+          var relatedDish;
           if (page === 0) {
-            setDataRelatedDish(responseJson);
+            relatedDish = [];
           } else {
-            setDataRelatedDish(dataRelatedDish.concat(responseJson));
+            relatedDish = [...dataRelatedDish];
           }
+          for (let i = 0; i < responseJson.length; i++) {
+            if (responseJson[i].dishofchef.iddishofchef !== idDish) {
+              relatedDish.push(responseJson[i]);
+            }
+          }
+          setDataRelatedDish(relatedDish);
           setPageRelatedDish(pageRelatedDish + 1);
           setLoadingRelatedDish(false);
         }
@@ -564,11 +589,11 @@ export default function Dish({navigation, route}) {
     setPageRelatedDish(0);
 
     if (otherChef === true) {
-      getOtherdishOfChef(dish.chef.number, 0);
-      determineTypeOfDish(name, 0);
+      getOtherdishOfChef(dish.chef.number, 0, id);
+      determineTypeOfDish(name, 0, id);
     } else {
-      getOtherdishOfChef(numberChef, 0);
-      determineTypeOfDish(name, 0);
+      getOtherdishOfChef(numberChef, 0, id);
+      determineTypeOfDish(name, 0, id);
     }
     getDishById(id);
     viewDish(id);
@@ -844,7 +869,11 @@ export default function Dish({navigation, route}) {
                   <TouchableOpacity
                     style={styles.viewMoreCont}
                     onPress={() =>
-                      getOtherdishOfChef(dish.chef.number, pageOtherDish)
+                      getOtherdishOfChef(
+                        dish.chef.number,
+                        pageOtherDish,
+                        dish.dishofchef.iddishofchef,
+                      )
                     }>
                     <View style={styles.viewMoreImgCont}>
                       <Image style={styles.viewMoreImg} source={arrow} />
@@ -899,9 +928,16 @@ export default function Dish({navigation, route}) {
                     <TouchableOpacity
                       onPress={() => {
                         if (type === 'all') {
-                          getAllDish(pageRelatedDish);
+                          getAllDish(
+                            pageRelatedDish,
+                            dish.dishofchef.iddishofchef,
+                          );
                         } else {
-                          getTypeDish(type, pageRelatedDish);
+                          getTypeDish(
+                            type,
+                            pageRelatedDish,
+                            dish.dishofchef.iddishofchef,
+                          );
                         }
                       }}
                       style={{
@@ -1089,7 +1125,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginHorizontal: 15,
     marginBottom: 10,
-    marginTop: 5,
+    marginTop: 10,
   },
   btnText: {
     fontFamily: 'Roboto-Medium',

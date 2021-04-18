@@ -200,10 +200,10 @@ export default function Home({navigation}) {
       .catch((err) => {
         console.log(err);
         setLoadingHotDish(false);
-        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-          position: 0,
-          duration: 2500,
-        });
+        // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+        //   position: 0,
+        //   duration: 2500,
+        // });
       });
   };
 
@@ -227,10 +227,10 @@ export default function Home({navigation}) {
       .catch((err) => {
         console.log(err);
         setLoadingTodayDish(false);
-        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-          position: 0,
-          duration: 2500,
-        });
+        // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+        //   position: 0,
+        //   duration: 2500,
+        // });
       });
   };
 
@@ -254,10 +254,10 @@ export default function Home({navigation}) {
       .catch((err) => {
         console.log(err);
         setLoadingHotChef(false);
-        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-          position: 0,
-          duration: 2500,
-        });
+        // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+        //   position: 0,
+        //   duration: 2500,
+        // });
       });
   };
 
@@ -297,10 +297,10 @@ export default function Home({navigation}) {
       .catch((err) => {
         console.log(err);
         setLoadingViewedDish(false);
-        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-          position: 0,
-          duration: 2500,
-        });
+        // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+        //   position: 0,
+        //   duration: 2500,
+        // });
       });
   };
 
@@ -312,10 +312,10 @@ export default function Home({navigation}) {
       })
       .catch((err) => {
         console.log(err);
-        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-          position: 0,
-          duration: 2500,
-        });
+        // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+        //   position: 0,
+        //   duration: 2500,
+        // });
       });
   };
 
@@ -355,29 +355,29 @@ export default function Home({navigation}) {
                 .catch((err) => {
                   console.log(err);
                   setLoadingRecommendation(false);
-                  return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-                    position: 0,
-                    duration: 2500,
-                  });
+                  // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+                  //   position: 0,
+                  //   duration: 2500,
+                  // });
                 });
             })
             .catch((err) => {
               console.log(err);
               setLoadingRecommendation(false);
-              return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-                position: 0,
-                duration: 2500,
-              });
+              // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+              //   position: 0,
+              //   duration: 2500,
+              // });
             });
         }
       })
       .catch((err) => {
         console.log(err);
         setLoadingRecommendation(false);
-        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-          position: 0,
-          duration: 2500,
-        });
+        // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+        //   position: 0,
+        //   duration: 2500,
+        // });
       });
   };
 
@@ -406,10 +406,10 @@ export default function Home({navigation}) {
       })
       .catch((err) => {
         console.log(err);
-        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-          position: 0,
-          duration: 2500,
-        });
+        // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+        //   position: 0,
+        //   duration: 2500,
+        // });
       });
   };
 
@@ -435,10 +435,10 @@ export default function Home({navigation}) {
         .catch((err) => {
           console.log(err);
           setLoadingCategoryFirst(false);
-          return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-            position: 0,
-            duration: 2500,
-          });
+          // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          //   position: 0,
+          //   duration: 2500,
+          // });
         });
     } else {
       setLoadingDishCategory(true);
@@ -460,10 +460,10 @@ export default function Home({navigation}) {
         .catch((err) => {
           console.log(err);
           setLoadingDishCategory(false);
-          return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-            position: 0,
-            duration: 2500,
-          });
+          // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          //   position: 0,
+          //   duration: 2500,
+          // });
         });
     }
   };
@@ -490,10 +490,10 @@ export default function Home({navigation}) {
         .catch((err) => {
           console.log(err);
           setLoadingCategoryFirst(false);
-          return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-            position: 0,
-            duration: 2500,
-          });
+          // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          //   position: 0,
+          //   duration: 2500,
+          // });
         });
     } else {
       setLoadingDishCategory(true);
@@ -515,10 +515,10 @@ export default function Home({navigation}) {
         .catch((err) => {
           console.log(err);
           setLoadingDishCategory(false);
-          return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-            position: 0,
-            duration: 2500,
-          });
+          // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          //   position: 0,
+          //   duration: 2500,
+          // });
         });
     }
   };

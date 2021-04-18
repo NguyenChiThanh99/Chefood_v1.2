@@ -1,5 +1,6 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {StyleSheet, View, Image, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, Image, Text} from 'react-native';
 
 import Global from '../../../Global';
 
@@ -7,14 +8,40 @@ import prepareIcon from '../../../../icons/TimeSquare.png';
 import performIcon from '../../../../icons/TimeCircle.png';
 
 export default function DishViewVertical(props) {
-  const {picture, name, price, prepare, perform} = props.dish.dish;
-
-  const addToCart = () => {};
+  const {picture, name, prepare, perform} = props.dish.dish;
 
   const chefJSX = (
     <Text style={styles.chef}>
       {props.chef === true ? '' : props.dish.chef.name}
     </Text>
+  );
+  const scoreJSX = (
+    <View
+      style={{
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      }}>
+      <Text style={styles.chef}>
+        {props.chef === true ? '' : props.dish.chef.name}
+      </Text>
+      <Text style={styles.score}>
+        {Math.round(props.dish.dishofchef.score * 1000) / 10} điểm
+      </Text>
+    </View>
+  );
+  const addressJSX = (
+    <View
+      style={{
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      }}>
+      <Text style={styles.chef}>
+        {props.chef === true ? '' : props.dish.chef.name}
+      </Text>
+      <Text style={styles.address}>{props.dish.dishofchef.distance} km</Text>
+    </View>
   );
   const timeJSX = (
     <View style={styles.timeCont}>
@@ -41,12 +68,15 @@ export default function DishViewVertical(props) {
           <Text style={styles.name} numberOfLines={2}>
             {name}
           </Text>
-          {props.chef === true ? timeJSX : chefJSX}
+          {props.chef === true
+            ? timeJSX
+            : props.search === 0
+            ? scoreJSX
+            : props.search === 1
+            ? addressJSX
+            : chefJSX}
           <Text style={styles.price}>
-            {props.chef === true
-              ? Global.currencyFormat(props.dish.dishofchef.price)
-              : Global.currencyFormat(price)}
-            đ
+            {Global.currencyFormat(props.dish.dishofchef.price)}đ
           </Text>
         </View>
       </View>
@@ -56,6 +86,18 @@ export default function DishViewVertical(props) {
 
 const {width, height, mainColor} = Global;
 const styles = StyleSheet.create({
+  score: {
+    fontFamily: 'Roboto-Regular',
+    color: '#2f80ed',
+    fontSize: width / 32,
+    marginRight: 20,
+  },
+  address: {
+    fontFamily: 'Roboto-Regular',
+    color: '#219653',
+    fontSize: width / 32,
+    marginRight: 20,
+  },
   timeCont: {
     flexDirection: 'row',
     alignItems: 'center',

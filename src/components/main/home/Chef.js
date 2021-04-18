@@ -541,7 +541,7 @@ export default function Chef({navigation, route}) {
           />
           <View style={styles.rating}>
             <View style={styles.star}>
-              <RatingStar star={Math.round(level)} />
+              <RatingStar star={Math.round(level * 10) / 10} />
             </View>
             <Text style={styles.ratingText}>{Math.round(level * 10) / 10}</Text>
           </View>
