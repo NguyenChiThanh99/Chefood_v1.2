@@ -2435,6 +2435,7 @@ string cvc_multiline_helper_amex
 string cvc_number_hint
 string czv_whitelist_no_label
 string czv_whitelist_yes_label
+string default_web_client_id
 string diners_club
 string discover
 string ending_in
@@ -2444,6 +2445,7 @@ string expiry_label_short
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string gcm_defaultSenderId
 string gettipsi_card_cvc
 string gettipsi_card_enter_dialog_negative_button
 string gettipsi_card_enter_dialog_positive_button
@@ -2453,6 +2455,10 @@ string gettipsi_card_number_label
 string gettipsi_google_pay_unavaliable
 string gettipsi_save
 string gettipsi_user_cancel_dialog
+string google_api_key
+string google_app_id
+string google_crash_reporting_api_key
+string google_storage_bucket
 string header_description
 string hide_bottom_view_on_scroll_behavior
 string hzv_cancel_label
@@ -2517,6 +2523,7 @@ string payment_method_add_new_fpx
 string price_free
 string processing
 string progressbar_description
+string project_id
 string radiogroup_description
 string rn_tab_description
 string scrollbar_description

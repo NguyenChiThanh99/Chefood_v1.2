@@ -24,295 +24,285 @@
 15    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 15-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:5:2-77
 15-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:5:19-75
-16    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- Include required permissions for Google Maps API to run. -->
-16-->[com.facebook.flipper:flipper:0.54.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/1c7787ec82631e0394972c76bdabe608/flipper-0.54.0/AndroidManifest.xml:16:5-76
-16-->[com.facebook.flipper:flipper:0.54.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/1c7787ec82631e0394972c76bdabe608/flipper-0.54.0/AndroidManifest.xml:16:22-73
+16    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+16-->[com.facebook.flipper:flipper:0.54.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/54a7aae5b034135aecf18fe01026e016/flipper-0.54.0/AndroidManifest.xml:16:5-76
+16-->[com.facebook.flipper:flipper:0.54.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/54a7aae5b034135aecf18fe01026e016/flipper-0.54.0/AndroidManifest.xml:16:22-73
 17    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-17-->[com.google.android.gms:play-services-maps:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/fe970562e16ec4a9156af6e026aedfa5/jetified-play-services-maps-11.8.0/AndroidManifest.xml:23:5-79
-17-->[com.google.android.gms:play-services-maps:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/fe970562e16ec4a9156af6e026aedfa5/jetified-play-services-maps-11.8.0/AndroidManifest.xml:23:22-76
-18
-19    <uses-feature
-19-->[com.google.android.gms:play-services-maps:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/fe970562e16ec4a9156af6e026aedfa5/jetified-play-services-maps-11.8.0/AndroidManifest.xml:26:5-28:35
-20        android:glEsVersion="0x00020000"
-20-->[com.google.android.gms:play-services-maps:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/fe970562e16ec4a9156af6e026aedfa5/jetified-play-services-maps-11.8.0/AndroidManifest.xml:27:9-41
-21        android:required="true" />
-21-->[com.google.android.gms:play-services-maps:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/fe970562e16ec4a9156af6e026aedfa5/jetified-play-services-maps-11.8.0/AndroidManifest.xml:28:9-32
-22
-23    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
-23-->[com.google.firebase:firebase-analytics:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c439e972fb70521fb72be0a51fa034f6/jetified-firebase-analytics-11.8.0/AndroidManifest.xml:25:5-68
-23-->[com.google.firebase:firebase-analytics:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c439e972fb70521fb72be0a51fa034f6/jetified-firebase-analytics-11.8.0/AndroidManifest.xml:25:22-65
-24    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-24-->[com.google.firebase:firebase-iid:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/031b0a799fa8f912ef16fe57624daa87/jetified-firebase-iid-11.8.0/AndroidManifest.xml:26:5-82
-24-->[com.google.firebase:firebase-iid:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/031b0a799fa8f912ef16fe57624daa87/jetified-firebase-iid-11.8.0/AndroidManifest.xml:26:22-79
-25
-26    <permission
-26-->[com.google.firebase:firebase-iid:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/031b0a799fa8f912ef16fe57624daa87/jetified-firebase-iid-11.8.0/AndroidManifest.xml:28:5-30:47
-27        android:name="com.chefood.permission.C2D_MESSAGE"
-27-->[com.google.firebase:firebase-iid:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/031b0a799fa8f912ef16fe57624daa87/jetified-firebase-iid-11.8.0/AndroidManifest.xml:29:9-63
-28        android:protectionLevel="signature" />
-28-->[com.google.firebase:firebase-iid:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/031b0a799fa8f912ef16fe57624daa87/jetified-firebase-iid-11.8.0/AndroidManifest.xml:30:9-44
-29
-30    <uses-permission android:name="com.chefood.permission.C2D_MESSAGE" />
-30-->[com.google.firebase:firebase-iid:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/031b0a799fa8f912ef16fe57624daa87/jetified-firebase-iid-11.8.0/AndroidManifest.xml:32:5-79
-30-->[com.google.firebase:firebase-iid:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/031b0a799fa8f912ef16fe57624daa87/jetified-firebase-iid-11.8.0/AndroidManifest.xml:32:22-76
-31
-32    <application
-32-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:2-14:16
-33        android:name="com.chefood.MainApplication"
-33-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:15-46
-34        android:allowBackup="false"
-34-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:161-188
-35        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-35-->[androidx.core:core:1.3.1] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/4f3e3536c8bf9e8cb1939d2a5eeaba3a/core-1.3.1/AndroidManifest.xml:24:18-86
-36        android:debuggable="true"
-37        android:icon="@mipmap/ic_launcher"
-37-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:80-114
-38        android:label="@string/app_name"
-38-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:47-79
-39        android:requestLegacyExternalStorage="true"
-39-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:221-264
-40        android:roundIcon="@mipmap/ic_launcher_round"
-40-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:115-160
-41        android:theme="@style/AppTheme"
-41-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:189-220
-42        android:usesCleartextTraffic="true" >
-42-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/debug/AndroidManifest.xml:7:18-53
-43        <activity
-43-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:7:3-12:14
-44            android:name="com.chefood.MainActivity"
-44-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:7:13-41
-45            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-45-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:7:75-152
-46            android:label="@string/app_name"
-46-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:7:42-74
-47            android:launchMode="singleTask"
-47-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:7:153-184
-48            android:windowSoftInputMode="adjustPan" >
-48-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:7:185-224
-49            <intent-filter>
-49-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:8:4-11:20
-50                <action android:name="android.intent.action.MAIN" />
-50-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:9:5-57
-50-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:9:13-54
-51
-52                <category android:name="android.intent.category.LAUNCHER" />
-52-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:10:5-65
-52-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:10:15-62
-53            </intent-filter>
-54        </activity>
-55        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-55-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:13:3-80
-55-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:13:13-77
-56
-57        <provider
-57-->[:react-native-image-picker] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-20:20
-58            android:name="com.imagepicker.ImagePickerProvider"
-58-->[:react-native-image-picker] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-63
-59            android:authorities="com.chefood.imagepickerprovider"
-59-->[:react-native-image-picker] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-71
-60            android:exported="false"
-60-->[:react-native-image-picker] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-37
-61            android:grantUriPermissions="true" >
-61-->[:react-native-image-picker] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-47
-62            <meta-data
-62-->[:react-native-image-picker] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:13-19:70
-63                android:name="android.support.FILE_PROVIDER_PATHS"
-63-->[:react-native-image-picker] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-67
-64                android:resource="@xml/imagepicker_provider_paths" />
-64-->[:react-native-image-picker] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:17-67
-65        </provider>
-66
-67        <activity
-67-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-16:75
-68            android:name="com.gettipsi.stripe.OpenBrowserActivity"
-68-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-67
-69            android:exported="false"
-69-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-37
-70            android:launchMode="singleTask"
-70-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-44
-71            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-71-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-72
-72        <activity
-72-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:9-30:20
-73            android:name="com.gettipsi.stripe.RedirectUriReceiver"
-73-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:13-67
-74            android:exported="true"
-74-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:13-36
-75            android:launchMode="singleTask"
-75-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:20:13-44
-76            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" >
-76-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:21:13-83
-77            <intent-filter>
-77-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:22:13-29:29
-78                <action android:name="android.intent.action.VIEW" />
-78-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:23:17-69
-78-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:23:25-66
-79
-80                <category android:name="android.intent.category.DEFAULT" />
-80-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:25:17-76
-80-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:25:27-73
-81                <category android:name="android.intent.category.BROWSABLE" />
-81-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:17-78
-81-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:27-75
-82
-83                <data android:scheme="example" />
-83-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:28:17-50
-83-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:28:23-47
-84            </intent-filter>
-85        </activity>
-86        <activity
-86-->[com.google.android.gms:play-services-base:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/1b9c9dcaa597c2d3ce3d6f84aadc1849/jetified-play-services-base-11.8.0/AndroidManifest.xml:23:9-26:75
-87            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-87-->[com.google.android.gms:play-services-base:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/1b9c9dcaa597c2d3ce3d6f84aadc1849/jetified-play-services-base-11.8.0/AndroidManifest.xml:24:13-79
-88            android:exported="false"
-88-->[com.google.android.gms:play-services-base:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/1b9c9dcaa597c2d3ce3d6f84aadc1849/jetified-play-services-base-11.8.0/AndroidManifest.xml:25:13-37
-89            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-89-->[com.google.android.gms:play-services-base:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/1b9c9dcaa597c2d3ce3d6f84aadc1849/jetified-play-services-base-11.8.0/AndroidManifest.xml:26:13-72
-90
-91        <receiver
-91-->[com.google.firebase:firebase-analytics:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c439e972fb70521fb72be0a51fa034f6/jetified-firebase-analytics-11.8.0/AndroidManifest.xml:28:9-32:20
-92            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
-92-->[com.google.firebase:firebase-analytics:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c439e972fb70521fb72be0a51fa034f6/jetified-firebase-analytics-11.8.0/AndroidManifest.xml:29:13-85
-93            android:enabled="true"
-93-->[com.google.firebase:firebase-analytics:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c439e972fb70521fb72be0a51fa034f6/jetified-firebase-analytics-11.8.0/AndroidManifest.xml:30:13-35
-94            android:exported="false" >
-94-->[com.google.firebase:firebase-analytics:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c439e972fb70521fb72be0a51fa034f6/jetified-firebase-analytics-11.8.0/AndroidManifest.xml:31:13-37
-95        </receiver>
-96        <receiver
-96-->[com.google.firebase:firebase-analytics:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c439e972fb70521fb72be0a51fa034f6/jetified-firebase-analytics-11.8.0/AndroidManifest.xml:33:9-41:20
-97            android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver"
-97-->[com.google.firebase:firebase-analytics:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c439e972fb70521fb72be0a51fa034f6/jetified-firebase-analytics-11.8.0/AndroidManifest.xml:34:13-100
-98            android:enabled="true"
-98-->[com.google.firebase:firebase-analytics:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c439e972fb70521fb72be0a51fa034f6/jetified-firebase-analytics-11.8.0/AndroidManifest.xml:35:13-35
-99            android:exported="true"
-99-->[com.google.firebase:firebase-analytics:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c439e972fb70521fb72be0a51fa034f6/jetified-firebase-analytics-11.8.0/AndroidManifest.xml:36:13-36
-100            android:permission="android.permission.INSTALL_PACKAGES" >
-100-->[com.google.firebase:firebase-analytics:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c439e972fb70521fb72be0a51fa034f6/jetified-firebase-analytics-11.8.0/AndroidManifest.xml:37:13-69
-101            <intent-filter>
-101-->[com.google.firebase:firebase-analytics:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c439e972fb70521fb72be0a51fa034f6/jetified-firebase-analytics-11.8.0/AndroidManifest.xml:38:13-40:29
-102                <action android:name="com.android.vending.INSTALL_REFERRER" />
-102-->[com.google.firebase:firebase-analytics:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c439e972fb70521fb72be0a51fa034f6/jetified-firebase-analytics-11.8.0/AndroidManifest.xml:39:17-79
-102-->[com.google.firebase:firebase-analytics:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c439e972fb70521fb72be0a51fa034f6/jetified-firebase-analytics-11.8.0/AndroidManifest.xml:39:25-76
-103            </intent-filter>
-104        </receiver>
-105
-106        <service
-106-->[com.google.firebase:firebase-analytics:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c439e972fb70521fb72be0a51fa034f6/jetified-firebase-analytics-11.8.0/AndroidManifest.xml:43:9-46:40
-107            android:name="com.google.android.gms.measurement.AppMeasurementService"
-107-->[com.google.firebase:firebase-analytics:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c439e972fb70521fb72be0a51fa034f6/jetified-firebase-analytics-11.8.0/AndroidManifest.xml:44:13-84
-108            android:enabled="true"
-108-->[com.google.firebase:firebase-analytics:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c439e972fb70521fb72be0a51fa034f6/jetified-firebase-analytics-11.8.0/AndroidManifest.xml:45:13-35
-109            android:exported="false" />
-109-->[com.google.firebase:firebase-analytics:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c439e972fb70521fb72be0a51fa034f6/jetified-firebase-analytics-11.8.0/AndroidManifest.xml:46:13-37
-110        <service
-110-->[com.google.firebase:firebase-analytics:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c439e972fb70521fb72be0a51fa034f6/jetified-firebase-analytics-11.8.0/AndroidManifest.xml:47:9-51:72
-111            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
-111-->[com.google.firebase:firebase-analytics:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c439e972fb70521fb72be0a51fa034f6/jetified-firebase-analytics-11.8.0/AndroidManifest.xml:48:13-87
-112            android:enabled="true"
-112-->[com.google.firebase:firebase-analytics:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c439e972fb70521fb72be0a51fa034f6/jetified-firebase-analytics-11.8.0/AndroidManifest.xml:49:13-35
-113            android:exported="false"
-113-->[com.google.firebase:firebase-analytics:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c439e972fb70521fb72be0a51fa034f6/jetified-firebase-analytics-11.8.0/AndroidManifest.xml:50:13-37
-114            android:permission="android.permission.BIND_JOB_SERVICE" />
-114-->[com.google.firebase:firebase-analytics:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c439e972fb70521fb72be0a51fa034f6/jetified-firebase-analytics-11.8.0/AndroidManifest.xml:51:13-69
-115
-116        <receiver
-116-->[com.google.firebase:firebase-iid:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/031b0a799fa8f912ef16fe57624daa87/jetified-firebase-iid-11.8.0/AndroidManifest.xml:35:9-44:20
-117            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
-117-->[com.google.firebase:firebase-iid:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/031b0a799fa8f912ef16fe57624daa87/jetified-firebase-iid-11.8.0/AndroidManifest.xml:36:13-78
-118            android:exported="true"
-118-->[com.google.firebase:firebase-iid:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/031b0a799fa8f912ef16fe57624daa87/jetified-firebase-iid-11.8.0/AndroidManifest.xml:37:13-36
-119            android:permission="com.google.android.c2dm.permission.SEND" >
-119-->[com.google.firebase:firebase-iid:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/031b0a799fa8f912ef16fe57624daa87/jetified-firebase-iid-11.8.0/AndroidManifest.xml:38:13-73
-120            <intent-filter>
-120-->[com.google.firebase:firebase-iid:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/031b0a799fa8f912ef16fe57624daa87/jetified-firebase-iid-11.8.0/AndroidManifest.xml:39:13-43:29
-121                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-121-->[com.google.firebase:firebase-iid:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/031b0a799fa8f912ef16fe57624daa87/jetified-firebase-iid-11.8.0/AndroidManifest.xml:40:17-81
-121-->[com.google.firebase:firebase-iid:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/031b0a799fa8f912ef16fe57624daa87/jetified-firebase-iid-11.8.0/AndroidManifest.xml:40:25-78
-122
-123                <category android:name="com.chefood" />
-123-->[com.google.firebase:firebase-iid:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/031b0a799fa8f912ef16fe57624daa87/jetified-firebase-iid-11.8.0/AndroidManifest.xml:42:17-61
-123-->[com.google.firebase:firebase-iid:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/031b0a799fa8f912ef16fe57624daa87/jetified-firebase-iid-11.8.0/AndroidManifest.xml:42:27-58
-124            </intent-filter>
-125        </receiver>
-126        <!--
-127             FirebaseInstanceIdService performs security checks at runtime,
-128             no need for explicit permissions despite exported="true"
-129        -->
-130        <service
-130-->[com.google.firebase:firebase-iid:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/031b0a799fa8f912ef16fe57624daa87/jetified-firebase-iid-11.8.0/AndroidManifest.xml:50:9-56:19
-131            android:name="com.google.firebase.iid.FirebaseInstanceIdService"
-131-->[com.google.firebase:firebase-iid:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/031b0a799fa8f912ef16fe57624daa87/jetified-firebase-iid-11.8.0/AndroidManifest.xml:51:13-77
-132            android:exported="true" >
-132-->[com.google.firebase:firebase-iid:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/031b0a799fa8f912ef16fe57624daa87/jetified-firebase-iid-11.8.0/AndroidManifest.xml:52:13-36
-133            <intent-filter android:priority="-500" >
-133-->[com.google.firebase:firebase-iid:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/031b0a799fa8f912ef16fe57624daa87/jetified-firebase-iid-11.8.0/AndroidManifest.xml:53:13-55:29
-133-->[com.google.firebase:firebase-iid:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/031b0a799fa8f912ef16fe57624daa87/jetified-firebase-iid-11.8.0/AndroidManifest.xml:53:28-51
-134                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-134-->[com.google.firebase:firebase-iid:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/031b0a799fa8f912ef16fe57624daa87/jetified-firebase-iid-11.8.0/AndroidManifest.xml:54:17-80
-134-->[com.google.firebase:firebase-iid:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/031b0a799fa8f912ef16fe57624daa87/jetified-firebase-iid-11.8.0/AndroidManifest.xml:54:25-77
-135            </intent-filter>
-136        </service>
-137
-138        <provider
-138-->[com.google.firebase:firebase-common:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d9cb3fef3a2bc8cab98bf0f93d5b8307/jetified-firebase-common-11.8.0/AndroidManifest.xml:8:9-12:39
-139            android:name="com.google.firebase.provider.FirebaseInitProvider"
-139-->[com.google.firebase:firebase-common:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d9cb3fef3a2bc8cab98bf0f93d5b8307/jetified-firebase-common-11.8.0/AndroidManifest.xml:9:13-77
-140            android:authorities="com.chefood.firebaseinitprovider"
-140-->[com.google.firebase:firebase-common:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d9cb3fef3a2bc8cab98bf0f93d5b8307/jetified-firebase-common-11.8.0/AndroidManifest.xml:10:13-72
-141            android:exported="false"
-141-->[com.google.firebase:firebase-common:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d9cb3fef3a2bc8cab98bf0f93d5b8307/jetified-firebase-common-11.8.0/AndroidManifest.xml:11:13-37
-142            android:initOrder="100" />
-142-->[com.google.firebase:firebase-common:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d9cb3fef3a2bc8cab98bf0f93d5b8307/jetified-firebase-common-11.8.0/AndroidManifest.xml:12:13-36
-143
-144        <meta-data
-144-->[com.google.android.gms:play-services-basement:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/fb9741ea4d28ea2dfa8df2480d5be24a/jetified-play-services-basement-11.8.0/AndroidManifest.xml:23:9-25:69
-145            android:name="com.google.android.gms.version"
-145-->[com.google.android.gms:play-services-basement:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/fb9741ea4d28ea2dfa8df2480d5be24a/jetified-play-services-basement-11.8.0/AndroidManifest.xml:24:13-58
-146            android:value="@integer/google_play_services_version" />
-146-->[com.google.android.gms:play-services-basement:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/fb9741ea4d28ea2dfa8df2480d5be24a/jetified-play-services-basement-11.8.0/AndroidManifest.xml:25:13-66
-147
-148        <activity
-148-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/458abca95c82a57e1e4699eb3b8ed334/jetified-stripe-android-10.4.6/AndroidManifest.xml:12:9-14:57
-149            android:name="com.stripe.android.view.AddPaymentMethodActivity"
-149-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/458abca95c82a57e1e4699eb3b8ed334/jetified-stripe-android-10.4.6/AndroidManifest.xml:13:13-76
-150            android:theme="@style/StripeDefaultTheme" />
-150-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/458abca95c82a57e1e4699eb3b8ed334/jetified-stripe-android-10.4.6/AndroidManifest.xml:14:13-54
-151        <activity
-151-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/458abca95c82a57e1e4699eb3b8ed334/jetified-stripe-android-10.4.6/AndroidManifest.xml:15:9-17:57
-152            android:name="com.stripe.android.view.PaymentMethodsActivity"
-152-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/458abca95c82a57e1e4699eb3b8ed334/jetified-stripe-android-10.4.6/AndroidManifest.xml:16:13-74
-153            android:theme="@style/StripeDefaultTheme" />
-153-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/458abca95c82a57e1e4699eb3b8ed334/jetified-stripe-android-10.4.6/AndroidManifest.xml:17:13-54
-154        <activity
-154-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/458abca95c82a57e1e4699eb3b8ed334/jetified-stripe-android-10.4.6/AndroidManifest.xml:18:9-20:57
-155            android:name="com.stripe.android.view.PaymentFlowActivity"
-155-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/458abca95c82a57e1e4699eb3b8ed334/jetified-stripe-android-10.4.6/AndroidManifest.xml:19:13-71
-156            android:theme="@style/StripeDefaultTheme" />
-156-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/458abca95c82a57e1e4699eb3b8ed334/jetified-stripe-android-10.4.6/AndroidManifest.xml:20:13-54
+17-->[com.google.android.gms:play-services-measurement-api:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/e1ab6d34e87950555cdf5ac7b5c52aa0/play-services-measurement-api-18.0.3/AndroidManifest.xml:23:5-79
+17-->[com.google.android.gms:play-services-measurement-api:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/e1ab6d34e87950555cdf5ac7b5c52aa0/play-services-measurement-api-18.0.3/AndroidManifest.xml:23:22-76
+18    <uses-permission android:name="android.permission.WAKE_LOCK" />
+18-->[com.google.android.gms:play-services-measurement-api:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/e1ab6d34e87950555cdf5ac7b5c52aa0/play-services-measurement-api-18.0.3/AndroidManifest.xml:24:5-68
+18-->[com.google.android.gms:play-services-measurement-api:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/e1ab6d34e87950555cdf5ac7b5c52aa0/play-services-measurement-api-18.0.3/AndroidManifest.xml:24:22-65
+19    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+19-->[com.google.android.gms:play-services-measurement:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c64b81765c86d3476402a66e85390d95/play-services-measurement-18.0.3/AndroidManifest.xml:26:5-110
+19-->[com.google.android.gms:play-services-measurement:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c64b81765c86d3476402a66e85390d95/play-services-measurement-18.0.3/AndroidManifest.xml:26:22-107
+20
+21    <uses-feature
+21-->[com.google.android.gms:play-services-maps:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/8b8c554ddfa1b32e84fb631ac87f1fee/jetified-play-services-maps-11.8.0/AndroidManifest.xml:26:5-28:35
+22        android:glEsVersion="0x00020000"
+22-->[com.google.android.gms:play-services-maps:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/8b8c554ddfa1b32e84fb631ac87f1fee/jetified-play-services-maps-11.8.0/AndroidManifest.xml:27:9-41
+23        android:required="true" />
+23-->[com.google.android.gms:play-services-maps:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/8b8c554ddfa1b32e84fb631ac87f1fee/jetified-play-services-maps-11.8.0/AndroidManifest.xml:28:9-32
+24
+25    <application
+25-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:2-14:16
+26        android:name="com.chefood.MainApplication"
+26-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:15-46
+27        android:allowBackup="false"
+27-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:161-188
+28        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+28-->[androidx.core:core:1.3.1] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/8a600f0e52e9e1a3b2bbf38177a95667/core-1.3.1/AndroidManifest.xml:24:18-86
+29        android:debuggable="true"
+30        android:icon="@mipmap/ic_launcher"
+30-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:80-114
+31        android:label="@string/app_name"
+31-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:47-79
+32        android:requestLegacyExternalStorage="true"
+32-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:221-264
+33        android:roundIcon="@mipmap/ic_launcher_round"
+33-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:115-160
+34        android:theme="@style/AppTheme"
+34-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:189-220
+35        android:usesCleartextTraffic="true" >
+35-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/debug/AndroidManifest.xml:7:18-53
+36        <activity
+36-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:7:3-12:14
+37            android:name="com.chefood.MainActivity"
+37-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:7:13-41
+38            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+38-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:7:75-152
+39            android:label="@string/app_name"
+39-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:7:42-74
+40            android:launchMode="singleTask"
+40-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:7:153-184
+41            android:windowSoftInputMode="adjustPan" >
+41-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:7:185-224
+42            <intent-filter>
+42-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:8:4-11:20
+43                <action android:name="android.intent.action.MAIN" />
+43-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:9:5-57
+43-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:9:13-54
+44
+45                <category android:name="android.intent.category.LAUNCHER" />
+45-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:10:5-65
+45-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:10:15-62
+46            </intent-filter>
+47        </activity>
+48        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+48-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:13:3-80
+48-->/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:13:13-77
+49
+50        <provider
+50-->[:react-native-image-picker] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-20:20
+51            android:name="com.imagepicker.ImagePickerProvider"
+51-->[:react-native-image-picker] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-63
+52            android:authorities="com.chefood.imagepickerprovider"
+52-->[:react-native-image-picker] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-71
+53            android:exported="false"
+53-->[:react-native-image-picker] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-37
+54            android:grantUriPermissions="true" >
+54-->[:react-native-image-picker] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-47
+55            <meta-data
+55-->[:react-native-image-picker] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:13-19:70
+56                android:name="android.support.FILE_PROVIDER_PATHS"
+56-->[:react-native-image-picker] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-67
+57                android:resource="@xml/imagepicker_provider_paths" />
+57-->[:react-native-image-picker] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/react-native-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:17-67
+58        </provider>
+59
+60        <activity
+60-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-16:75
+61            android:name="com.gettipsi.stripe.OpenBrowserActivity"
+61-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-67
+62            android:exported="false"
+62-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-37
+63            android:launchMode="singleTask"
+63-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-44
+64            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+64-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-72
+65        <activity
+65-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:9-30:20
+66            android:name="com.gettipsi.stripe.RedirectUriReceiver"
+66-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:13-67
+67            android:exported="true"
+67-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:13-36
+68            android:launchMode="singleTask"
+68-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:20:13-44
+69            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" >
+69-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:21:13-83
+70            <intent-filter>
+70-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:22:13-29:29
+71                <action android:name="android.intent.action.VIEW" />
+71-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:23:17-69
+71-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:23:25-66
+72
+73                <category android:name="android.intent.category.DEFAULT" />
+73-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:25:17-76
+73-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:25:27-73
+74                <category android:name="android.intent.category.BROWSABLE" />
+74-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:17-78
+74-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:27-75
+75
+76                <data android:scheme="example" />
+76-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:28:17-50
+76-->[:tipsi-stripe] /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/node_modules/tipsi-stripe/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:28:23-47
+77            </intent-filter>
+78        </activity>
+79        <activity
+79-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:12:9-14:57
+80            android:name="com.stripe.android.view.AddPaymentMethodActivity"
+80-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:13:13-76
+81            android:theme="@style/StripeDefaultTheme" />
+81-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:14:13-54
+82        <activity
+82-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:15:9-17:57
+83            android:name="com.stripe.android.view.PaymentMethodsActivity"
+83-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:16:13-74
+84            android:theme="@style/StripeDefaultTheme" />
+84-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:17:13-54
+85        <activity
+85-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:18:9-20:57
+86            android:name="com.stripe.android.view.PaymentFlowActivity"
+86-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:19:13-71
+87            android:theme="@style/StripeDefaultTheme" />
+87-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:20:13-54
+88        <activity
+88-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:21:9-23:57
+89            android:name="com.stripe.android.view.PaymentAuthWebViewActivity"
+89-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:22:13-78
+90            android:theme="@style/StripeDefaultTheme" />
+90-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:23:13-54
+91        <activity
+91-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:24:9-26:57
+92            android:name="com.stripe.android.view.PaymentRelayActivity"
+92-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:25:13-72
+93            android:theme="@style/StripeDefaultTheme" />
+93-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:26:13-54
+94        <activity
+94-->[com.stripe:stripe-3ds2-android:1.2.2] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/42f9cfb40db5319cc100e2e04eba84c9/jetified-stripe-3ds2-android-1.2.2/AndroidManifest.xml:12:9-14:54
+95            android:name="com.stripe.android.stripe3ds2.views.ChallengeActivity"
+95-->[com.stripe:stripe-3ds2-android:1.2.2] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/42f9cfb40db5319cc100e2e04eba84c9/jetified-stripe-3ds2-android-1.2.2/AndroidManifest.xml:13:13-81
+96            android:theme="@style/Stripe3DS2Theme" />
+96-->[com.stripe:stripe-3ds2-android:1.2.2] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/42f9cfb40db5319cc100e2e04eba84c9/jetified-stripe-3ds2-android-1.2.2/AndroidManifest.xml:14:13-51
+97        <activity
+97-->[com.stripe:stripe-3ds2-android:1.2.2] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/42f9cfb40db5319cc100e2e04eba84c9/jetified-stripe-3ds2-android-1.2.2/AndroidManifest.xml:15:9-17:54
+98            android:name="com.stripe.android.stripe3ds2.views.ChallengeProgressDialogActivity"
+98-->[com.stripe:stripe-3ds2-android:1.2.2] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/42f9cfb40db5319cc100e2e04eba84c9/jetified-stripe-3ds2-android-1.2.2/AndroidManifest.xml:16:13-95
+99            android:theme="@style/Stripe3DS2Theme" />
+99-->[com.stripe:stripe-3ds2-android:1.2.2] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/42f9cfb40db5319cc100e2e04eba84c9/jetified-stripe-3ds2-android-1.2.2/AndroidManifest.xml:17:13-51
+100
+101        <service
+101-->[com.google.android.gms:play-services-measurement-api:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/e1ab6d34e87950555cdf5ac7b5c52aa0/play-services-measurement-api-18.0.3/AndroidManifest.xml:27:9-33:19
+102            android:name="com.google.firebase.components.ComponentDiscoveryService"
+102-->[com.google.android.gms:play-services-measurement-api:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/e1ab6d34e87950555cdf5ac7b5c52aa0/play-services-measurement-api-18.0.3/AndroidManifest.xml:28:13-84
+103            android:directBootAware="true"
+103-->[com.google.firebase:firebase-common:19.5.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/6d5b3c0e49de888f696ecbaeb61d484f/jetified-firebase-common-19.5.0/AndroidManifest.xml:35:13-43
+104            android:exported="false" >
+104-->[com.google.android.gms:play-services-measurement-api:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/e1ab6d34e87950555cdf5ac7b5c52aa0/play-services-measurement-api-18.0.3/AndroidManifest.xml:29:13-37
+105            <meta-data
+105-->[com.google.android.gms:play-services-measurement-api:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/e1ab6d34e87950555cdf5ac7b5c52aa0/play-services-measurement-api-18.0.3/AndroidManifest.xml:30:13-32:85
+106                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+106-->[com.google.android.gms:play-services-measurement-api:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/e1ab6d34e87950555cdf5ac7b5c52aa0/play-services-measurement-api-18.0.3/AndroidManifest.xml:31:17-139
+107                android:value="com.google.firebase.components.ComponentRegistrar" />
+107-->[com.google.android.gms:play-services-measurement-api:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/e1ab6d34e87950555cdf5ac7b5c52aa0/play-services-measurement-api-18.0.3/AndroidManifest.xml:32:17-82
+108            <meta-data
+108-->[com.google.firebase:firebase-installations:16.3.5] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/fa274d9cd4a59325d91621edcf883f5e/firebase-installations-16.3.5/AndroidManifest.xml:18:13-20:85
+109                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+109-->[com.google.firebase:firebase-installations:16.3.5] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/fa274d9cd4a59325d91621edcf883f5e/firebase-installations-16.3.5/AndroidManifest.xml:19:17-127
+110                android:value="com.google.firebase.components.ComponentRegistrar" />
+110-->[com.google.firebase:firebase-installations:16.3.5] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/fa274d9cd4a59325d91621edcf883f5e/firebase-installations-16.3.5/AndroidManifest.xml:20:17-82
+111            <!--
+112                This registrar is not defined in the dynamic-module-support sdk itself to allow non-firebase
+113                clients to use it as well, by defining this registrar in their own core/common library.
+114            -->
+115            <meta-data
+115-->[com.google.firebase:firebase-common:19.5.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/6d5b3c0e49de888f696ecbaeb61d484f/jetified-firebase-common-19.5.0/AndroidManifest.xml:43:13-45:85
+116                android:name="com.google.firebase.components:com.google.firebase.dynamicloading.DynamicLoadingRegistrar"
+116-->[com.google.firebase:firebase-common:19.5.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/6d5b3c0e49de888f696ecbaeb61d484f/jetified-firebase-common-19.5.0/AndroidManifest.xml:44:17-121
+117                android:value="com.google.firebase.components.ComponentRegistrar" />
+117-->[com.google.firebase:firebase-common:19.5.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/6d5b3c0e49de888f696ecbaeb61d484f/jetified-firebase-common-19.5.0/AndroidManifest.xml:45:17-82
+118        </service>
+119
+120        <provider
+120-->[com.google.firebase:firebase-common:19.5.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/6d5b3c0e49de888f696ecbaeb61d484f/jetified-firebase-common-19.5.0/AndroidManifest.xml:26:9-31:39
+121            android:name="com.google.firebase.provider.FirebaseInitProvider"
+121-->[com.google.firebase:firebase-common:19.5.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/6d5b3c0e49de888f696ecbaeb61d484f/jetified-firebase-common-19.5.0/AndroidManifest.xml:27:13-77
+122            android:authorities="com.chefood.firebaseinitprovider"
+122-->[com.google.firebase:firebase-common:19.5.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/6d5b3c0e49de888f696ecbaeb61d484f/jetified-firebase-common-19.5.0/AndroidManifest.xml:28:13-72
+123            android:directBootAware="true"
+123-->[com.google.firebase:firebase-common:19.5.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/6d5b3c0e49de888f696ecbaeb61d484f/jetified-firebase-common-19.5.0/AndroidManifest.xml:29:13-43
+124            android:exported="false"
+124-->[com.google.firebase:firebase-common:19.5.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/6d5b3c0e49de888f696ecbaeb61d484f/jetified-firebase-common-19.5.0/AndroidManifest.xml:30:13-37
+125            android:initOrder="100" />
+125-->[com.google.firebase:firebase-common:19.5.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/6d5b3c0e49de888f696ecbaeb61d484f/jetified-firebase-common-19.5.0/AndroidManifest.xml:31:13-36
+126
+127        <activity
+127-->[com.google.android.gms:play-services-auth:16.0.1] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/7ec3b6ecd56d92f17db69d307c94d703/jetified-play-services-auth-16.0.1/AndroidManifest.xml:23:9-27:75
+128            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+128-->[com.google.android.gms:play-services-auth:16.0.1] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/7ec3b6ecd56d92f17db69d307c94d703/jetified-play-services-auth-16.0.1/AndroidManifest.xml:24:13-93
+129            android:excludeFromRecents="true"
+129-->[com.google.android.gms:play-services-auth:16.0.1] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/7ec3b6ecd56d92f17db69d307c94d703/jetified-play-services-auth-16.0.1/AndroidManifest.xml:25:13-46
+130            android:exported="false"
+130-->[com.google.android.gms:play-services-auth:16.0.1] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/7ec3b6ecd56d92f17db69d307c94d703/jetified-play-services-auth-16.0.1/AndroidManifest.xml:26:13-37
+131            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+131-->[com.google.android.gms:play-services-auth:16.0.1] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/7ec3b6ecd56d92f17db69d307c94d703/jetified-play-services-auth-16.0.1/AndroidManifest.xml:27:13-72
+132        <!--
+133            Service handling Google Sign-In user revocation. For apps that do not integrate with
+134            Google Sign-In, this service will never be started.
+135        -->
+136        <service
+136-->[com.google.android.gms:play-services-auth:16.0.1] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/7ec3b6ecd56d92f17db69d307c94d703/jetified-play-services-auth-16.0.1/AndroidManifest.xml:33:9-36:110
+137            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+137-->[com.google.android.gms:play-services-auth:16.0.1] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/7ec3b6ecd56d92f17db69d307c94d703/jetified-play-services-auth-16.0.1/AndroidManifest.xml:34:13-89
+138            android:exported="true"
+138-->[com.google.android.gms:play-services-auth:16.0.1] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/7ec3b6ecd56d92f17db69d307c94d703/jetified-play-services-auth-16.0.1/AndroidManifest.xml:35:13-36
+139            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" />
+139-->[com.google.android.gms:play-services-auth:16.0.1] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/7ec3b6ecd56d92f17db69d307c94d703/jetified-play-services-auth-16.0.1/AndroidManifest.xml:36:13-107
+140
+141        <receiver
+141-->[com.google.android.gms:play-services-measurement:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c64b81765c86d3476402a66e85390d95/play-services-measurement-18.0.3/AndroidManifest.xml:29:9-33:20
+142            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+142-->[com.google.android.gms:play-services-measurement:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c64b81765c86d3476402a66e85390d95/play-services-measurement-18.0.3/AndroidManifest.xml:30:13-85
+143            android:enabled="true"
+143-->[com.google.android.gms:play-services-measurement:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c64b81765c86d3476402a66e85390d95/play-services-measurement-18.0.3/AndroidManifest.xml:31:13-35
+144            android:exported="false" >
+144-->[com.google.android.gms:play-services-measurement:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c64b81765c86d3476402a66e85390d95/play-services-measurement-18.0.3/AndroidManifest.xml:32:13-37
+145        </receiver>
+146
+147        <service
+147-->[com.google.android.gms:play-services-measurement:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c64b81765c86d3476402a66e85390d95/play-services-measurement-18.0.3/AndroidManifest.xml:35:9-38:40
+148            android:name="com.google.android.gms.measurement.AppMeasurementService"
+148-->[com.google.android.gms:play-services-measurement:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c64b81765c86d3476402a66e85390d95/play-services-measurement-18.0.3/AndroidManifest.xml:36:13-84
+149            android:enabled="true"
+149-->[com.google.android.gms:play-services-measurement:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c64b81765c86d3476402a66e85390d95/play-services-measurement-18.0.3/AndroidManifest.xml:37:13-35
+150            android:exported="false" />
+150-->[com.google.android.gms:play-services-measurement:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c64b81765c86d3476402a66e85390d95/play-services-measurement-18.0.3/AndroidManifest.xml:38:13-37
+151        <service
+151-->[com.google.android.gms:play-services-measurement:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c64b81765c86d3476402a66e85390d95/play-services-measurement-18.0.3/AndroidManifest.xml:39:9-43:72
+152            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+152-->[com.google.android.gms:play-services-measurement:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c64b81765c86d3476402a66e85390d95/play-services-measurement-18.0.3/AndroidManifest.xml:40:13-87
+153            android:enabled="true"
+153-->[com.google.android.gms:play-services-measurement:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c64b81765c86d3476402a66e85390d95/play-services-measurement-18.0.3/AndroidManifest.xml:41:13-35
+154            android:exported="false"
+154-->[com.google.android.gms:play-services-measurement:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c64b81765c86d3476402a66e85390d95/play-services-measurement-18.0.3/AndroidManifest.xml:42:13-37
+155            android:permission="android.permission.BIND_JOB_SERVICE" />
+155-->[com.google.android.gms:play-services-measurement:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c64b81765c86d3476402a66e85390d95/play-services-measurement-18.0.3/AndroidManifest.xml:43:13-69
+156
 157        <activity
-157-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/458abca95c82a57e1e4699eb3b8ed334/jetified-stripe-android-10.4.6/AndroidManifest.xml:21:9-23:57
-158            android:name="com.stripe.android.view.PaymentAuthWebViewActivity"
-158-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/458abca95c82a57e1e4699eb3b8ed334/jetified-stripe-android-10.4.6/AndroidManifest.xml:22:13-78
-159            android:theme="@style/StripeDefaultTheme" />
-159-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/458abca95c82a57e1e4699eb3b8ed334/jetified-stripe-android-10.4.6/AndroidManifest.xml:23:13-54
-160        <activity
-160-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/458abca95c82a57e1e4699eb3b8ed334/jetified-stripe-android-10.4.6/AndroidManifest.xml:24:9-26:57
-161            android:name="com.stripe.android.view.PaymentRelayActivity"
-161-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/458abca95c82a57e1e4699eb3b8ed334/jetified-stripe-android-10.4.6/AndroidManifest.xml:25:13-72
-162            android:theme="@style/StripeDefaultTheme" />
-162-->[com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/458abca95c82a57e1e4699eb3b8ed334/jetified-stripe-android-10.4.6/AndroidManifest.xml:26:13-54
-163        <activity
-163-->[com.stripe:stripe-3ds2-android:1.2.2] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/81a66e1a099ce266791e44467c81e712/jetified-stripe-3ds2-android-1.2.2/AndroidManifest.xml:12:9-14:54
-164            android:name="com.stripe.android.stripe3ds2.views.ChallengeActivity"
-164-->[com.stripe:stripe-3ds2-android:1.2.2] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/81a66e1a099ce266791e44467c81e712/jetified-stripe-3ds2-android-1.2.2/AndroidManifest.xml:13:13-81
-165            android:theme="@style/Stripe3DS2Theme" />
-165-->[com.stripe:stripe-3ds2-android:1.2.2] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/81a66e1a099ce266791e44467c81e712/jetified-stripe-3ds2-android-1.2.2/AndroidManifest.xml:14:13-51
-166        <activity
-166-->[com.stripe:stripe-3ds2-android:1.2.2] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/81a66e1a099ce266791e44467c81e712/jetified-stripe-3ds2-android-1.2.2/AndroidManifest.xml:15:9-17:54
-167            android:name="com.stripe.android.stripe3ds2.views.ChallengeProgressDialogActivity"
-167-->[com.stripe:stripe-3ds2-android:1.2.2] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/81a66e1a099ce266791e44467c81e712/jetified-stripe-3ds2-android-1.2.2/AndroidManifest.xml:16:13-95
-168            android:theme="@style/Stripe3DS2Theme" />
-168-->[com.stripe:stripe-3ds2-android:1.2.2] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/81a66e1a099ce266791e44467c81e712/jetified-stripe-3ds2-android-1.2.2/AndroidManifest.xml:17:13-51
-169    </application>
-170
-171</manifest>
+157-->[com.google.android.gms:play-services-base:16.0.1] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/239a4bc3dc4ee2796d7a44738ae0797c/jetified-play-services-base-16.0.1/AndroidManifest.xml:23:9-26:75
+158            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+158-->[com.google.android.gms:play-services-base:16.0.1] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/239a4bc3dc4ee2796d7a44738ae0797c/jetified-play-services-base-16.0.1/AndroidManifest.xml:24:13-79
+159            android:exported="false"
+159-->[com.google.android.gms:play-services-base:16.0.1] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/239a4bc3dc4ee2796d7a44738ae0797c/jetified-play-services-base-16.0.1/AndroidManifest.xml:25:13-37
+160            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+160-->[com.google.android.gms:play-services-base:16.0.1] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/239a4bc3dc4ee2796d7a44738ae0797c/jetified-play-services-base-16.0.1/AndroidManifest.xml:26:13-72
+161
+162        <meta-data
+162-->[com.google.android.gms:play-services-basement:17.0.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/a03593c043807d9b3330e2b864a02f34/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+163            android:name="com.google.android.gms.version"
+163-->[com.google.android.gms:play-services-basement:17.0.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/a03593c043807d9b3330e2b864a02f34/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+164            android:value="@integer/google_play_services_version" />
+164-->[com.google.android.gms:play-services-basement:17.0.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/a03593c043807d9b3330e2b864a02f34/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+165    </application>
+166
+167</manifest>

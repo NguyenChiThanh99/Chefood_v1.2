@@ -20,6 +20,23 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.148915325976-1fhdaltb59mb829in1cmugfq5ajc8mdf</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleIdentifier</key>
+			<string></string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSApplicationCategoryType</key>
@@ -39,8 +56,6 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app needs to get your location...</string>
 	<key>NSCameraUsageDescription</key>
 	<string>We need access to camera as it's the core app experience.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

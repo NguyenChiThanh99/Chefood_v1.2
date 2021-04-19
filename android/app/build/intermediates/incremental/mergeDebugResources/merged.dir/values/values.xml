@@ -781,7 +781,7 @@
     <integer name="date_length">5</integer>
     <integer name="design_snackbar_text_max_lines">2</integer>
     <integer name="design_tab_indicator_anim_duration_ms">300</integer>
-    <integer name="google_play_services_version">11910000</integer>
+    <integer name="google_play_services_version">12451000</integer>
     <integer name="hide_password_duration">320</integer>
     <integer name="light_text_alpha_hex">204</integer>
     <integer name="mtrl_badge_max_character_count">4</integer>
@@ -961,6 +961,7 @@
     <string name="cvc_number_hint">CVC</string>
     <string name="czv_whitelist_no_label">No</string>
     <string name="czv_whitelist_yes_label">Yes</string>
+    <string name="default_web_client_id" translatable="false">148915325976-v7n9hktfklbn49sfgf5ianikvfnuknel.apps.googleusercontent.com</string>
     <string name="diners_club">Diners Club</string>
     <string name="discover">Discover</string>
     <string name="ending_in">%1$s ending in %2$s</string>
@@ -970,6 +971,7 @@
     <string name="exposed_dropdown_menu_content_description">Show dropdown menu</string>
     <string name="fab_transformation_scrim_behavior" translatable="false">com.google.android.material.transformation.FabTransformationScrimBehavior</string>
     <string name="fab_transformation_sheet_behavior" translatable="false">com.google.android.material.transformation.FabTransformationSheetBehavior</string>
+    <string name="gcm_defaultSenderId" translatable="false">148915325976</string>
     <string name="gettipsi_card_cvc">CVC</string>
     <string name="gettipsi_card_enter_dialog_negative_button">Cancel</string>
     <string name="gettipsi_card_enter_dialog_positive_button">Done</string>
@@ -979,6 +981,10 @@
     <string name="gettipsi_google_pay_unavaliable">Google Pay is unavailable on your device.</string>
     <string name="gettipsi_save">Save</string>
     <string name="gettipsi_user_cancel_dialog">A user has canceled the dialog. No card added!</string>
+    <string name="google_api_key" translatable="false">AIzaSyCa1apjioStUEXTOl1unEqNvgYpUXx8jqM</string>
+    <string name="google_app_id" translatable="false">1:148915325976:android:5bed22b19a6b66c2dec76d</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCa1apjioStUEXTOl1unEqNvgYpUXx8jqM</string>
+    <string name="google_storage_bucket" translatable="false">chefood-25836.appspot.com</string>
     <string name="header_description" translatable="false">Heading</string>
     <string name="hide_bottom_view_on_scroll_behavior" translatable="false">com.google.android.material.behavior.HideBottomViewOnScrollBehavior</string>
     <string name="hzv_cancel_label">Cancel</string>
@@ -1043,6 +1049,7 @@
     <string name="price_free">Free</string>
     <string name="processing">Processing\u2026</string>
     <string name="progressbar_description" translatable="false">Progress Bar</string>
+    <string name="project_id" translatable="false">chefood-25836</string>
     <string name="radiogroup_description" translatable="false">Radio Group</string>
     <string name="rn_tab_description" translatable="false">Tab</string>
     <string name="scrollbar_description" translatable="false">Scroll Bar</string>
