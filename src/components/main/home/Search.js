@@ -16,10 +16,11 @@ import Toast from 'react-native-root-toast';
 import GetLocation from 'react-native-get-location';
 
 import Global from '../../Global';
-import DishViewVertical from '../home/cardView/DishViewVertical';
+import SearchItem from '../home/cardView/SearchItem';
 import dish_by_point from '../../../apis/dish_by_point';
 import dish_by_price from '../../../apis/dish_by_price';
 import dish_by_distance from '../../../apis/dish_by_distance';
+import dish_by_time from '../../../apis/dish_by_time';
 
 import backIcon from '../../../icons/arrow_back_ios-fb5a23.png';
 import cancelIcon from '../../../icons/cancel.png';
@@ -34,17 +35,19 @@ export default function Search({navigation, route}) {
   const [menu, setMenu] = useState({
     score: true,
     address: false,
+    time: false,
     price: false,
   });
 
   useEffect(() => {
-    dishByPoint(0);
+    setLoadingSearch(true);
     GetLocation.getCurrentPosition({
       enableHighAccuracy: true,
       timeout: 15000,
     })
       .then((location) => {
         setCoordinates({lat: location.latitude, long: location.longitude});
+        dishByPoint(0, location.latitude, location.longitude);
       })
       .catch((error) => {
         const {code, message} = error;
@@ -58,22 +61,28 @@ export default function Search({navigation, route}) {
       setMenu({
         score: true,
         address: false,
+        time: false,
         price: false,
       });
       setCoordinates({lat: 0, long: 0});
     };
   }, []);
 
-  const dishByPoint = (page) => {
+  const dishByPoint = (page, lat, long) => {
     if (page === 0) {
       setDataSearch([]);
     }
     setLoadingSearch(true);
     dish_by_point
-      .dish_by_point(user.token, page, search)
+      .dish_by_point(user.token, page, search, lat, long)
       .then((responseJson) => {
-        if (responseJson.length === 0 && page !== 0) {
-          setLoadingSearch(false);
+        setLoadingSearch(false);
+        console.log(responseJson);
+        if (
+          responseJson.length === 0 &&
+          page !== 0 &&
+          dataSearch.length >= 10
+        ) {
           return Toast.show('Đã tải đến cuối danh sách', {
             position: 0,
             duration: 2500,
@@ -82,11 +91,9 @@ export default function Search({navigation, route}) {
           if (page === 0) {
             setDataSearch(responseJson);
             setPageSearch(1);
-            setLoadingSearch(false);
           } else {
             setDataSearch(dataSearch.concat(responseJson));
             setPageSearch(page + 1);
-            setLoadingSearch(false);
           }
         }
       })
@@ -102,10 +109,20 @@ export default function Search({navigation, route}) {
     }
     setLoadingSearch(true);
     dish_by_price
-      .dish_by_price(user.token, page, search)
+      .dish_by_price(
+        user.token,
+        page,
+        search,
+        coordinates.lat,
+        coordinates.long,
+      )
       .then((responseJson) => {
-        if (responseJson.length === 0 && page !== 0) {
-          setLoadingSearch(false);
+        setLoadingSearch(false);
+        if (
+          responseJson.length === 0 &&
+          page !== 0 &&
+          dataSearch.length >= 10
+        ) {
           return Toast.show('Đã tải đến cuối danh sách', {
             position: 0,
             duration: 2500,
@@ -114,11 +131,9 @@ export default function Search({navigation, route}) {
           if (page === 0) {
             setDataSearch(responseJson);
             setPageSearch(1);
-            setLoadingSearch(false);
           } else {
             setDataSearch(dataSearch.concat(responseJson));
             setPageSearch(page + 1);
-            setLoadingSearch(false);
           }
         }
       })
@@ -142,8 +157,12 @@ export default function Search({navigation, route}) {
         coordinates.long,
       )
       .then((responseJson) => {
-        if (responseJson.length === 0 && page !== 0) {
-          setLoadingSearch(false);
+        setLoadingSearch(false);
+        if (
+          responseJson.length === 0 &&
+          page !== 0 &&
+          dataSearch.length >= 10
+        ) {
           return Toast.show('Đã tải đến cuối danh sách', {
             position: 0,
             duration: 2500,
@@ -152,11 +171,43 @@ export default function Search({navigation, route}) {
           if (page === 0) {
             setDataSearch(responseJson);
             setPageSearch(1);
-            setLoadingSearch(false);
           } else {
             setDataSearch(dataSearch.concat(responseJson));
             setPageSearch(page + 1);
-            setLoadingSearch(false);
+          }
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoadingSearch(false);
+      });
+  };
+
+  const dishByTime = (page) => {
+    setLoadingSearch(true);
+    if (page === 0) {
+      setDataSearch([]);
+    }
+    dish_by_time
+      .dish_by_time(user.token, page, search, coordinates.lat, coordinates.long)
+      .then((responseJson) => {
+        setLoadingSearch(false);
+        if (
+          responseJson.length === 0 &&
+          page !== 0 &&
+          dataSearch.length >= 10
+        ) {
+          return Toast.show('Đã tải đến cuối danh sách', {
+            position: 0,
+            duration: 2500,
+          });
+        } else {
+          if (page === 0) {
+            setDataSearch(responseJson);
+            setPageSearch(1);
+          } else {
+            setDataSearch(dataSearch.concat(responseJson));
+            setPageSearch(page + 1);
           }
         }
       })
@@ -169,7 +220,7 @@ export default function Search({navigation, route}) {
   const searchHandle = () => {
     if (search !== '') {
       if (menu.score) {
-        dishByPoint(0);
+        dishByPoint(0, coordinates.lat, coordinates.long);
       } else if (menu.address) {
         dishByDistance(0);
       } else {
@@ -181,9 +232,11 @@ export default function Search({navigation, route}) {
   const loadmoreHandle = () => {
     if (search !== '') {
       if (menu.score) {
-        dishByPoint(pageSearch);
+        dishByPoint(pageSearch, coordinates.lat, coordinates.long);
       } else if (menu.address) {
         dishByDistance(pageSearch);
+      } else if (menu.time) {
+        dishByTime(pageSearch);
       } else {
         dishByPrice(pageSearch);
       }
@@ -193,16 +246,20 @@ export default function Search({navigation, route}) {
   const menuHandle = (loai) => {
     switch (loai) {
       case 0:
-        dishByPoint(0);
-        setMenu({score: true, address: false, price: false});
+        dishByPoint(0, coordinates.lat, coordinates.long);
+        setMenu({score: true, address: false, time: false, price: false});
         break;
       case 1:
         dishByDistance(0);
-        setMenu({score: false, address: true, price: false});
+        setMenu({score: false, address: true, time: false, price: false});
+        break;
+      case 2:
+        dishByTime(0);
+        setMenu({score: false, address: false, time: true, price: false});
         break;
       default:
         dishByPrice(0);
-        setMenu({score: false, address: false, price: true});
+        setMenu({score: false, address: false, time: false, price: true});
         break;
     }
   };
@@ -216,7 +273,7 @@ export default function Search({navigation, route}) {
         <View style={styles.menu}>
           <TouchableOpacity
             style={styles.menuItem}
-            onPress={() => menuHandle(0)}>
+            onPress={() => (loadingSearch ? null : menuHandle(0))}>
             <Text style={menu.score ? styles.menuTextS : styles.menuText}>
               Điểm
             </Text>
@@ -224,7 +281,7 @@ export default function Search({navigation, route}) {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.menuItem}
-            onPress={() => menuHandle(1)}>
+            onPress={() => (loadingSearch ? null : menuHandle(1))}>
             <Text style={menu.address ? styles.menuTextS : styles.menuText}>
               Gần nhất
             </Text>
@@ -232,7 +289,15 @@ export default function Search({navigation, route}) {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.menuItem}
-            onPress={() => menuHandle(2)}>
+            onPress={() => (loadingSearch ? null : menuHandle(2))}>
+            <Text style={menu.time ? styles.menuTextS : styles.menuText}>
+              Thời gian
+            </Text>
+            <View style={menu.time ? styles.menuLine : styles.menuNoLine} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => (loadingSearch ? null : menuHandle(3))}>
             <Text style={menu.price ? styles.menuTextS : styles.menuText}>
               Giá
             </Text>
@@ -272,9 +337,17 @@ export default function Search({navigation, route}) {
         </TouchableOpacity>
       </View>
 
-      {dataSearch.length === 0 ? (
+      {menuJSX()}
+      {dataSearch.length === 0 && loadingSearch ? (
         <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
           {Loading}
+        </View>
+      ) : dataSearch.length === 0 ? (
+        <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
+          <Text style={styles.noData}>Không tìm thấy món ăn nào!</Text>
+          <Text style={styles.noData}>
+            Vui lòng thử tìm kiếm với từ khoá khác
+          </Text>
         </View>
       ) : (
         <FlatList
@@ -284,16 +357,16 @@ export default function Search({navigation, route}) {
           }}
           showsVerticalScrollIndicator={false}
           data={dataSearch}
-          ListHeaderComponent={menuJSX}
+          // ListHeaderComponent={menuJSX}
           ItemSeparatorComponent={flatListItemSeparator}
           renderItem={({item, index}) => {
             return (
               <TouchableOpacity
                 style={{backgroundColor: 'white'}}
                 onPress={() => navigation.navigate('DISH', {dish: item})}>
-                <DishViewVertical
+                <SearchItem
                   dish={item}
-                  search={menu.score ? 0 : menu.address ? 1 : 2}
+                  search={menu.score ? 0 : menu.address ? 1 : menu.time ? 2 : 3}
                 />
               </TouchableOpacity>
             );
@@ -307,6 +380,11 @@ export default function Search({navigation, route}) {
 
 const {width, backgroundColor, mainColor, heightHeader, backButton} = Global;
 const styles = StyleSheet.create({
+  noData: {
+    fontFamily: 'Roboto-Regular',
+    color: '#828282',
+    fontSize: width / 30,
+  },
   wrapper: {
     flex: 1,
     backgroundColor,

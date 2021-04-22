@@ -30,6 +30,7 @@ import Cart from './home/Cart';
 import Search from './home/Search';
 import Dish from './home/Dish';
 import Chef from './home/Chef';
+import ChefAlsoCook from './home/ChefAlsoCook';
 import ChangeAddress from './user/address/ChangeAddress';
 import OrderDetail from './order/OrderDetail';
 import Review from './order/Review';
@@ -294,6 +295,14 @@ export default function MainIndex({route}) {
           ...TransitionPresets.SlideFromRightIOS,
         }}
         component={ChatList}
+      />
+      <MainStack.Screen
+        name="CHEF_ALSO_COOK"
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+        component={ChefAlsoCook}
       />
     </MainStack.Navigator>
   );

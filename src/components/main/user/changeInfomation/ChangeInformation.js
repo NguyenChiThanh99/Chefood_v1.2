@@ -35,6 +35,7 @@ export default function ChangeInformation({navigation}) {
     sex,
     date_of_birth,
     address,
+    type,
   } = user.userInfo;
   const dispatch = useDispatch();
   const [modal, setModal] = useState({status: false, type: 0});
@@ -262,7 +263,14 @@ export default function ChangeInformation({navigation}) {
               })
             }
             style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={[styles.rowContent, {width: width / 3}]}>{phone}</Text>
+            <Text
+              style={
+                phone === 'Thiết lập ngay'
+                  ? [styles.rowContentDefault, {width: width / 3}]
+                  : [styles.rowContent, {width: width / 3}]
+              }>
+              {phone}
+            </Text>
             <Image style={styles.arrow} source={arrowRight} />
           </TouchableOpacity>
         </View>
@@ -349,14 +357,16 @@ export default function ChangeInformation({navigation}) {
         </View>
       </View>
 
-      <View style={styles.cardView}>
-        <TouchableOpacity
-          style={styles.rowCont}
-          onPress={() => navigation.navigate('CHANGE_PASSWORD')}>
-          <Text style={styles.rowText}>Đổi mật khẩu</Text>
-          <Image style={styles.arrow} source={arrowRight} />
-        </TouchableOpacity>
-      </View>
+      {type !== 'mxh' ? (
+        <View style={styles.cardView}>
+          <TouchableOpacity
+            style={styles.rowCont}
+            onPress={() => navigation.navigate('CHANGE_PASSWORD')}>
+            <Text style={styles.rowText}>Đổi mật khẩu</Text>
+            <Image style={styles.arrow} source={arrowRight} />
+          </TouchableOpacity>
+        </View>
+      ) : null}
 
       <Modal animationType="fade" transparent={true} visible={modal.status}>
         <View style={styles.modalCont}>
@@ -473,6 +483,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto-Regular',
     color: mainColor,
     fontSize: width / 30,
+    textAlign: 'right',
   },
   cover: {
     width,

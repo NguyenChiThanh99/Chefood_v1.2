@@ -15,6 +15,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Toast from 'react-native-root-toast';
 
 import Global from '../Global';
+import SigninSocial from './cardView/SigninSocial';
 import verify_email_signup from '../../apis/verify_email_signup';
 
 import background from '../../images/background.png';
@@ -22,8 +23,6 @@ import emailIcon from '../../icons/mail-e0.png';
 import passwordIcon from '../../icons/lock-e0.png';
 import userIcon from '../../icons/person-e0.png';
 import phoneIcon from '../../icons/phone-e0.png';
-import facebook from '../../images/facebook.png';
-import google from '../../images/google.png';
 
 export default function SignUp({navigation}) {
   const [email, setEmail] = useState('');
@@ -87,6 +86,18 @@ export default function SignUp({navigation}) {
               position: 0,
               duration: 2500,
             });
+          } else if (
+            responseJson.message ===
+            'Email has been used in the social network account!'
+          ) {
+            setLoading(false);
+            return Toast.show(
+              'Email đã được đăng ký bằng tài khoản mạng xã hội',
+              {
+                position: 0,
+                duration: 2500,
+              },
+            );
           } else {
             setName('');
             setEmail('');
@@ -233,20 +244,7 @@ export default function SignUp({navigation}) {
           <Text style={[styles.noAccText, {marginVertical: 10}]}>
             Đăng nhập bằng
           </Text>
-          <View style={styles.otherMethodCont}>
-            <TouchableOpacity>
-              <Image
-                style={[styles.otherMethodImg, {marginRight: 5}]}
-                source={facebook}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Image
-                style={[styles.otherMethodImg, {marginLeft: 5}]}
-                source={google}
-              />
-            </TouchableOpacity>
-          </View>
+          <SigninSocial navigation={navigation} />
         </View>
       </View>
     </ImageBackground>
@@ -287,13 +285,6 @@ const styles = StyleSheet.create({
     fontSize: width / 28,
     color: 'white',
     fontStyle: 'italic',
-  },
-  otherMethodCont: {
-    flexDirection: 'row',
-  },
-  otherMethodImg: {
-    width: width / 9,
-    height: width / 9,
   },
   wrapper: {
     flex: 1,

@@ -43,6 +43,7 @@ import plus from '../../../icons/add_circle_outline-fb5a23.png';
 import prepareIcon from '../../../icons/TimeSquare.png';
 import performIcon from '../../../icons/TimeCircle.png';
 import arrow from '../../../icons/arrow_right-fb5a23.png';
+import doubleArrow from '../../../icons/double_arrow.png';
 
 var soluong = 1;
 var type;
@@ -809,6 +810,19 @@ export default function Dish({navigation, route}) {
               </View>
             </LinearGradient>
           </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.otherChefCont}
+            onPress={() =>
+              navigation.navigate('CHEF_ALSO_COOK', {
+                numberDish: dish.dish.number,
+                name: dish.dish.name,
+                iddishofchef: dish.dishofchef.iddishofchef,
+              })
+            }>
+            <Text style={styles.otherChef}>Các đầu bếp khác nấu món này</Text>
+            <Image source={doubleArrow} style={styles.doubleArrow} />
+          </TouchableOpacity>
         </View>
 
         <View style={styles.cardView}>
@@ -1006,6 +1020,23 @@ export default function Dish({navigation, route}) {
 
 const {width, height, mainColor, backgroundColor, backButton} = Global;
 const styles = StyleSheet.create({
+  otherChefCont: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 13,
+  },
+  otherChef: {
+    fontFamily: 'Roboto-Regular',
+    color: '#4f4f4f',
+    fontSize: width / 31,
+  },
+  doubleArrow: {
+    width: width / 26,
+    height: width / 26,
+    marginTop: 1,
+    marginLeft: 2,
+  },
   viewMoreTextVertical: {
     fontFamily: 'Roboto-Regular',
     color: '#828282',
@@ -1124,7 +1155,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginHorizontal: 15,
-    marginBottom: 10,
     marginTop: 10,
   },
   btnText: {

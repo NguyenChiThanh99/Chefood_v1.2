@@ -15,12 +15,11 @@ import LinearGradient from 'react-native-linear-gradient';
 import Toast from 'react-native-root-toast';
 
 import Global from '../../Global';
+import SigninSocial from '../cardView/SigninSocial';
 import forgot_password_change from '../../../apis/forgot_password_change';
 
 import background from '../../../images/background.png';
 import passwordIcon from '../../../icons/lock-e0.png';
-import facebook from '../../../images/facebook.png';
-import google from '../../../images/google.png';
 
 export default function ChangePassword({navigation, route}) {
   const [password, setPassword] = useState('');
@@ -149,20 +148,7 @@ export default function ChangePassword({navigation, route}) {
           <Text style={[styles.noAccText, {marginVertical: 10}]}>
             Đăng nhập bằng
           </Text>
-          <View style={styles.otherMethodCont}>
-            <TouchableOpacity>
-              <Image
-                style={[styles.otherMethodImg, {marginRight: 5}]}
-                source={facebook}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Image
-                style={[styles.otherMethodImg, {marginLeft: 5}]}
-                source={google}
-              />
-            </TouchableOpacity>
-          </View>
+          <SigninSocial navigation={navigation} />
         </View>
       </View>
     </ImageBackground>
@@ -197,13 +183,6 @@ const styles = StyleSheet.create({
     fontSize: width / 28,
     color: 'white',
     fontStyle: 'italic',
-  },
-  otherMethodCont: {
-    flexDirection: 'row',
-  },
-  otherMethodImg: {
-    width: width / 9,
-    height: width / 9,
   },
   loading: {
     justifyContent: 'center',

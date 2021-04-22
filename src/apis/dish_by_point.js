@@ -1,7 +1,7 @@
 import Global from '../components/Global';
 
-const dish_by_point = (token, page, text) =>
-  fetch(Global.link + 'search/dishesbypoint', {
+const dish_by_point = (token, page, text, lat, long) =>
+  fetch(Global.link + 'search/dishesbyscore', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -11,6 +11,8 @@ const dish_by_point = (token, page, text) =>
     body: JSON.stringify({
       page: page,
       text: text,
+      lat: lat,
+      long: long,
     }),
   }).then((response) => response.json());
 

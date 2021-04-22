@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {StyleSheet, View, Image, Text} from 'react-native';
 
@@ -14,34 +13,6 @@ export default function DishViewVertical(props) {
     <Text style={styles.chef}>
       {props.chef === true ? '' : props.dish.chef.name}
     </Text>
-  );
-  const scoreJSX = (
-    <View
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}>
-      <Text style={styles.chef}>
-        {props.chef === true ? '' : props.dish.chef.name}
-      </Text>
-      <Text style={styles.score}>
-        {Math.round(props.dish.dishofchef.score * 1000) / 10} điểm
-      </Text>
-    </View>
-  );
-  const addressJSX = (
-    <View
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}>
-      <Text style={styles.chef}>
-        {props.chef === true ? '' : props.dish.chef.name}
-      </Text>
-      <Text style={styles.address}>{props.dish.dishofchef.distance} km</Text>
-    </View>
   );
   const timeJSX = (
     <View style={styles.timeCont}>
@@ -68,13 +39,7 @@ export default function DishViewVertical(props) {
           <Text style={styles.name} numberOfLines={2}>
             {name}
           </Text>
-          {props.chef === true
-            ? timeJSX
-            : props.search === 0
-            ? scoreJSX
-            : props.search === 1
-            ? addressJSX
-            : chefJSX}
+          {props.chef === true ? timeJSX : chefJSX}
           <Text style={styles.price}>
             {Global.currencyFormat(props.dish.dishofchef.price)}đ
           </Text>
@@ -86,18 +51,6 @@ export default function DishViewVertical(props) {
 
 const {width, height, mainColor} = Global;
 const styles = StyleSheet.create({
-  score: {
-    fontFamily: 'Roboto-Regular',
-    color: '#2f80ed',
-    fontSize: width / 32,
-    marginRight: 20,
-  },
-  address: {
-    fontFamily: 'Roboto-Regular',
-    color: '#219653',
-    fontSize: width / 32,
-    marginRight: 20,
-  },
   timeCont: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -152,6 +105,6 @@ const styles = StyleSheet.create({
   price: {
     fontFamily: 'Roboto-Regular',
     color: mainColor,
-    fontSize: width / 34,
+    fontSize: width / 31,
   },
 });

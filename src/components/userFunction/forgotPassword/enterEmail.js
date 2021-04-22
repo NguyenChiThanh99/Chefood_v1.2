@@ -15,12 +15,11 @@ import LinearGradient from 'react-native-linear-gradient';
 import Toast from 'react-native-root-toast';
 
 import Global from '../../Global';
+import SigninSocial from '../cardView/SigninSocial';
 import verify_email_forgot_pass from '../../../apis/verify_email_forgot_pass';
 
 import background from '../../../images/background.png';
 import emailIcon from '../../../icons/mail-e0.png';
-import facebook from '../../../images/facebook.png';
-import google from '../../../images/google.png';
 
 export default function EnterEmail({navigation}) {
   const [email, setEmail] = useState('');
@@ -52,6 +51,17 @@ export default function EnterEmail({navigation}) {
                 position: 0,
                 duration: 2500,
               });
+            } else if (
+              responseJson.message ===
+              'Email has been used in the social network account!'
+            ) {
+              return Toast.show(
+                'Email đã được đăng ký bằng tài khoản mạng xã hội',
+                {
+                  position: 0,
+                  duration: 2500,
+                },
+              );
             } else {
               setEmail('');
               navigation.navigate('ENTER_SECRET_CODE', {
@@ -139,20 +149,7 @@ export default function EnterEmail({navigation}) {
           <Text style={[styles.noAccText, {marginVertical: 10}]}>
             Đăng nhập bằng
           </Text>
-          <View style={styles.otherMethodCont}>
-            <TouchableOpacity>
-              <Image
-                style={[styles.otherMethodImg, {marginRight: 5}]}
-                source={facebook}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Image
-                style={[styles.otherMethodImg, {marginLeft: 5}]}
-                source={google}
-              />
-            </TouchableOpacity>
-          </View>
+          <SigninSocial navigation={navigation} />
         </View>
       </View>
     </ImageBackground>

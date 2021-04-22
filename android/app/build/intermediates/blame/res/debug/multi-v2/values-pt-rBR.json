@@ -38,24 +38,7 @@
                     }
                 },
                 {
-                    "source": "/Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/343b6deb12ba5eb0ba51df70e61f1a29/jetified-play-services-wallet-11.8.0/res/values-pt-rBR/values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "242",
-                        "endColumns": "104",
-                        "endOffsets": "346"
-                    },
-                    "to": {
-                        "startLines": "60",
-                        "startColumns": "4",
-                        "startOffsets": "6455",
-                        "endColumns": "108",
-                        "endOffsets": "6559"
-                    }
-                },
-                {
-                    "source": "/Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/239a4bc3dc4ee2796d7a44738ae0797c/jetified-play-services-base-16.0.1/res/values-pt-rBR/values.xml",
+                    "source": "/Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/ba5e9b7ba64e148f800594f95a188cbb/play-services-base-17.1.0/res/values-pt-rBR/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -72,7 +55,7 @@
                     }
                 },
                 {
-                    "source": "/Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/a03593c043807d9b3330e2b864a02f34/jetified-play-services-basement-17.0.0/res/values-pt-rBR/values.xml",
+                    "source": "/Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/cce078795c4d6925b5afde9740a7a149/jetified-play-services-basement-17.1.1/res/values-pt-rBR/values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -86,6 +69,23 @@
                         "startOffsets": "4392",
                         "endColumns": "203",
                         "endOffsets": "4591"
+                    }
+                },
+                {
+                    "source": "/Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/343b6deb12ba5eb0ba51df70e61f1a29/jetified-play-services-wallet-11.8.0/res/values-pt-rBR/values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "242",
+                        "endColumns": "104",
+                        "endOffsets": "346"
+                    },
+                    "to": {
+                        "startLines": "60",
+                        "startColumns": "4",
+                        "startOffsets": "6455",
+                        "endColumns": "108",
+                        "endOffsets": "6559"
                     }
                 },
                 {
