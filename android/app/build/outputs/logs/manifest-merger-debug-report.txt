@@ -30,8 +30,6 @@ MERGED from [com.facebook.android:facebook-login:8.2.0] /Users/nguyenchithanh/.g
 MERGED from [com.facebook.android:facebook-gamingservices:8.2.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/e4bfc7867d881934e2ad328d6fe667da/facebook-gamingservices-8.2.0/AndroidManifest.xml:21:1-31:12
 MERGED from [com.facebook.android:facebook-share:8.2.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/1f163cfa87606da3a9d7f5d0f7493a6b/facebook-share-8.2.0/AndroidManifest.xml:21:1-31:12
 MERGED from [com.facebook.android:facebook-common:8.2.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/ea5e32b096060a87708931f1fb140de7/facebook-common-8.2.0/AndroidManifest.xml:21:1-52:12
-MERGED from [com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:2:1-29:12
-MERGED from [com.stripe:stripe-3ds2-android:1.2.2] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/42f9cfb40db5319cc100e2e04eba84c9/jetified-stripe-3ds2-android-1.2.2/AndroidManifest.xml:2:1-20:12
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/8cc4c34d5ca30c84d8e055eb89bdc241/legacy-support-v4-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [com.github.tipsi:CreditCardEntry:1.5.1] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c2ef347f24bc19c361c1f23bb47c7f6d/jetified-CreditCardEntry-1.5.1/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.browser:browser:1.0.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/f330920d73b06889a33d67ceb72efa95/browser-1.0.0/AndroidManifest.xml:17:1-22:12
@@ -42,6 +40,7 @@ MERGED from [:react-native-linear-gradient] /Users/nguyenchithanh/Documents/HOC_
 MERGED from [com.google.android.gms:play-services-measurement-api:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/e1ab6d34e87950555cdf5ac7b5c52aa0/play-services-measurement-api-18.0.3/AndroidManifest.xml:17:1-36:12
 MERGED from [com.google.firebase:firebase-installations:16.3.5] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/fa274d9cd4a59325d91621edcf883f5e/firebase-installations-16.3.5/AndroidManifest.xml:2:1-24:12
 MERGED from [com.google.firebase:firebase-common:19.5.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/6d5b3c0e49de888f696ecbaeb61d484f/jetified-firebase-common-19.5.0/AndroidManifest.xml:15:1-49:12
+MERGED from [com.stripe:stripe-android:8.1.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/0d644a7c3085cc3b578e1595a1397479/jetified-stripe-android-8.1.0/AndroidManifest.xml:2:1-27:12
 MERGED from [com.google.android.material:material:1.1.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/8f4dd6765e14761b2cc2b956c30f1e05/material-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/1407a986925c8facc88e38d49d4207e8/appcompat-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.facebook.android:facebook-applinks:8.2.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/9ebefed3b22261101594f682d3f73d9e/facebook-applinks-8.2.0/AndroidManifest.xml:21:1-31:12
@@ -199,16 +198,14 @@ MERGED from [com.facebook.android:facebook-share:8.2.0] /Users/nguyenchithanh/.g
 MERGED from [com.facebook.android:facebook-share:8.2.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/1f163cfa87606da3a9d7f5d0f7493a6b/facebook-share-8.2.0/AndroidManifest.xml:28:5-29:19
 MERGED from [com.facebook.android:facebook-common:8.2.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/ea5e32b096060a87708931f1fb140de7/facebook-common-8.2.0/AndroidManifest.xml:29:5-50:19
 MERGED from [com.facebook.android:facebook-common:8.2.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/ea5e32b096060a87708931f1fb140de7/facebook-common-8.2.0/AndroidManifest.xml:29:5-50:19
-MERGED from [com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:11:5-27:19
-MERGED from [com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:11:5-27:19
-MERGED from [com.stripe:stripe-3ds2-android:1.2.2] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/42f9cfb40db5319cc100e2e04eba84c9/jetified-stripe-3ds2-android-1.2.2/AndroidManifest.xml:11:5-18:19
-MERGED from [com.stripe:stripe-3ds2-android:1.2.2] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/42f9cfb40db5319cc100e2e04eba84c9/jetified-stripe-3ds2-android-1.2.2/AndroidManifest.xml:11:5-18:19
 MERGED from [com.google.android.gms:play-services-measurement-api:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/e1ab6d34e87950555cdf5ac7b5c52aa0/play-services-measurement-api-18.0.3/AndroidManifest.xml:26:5-34:19
 MERGED from [com.google.android.gms:play-services-measurement-api:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/e1ab6d34e87950555cdf5ac7b5c52aa0/play-services-measurement-api-18.0.3/AndroidManifest.xml:26:5-34:19
 MERGED from [com.google.firebase:firebase-installations:16.3.5] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/fa274d9cd4a59325d91621edcf883f5e/firebase-installations-16.3.5/AndroidManifest.xml:14:5-22:19
 MERGED from [com.google.firebase:firebase-installations:16.3.5] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/fa274d9cd4a59325d91621edcf883f5e/firebase-installations-16.3.5/AndroidManifest.xml:14:5-22:19
 MERGED from [com.google.firebase:firebase-common:19.5.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/6d5b3c0e49de888f696ecbaeb61d484f/jetified-firebase-common-19.5.0/AndroidManifest.xml:25:5-47:19
 MERGED from [com.google.firebase:firebase-common:19.5.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/6d5b3c0e49de888f696ecbaeb61d484f/jetified-firebase-common-19.5.0/AndroidManifest.xml:25:5-47:19
+MERGED from [com.stripe:stripe-android:8.1.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/0d644a7c3085cc3b578e1595a1397479/jetified-stripe-android-8.1.0/AndroidManifest.xml:11:5-25:19
+MERGED from [com.stripe:stripe-android:8.1.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/0d644a7c3085cc3b578e1595a1397479/jetified-stripe-android-8.1.0/AndroidManifest.xml:11:5-25:19
 MERGED from [com.google.android.material:material:1.1.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/8f4dd6765e14761b2cc2b956c30f1e05/material-1.1.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.1.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/8f4dd6765e14761b2cc2b956c30f1e05/material-1.1.0/AndroidManifest.xml:22:5-20
 MERGED from [com.facebook.android:facebook-applinks:8.2.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/9ebefed3b22261101594f682d3f73d9e/facebook-applinks-8.2.0/AndroidManifest.xml:28:5-29:19
@@ -375,10 +372,6 @@ MERGED from [com.facebook.android:facebook-share:8.2.0] /Users/nguyenchithanh/.g
 MERGED from [com.facebook.android:facebook-share:8.2.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/1f163cfa87606da3a9d7f5d0f7493a6b/facebook-share-8.2.0/AndroidManifest.xml:24:5-26:41
 MERGED from [com.facebook.android:facebook-common:8.2.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/ea5e32b096060a87708931f1fb140de7/facebook-common-8.2.0/AndroidManifest.xml:25:5-27:41
 MERGED from [com.facebook.android:facebook-common:8.2.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/ea5e32b096060a87708931f1fb140de7/facebook-common-8.2.0/AndroidManifest.xml:25:5-27:41
-MERGED from [com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:7:5-9:41
-MERGED from [com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:7:5-9:41
-MERGED from [com.stripe:stripe-3ds2-android:1.2.2] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/42f9cfb40db5319cc100e2e04eba84c9/jetified-stripe-3ds2-android-1.2.2/AndroidManifest.xml:7:5-9:41
-MERGED from [com.stripe:stripe-3ds2-android:1.2.2] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/42f9cfb40db5319cc100e2e04eba84c9/jetified-stripe-3ds2-android-1.2.2/AndroidManifest.xml:7:5-9:41
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/8cc4c34d5ca30c84d8e055eb89bdc241/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/8cc4c34d5ca30c84d8e055eb89bdc241/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.github.tipsi:CreditCardEntry:1.5.1] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c2ef347f24bc19c361c1f23bb47c7f6d/jetified-CreditCardEntry-1.5.1/AndroidManifest.xml:7:5-9:41
@@ -399,6 +392,8 @@ MERGED from [com.google.firebase:firebase-installations:16.3.5] /Users/nguyenchi
 MERGED from [com.google.firebase:firebase-installations:16.3.5] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/fa274d9cd4a59325d91621edcf883f5e/firebase-installations-16.3.5/AndroidManifest.xml:6:5-8:41
 MERGED from [com.google.firebase:firebase-common:19.5.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/6d5b3c0e49de888f696ecbaeb61d484f/jetified-firebase-common-19.5.0/AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-common:19.5.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/6d5b3c0e49de888f696ecbaeb61d484f/jetified-firebase-common-19.5.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.stripe:stripe-android:8.1.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/0d644a7c3085cc3b578e1595a1397479/jetified-stripe-android-8.1.0/AndroidManifest.xml:7:5-9:41
+MERGED from [com.stripe:stripe-android:8.1.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/0d644a7c3085cc3b578e1595a1397479/jetified-stripe-android-8.1.0/AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.android.material:material:1.1.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/8f4dd6765e14761b2cc2b956c30f1e05/material-1.1.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.1.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/8f4dd6765e14761b2cc2b956c30f1e05/material-1.1.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/1407a986925c8facc88e38d49d4207e8/appcompat-1.1.0/AndroidManifest.xml:20:5-22:41
@@ -649,48 +644,6 @@ intent-filter#action:name:android.intent.action.VIEW+category:name:android.inten
 ADDED from [com.facebook.android:facebook-common:8.2.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/ea5e32b096060a87708931f1fb140de7/facebook-common-8.2.0/AndroidManifest.xml:39:13-48:29
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:cct.com.chefood+data:scheme:fbconnect
 ADDED from [com.facebook.android:facebook-common:8.2.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/ea5e32b096060a87708931f1fb140de7/facebook-common-8.2.0/AndroidManifest.xml:39:13-48:29
-activity#com.stripe.android.view.AddPaymentMethodActivity
-ADDED from [com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:12:9-14:57
-	android:theme
-		ADDED from [com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:14:13-54
-	android:name
-		ADDED from [com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:13:13-76
-activity#com.stripe.android.view.PaymentMethodsActivity
-ADDED from [com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:15:9-17:57
-	android:theme
-		ADDED from [com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:17:13-54
-	android:name
-		ADDED from [com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:16:13-74
-activity#com.stripe.android.view.PaymentFlowActivity
-ADDED from [com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:18:9-20:57
-	android:theme
-		ADDED from [com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:20:13-54
-	android:name
-		ADDED from [com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:19:13-71
-activity#com.stripe.android.view.PaymentAuthWebViewActivity
-ADDED from [com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:21:9-23:57
-	android:theme
-		ADDED from [com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:23:13-54
-	android:name
-		ADDED from [com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:22:13-78
-activity#com.stripe.android.view.PaymentRelayActivity
-ADDED from [com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:24:9-26:57
-	android:theme
-		ADDED from [com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:26:13-54
-	android:name
-		ADDED from [com.stripe:stripe-android:10.4.6] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/AndroidManifest.xml:25:13-72
-activity#com.stripe.android.stripe3ds2.views.ChallengeActivity
-ADDED from [com.stripe:stripe-3ds2-android:1.2.2] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/42f9cfb40db5319cc100e2e04eba84c9/jetified-stripe-3ds2-android-1.2.2/AndroidManifest.xml:12:9-14:54
-	android:theme
-		ADDED from [com.stripe:stripe-3ds2-android:1.2.2] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/42f9cfb40db5319cc100e2e04eba84c9/jetified-stripe-3ds2-android-1.2.2/AndroidManifest.xml:14:13-51
-	android:name
-		ADDED from [com.stripe:stripe-3ds2-android:1.2.2] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/42f9cfb40db5319cc100e2e04eba84c9/jetified-stripe-3ds2-android-1.2.2/AndroidManifest.xml:13:13-81
-activity#com.stripe.android.stripe3ds2.views.ChallengeProgressDialogActivity
-ADDED from [com.stripe:stripe-3ds2-android:1.2.2] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/42f9cfb40db5319cc100e2e04eba84c9/jetified-stripe-3ds2-android-1.2.2/AndroidManifest.xml:15:9-17:54
-	android:theme
-		ADDED from [com.stripe:stripe-3ds2-android:1.2.2] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/42f9cfb40db5319cc100e2e04eba84c9/jetified-stripe-3ds2-android-1.2.2/AndroidManifest.xml:17:13-51
-	android:name
-		ADDED from [com.stripe:stripe-3ds2-android:1.2.2] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/42f9cfb40db5319cc100e2e04eba84c9/jetified-stripe-3ds2-android-1.2.2/AndroidManifest.xml:16:13-95
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from [com.google.android.gms:play-services-measurement-api:18.0.3] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/e1ab6d34e87950555cdf5ac7b5c52aa0/play-services-measurement-api-18.0.3/AndroidManifest.xml:23:5-79
 MERGED from [com.google.firebase:firebase-installations:16.3.5] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/fa274d9cd4a59325d91621edcf883f5e/firebase-installations-16.3.5/AndroidManifest.xml:10:5-79
@@ -759,6 +712,26 @@ ADDED from [com.google.firebase:firebase-common:19.5.0] /Users/nguyenchithanh/.g
 		ADDED from [com.google.firebase:firebase-common:19.5.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/6d5b3c0e49de888f696ecbaeb61d484f/jetified-firebase-common-19.5.0/AndroidManifest.xml:45:17-82
 	android:name
 		ADDED from [com.google.firebase:firebase-common:19.5.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/6d5b3c0e49de888f696ecbaeb61d484f/jetified-firebase-common-19.5.0/AndroidManifest.xml:44:17-121
+activity#com.stripe.android.view.AddSourceActivity
+ADDED from [com.stripe:stripe-android:8.1.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/0d644a7c3085cc3b578e1595a1397479/jetified-stripe-android-8.1.0/AndroidManifest.xml:12:9-16:20
+	android:windowSoftInputMode
+		ADDED from [com.stripe:stripe-android:8.1.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/0d644a7c3085cc3b578e1595a1397479/jetified-stripe-android-8.1.0/AndroidManifest.xml:15:13-55
+	android:theme
+		ADDED from [com.stripe:stripe-android:8.1.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/0d644a7c3085cc3b578e1595a1397479/jetified-stripe-android-8.1.0/AndroidManifest.xml:14:13-54
+	android:name
+		ADDED from [com.stripe:stripe-android:8.1.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/0d644a7c3085cc3b578e1595a1397479/jetified-stripe-android-8.1.0/AndroidManifest.xml:13:13-69
+activity#com.stripe.android.view.PaymentMethodsActivity
+ADDED from [com.stripe:stripe-android:8.1.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/0d644a7c3085cc3b578e1595a1397479/jetified-stripe-android-8.1.0/AndroidManifest.xml:17:9-20:20
+	android:theme
+		ADDED from [com.stripe:stripe-android:8.1.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/0d644a7c3085cc3b578e1595a1397479/jetified-stripe-android-8.1.0/AndroidManifest.xml:19:13-54
+	android:name
+		ADDED from [com.stripe:stripe-android:8.1.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/0d644a7c3085cc3b578e1595a1397479/jetified-stripe-android-8.1.0/AndroidManifest.xml:18:13-74
+activity#com.stripe.android.view.PaymentFlowActivity
+ADDED from [com.stripe:stripe-android:8.1.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/0d644a7c3085cc3b578e1595a1397479/jetified-stripe-android-8.1.0/AndroidManifest.xml:21:9-24:20
+	android:theme
+		ADDED from [com.stripe:stripe-android:8.1.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/0d644a7c3085cc3b578e1595a1397479/jetified-stripe-android-8.1.0/AndroidManifest.xml:23:13-54
+	android:name
+		ADDED from [com.stripe:stripe-android:8.1.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/0d644a7c3085cc3b578e1595a1397479/jetified-stripe-android-8.1.0/AndroidManifest.xml:22:13-71
 provider#com.facebook.internal.FacebookInitProvider
 ADDED from [com.facebook.android:facebook-core:8.2.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/c588d653bf92df74b4d9ce8755f22801/jetified-facebook-core-8.2.0/AndroidManifest.xml:39:9-42:40
 	android:authorities

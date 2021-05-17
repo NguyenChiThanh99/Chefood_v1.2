@@ -22,6 +22,7 @@ import Global from '../../Global';
 import CartItem from './cardView/CartItem';
 import {updateCart} from '../../../../actions';
 import submit_order from '../../../apis/submit_order';
+import submit_order_card from '../../../apis/submit_order_card';
 
 import arrowBack from '../../../icons/arrow_back_ios-fb5a23.png';
 import editIcon from '../../../icons/edit.png';
@@ -106,7 +107,7 @@ export default function Cart({navigation, route}) {
         duration: 2500,
       });
     } else if (method === 'Thẻ') {
-      paymentByCard();
+      paymentByCard(diaChi);
     } else {
       var cartSeparate = separateCart();
       var count = 0;
@@ -149,55 +150,70 @@ export default function Cart({navigation, route}) {
     }
   };
 
-  const paymentByCard = async () => {
+  const paymentByCard = (diaChi) => {
     const options = {
       theme: {
         accentColor: '#fb5a23',
       },
     };
-    const paymentMethod = await stripe.paymentRequestWithCardForm(options);
-    const params = {
-      // mandatory
-      number: '4242424242424242',
-      expMonth: 11,
-      expYear: 22,
-      cvc: '223',
-      // optional
-      name: 'Test User',
-      currency: 'usd',
-      addressLine1: '123 Test Street',
-      addressLine2: 'Apt. 5',
-      addressCity: 'Test City',
-      addressState: 'Test State',
-      addressCountry: 'Test Country',
-      addressZip: '55555',
-    };
+    stripe
+      .paymentRequestWithCardForm(options)
+      .then((stripeTokenInfo) => {
+        var cartSeparate = separateCart();
+        var count = 0;
+        for (let i = 0; i < cartSeparate.length; i++) {
+          var totalSubOrder = 0;
+          for (let j = 0; j < cartSeparate[i].dishes.length; j++) {
+            totalSubOrder +=
+              cartSeparate[i].dishes[j].price *
+              cartSeparate[i].dishes[j].amount;
+          }
 
-    // const token = await stripe.createTokenWithCard(params);
-    console.log(paymentMethod);
-
-    // return stripe
-    //   .paymentRequestWithCardForm()
-    //   .then((stripeTokenInfo) => {
-    //     console.log(stripeTokenInfo);
-    //     return {
-    //       //Gọi Api thanh toán online
-    //     };
-    //   })
-    //   .then(() => {
-    //     //Thanh toán thành công
-    //     console.log('Payment succeeded!');
-    //     // navigation.navigate('ORDER_DETAIL');
-    //   })
-    //   .catch((error) => {
-    //     Toast.show('Thanh toán thất bại:\n' + error, {
-    //       position: -20,
-    //       duration: 2500,
-    //     });
-    //     //Thanh toán thất bại
-    //     console.log('Payment failed', {error});
-    //   })
-    //   .finally(() => {});
+          submit_order_card
+            .submit_order_card(
+              user.token,
+              diaChi,
+              cartSeparate[i].idchef,
+              method,
+              totalSubOrder,
+              cartSeparate[i].dishes,
+              stripeTokenInfo.tokenId,
+            )
+            .then((responseJson) => {
+              if (responseJson.message === 'Add successfully!') {
+                count += 1;
+                if (count === cartSeparate.length) {
+                  dispatch(updateCart([]));
+                  storeData([]);
+                  navigation.navigate('ORDER', {fromUser: true});
+                  setLoading(false);
+                }
+              } else {
+                setLoading(false);
+                return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+                  position: 0,
+                  duration: 2500,
+                });
+              }
+            })
+            .catch((err) => {
+              setLoading(false);
+              console.log(err);
+              return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+                position: 0,
+                duration: 2500,
+              });
+            });
+        }
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log(err);
+        return Toast.show('Thanh toán thất bại', {
+          position: -20,
+          duration: 2000,
+        });
+      });
   };
 
   const renderItemSeparator = () => {
@@ -266,7 +282,8 @@ export default function Cart({navigation, route}) {
   return (
     <View style={styles.wrapper}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <TouchableOpacity
+          onPress={() => (!loading ? navigation.goBack() : null)}>
           <Image style={styles.backIcon} source={arrowBack} />
         </TouchableOpacity>
         <Text style={styles.headerText}>Giỏ hàng</Text>
@@ -289,7 +306,9 @@ export default function Cart({navigation, route}) {
 
             <TouchableOpacity
               onPress={() =>
-                navigation.navigate('CHANGE_ADDRESS', {fromCart: true})
+                !loading
+                  ? navigation.navigate('CHANGE_ADDRESS', {fromCart: true})
+                  : null
               }>
               <View style={styles.changeCont}>
                 <Image style={styles.changeIcon} source={editIcon} />
@@ -349,6 +368,7 @@ export default function Cart({navigation, route}) {
               source={method === 'Tiền mặt' ? moneyIcon : atmIcon}
             />
             <ModalDropdown
+              disabled={loading}
               style={styles.dropdownCont}
               dropdownStyle={styles.dropdownList}
               options={optionMethod}
@@ -374,7 +394,7 @@ export default function Cart({navigation, route}) {
         {cart.length !== 0 ? (
           <TouchableOpacity
             onPress={() => {
-              orderHandle();
+              !loading ? orderHandle() : null;
             }}>
             <LinearGradient
               style={styles.btn}

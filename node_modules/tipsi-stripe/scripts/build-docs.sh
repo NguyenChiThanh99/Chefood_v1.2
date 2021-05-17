@@ -8,6 +8,3 @@ rm -rf ./docs
 
 # Move fresh docs into /docs folder
 mv website/docs/build/tipsi-stripe ./docs
-
-# Format all the html
-prettier --write docs/**/*.html

@@ -20,13 +20,13 @@ import sendIcon from '../../../icons/Send.png';
 
 export default function ChatList({navigation, route}) {
   useEffect(() => {
-    var interval = setInterval(() => {
-      _getMessages();
-    }, 3000);
+    // var interval = setInterval(() => {
+    //   _getMessages();
+    // }, 3000);
     return () => {
       setChatData([]);
       setChatInputContent('');
-      clearInterval(interval);
+      // clearInterval(interval);
     };
   }, []);
 

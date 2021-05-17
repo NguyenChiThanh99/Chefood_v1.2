@@ -100,7 +100,6 @@
     <attr format="reference" name="shapeAppearanceSmallComponent"/>
     <attr format="reference" name="showMotionSpec"/>
     <attr format="boolean" name="singleSelection"/>
-    <attr format="color" name="stripe3DS2EditTextBackgroundColor"/>
     <attr format="color" name="strokeColor"/>
     <attr format="dimension" name="strokeWidth"/>
     <attr format="reference" name="tabStyle"/>
@@ -278,25 +277,12 @@
     <color name="secondary_text_disabled_material_light">#24000000</color>
     <color name="slate_50">#3332325d</color>
     <color name="spinnerItem">#AAAAAA</color>
-    <color name="stripe_3ds2_accent">@color/stripe_3ds2_primary</color>
-    <color name="stripe_3ds2_background">@android:color/white</color>
-    <color name="stripe_3ds2_control_activated">@color/stripe_3ds2_primary</color>
-    <color name="stripe_3ds2_divider">#1E000000</color>
-    <color name="stripe_3ds2_primary">#6C00F8</color>
-    <color name="stripe_3ds2_primary_dark">#5500DE</color>
-    <color name="stripe_3ds2_text_color">@android:color/black</color>
-    <color name="stripe_3ds2_text_color_primary">@android:color/white</color>
-    <color name="stripe_3ds2_text_edit">@color/stripe_3ds2_text_color</color>
-    <color name="stripe_3ds2_text_info_toggled">@color/stripe_3ds2_primary</color>
-    <color name="stripe_3ds2_text_input_fill">#FAFAFA</color>
-    <color name="stripe_3ds2_text_input_hint">#99000000</color>
     <color name="switch_thumb_disabled_material_dark">#ff616161</color>
     <color name="switch_thumb_disabled_material_light">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
     <color name="text_helper_color">#a8a8a8</color>
     <color name="toolbar_color_default">#ff3f51b5</color>
-    <color name="toolbar_color_default_dark">#ff324090</color>
     <color name="tooltip_background_dark">#e6616161</color>
     <color name="tooltip_background_light">#e6FFFFFF</color>
     <color name="transparent_background">#00FFFFFF</color>
@@ -403,8 +389,6 @@
     <dimen name="android_pay_button_separation">8dp</dimen>
     <dimen name="android_pay_confirmation_margin">8dp</dimen>
     <dimen name="appcompat_dialog_background_inset">16dp</dimen>
-    <dimen name="brand_zone_horizontal_margin">16dp</dimen>
-    <dimen name="brand_zone_max_height">100dp</dimen>
     <dimen name="browser_actions_context_menu_max_width">500dp</dimen>
     <dimen name="browser_actions_context_menu_min_padding">20dp</dimen>
     <dimen name="card_cvc_initial_margin">1000dp</dimen>
@@ -417,13 +401,6 @@
     <dimen name="cardview_compat_inset_shadow">1dp</dimen>
     <dimen name="cardview_default_elevation">2dp</dimen>
     <dimen name="cardview_default_radius">2dp</dimen>
-    <dimen name="challenge_activity_padding">28dp</dimen>
-    <dimen name="challenge_zone_select_button_label_padding">14dp</dimen>
-    <dimen name="challenge_zone_select_button_min_height">48dp</dimen>
-    <dimen name="challenge_zone_select_button_offset_margin">-5dp</dimen>
-    <dimen name="challenge_zone_select_button_vertical_margin">15dp</dimen>
-    <dimen name="challenge_zone_text_indicator_padding">14dp</dimen>
-    <dimen name="challenge_zone_vertical_padding">8dp</dimen>
     <dimen name="com_facebook_auth_dialog_corner_radius">2dp</dimen>
     <dimen name="com_facebook_auth_dialog_corner_radius_oversized">4dp</dimen>
     <dimen name="com_facebook_button_corner_radius">4dp</dimen>
@@ -496,7 +473,6 @@
     <dimen name="design_textinput_caption_translate_y">5dp</dimen>
     <item format="float" name="disabled_alpha_material_dark" type="dimen">0.30</item>
     <item format="float" name="disabled_alpha_material_light" type="dimen">0.26</item>
-    <dimen name="divider">1dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="fastscroll_default_thickness">8dp</dimen>
     <dimen name="fastscroll_margin">0dp</dimen>
@@ -508,16 +484,14 @@
     <item format="float" name="hint_alpha_material_light" type="dimen">0.38</item>
     <item format="float" name="hint_pressed_alpha_material_dark" type="dimen">0.70</item>
     <item format="float" name="hint_pressed_alpha_material_light" type="dimen">0.54</item>
-    <dimen name="information_zone_label_padding">10dp</dimen>
-    <dimen name="information_zone_vertical_padding">30dp</dimen>
     <dimen name="item_touch_helper_max_drag_scroll_per_frame">20dp</dimen>
     <dimen name="item_touch_helper_swipe_escape_max_velocity">800dp</dimen>
     <dimen name="item_touch_helper_swipe_escape_velocity">120dp</dimen>
-    <dimen name="list_row_end_padding">8dp</dimen>
-    <dimen name="list_row_height">48dp</dimen>
-    <dimen name="list_row_start_padding">20dp</dimen>
-    <dimen name="list_top_margin">8dp</dimen>
     <dimen name="masked_card_icon_width">32dp</dimen>
+    <dimen name="masked_card_list_top_margin">8dp</dimen>
+    <dimen name="masked_card_row_end_padding">8dp</dimen>
+    <dimen name="masked_card_row_height">48dp</dimen>
+    <dimen name="masked_card_row_start_padding">20dp</dimen>
     <dimen name="masked_card_vertical_padding">4dp</dimen>
     <item format="float" name="material_emphasis_disabled" type="dimen">0.38</item>
     <item format="float" name="material_emphasis_high_type" type="dimen">0.87</item>
@@ -686,7 +660,6 @@
     <dimen name="notification_top_pad">10dp</dimen>
     <dimen name="notification_top_pad_large_text">5dp</dimen>
     <dimen name="shipping_check_icon_width">24dp</dimen>
-    <dimen name="shipping_method_view_height">21dp</dimen>
     <dimen name="shipping_widget_horizontal_margin">16dp</dimen>
     <dimen name="shipping_widget_outer_margin">12dp</dimen>
     <dimen name="shipping_widget_vertical_margin">4dp</dimen>
@@ -757,8 +730,6 @@
     <item name="cc_form_layout" type="id"/>
     <item name="cc_four_digits" type="id"/>
     <item name="cc_zip" type="id"/>
-    <item name="default_challenge_zone_select_view_id" type="id"/>
-    <item name="default_reader_id" type="id"/>
     <item name="flipper_skip_empty_view_group_traversal" type="id"/>
     <item name="flipper_skip_view_traversal" type="id"/>
     <item name="fragment_container_view_tag" type="id"/>
@@ -772,8 +743,6 @@
     <item name="mtrl_child_content_container" type="id"/>
     <item name="mtrl_internal_children_alpha_tag" type="id"/>
     <item name="parent_matrix" type="id"/>
-    <item name="payment_methods_add_card" type="id"/>
-    <item name="payment_methods_add_fpx" type="id"/>
     <item name="progress_circular" type="id"/>
     <item name="progress_horizontal" type="id"/>
     <item name="react_test_id" type="id"/>
@@ -875,10 +844,7 @@
     <string name="abc_shareactionprovider_share_with_application">Share with <ns1:g example="Mail" id="application_name">%s</ns1:g></string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="acc_label_card_number">Card number</string>
-    <string name="acc_label_card_number_node">%s, Card number</string>
-    <string name="acc_label_cvc_node">%s, CVC</string>
     <string name="acc_label_expiry_date">Expiration date</string>
-    <string name="acc_label_expiry_date_node">%s, Expiration date</string>
     <string name="acc_label_zip">ZIP Code</string>
     <string name="acc_label_zip_short">ZIP</string>
     <string name="add_card">Add a new debit or credit card to make purchases in this app.</string>
@@ -931,13 +897,7 @@
     <string name="app_name">Chefood</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
     <string name="bottom_sheet_behavior" translatable="false">com.google.android.material.bottomsheet.BottomSheetBehavior</string>
-    <string name="brand_amex">American Express</string>
-    <string name="brand_discover">Discover</string>
-    <string name="brand_mastercard">Mastercard</string>
-    <string name="brand_visa">Visa</string>
     <string name="button_description" translatable="false">Button</string>
-    <string name="bzv_issuer_image_description">Issuer Image</string>
-    <string name="bzv_payment_system_image_description">Payment System Image</string>
     <string name="card_number_hint">1234 1234 1234 1234</string>
     <string name="catalyst_change_bundle_location" project="catalyst" translatable="false">Change Bundle Location</string>
     <string name="catalyst_copy_button" project="catalyst" translatable="false">Copy\n</string>
@@ -972,7 +932,6 @@
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
     <string name="chip_text">Chip text</string>
     <string name="clear_text_end_icon_content_description">Clear text</string>
-    <string name="close">Close</string>
     <string name="com_facebook_device_auth_instructions">Visit &lt;b>facebook.com/device&lt;/b> and enter the code shown above.</string>
     <string name="com_facebook_image_download_unknown_error">Unexpected error while downloading an image.</string>
     <string name="com_facebook_internet_permission_error_message">WebView login requires INTERNET permission</string>
@@ -1019,12 +978,8 @@
     <string name="cvc_multiline_helper">123</string>
     <string name="cvc_multiline_helper_amex">1234</string>
     <string name="cvc_number_hint">CVC</string>
-    <string name="czv_whitelist_no_label">No</string>
-    <string name="czv_whitelist_yes_label">Yes</string>
     <string name="default_web_client_id" translatable="false">148915325976-v7n9hktfklbn49sfgf5ianikvfnuknel.apps.googleusercontent.com</string>
-    <string name="diners_club">Diners Club</string>
-    <string name="discover">Discover</string>
-    <string name="ending_in">%1$s ending in %2$s</string>
+    <string name="ending_in">" ending in "</string>
     <string name="error_icon_content_description">Error</string>
     <string name="expiry_date_hint">MM/YY</string>
     <string name="expiry_label_short">Expiry</string>
@@ -1048,8 +1003,6 @@
     <string name="google_storage_bucket" translatable="false">chefood-25836.appspot.com</string>
     <string name="header_description" translatable="false">Heading</string>
     <string name="hide_bottom_view_on_scroll_behavior" translatable="false">com.google.android.material.behavior.HideBottomViewOnScrollBehavior</string>
-    <string name="hzv_cancel_label">Cancel</string>
-    <string name="hzv_header_label">Secure Checkout</string>
     <string description="Content description for an icon that appears in the title area of a dialog" name="icon_content_description">Dialog Icon</string>
     <string name="image_description" translatable="false">Image</string>
     <string name="imagebutton_description" translatable="false">Button, Image</string>
@@ -1059,9 +1012,7 @@
     <string name="invalid_expiry_year">Your card\'s expiration year is invalid.</string>
     <string name="invalid_shipping_information">Invalid Shipping Address</string>
     <string name="invalid_zip">Your postal code is incomplete.</string>
-    <string name="jcb">JCB</string>
     <string name="link_description" translatable="false">Link</string>
-    <string name="mastercard">MasterCard</string>
     <string name="menu_description" translatable="false">Menu</string>
     <string name="menubar_description" translatable="false">Menu Bar</string>
     <string name="menuitem_description" translatable="false">Menu Item</string>
@@ -1107,9 +1058,7 @@
     <string name="path_password_eye_mask_visible" translatable="false">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through" translatable="false">M3.27,4.27 L19.74,20.74</string>
     <string name="payment_method_add_new_card">Add new card…</string>
-    <string name="payment_method_add_new_fpx" ns2:ignore="MissingTranslation">Select Bank Account (FPX)…</string>
     <string name="price_free">Free</string>
-    <string name="processing">Processing\u2026</string>
     <string name="progressbar_description" translatable="false">Progress Bar</string>
     <string name="project_id" translatable="false">chefood-25836</string>
     <string name="radiogroup_description" translatable="false">Radio Group</string>
@@ -1117,7 +1066,6 @@
     <string name="scrollbar_description" translatable="false">Scroll Bar</string>
     <string name="search_description" translatable="false">Search Field</string>
     <string name="search_menu_title">Search</string>
-    <string name="secure_checkout">Secure Checkout</string>
     <string name="spinbutton_description" translatable="false">Spin Button</string>
     <string name="state_busy_description" translatable="false">busy</string>
     <string name="state_collapsed_description" translatable="false">collapsed</string>
@@ -1131,14 +1079,10 @@
     <string name="timer_description" translatable="false">Timer</string>
     <string name="title_add_a_card">Add a Card</string>
     <string name="title_add_an_address">Add an Address</string>
-    <string name="title_bank_account" ns2:ignore="MissingTranslation">Bank Account</string>
     <string name="title_payment_method">Payment Method</string>
     <string name="title_select_shipping_method">Select Shipping Method</string>
     <string name="toolbar_description" translatable="false">Tool Bar</string>
-    <string name="unionpay">UnionPay</string>
-    <string name="unknown">Unknown</string>
     <string name="valid_digits">0123456789</string>
-    <string name="visa">Visa</string>
     <string name="wallet_buy_button_place_holder">Buy with Google</string>
     <string name="zip_helper">12345</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
@@ -3000,20 +2944,6 @@
     <item name="shapeAppearanceOverlay">@null</item>
   </style>
     <style name="Base.Widget.MaterialComponents.TextView" parent="Widget.AppCompat.TextView"/>
-    <style name="BaseStripe3DS2Theme" parent="Theme.MaterialComponents.Light.DarkActionBar">
-        <item name="actionBarStyle">@style/Stripe3DS2ActionBarStyle</item>
-        <item name="android:actionBarStyle">@style/Stripe3DS2ActionBarStyle</item>
-        <item name="toolbarStyle">@style/Stripe3DS2ToolbarStyle</item>
-        <item name="android:colorBackground">@color/stripe_3ds2_background</item>
-        <item name="colorPrimary">@color/stripe_3ds2_primary</item>
-        <item name="colorPrimaryDark">@color/stripe_3ds2_primary_dark</item>
-        <item name="colorAccent">@color/stripe_3ds2_accent</item>
-        <item name="colorControlActivated">?attr/colorAccent</item>
-        <item name="android:textColor">@color/stripe_3ds2_text_color</item>
-        <item name="android:textColorPrimary">@color/stripe_3ds2_text_color_primary</item>
-        <item name="android:editTextColor">@color/stripe_3ds2_text_edit</item>
-        <item name="stripe3DS2EditTextBackgroundColor">@color/stripe_3ds2_text_input_fill</item>
-    </style>
     <style name="Button" parent="@android:style/Widget.Button">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingTop">12dp</item>
@@ -3064,15 +2994,6 @@
     <item name="android:windowEnterAnimation">@anim/catalyst_slide_up</item>
     <item name="android:windowExitAnimation">@anim/catalyst_slide_down</item>
   </style>
-    <style name="Divider">
-        <item name="android:background">@color/stripe_3ds2_divider</item>
-        <item name="android:layout_height">@dimen/divider</item>
-        <item name="android:layout_width">match_parent</item>
-    </style>
-    <style name="Divider.Vertical">
-        <item name="android:layout_width">@dimen/divider</item>
-        <item name="android:layout_height">match_parent</item>
-    </style>
     <style name="EmptyTheme"/>
     <style name="ExpMonth" parent="@style/Spinner">
         <item name="android:entries">@array/month_array</item>
@@ -3518,43 +3439,10 @@
     <style name="SplashScreen_SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowAnimationStyle">@style/SplashScreen_SplashAnimation</item>
     </style>
-    <style name="Stripe3DS2ActionBarButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:minWidth">0dp</item>
-    </style>
-    <style name="Stripe3DS2ActionBarStyle" parent="Widget.AppCompat.ActionBar.Solid">
-        <item name="contentInsetStart">@dimen/challenge_activity_padding</item>
-        <item name="background">?attr/colorPrimary</item>
-        <item name="android:background">?attr/colorPrimary</item>
-        <item name="titleTextStyle">@style/Stripe3DS2ActionBarTitleTextStyle</item>
-        <item name="android:titleTextStyle">@style/Stripe3DS2ActionBarTitleTextStyle</item>
-    </style>
-    <style name="Stripe3DS2ActionBarTitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
-    </style>
-    <style name="Stripe3DS2ButtonStyle" parent="Widget.MaterialComponents.Button">
-        <item name="android:textAllCaps">false</item>
-    </style>
-    <style name="Stripe3DS2TextButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="android:textAllCaps">false</item>
-    </style>
-    <style name="Stripe3DS2TextInputStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
-        <item name="boxBackgroundColor">?attr/stripe3DS2EditTextBackgroundColor</item>
-    </style>
-    <style name="Stripe3DS2Theme" parent="BaseStripe3DS2Theme"/>
-    <style name="Stripe3DS2ToolbarStyle" parent="Widget.AppCompat.Toolbar">
-        <item name="titleTextColor">?android:attr/textColorPrimary</item>
-    </style>
-    <style name="StripeActionButtonStyle" parent="Widget.AppCompat.ActionButton">
-        <item name="android:paddingStart">16dp</item>
-        <item name="android:paddingEnd">16dp</item>
-    </style>
-    <style name="StripeDefaultTheme" parent="@style/Theme.AppCompat.DayNight.NoActionBar">
+    <style name="StripeDefaultTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="colorAccent">@color/accent_color_default</item>
         <item name="colorControlNormal">@color/control_normal_color_default</item>
         <item name="colorPrimary">@color/toolbar_color_default</item>
-        <item name="colorPrimaryDark">@color/toolbar_color_default_dark</item>
         <item name="titleTextColor">@android:color/white</item>
         <item name="android:textColorSecondary">@android:color/secondary_text_light</item>
     </style>
@@ -3564,8 +3452,6 @@
     </style>
     <style name="StripeToolBarStyle" parent="@style/ThemeOverlay.AppCompat">
         <item name="colorControlNormal">?attr/titleTextColor</item>
-        <item name="actionMenuTextColor">?attr/titleTextColor</item>
-        <item name="android:actionButtonStyle">@style/StripeActionButtonStyle</item>
     </style>
     <style name="Test.ShapeAppearanceOverlay.MaterialComponents.MaterialCalendar.Day" parent="">
     <item name="cornerFamily">rounded</item>
@@ -4167,19 +4053,6 @@
     <item name="colorControlNormal">@color/material_on_surface_emphasis_medium</item>
     <item name="actionMenuTextColor">@color/material_on_surface_emphasis_medium</item>
   </style>
-    <style name="ThreeDS2FullScreenDialog">
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
-    </style>
-    <style name="ThreeDS2HeaderTextViewStyle">
-        <item name="android:textSize">20sp</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-    <style name="ThreeDS2TextViewStyle">
-        <item name="android:textSize">14sp</item>
-    </style>
     <style name="WalletFragmentDefaultButtonTextAppearance">
 <item name="android:textColorLink">@color/wallet_link_text_light</item>
 <item name="android:textColorHint">@color/wallet_hint_foreground_holo_light</item>
@@ -5979,14 +5852,8 @@
              enough space to lay them out side-by-side. -->
         <attr format="boolean" name="allowStacking"/>
     </declare-styleable>
-    <declare-styleable name="CardInputView">
-        <attr format="string" name="cardHintText"/>
-        <attr format="color" name="cardTint"/>
-        <attr format="color" name="cardTextErrorColor"/>
-    </declare-styleable>
-    <declare-styleable name="CardMultilineWidget">
-        <attr format="boolean" name="shouldShowPostalCode"/>
-    </declare-styleable>
+    <declare-styleable name="CardInputView"><attr format="string" name="cardHintText"/><attr format="color" name="cardTint"/><attr format="color" name="cardTextErrorColor"/></declare-styleable>
+    <declare-styleable name="CardMultilineWidget"><attr format="boolean" name="shouldShowPostalCode"/></declare-styleable>
     <declare-styleable name="CardView">
         <!-- Background color for CardView. -->
         <attr format="color" name="cardBackgroundColor"/>

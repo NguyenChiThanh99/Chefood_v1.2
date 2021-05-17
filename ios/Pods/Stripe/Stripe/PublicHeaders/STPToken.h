@@ -14,44 +14,9 @@
 @class STPBankAccount;
 
 /**
- Possible Token types
- */
-typedef NS_ENUM(NSInteger, STPTokenType) {
-    /**
-     Account token type
-     */
-    STPTokenTypeAccount = 0,
-
-    /**
-     Bank account token type
-     */
-    STPTokenTypeBankAccount,
-
-    /**
-     Card token type
-     */
-    STPTokenTypeCard,
-
-    /**
-     PII token type
-     */
-    STPTokenTypePII,
-
-    /**
-     CVC update token type
-     */
-    STPTokenTypeCVCUpdate,
-};
-
-/**
  A token returned from submitting payment details to the Stripe API. You should not have to instantiate one of these directly.
  */
 @interface STPToken : NSObject<STPAPIResponseDecodable, STPSourceProtocol>
-
-/**
- You cannot directly instantiate an `STPToken`. You should only use one that has been returned from an `STPAPIClient` callback.
- */
-- (nonnull instancetype) init __attribute__((unavailable("You cannot directly instantiate an STPToken. You should only use one that has been returned from an STPAPIClient callback.")));
 
 /**
  The value of the token. You can store this value on your server and use it to make charges and customers. 
@@ -63,11 +28,6 @@ typedef NS_ENUM(NSInteger, STPTokenType) {
  Whether or not this token was created in livemode. Will be YES if you used your Live Publishable Key, and NO if you used your Test Publishable Key.
  */
 @property (nonatomic, readonly) BOOL livemode;
-
-/**
- The type of this token.
- */
-@property (nonatomic, readonly) STPTokenType type;
 
 /**
  The credit card details that were used to create the token. Will only be set if the token was created via a credit card or Apple Pay, otherwise it will be

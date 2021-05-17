@@ -41,10 +41,7 @@
     <string msgid="9009661856846212431" name="abc_shareactionprovider_share_with_application">"Condividi tramite <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
     <string msgid="6389460216547290468" name="abc_toolbar_collapse_description">"Comprimi"</string>
     <string name="acc_label_card_number">Numero della carta</string>
-    <string name="acc_label_card_number_node">%s, Numero della carta</string>
-    <string name="acc_label_cvc_node">%s, CVV</string>
     <string name="acc_label_expiry_date">Data di scadenza</string>
-    <string name="acc_label_expiry_date_node">%s, Data di scadenza</string>
     <string name="acc_label_zip">Codice postale</string>
     <string name="acc_label_zip_short">ZIP</string>
     <string name="add_card">Aggiungi una nuova carta di credito o di debito per fare acquisti in questa app.</string>
@@ -92,13 +89,6 @@
     <string name="address_state_required">Inserisci lo stato</string>
     <string name="address_zip_invalid">Il codice postale non è valido.</string>
     <string name="address_zip_postal_invalid">Il CAP/codice postale non è valido</string>
-    <string name="brand_amex">American Express</string>
-    <string name="brand_discover">Discover</string>
-    <string name="brand_mastercard">Mastercard</string>
-    <string name="brand_visa">Visa</string>
-    <string name="bzv_issuer_image_description">Immagine emittente</string>
-    <string name="bzv_payment_system_image_description">Immagine sistema di pagamento</string>
-    <string name="close">Chiudi</string>
     <string gender="unknown" name="com_facebook_device_auth_instructions">Visita &lt;b>facebook.com/device&lt;/b> e inserisci il codice mostrato qui sotto.</string>
     <string gender="unknown" name="com_facebook_image_download_unknown_error">Errore imprevisto durante il download dell\'immagine.</string>
     <string gender="unknown" name="com_facebook_internet_permission_error_message">L\'accesso alla visualizzazione Web richiede le autorizzazioni Internet</string>
@@ -140,9 +130,7 @@
     <string msgid="5201977337835724196" name="common_open_on_phone">"Apri sul telefono"</string>
     <string msgid="3441753203274453993" name="common_signin_button_text">"Accedi"</string>
     <string msgid="669893613918351210" name="common_signin_button_text_long">"Accedi con Google"</string>
-    <string name="czv_whitelist_no_label">No</string>
-    <string name="czv_whitelist_yes_label">Sì</string>
-    <string name="ending_in">%1$s - %2$s</string>
+    <string name="ending_in">" - "</string>
     <string name="expiry_date_hint">MM/AA</string>
     <string name="expiry_label_short">Scad.</string>
     <string name="gettipsi_card_cvc">CVC</string>
@@ -154,8 +142,6 @@
     <string name="gettipsi_google_pay_unavaliable">Google Pay non è disponibile sul tuo dispositivo.</string>
     <string name="gettipsi_save">Salva</string>
     <string name="gettipsi_user_cancel_dialog">Un utente ha annullato l\'operazione. Nessun addebito è stato effettuato!</string>
-    <string name="hzv_cancel_label">Annulla</string>
-    <string name="hzv_header_label">Completamento del pagamento sicuro</string>
     <string name="invalid_card_number">Il numero della carta non è valido.</string>
     <string name="invalid_cvc">Il codice di sicurezza della carta non è valido.</string>
     <string name="invalid_expiry_month">Il mese di scadenza della carta non è valido.</string>
@@ -165,9 +151,7 @@
     <string name="no_payment_methods">Nessuna modalità di pagamento.</string>
     <string name="payment_method_add_new_card">Aggiungi una nuova carta…</string>
     <string name="price_free">Gratuito</string>
-    <string name="processing">Elaborazione in corso\u2026</string>
     <string msgid="730395136688082741" name="search_menu_title">"Cerca"</string>
-    <string name="secure_checkout">Completamento del pagamento sicuro</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
     <string name="title_add_a_card">Aggiungi una carta</string>
     <string name="title_add_an_address">Aggiungi un indirizzo</string>

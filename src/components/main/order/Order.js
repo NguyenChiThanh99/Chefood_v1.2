@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import Toast from 'react-native-root-toast';
 import {useSelector} from 'react-redux';
+import {useIsFocused} from '@react-navigation/native';
 
 import Global from '../../Global';
 import MainHeader from '../home/cardView/MainHeader';
@@ -43,62 +44,62 @@ export default function Order({navigation, route}) {
         }
       };
 
-      var interval = setInterval(() => {
-        getOrders(0, true);
-      }, 3000);
       BackHandler.addEventListener('hardwareBackPress', onBackPress);
 
       return () => {
-        clearInterval(interval);
         BackHandler.removeEventListener('hardwareBackPress', onBackPress);
       };
     }, []),
   );
 
+  const isFocused = useIsFocused();
   useEffect(() => {
-    getOrders(0, false);
-  }, []);
+    if (isFocused) {
+      getOrders(0);
+    }
+  }, [isFocused]);
 
   const user = useSelector((state) => state.user);
   const [dataOrders, setDataOrders] = useState([]);
   const [pageOrders, setPageOrders] = useState(0);
   const [loadingOrder, setLoadingOrder] = useState(false);
+  const [loadingTop, setLoadingTop] = useState(false);
+  const [
+    onEndReachedCalledDuringMomentum,
+    setOnEndReachedCalledDuringMomentum,
+  ] = useState(true);
 
-  const getOrders = (page, backgound) => {
-    if (!backgound) {
+  const getOrders = (page) => {
+    if (!loadingOrder) {
       setLoadingOrder(true);
-    }
-    get_orders
-      .get_orders(user.token, page)
-      .then((responseJson) => {
-        if (!backgound) {
-          setLoadingOrder(false);
-        }
-        if (responseJson.length === 0 && page !== 0) {
-          return Toast.show('Đã tải đến cuối danh sách', {
-            position: -20,
+      get_orders
+        .get_orders(user.token, page)
+        .then((responseJson) => {
+          if (responseJson.length === 0 && page !== 0) {
+            setLoadingOrder(false);
+            return Toast.show('Đã tải đến cuối danh sách', {
+              position: -20,
+              duration: 2500,
+            });
+          } else {
+            if (page === 0) {
+              setDataOrders(responseJson);
+              setPageOrders(1);
+            } else {
+              setDataOrders(dataOrders.concat(responseJson));
+              setPageOrders(page + 1);
+            }
+            setLoadingOrder(false);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+            position: 0,
             duration: 2500,
           });
-        } else {
-          if (page === 0) {
-            setDataOrders(responseJson);
-            setPageOrders(1);
-          } else {
-            setDataOrders(dataOrders.concat(responseJson));
-            setPageOrders(pageOrders + 1);
-          }
-        }
-      })
-      .catch((err) => {
-        if (!backgound) {
-          setLoadingOrder(false);
-        }
-        console.log(err);
-        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-          position: 0,
-          duration: 2500,
         });
-      });
+    }
   };
 
   const Loading = (
@@ -136,23 +137,25 @@ export default function Order({navigation, route}) {
           style={styles.listStyle}
           showsVerticalScrollIndicator={false}
           data={dataOrders}
-          ListFooterComponent={
-            <View style={{marginTop: 10, backgroundColor: 'white'}}>
-              {loadingOrder ? (
-                <View style={{paddingVertical: 4.5}}>{Loading}</View>
-              ) : (
-                <TouchableOpacity
-                  onPress={() => getOrders(pageOrders, false)}
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}>
-                  <Text style={styles.viewMoreTextVertical}>Xem thêm</Text>
-                </TouchableOpacity>
-              )}
-            </View>
-          }
+          onRefresh={() => {
+            setLoadingTop(true);
+            getOrders(0);
+            setLoadingTop(false);
+            setOnEndReachedCalledDuringMomentum(true);
+          }}
+          refreshing={loadingTop}
+          onEndReachedThreshold={0.3}
+          onEndReached={() => {
+            !loadingOrder && !onEndReachedCalledDuringMomentum
+              ? getOrders(pageOrders)
+              : null;
+          }}
+          onMomentumScrollBegin={() => {
+            if (onEndReachedCalledDuringMomentum) {
+              getOrders(pageOrders);
+            }
+            setOnEndReachedCalledDuringMomentum(false);
+          }}
           renderItem={({item, index}) => {
             return (
               <TouchableOpacity

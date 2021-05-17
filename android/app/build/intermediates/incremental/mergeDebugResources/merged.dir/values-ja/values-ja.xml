@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="CreditCardFormCardNumberHint">1234 5678 9012 3456</string>
-    <string name="CreditCardNumberHelp"/>
-    <string name="ExpDateFieldHint">月/年</string>
-    <string name="ExpirationDateHelp">有効期限 (月/年)</string>
-    <string name="SecurityCodeFieldHint">セキュリティーコード</string>
-    <string name="SecurityCodeHelp">セキュリティーコード (CVC)</string>
-    <string name="ZipCodeFieldHint">   郵便番号   </string>
-    <string name="ZipHelp">請求先郵便番号</string>
     <string msgid="7903180715631665059" name="abc_action_bar_home_description">"ホームに戻る"</string>
     <string msgid="6794660482873516081" name="abc_action_bar_up_description">"前に戻る"</string>
     <string msgid="1155814932213556626" name="abc_action_menu_overflow_description">"その他のオプション"</string>
@@ -36,10 +28,7 @@
     <string msgid="9009661856846212431" name="abc_shareactionprovider_share_with_application">"<ns1:g id="APPLICATION_NAME">%s</ns1:g>と共有"</string>
     <string msgid="6389460216547290468" name="abc_toolbar_collapse_description">"折りたたむ"</string>
     <string name="acc_label_card_number">カード番号</string>
-    <string name="acc_label_card_number_node">%s, カード番号</string>
-    <string name="acc_label_cvc_node">%s, セキュリティコード</string>
     <string name="acc_label_expiry_date">有効期限</string>
-    <string name="acc_label_expiry_date_node">%s, 有効期限</string>
     <string name="acc_label_zip">郵便番号</string>
     <string name="acc_label_zip_short">ZIP</string>
     <string name="add_card">このアプリで購入するには、別のデビットカードまたはクレジットカードの登録が必要です。</string>
@@ -87,13 +76,6 @@
     <string name="address_state_required">都道府県を入力してください</string>
     <string name="address_zip_invalid">郵便番号が無効です。</string>
     <string name="address_zip_postal_invalid">郵便番号が無効です</string>
-    <string name="brand_amex">American Express</string>
-    <string name="brand_discover">Discover</string>
-    <string name="brand_mastercard">Mastercard</string>
-    <string name="brand_visa">Visa</string>
-    <string name="bzv_issuer_image_description">発行会社のイメージ</string>
-    <string name="bzv_payment_system_image_description">決済システムのイメージ</string>
-    <string name="close">閉じる</string>
     <string gender="unknown" name="com_facebook_device_auth_instructions">&lt;b>facebook.com/device&lt;/b>にアクセスして、上のコードを入力してください。</string>
     <string gender="unknown" name="com_facebook_image_download_unknown_error">画像のダウンロードで何らかのエラーが発生しました。</string>
     <string gender="unknown" name="com_facebook_internet_permission_error_message">WebViewにログインするには、インターネットへのアクセスが必要です</string>
@@ -135,13 +117,9 @@
     <string msgid="5201977337835724196" name="common_open_on_phone">"スマートフォンで開く"</string>
     <string msgid="3441753203274453993" name="common_signin_button_text">"ログイン"</string>
     <string msgid="669893613918351210" name="common_signin_button_text_long">"Googleにログイン"</string>
-    <string name="czv_whitelist_no_label">いいえ</string>
-    <string name="czv_whitelist_yes_label">はい</string>
-    <string name="ending_in">%1$s - %2$s</string>
+    <string name="ending_in">" - "</string>
     <string name="expiry_date_hint">MM/YY</string>
     <string name="expiry_label_short">有効期限</string>
-    <string name="hzv_cancel_label">キャンセル</string>
-    <string name="hzv_header_label">セキュアな Checkout</string>
     <string name="invalid_card_number">カードの番号が無効です。</string>
     <string name="invalid_cvc">指定したカードのセキュリティコードが無効です。</string>
     <string name="invalid_expiry_month">カードの有効期限として指定した月が無効です。</string>
@@ -151,9 +129,7 @@
     <string name="no_payment_methods">支払い方法が指定されていません。</string>
     <string name="payment_method_add_new_card">新しいカードを追加…</string>
     <string name="price_free">無料</string>
-    <string name="processing">処理中\u2026</string>
     <string msgid="730395136688082741" name="search_menu_title">"検索"</string>
-    <string name="secure_checkout">セキュアな Checkout</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
     <string name="title_add_a_card">カードを追加</string>
     <string name="title_add_an_address">住所を設定してください</string>
