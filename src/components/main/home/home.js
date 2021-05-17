@@ -64,8 +64,6 @@ import rice from '../../../images/category/rice.png';
 import sandwich from '../../../images/category/sandwich.png';
 import cake from '../../../images/category/cake.png';
 
-import arrow from '../../../icons/arrow_right-fb5a23.png';
-
 var countExit = 0;
 var firstLoad = false;
 
@@ -109,6 +107,8 @@ export default function Home({navigation}) {
       firstLoad = true;
     }
     if (isFocused) {
+      setOnEndReachedCalledDuringMomentum_ViewedDish(true);
+      setOnEndReachedCalledDuringMomentum_RecommendationDish(true);
       getRecommendation(0);
       getViewedDish(0);
     }
@@ -135,6 +135,22 @@ export default function Home({navigation}) {
   const [dataDishCategory, setDataDishCategory] = useState([]);
   const [loadingDishCategory, setLoadingDishCategory] = useState(false);
   const [loadingCategoryFirst, setLoadingCategoryFirst] = useState(false);
+  const [
+    onEndReachedCalledDuringMomentum_ViewedDish,
+    setOnEndReachedCalledDuringMomentum_ViewedDish,
+  ] = useState(true);
+  const [
+    onEndReachedCalledDuringMomentum_TodayDish,
+    setOnEndReachedCalledDuringMomentum_TodayDish,
+  ] = useState(true);
+  const [
+    onEndReachedCalledDuringMomentum_HotDish,
+    setOnEndReachedCalledDuringMomentum_HotDish,
+  ] = useState(true);
+  const [
+    onEndReachedCalledDuringMomentum_RecommendationDish,
+    setOnEndReachedCalledDuringMomentum_RecommendationDish,
+  ] = useState(true);
   const [category, setCategory] = useState({
     all: true,
     pork: false,
@@ -1000,20 +1016,19 @@ export default function Home({navigation}) {
               horizontal
               showsHorizontalScrollIndicator={false}
               data={dataRecommendation}
-              ListFooterComponent={
-                loadingRecommendation ? (
-                  <View style={styles.viewMoreCont}>{Loading}</View>
-                ) : (
-                  <TouchableOpacity
-                    style={styles.viewMoreCont}
-                    onPress={() => getRecommendation(pageRecommendation)}>
-                    <View style={styles.viewMoreImgCont}>
-                      <Image style={styles.viewMoreImg} source={arrow} />
-                    </View>
-                    <Text style={styles.viewMoreText}>Xem thêm</Text>
-                  </TouchableOpacity>
-                )
-              }
+              onEndReachedThreshold={0.3}
+              onEndReached={() => {
+                !loadingRecommendation &&
+                !onEndReachedCalledDuringMomentum_RecommendationDish
+                  ? getRecommendation(pageRecommendation)
+                  : null;
+              }}
+              onMomentumScrollBegin={() => {
+                if (onEndReachedCalledDuringMomentum_RecommendationDish) {
+                  getRecommendation(pageRecommendation);
+                }
+                setOnEndReachedCalledDuringMomentum_RecommendationDish(false);
+              }}
               renderItem={({item, index}) => {
                 if (index === 0) {
                   return (
@@ -1047,20 +1062,18 @@ export default function Home({navigation}) {
                 horizontal
                 showsHorizontalScrollIndicator={false}
                 data={dataHotDish}
-                ListFooterComponent={
-                  loadingHotDish ? (
-                    <View style={styles.viewMoreCont}>{Loading}</View>
-                  ) : (
-                    <TouchableOpacity
-                      style={styles.viewMoreCont}
-                      onPress={() => loadHotDish()}>
-                      <View style={styles.viewMoreImgCont}>
-                        <Image style={styles.viewMoreImg} source={arrow} />
-                      </View>
-                      <Text style={styles.viewMoreText}>Xem thêm</Text>
-                    </TouchableOpacity>
-                  )
-                }
+                onEndReachedThreshold={0.3}
+                onEndReached={() => {
+                  !loadingHotDish && !onEndReachedCalledDuringMomentum_HotDish
+                    ? loadHotDish()
+                    : null;
+                }}
+                onMomentumScrollBegin={() => {
+                  if (onEndReachedCalledDuringMomentum_HotDish) {
+                    loadHotDish();
+                  }
+                  setOnEndReachedCalledDuringMomentum_HotDish(false);
+                }}
                 renderItem={({item, index}) => {
                   if (index === 0) {
                     return (
@@ -1094,24 +1107,22 @@ export default function Home({navigation}) {
           <View style={styles.cardView}>
             <Text style={styles.cardViewTitle}>Gợi ý các món ăn hôm nay</Text>
             <FlatList
+              onEndReachedThreshold={0.3}
+              onEndReached={() => {
+                !loadingTodayDish && !onEndReachedCalledDuringMomentum_TodayDish
+                  ? getTodayDish()
+                  : null;
+              }}
+              onMomentumScrollBegin={() => {
+                if (onEndReachedCalledDuringMomentum_TodayDish) {
+                  getTodayDish();
+                }
+                setOnEndReachedCalledDuringMomentum_TodayDish(false);
+              }}
               style={styles.cardViewList}
               horizontal
               showsHorizontalScrollIndicator={false}
               data={dataTodayDish}
-              ListFooterComponent={
-                loadingTodayDish ? (
-                  <View style={styles.viewMoreCont}>{Loading}</View>
-                ) : (
-                  <TouchableOpacity
-                    style={styles.viewMoreCont}
-                    onPress={() => getTodayDish()}>
-                    <View style={styles.viewMoreImgCont}>
-                      <Image style={styles.viewMoreImg} source={arrow} />
-                    </View>
-                    <Text style={styles.viewMoreText}>Xem thêm</Text>
-                  </TouchableOpacity>
-                )
-              }
               renderItem={({item, index}) => {
                 if (index === 0) {
                   return (
@@ -1140,24 +1151,37 @@ export default function Home({navigation}) {
           <View style={styles.cardView}>
             <Text style={styles.cardViewTitle}>Món ăn đã xem</Text>
             <FlatList
+              onEndReachedThreshold={0.3}
+              onEndReached={() => {
+                !loadingViewedDish &&
+                !onEndReachedCalledDuringMomentum_ViewedDish
+                  ? getViewedDish(pageViewedDish)
+                  : null;
+              }}
+              onMomentumScrollBegin={() => {
+                if (onEndReachedCalledDuringMomentum_ViewedDish) {
+                  getViewedDish(pageViewedDish);
+                }
+                setOnEndReachedCalledDuringMomentum_ViewedDish(false);
+              }}
               style={styles.cardViewList}
               horizontal
               showsHorizontalScrollIndicator={false}
               data={dataViewedDish}
-              ListFooterComponent={
-                loadingViewedDish ? (
-                  <View style={styles.viewMoreCont}>{Loading}</View>
-                ) : (
-                  <TouchableOpacity
-                    style={styles.viewMoreCont}
-                    onPress={() => getViewedDish(pageViewedDish)}>
-                    <View style={styles.viewMoreImgCont}>
-                      <Image style={styles.viewMoreImg} source={arrow} />
-                    </View>
-                    <Text style={styles.viewMoreText}>Xem thêm</Text>
-                  </TouchableOpacity>
-                )
-              }
+              // ListFooterComponent={
+              //   loadingViewedDish ? (
+              //     <View style={styles.viewMoreCont}>{Loading}</View>
+              //   ) : (
+              //     <TouchableOpacity
+              //       style={styles.viewMoreCont}
+              //       onPress={() => getViewedDish(pageViewedDish)}>
+              //       <View style={styles.viewMoreImgCont}>
+              //         <Image style={styles.viewMoreImg} source={arrow} />
+              //       </View>
+              //       <Text style={styles.viewMoreText}>Xem thêm</Text>
+              //     </TouchableOpacity>
+              //   )
+              // }
               renderItem={({item, index}) => {
                 if (index === 0) {
                   return (

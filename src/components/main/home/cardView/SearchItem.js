@@ -157,6 +157,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginVertical: 3.5,
+    width: (width - width / 6.5 - 45) / 3,
   },
   searchCriteriaImg: {
     width: width / 32,

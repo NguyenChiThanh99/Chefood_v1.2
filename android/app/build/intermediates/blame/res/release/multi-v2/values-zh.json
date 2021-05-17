@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/nguyenchithanh/Documents/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-zh/values-zh.xml",
+            "outputFile": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-zh/values-zh.xml",
             "map": [
                 {
-                    "source": "/Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/458abca95c82a57e1e4699eb3b8ed334/jetified-stripe-android-10.4.6/res/values-zh/values-zh.xml",
+                    "source": "/Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/d0772d6dec98c8d6a22d6e4fd3cd9d2f/jetified-stripe-android-10.4.6/res/values-zh/values-zh.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/81a66e1a099ce266791e44467c81e712/jetified-stripe-3ds2-android-1.2.2/res/values-zh/values-zh.xml",
+                    "source": "/Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/42f9cfb40db5319cc100e2e04eba84c9/jetified-stripe-3ds2-android-1.2.2/res/values-zh/values-zh.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4",

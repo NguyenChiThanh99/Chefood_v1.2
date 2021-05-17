@@ -13,7 +13,6 @@ import {
 import Toast from 'react-native-root-toast';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useSelector} from 'react-redux';
-import RNExitApp from 'react-native-exit-app';
 
 import Global from '../../Global';
 import MainHeader from '../home/cardView/MainHeader';
@@ -60,16 +59,15 @@ export default function User({navigation}) {
   const user = useSelector((state) => state.user);
 
   const logoutHandle = () => {
-    setModal(false);
     storeData(null);
-    RNExitApp.exitApp();
-    // BackHandler.exitApp();
   };
 
   const storeData = async (value) => {
     try {
       const jsonValue = JSON.stringify(value);
       await AsyncStorage.setItem('@user', jsonValue);
+      setModal(false);
+      navigation.navigate('SIGN_IN');
     } catch (e) {
       console.log('Error: ' + e);
     }
@@ -128,7 +126,7 @@ export default function User({navigation}) {
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Image style={[styles.rowImg, {marginLeft: 3}]} source={chefIcon} />
             <Text style={[styles.rowText, {marginLeft: -3}]}>
-              Đầu bếp đã lưu
+              Đầu bếp đã theo dõi
             </Text>
           </View>
           <Image style={styles.arrow} source={arrowRight} />

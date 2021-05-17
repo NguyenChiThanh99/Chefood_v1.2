@@ -31,7 +31,7 @@ import expandMoreArrow from '../../../icons/expand_less.png';
 import expandLessArrow from '../../../icons/expand_more.png';
 
 stripe.setOptions({
-  publishableKey: 'pk_test_nNsT1Tapm2K01DErmIgoCYka00Xl2AhJAY',
+  publishableKey: 'pk_test_382h11Lz0otifvWEVSGdAYog00SZ19vZpo',
 });
 
 export default function Cart({navigation, route}) {
@@ -93,7 +93,19 @@ export default function Cart({navigation, route}) {
 
   const orderHandle = () => {
     setLoading(true);
-    if (method === 'Thẻ') {
+    var diaChi;
+    if (route.params.address !== '') {
+      diaChi = route.params.address;
+    } else {
+      diaChi = shipmentInfo.address;
+    }
+    if (diaChi === 'Thiết lập ngay') {
+      setLoading(false);
+      return Toast.show('Vui lòng nhập địa chỉ giao hàng', {
+        position: 0,
+        duration: 2500,
+      });
+    } else if (method === 'Thẻ') {
       paymentByCard();
     } else {
       var cartSeparate = separateCart();
@@ -103,12 +115,6 @@ export default function Cart({navigation, route}) {
         for (let j = 0; j < cartSeparate[i].dishes.length; j++) {
           totalSubOrder +=
             cartSeparate[i].dishes[j].price * cartSeparate[i].dishes[j].amount;
-        }
-        var diaChi;
-        if (route.params.address !== '') {
-          diaChi = route.params.address;
-        } else {
-          diaChi = shipmentInfo.address;
         }
 
         submit_order
@@ -143,28 +149,55 @@ export default function Cart({navigation, route}) {
     }
   };
 
-  const paymentByCard = () => {
-    return stripe
-      .paymentRequestWithCardForm()
-      .then((stripeTokenInfo) => {
-        return {
-          //Gọi Api thanh toán online
-        };
-      })
-      .then(() => {
-        //Thanh toán thành công
-        console.log('Payment succeeded!');
-        navigation.navigate('ORDER_DETAIL');
-      })
-      .catch((error) => {
-        Toast.show('Thanh toán thất bại:\n' + error, {
-          position: -20,
-          duration: 2500,
-        });
-        //Thanh toán thất bại
-        console.log('Payment failed', {error});
-      })
-      .finally(() => {});
+  const paymentByCard = async () => {
+    const options = {
+      theme: {
+        accentColor: '#fb5a23',
+      },
+    };
+    const paymentMethod = await stripe.paymentRequestWithCardForm(options);
+    const params = {
+      // mandatory
+      number: '4242424242424242',
+      expMonth: 11,
+      expYear: 22,
+      cvc: '223',
+      // optional
+      name: 'Test User',
+      currency: 'usd',
+      addressLine1: '123 Test Street',
+      addressLine2: 'Apt. 5',
+      addressCity: 'Test City',
+      addressState: 'Test State',
+      addressCountry: 'Test Country',
+      addressZip: '55555',
+    };
+
+    // const token = await stripe.createTokenWithCard(params);
+    console.log(paymentMethod);
+
+    // return stripe
+    //   .paymentRequestWithCardForm()
+    //   .then((stripeTokenInfo) => {
+    //     console.log(stripeTokenInfo);
+    //     return {
+    //       //Gọi Api thanh toán online
+    //     };
+    //   })
+    //   .then(() => {
+    //     //Thanh toán thành công
+    //     console.log('Payment succeeded!');
+    //     // navigation.navigate('ORDER_DETAIL');
+    //   })
+    //   .catch((error) => {
+    //     Toast.show('Thanh toán thất bại:\n' + error, {
+    //       position: -20,
+    //       duration: 2500,
+    //     });
+    //     //Thanh toán thất bại
+    //     console.log('Payment failed', {error});
+    //   })
+    //   .finally(() => {});
   };
 
   const renderItemSeparator = () => {

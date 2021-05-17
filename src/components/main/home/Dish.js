@@ -114,6 +114,10 @@ export default function Dish({navigation, route}) {
   const [loadingRelatedDish, setLoadingRelatedDish] = useState(false);
   const [pageRelatedDish, setPageRelatedDish] = useState(0);
   const [dish, setDish] = useState(route.params.dish);
+  const [
+    onEndReachedCalledDuringMomentum,
+    setOnEndReachedCalledDuringMomentum,
+  ] = useState(true);
 
   const dataImgDish = [
     {
@@ -339,7 +343,7 @@ export default function Dish({navigation, route}) {
             }
           }
           setDataOtherDish(otherDish);
-          setPageOtherDish(pageOtherDish + 1);
+          setPageOtherDish(page + 1);
           setLoadingOtherDish(false);
         }
       })
@@ -588,6 +592,7 @@ export default function Dish({navigation, route}) {
     setDataRelatedDish([]);
     setLoadingRelatedDish(false);
     setPageRelatedDish(0);
+    setOnEndReachedCalledDuringMomentum(true);
 
     if (otherChef === true) {
       getOtherdishOfChef(dish.chef.number, 0, id);
@@ -876,26 +881,26 @@ export default function Dish({navigation, route}) {
               horizontal
               showsHorizontalScrollIndicator={false}
               data={dataOtherDish}
-              ListFooterComponent={
-                loadingOtherDish ? (
-                  <View style={styles.viewMoreCont}>{Loading}</View>
-                ) : (
-                  <TouchableOpacity
-                    style={styles.viewMoreCont}
-                    onPress={() =>
-                      getOtherdishOfChef(
-                        dish.chef.number,
-                        pageOtherDish,
-                        dish.dishofchef.iddishofchef,
-                      )
-                    }>
-                    <View style={styles.viewMoreImgCont}>
-                      <Image style={styles.viewMoreImg} source={arrow} />
-                    </View>
-                    <Text style={styles.viewMoreText}>Xem thêm</Text>
-                  </TouchableOpacity>
-                )
-              }
+              onEndReachedThreshold={0.3}
+              onEndReached={() => {
+                !loadingOtherDish && !onEndReachedCalledDuringMomentum
+                  ? getOtherdishOfChef(
+                      dish.chef.number,
+                      pageOtherDish,
+                      dish.dishofchef.iddishofchef,
+                    )
+                  : null;
+              }}
+              onMomentumScrollBegin={() => {
+                if (onEndReachedCalledDuringMomentum) {
+                  getOtherdishOfChef(
+                    dish.chef.number,
+                    1,
+                    dish.dishofchef.iddishofchef,
+                  );
+                }
+                setOnEndReachedCalledDuringMomentum(false);
+              }}
               renderItem={({item, index}) => {
                 if (index === 0) {
                   return (

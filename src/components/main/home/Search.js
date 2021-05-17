@@ -38,6 +38,10 @@ export default function Search({navigation, route}) {
     time: false,
     price: false,
   });
+  const [
+    onEndReachedCalledDuringMomentum,
+    setOnEndReachedCalledDuringMomentum,
+  ] = useState(true);
 
   useEffect(() => {
     setLoadingSearch(true);
@@ -65,6 +69,7 @@ export default function Search({navigation, route}) {
         price: false,
       });
       setCoordinates({lat: 0, long: 0});
+      setOnEndReachedCalledDuringMomentum(true);
     };
   }, []);
 
@@ -77,12 +82,7 @@ export default function Search({navigation, route}) {
       .dish_by_point(user.token, page, search, lat, long)
       .then((responseJson) => {
         setLoadingSearch(false);
-        console.log(responseJson);
-        if (
-          responseJson.length === 0 &&
-          page !== 0 &&
-          dataSearch.length >= 10
-        ) {
+        if (responseJson.length === 0 && page !== 0) {
           return Toast.show('Đã tải đến cuối danh sách', {
             position: 0,
             duration: 2500,
@@ -118,11 +118,7 @@ export default function Search({navigation, route}) {
       )
       .then((responseJson) => {
         setLoadingSearch(false);
-        if (
-          responseJson.length === 0 &&
-          page !== 0 &&
-          dataSearch.length >= 10
-        ) {
+        if (responseJson.length === 0 && page !== 0) {
           return Toast.show('Đã tải đến cuối danh sách', {
             position: 0,
             duration: 2500,
@@ -158,11 +154,7 @@ export default function Search({navigation, route}) {
       )
       .then((responseJson) => {
         setLoadingSearch(false);
-        if (
-          responseJson.length === 0 &&
-          page !== 0 &&
-          dataSearch.length >= 10
-        ) {
+        if (responseJson.length === 0 && page !== 0) {
           return Toast.show('Đã tải đến cuối danh sách', {
             position: 0,
             duration: 2500,
@@ -192,11 +184,7 @@ export default function Search({navigation, route}) {
       .dish_by_time(user.token, page, search, coordinates.lat, coordinates.long)
       .then((responseJson) => {
         setLoadingSearch(false);
-        if (
-          responseJson.length === 0 &&
-          page !== 0 &&
-          dataSearch.length >= 10
-        ) {
+        if (responseJson.length === 0 && page !== 0) {
           return Toast.show('Đã tải đến cuối danh sách', {
             position: 0,
             duration: 2500,
@@ -219,6 +207,7 @@ export default function Search({navigation, route}) {
 
   const searchHandle = () => {
     if (search !== '') {
+      setOnEndReachedCalledDuringMomentum(true);
       if (menu.score) {
         dishByPoint(0, coordinates.lat, coordinates.long);
       } else if (menu.address) {
@@ -353,11 +342,18 @@ export default function Search({navigation, route}) {
         <FlatList
           onEndReachedThreshold={0.3}
           onEndReached={() => {
-            !loadingSearch ? loadmoreHandle() : null;
+            !loadingSearch && !onEndReachedCalledDuringMomentum
+              ? loadmoreHandle()
+              : null;
+          }}
+          onMomentumScrollBegin={() => {
+            if (onEndReachedCalledDuringMomentum) {
+              loadmoreHandle();
+            }
+            setOnEndReachedCalledDuringMomentum(false);
           }}
           showsVerticalScrollIndicator={false}
           data={dataSearch}
-          // ListHeaderComponent={menuJSX}
           ItemSeparatorComponent={flatListItemSeparator}
           renderItem={({item, index}) => {
             return (

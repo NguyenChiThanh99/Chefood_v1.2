@@ -19,8 +19,6 @@ import org.reactnative.maskedview.RNCMaskedViewPackage;
 import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
 // @react-native-google-signin/google-signin
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
-// react-native-exit-app
-import com.github.wumke.RNExitApp.RNExitAppPackage;
 // react-native-fbsdk
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 // react-native-gesture-handler
@@ -92,7 +90,6 @@ public class PackageList {
       new RNCMaskedViewPackage(),
       new ReactNativeFirebaseAppPackage(),
       new RNGoogleSigninPackage(),
-      new RNExitAppPackage(),
       new FBSDKPackage(),
       new RNGestureHandlerPackage(),
       new ReactNativeGetLocationPackage(),

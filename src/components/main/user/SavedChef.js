@@ -25,6 +25,10 @@ export default function SavedChef({navigation}) {
   const [dataFollowingChef, setDataFollowingChef] = useState([]);
   const [loadingFollowingChef, setLoadingFollowingChef] = useState(false);
   const [loadingTopFollowingChef, setLoadingTopFollowingChef] = useState(false);
+  const [
+    onEndReachedCalledDuringMomentum,
+    setOnEndReachedCalledDuringMomentum,
+  ] = useState(true);
 
   useEffect(() => {
     getFollowingChef(pageFollowingChef);
@@ -109,26 +113,21 @@ export default function SavedChef({navigation}) {
             setPageFollowingChef(0);
             getFollowingChef(0);
             setLoadingTopFollowingChef(false);
+            setOnEndReachedCalledDuringMomentum(true);
           }}
           refreshing={loadingTopFollowingChef}
-          ListFooterComponent={
-            <View style={{backgroundColor: 'white', marginBottom: 10}}>
-              <View style={styles.line} />
-              {loadingFollowingChef ? (
-                <View style={{paddingVertical: 4.5}}>{Loading}</View>
-              ) : (
-                <TouchableOpacity
-                  onPress={() => getFollowingChef(pageFollowingChef)}
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}>
-                  <Text style={styles.viewMoreTextVertical}>Xem thêm</Text>
-                </TouchableOpacity>
-              )}
-            </View>
-          }
+          onEndReachedThreshold={0.3}
+          onEndReached={() => {
+            !loadingFollowingChef && !onEndReachedCalledDuringMomentum
+              ? getFollowingChef(pageFollowingChef)
+              : null;
+          }}
+          onMomentumScrollBegin={() => {
+            if (onEndReachedCalledDuringMomentum) {
+              getFollowingChef(pageFollowingChef);
+            }
+            setOnEndReachedCalledDuringMomentum(false);
+          }}
           ItemSeparatorComponent={flatListItemSeparator}
           renderItem={({item, index}) => {
             if (index === 0) {

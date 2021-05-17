@@ -105,7 +105,7 @@ var preUser = 0;
 
 export default function MainIndex({route}) {
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.user.userInfo); //User hien tai
+  var userId = useSelector((state) => state.user.userInfo); //User hien tai
 
   const getData = async () => {
     var key = '@cart' + '_' + userId._id;

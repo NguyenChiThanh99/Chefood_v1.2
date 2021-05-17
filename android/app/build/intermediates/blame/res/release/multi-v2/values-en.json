@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/nguyenchithanh/Documents/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-en/values-en.xml",
+            "outputFile": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-en/values-en.xml",
             "map": [
                 {
-                    "source": "/Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/81a66e1a099ce266791e44467c81e712/jetified-stripe-3ds2-android-1.2.2/res/values-en/values-en.xml",
+                    "source": "/Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/42f9cfb40db5319cc100e2e04eba84c9/jetified-stripe-3ds2-android-1.2.2/res/values-en/values-en.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4",

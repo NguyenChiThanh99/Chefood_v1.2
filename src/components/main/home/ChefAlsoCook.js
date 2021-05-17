@@ -35,6 +35,10 @@ export default function ChefAlsoCook({navigation, route}) {
     time: false,
     price: false,
   });
+  const [
+    onEndReachedCalledDuringMomentum,
+    setOnEndReachedCalledDuringMomentum,
+  ] = useState(true);
 
   useEffect(() => {
     setLoadingChef(true);
@@ -61,6 +65,7 @@ export default function ChefAlsoCook({navigation, route}) {
         price: false,
       });
       setCoordinates({lat: 0, long: 0});
+      setOnEndReachedCalledDuringMomentum(true);
     };
   }, []);
 
@@ -73,29 +78,19 @@ export default function ChefAlsoCook({navigation, route}) {
       .other_chef_by_score(user.token, page, route.params.numberDish, lat, long)
       .then((responseJson) => {
         setLoadingChef(false);
-        console.log(responseJson);
-        if (responseJson.length === 0 && page !== 0 && dataChef.length >= 10) {
+        if (responseJson.length === 0 && page !== 0) {
           return Toast.show('Đã tải đến cuối danh sách', {
             position: 0,
             duration: 2500,
           });
         } else {
-          var chefArr;
           if (page === 0) {
-            chefArr = [];
+            setDataChef(responseJson);
+            setPageChef(1);
           } else {
-            chefArr = [...dataChef];
+            setDataChef(dataChef.concat(responseJson));
+            setPageChef(page + 1);
           }
-          for (let i = 0; i < responseJson.length; i++) {
-            if (
-              responseJson[i].dishofchef.iddishofchef !==
-              route.params.iddishofchef
-            ) {
-              chefArr.push(responseJson[i]);
-            }
-          }
-          setDataChef(chefArr);
-          setPageChef(page + 1);
           setLoadingChef(false);
         }
       })
@@ -120,28 +115,19 @@ export default function ChefAlsoCook({navigation, route}) {
       )
       .then((responseJson) => {
         setLoadingChef(false);
-        if (responseJson.length === 0 && page !== 0 && dataChef.length >= 10) {
+        if (responseJson.length === 0 && page !== 0) {
           return Toast.show('Đã tải đến cuối danh sách', {
             position: 0,
             duration: 2500,
           });
         } else {
-          var chefArr;
           if (page === 0) {
-            chefArr = [];
+            setDataChef(responseJson);
+            setPageChef(1);
           } else {
-            chefArr = [...dataChef];
+            setDataChef(dataChef.concat(responseJson));
+            setPageChef(page + 1);
           }
-          for (let i = 0; i < responseJson.length; i++) {
-            if (
-              responseJson[i].dishofchef.iddishofchef !==
-              route.params.iddishofchef
-            ) {
-              chefArr.push(responseJson[i]);
-            }
-          }
-          setDataChef(chefArr);
-          setPageChef(page + 1);
           setLoadingChef(false);
         }
       })
@@ -166,28 +152,19 @@ export default function ChefAlsoCook({navigation, route}) {
       )
       .then((responseJson) => {
         setLoadingChef(false);
-        if (responseJson.length === 0 && page !== 0 && dataChef.length >= 10) {
+        if (responseJson.length === 0 && page !== 0) {
           return Toast.show('Đã tải đến cuối danh sách', {
             position: 0,
             duration: 2500,
           });
         } else {
-          var chefArr;
           if (page === 0) {
-            chefArr = [];
+            setDataChef(responseJson);
+            setPageChef(1);
           } else {
-            chefArr = [...dataChef];
+            setDataChef(dataChef.concat(responseJson));
+            setPageChef(page + 1);
           }
-          for (let i = 0; i < responseJson.length; i++) {
-            if (
-              responseJson[i].dishofchef.iddishofchef !==
-              route.params.iddishofchef
-            ) {
-              chefArr.push(responseJson[i]);
-            }
-          }
-          setDataChef(chefArr);
-          setPageChef(page + 1);
           setLoadingChef(false);
         }
       })
@@ -212,28 +189,19 @@ export default function ChefAlsoCook({navigation, route}) {
       )
       .then((responseJson) => {
         setLoadingChef(false);
-        if (responseJson.length === 0 && page !== 0 && dataChef.length >= 10) {
+        if (responseJson.length === 0 && page !== 0) {
           return Toast.show('Đã tải đến cuối danh sách', {
             position: 0,
             duration: 2500,
           });
         } else {
-          var chefArr;
           if (page === 0) {
-            chefArr = [];
+            setDataChef(responseJson);
+            setPageChef(1);
           } else {
-            chefArr = [...dataChef];
+            setDataChef(dataChef.concat(responseJson));
+            setPageChef(page + 1);
           }
-          for (let i = 0; i < responseJson.length; i++) {
-            if (
-              responseJson[i].dishofchef.iddishofchef !==
-              route.params.iddishofchef
-            ) {
-              chefArr.push(responseJson[i]);
-            }
-          }
-          setDataChef(chefArr);
-          setPageChef(page + 1);
           setLoadingChef(false);
         }
       })
@@ -353,11 +321,18 @@ export default function ChefAlsoCook({navigation, route}) {
         <FlatList
           onEndReachedThreshold={0.3}
           onEndReached={() => {
-            !loadingChef ? loadmoreHandle() : null;
+            !loadingChef && !onEndReachedCalledDuringMomentum
+              ? loadmoreHandle()
+              : null;
+          }}
+          onMomentumScrollBegin={() => {
+            if (onEndReachedCalledDuringMomentum) {
+              loadmoreHandle();
+            }
+            setOnEndReachedCalledDuringMomentum(false);
           }}
           showsVerticalScrollIndicator={false}
           data={dataChef}
-          // ListHeaderComponent={menuJSX}
           ItemSeparatorComponent={flatListItemSeparator}
           renderItem={({item, index}) => {
             return (

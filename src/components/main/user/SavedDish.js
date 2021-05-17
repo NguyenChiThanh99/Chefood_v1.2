@@ -25,6 +25,10 @@ export default function SavedChef({navigation}) {
   const [dataSavedDish, setDataSavedDish] = useState([]);
   const [loadingSavedDish, setLoadingSavedDish] = useState(false);
   const [loadingTopSavedDish, setLoadingTopSavedDish] = useState(false);
+  const [
+    onEndReachedCalledDuringMomentum,
+    setOnEndReachedCalledDuringMomentum,
+  ] = useState(true);
 
   useEffect(() => {
     getSavedDish(pageSavedDish);
@@ -109,26 +113,21 @@ export default function SavedChef({navigation}) {
             setPageSavedDish(0);
             getSavedDish(0);
             setLoadingTopSavedDish(false);
+            setOnEndReachedCalledDuringMomentum(true);
           }}
           refreshing={loadingTopSavedDish}
-          ListFooterComponent={
-            <View style={{backgroundColor: 'white', marginBottom: 10}}>
-              <View style={styles.line} />
-              {loadingSavedDish ? (
-                <View style={{paddingVertical: 4.5}}>{Loading}</View>
-              ) : (
-                <TouchableOpacity
-                  onPress={() => getSavedDish(pageSavedDish)}
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}>
-                  <Text style={styles.viewMoreTextVertical}>Xem thêm</Text>
-                </TouchableOpacity>
-              )}
-            </View>
-          }
+          onEndReachedThreshold={0.3}
+          onEndReached={() => {
+            !loadingSavedDish && !onEndReachedCalledDuringMomentum
+              ? getSavedDish(pageSavedDish)
+              : null;
+          }}
+          onMomentumScrollBegin={() => {
+            if (onEndReachedCalledDuringMomentum) {
+              getSavedDish(pageSavedDish);
+            }
+            setOnEndReachedCalledDuringMomentum(false);
+          }}
           ItemSeparatorComponent={flatListItemSeparator}
           renderItem={({item, index}) => {
             if (index === 0) {
