@@ -59,7 +59,6 @@ module.exports = {
       return true;
     }
   },
-  addressLink: 'https://my-chefood-app.herokuapp.com/',
   commentLink: 'http://nguyenchithanh.pythonanywhere.com/',
   relatedDishLink: 'http://17521049.pythonanywhere.com/',
   link: 'https://chefood-mongo.herokuapp.com/',

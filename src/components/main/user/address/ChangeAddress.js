@@ -90,7 +90,7 @@ export default function ChangeAddress({navigation, route}) {
       });
     } else if (
       addressStatus.province.id !== addressStatus.ward._province_id ||
-      addressStatus.district.id !== addressStatus.ward._district_id
+      addressStatus.district.id !== addressStatus.ward._distict_id
     ) {
       setLoading(false);
       Toast.show('Vui lòng kiểm tra lại các thông tin', {

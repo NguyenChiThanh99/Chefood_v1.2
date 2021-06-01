@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {useFocusEffect} from '@react-navigation/native';
 import {
   View,
@@ -13,6 +13,7 @@ import {
   FlatList,
   LogBox,
   ActivityIndicator,
+  RefreshControl,
 } from 'react-native';
 import Toast from 'react-native-root-toast';
 import {SliderBox} from 'react-native-image-slider-box';
@@ -98,10 +99,10 @@ export default function Home({navigation}) {
   useEffect(() => {
     if (!firstLoad) {
       LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
-      loadHotDish();
-      getTodayDish();
+      loadHotDish(0);
+      getTodayDish(0);
       getAllDish(true);
-      getHotChef();
+      getHotChef(0);
       getSavedDish();
       getFollowingChef();
       firstLoad = true;
@@ -116,6 +117,7 @@ export default function Home({navigation}) {
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const [refreshing, setRefreshing] = useState(false);
   const [pageHotDish, setPageHotDish] = useState(0);
   const [dataHotDish, setDataHotDish] = useState([]);
   const [loadingHotDish, setLoadingHotDish] = useState(false);
@@ -196,10 +198,10 @@ export default function Home({navigation}) {
     {id: 15, name: 'Bánh ngọt', nickname: 'cake', image: cake},
   ];
 
-  const loadHotDish = () => {
+  const loadHotDish = (page) => {
     setLoadingHotDish(true);
     hot_dish
-      .hot_dish(user.token, pageHotDish)
+      .hot_dish(user.token, page)
       .then((responseJson) => {
         if (responseJson.length === 0) {
           setLoadingHotDish(false);
@@ -208,13 +210,18 @@ export default function Home({navigation}) {
             duration: 2500,
           });
         } else {
-          setDataHotDish(dataHotDish.concat(responseJson));
-          setPageHotDish(pageHotDish + 1);
+          if (page === 0) {
+            setDataHotDish(responseJson);
+            setPageHotDish(1);
+          } else {
+            setDataHotDish(dataHotDish.concat(responseJson));
+            setPageHotDish(page + 1);
+          }
           setLoadingHotDish(false);
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.log('Hot Dish: ', err);
         setLoadingHotDish(false);
         // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
         //   position: 0,
@@ -223,25 +230,30 @@ export default function Home({navigation}) {
       });
   };
 
-  const getTodayDish = () => {
+  const getTodayDish = (page) => {
     setLoadingTodayDish(true);
     get_today_dish
-      .get_today_dish(user.token, pageTodayDish)
+      .get_today_dish(user.token, page)
       .then((responseJson) => {
-        if (responseJson.length === 0 && pageTodayDish !== 0) {
+        if (responseJson.length === 0 && page !== 0) {
           setLoadingTodayDish(false);
           return Toast.show('Đã tải đến cuối danh sách', {
             position: 0,
             duration: 2500,
           });
         } else {
-          setDataTodayDish(dataTodayDish.concat(responseJson));
-          setPageTodayDish(pageTodayDish + 1);
+          if (page === 0) {
+            setDataTodayDish(responseJson);
+            setPageTodayDish(1);
+          } else {
+            setDataTodayDish(dataTodayDish.concat(responseJson));
+            setPageTodayDish(page + 1);
+          }
           setLoadingTodayDish(false);
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.log('Today Dish: ', err);
         setLoadingTodayDish(false);
         // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
         //   position: 0,
@@ -250,25 +262,30 @@ export default function Home({navigation}) {
       });
   };
 
-  const getHotChef = () => {
+  const getHotChef = (page) => {
     setLoadingHotChef(true);
     get_hot_chef
-      .get_hot_chef(user.token, pageHotChef)
+      .get_hot_chef(user.token, page)
       .then((responseJson) => {
-        if (responseJson.length === 0 && pageHotChef !== 0) {
+        if (responseJson.length === 0 && page !== 0) {
           setLoadingHotChef(false);
           return Toast.show('Đã tải đến cuối danh sách', {
             position: 0,
             duration: 2500,
           });
         } else {
-          setDataHotChef(dataHotChef.concat(responseJson));
-          setPageHotChef(pageHotChef + 1);
+          if (page === 0) {
+            setDataHotChef(responseJson);
+            setPageHotChef(1);
+          } else {
+            setDataHotChef(dataHotChef.concat(responseJson));
+            setPageHotChef(page + 1);
+          }
           setLoadingHotChef(false);
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.log('Hot Chef: ', err);
         setLoadingHotChef(false);
         // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
         //   position: 0,
@@ -311,7 +328,7 @@ export default function Home({navigation}) {
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.log('Viewed Dish: ', err);
         setLoadingViewedDish(false);
         // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
         //   position: 0,
@@ -369,7 +386,7 @@ export default function Home({navigation}) {
                   }
                 })
                 .catch((err) => {
-                  console.log(err);
+                  console.log('Recommendation Dish: ', err);
                   setLoadingRecommendation(false);
                   // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
                   //   position: 0,
@@ -378,7 +395,7 @@ export default function Home({navigation}) {
                 });
             })
             .catch((err) => {
-              console.log(err);
+              console.log('Recommendation Dish: ', err);
               setLoadingRecommendation(false);
               // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
               //   position: 0,
@@ -474,7 +491,7 @@ export default function Home({navigation}) {
           }
         })
         .catch((err) => {
-          console.log(err);
+          console.log('All Dish: ', err);
           setLoadingDishCategory(false);
           // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
           //   position: 0,
@@ -504,7 +521,7 @@ export default function Home({navigation}) {
           }
         })
         .catch((err) => {
-          console.log(err);
+          console.log('Type Dish: ', err);
           setLoadingCategoryFirst(false);
           // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
           //   position: 0,
@@ -529,7 +546,7 @@ export default function Home({navigation}) {
           }
         })
         .catch((err) => {
-          console.log(err);
+          console.log('Type Dish: ', err);
           setLoadingDishCategory(false);
           // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
           //   position: 0,
@@ -538,6 +555,24 @@ export default function Home({navigation}) {
         });
     }
   };
+
+  const onRefresh = useCallback(async () => {
+    setRefreshing(true);
+
+    setOnEndReachedCalledDuringMomentum_ViewedDish(true);
+    setOnEndReachedCalledDuringMomentum_RecommendationDish(true);
+    setOnEndReachedCalledDuringMomentum_HotDish(true);
+    setOnEndReachedCalledDuringMomentum_TodayDish(true);
+
+    await getRecommendation(0);
+    await loadHotDish(0);
+    await getTodayDish(0);
+    await getViewedDish(0);
+    await getAllDish(true);
+    await getHotChef(0);
+
+    setRefreshing(false);
+  }, []);
 
   const flatListItemSeparator = () => {
     return <View style={styles.line} />;
@@ -930,7 +965,12 @@ export default function Home({navigation}) {
     <View style={styles.wrapper}>
       <MainHeader navigation={navigation} />
 
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          //Không dùng được trên máy ảo Android
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }>
         <SliderBox
           images={imagesSlider}
           sliderBoxHeight={Global.height / 5.5}
@@ -1065,12 +1105,12 @@ export default function Home({navigation}) {
                 onEndReachedThreshold={0.3}
                 onEndReached={() => {
                   !loadingHotDish && !onEndReachedCalledDuringMomentum_HotDish
-                    ? loadHotDish()
+                    ? loadHotDish(pageHotDish)
                     : null;
                 }}
                 onMomentumScrollBegin={() => {
                   if (onEndReachedCalledDuringMomentum_HotDish) {
-                    loadHotDish();
+                    loadHotDish(pageHotDish);
                   }
                   setOnEndReachedCalledDuringMomentum_HotDish(false);
                 }}
@@ -1110,12 +1150,12 @@ export default function Home({navigation}) {
               onEndReachedThreshold={0.3}
               onEndReached={() => {
                 !loadingTodayDish && !onEndReachedCalledDuringMomentum_TodayDish
-                  ? getTodayDish()
+                  ? getTodayDish(pageTodayDish)
                   : null;
               }}
               onMomentumScrollBegin={() => {
                 if (onEndReachedCalledDuringMomentum_TodayDish) {
-                  getTodayDish();
+                  getTodayDish(pageTodayDish);
                 }
                 setOnEndReachedCalledDuringMomentum_TodayDish(false);
               }}
@@ -1291,7 +1331,7 @@ export default function Home({navigation}) {
                     <View style={{paddingVertical: 4.5}}>{Loading}</View>
                   ) : (
                     <TouchableOpacity
-                      onPress={() => getHotChef()}
+                      onPress={() => getHotChef(pageHotChef)}
                       style={{
                         flexDirection: 'row',
                         justifyContent: 'center',

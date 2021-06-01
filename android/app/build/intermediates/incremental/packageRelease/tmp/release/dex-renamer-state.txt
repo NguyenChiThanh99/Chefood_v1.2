@@ -1,4 +1,4 @@
-#Mon Apr 26 21:36:09 ICT 2021
+#Tue Jun 01 15:03:16 ICT 2021
 base.0=/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/dex/release/mergeDexRelease/out/classes.dex
 path.1=classes2.dex
 renamed.1=classes2.dex

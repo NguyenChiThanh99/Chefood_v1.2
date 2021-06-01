@@ -56,6 +56,14 @@ export default function Search({navigation, route}) {
       .catch((error) => {
         const {code, message} = error;
         console.log(code, message);
+        navigation.goBack();
+        return Toast.show(
+          'Vui lòng bật Chia sẻ vị trí để sử dụng chức năng này',
+          {
+            position: 0,
+            duration: 2500,
+          },
+        );
       });
     return () => {
       setDataSearch([]);

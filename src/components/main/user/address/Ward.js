@@ -28,6 +28,7 @@ export default function Ward({navigation}) {
   }, []);
 
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
   const addressStatus = useSelector((state) => state.addressStatus);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -45,7 +46,7 @@ export default function Ward({navigation}) {
   const download_ward = () => {
     setLoading(true);
     down_ward
-      .download_ward(addressStatus.district.id)
+      .download_ward(user.token, addressStatus.district.id)
       .then((responseJson) => {
         if (responseJson.res === 'ERROR') {
           setLoading(false);
@@ -55,7 +56,7 @@ export default function Ward({navigation}) {
           });
         } else {
           setLoading(false);
-          setData(responseJson.res);
+          setData(responseJson);
         }
       })
       .catch((err) => {

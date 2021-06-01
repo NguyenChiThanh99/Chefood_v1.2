@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
 import {
@@ -27,6 +28,7 @@ export default function Province({navigation}) {
   }, []);
 
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
   const addressStatus = useSelector((state) => state.addressStatus);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -44,7 +46,7 @@ export default function Province({navigation}) {
   const download_province = () => {
     setLoading(true);
     down_province
-      .download_province()
+      .download_province(user.token)
       .then((responseJson) => {
         if (responseJson.res === 'ERROR') {
           setLoading(false);
@@ -54,7 +56,7 @@ export default function Province({navigation}) {
           });
         } else {
           setLoading(false);
-          setData(responseJson.res);
+          setData(responseJson);
         }
       })
       .catch((err) => {

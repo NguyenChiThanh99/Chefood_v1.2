@@ -128,7 +128,7 @@ export default function Order({navigation, route}) {
             alignItems: 'center',
             height: height / 1.2,
           }}>
-          <Text style={styles.noComment}>Bạn chưa có đơn đặt hàng nào</Text>
+          <Text style={styles.noComment}>Bạn chưa có đơn đặt hàng nào!</Text>
         </View>
       );
     } else {

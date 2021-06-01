@@ -41,10 +41,7 @@
     <string msgid="9009661856846212431" name="abc_shareactionprovider_share_with_application">"Compartir con <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
     <string msgid="6389460216547290468" name="abc_toolbar_collapse_description">"Ocultar"</string>
     <string name="acc_label_card_number">Número de tarjeta</string>
-    <string name="acc_label_card_number_node">%s, Número de tarjeta</string>
-    <string name="acc_label_cvc_node">%s, Código de seguridad</string>
     <string name="acc_label_expiry_date">Fecha de vencimiento</string>
-    <string name="acc_label_expiry_date_node">%s, Fecha de vencimiento</string>
     <string name="acc_label_zip">Código postal</string>
     <string name="acc_label_zip_short">ZIP</string>
     <string name="add_card">Añade una tarjeta de crédito o de débito nueva para realizar compras en esta aplicación.</string>
@@ -92,13 +89,6 @@
     <string name="address_state_required">Introduce el nombre de tu estado</string>
     <string name="address_zip_invalid">El código postal no es válido.</string>
     <string name="address_zip_postal_invalid">El código postal no es válido</string>
-    <string name="brand_amex">American Express</string>
-    <string name="brand_discover">Discover</string>
-    <string name="brand_mastercard">Mastercard</string>
-    <string name="brand_visa">Visa</string>
-    <string name="bzv_issuer_image_description">Imagen del emisor</string>
-    <string name="bzv_payment_system_image_description">Imagen del sistema de pago</string>
-    <string name="close">Cerrar</string>
     <string gender="unknown" name="com_facebook_device_auth_instructions">Ve a &lt;b>facebook.com/device&lt;/b> e ingresa el código que se muestra arriba.</string>
     <string gender="unknown" name="com_facebook_image_download_unknown_error">Se produjo un error inesperado al descargar una imagen.</string>
     <string gender="unknown" name="com_facebook_internet_permission_error_message">El inicio de sesión de WebView requiere permisos de INTERNET</string>
@@ -140,9 +130,7 @@
     <string msgid="5201977337835724196" name="common_open_on_phone">"Abrir en teléfono"</string>
     <string msgid="3441753203274453993" name="common_signin_button_text">"Iniciar sesión"</string>
     <string msgid="669893613918351210" name="common_signin_button_text_long">"Iniciar sesión con Google"</string>
-    <string name="czv_whitelist_no_label">No</string>
-    <string name="czv_whitelist_yes_label">Sí</string>
-    <string name="ending_in">%1$s - %2$s</string>
+    <string name="ending_in">" - "</string>
     <string name="expiry_date_hint">MM/AA</string>
     <string name="expiry_label_short">Venc.</string>
     <string name="gettipsi_card_cvc">CVV</string>
@@ -154,8 +142,6 @@
     <string name="gettipsi_google_pay_unavaliable">Google Pay no está disponible en tu dispositivo.</string>
     <string name="gettipsi_save">Guardar</string>
     <string name="gettipsi_user_cancel_dialog">El usuario ha cancelado el diálogo. Tarjeta no añadida / agregada!</string>
-    <string name="hzv_cancel_label">Cancelar</string>
-    <string name="hzv_header_label">Proceso de compra seguro</string>
     <string name="invalid_card_number">El número de tarjeta no es válido.</string>
     <string name="invalid_cvc">El código de seguridad de la tarjeta no es válido.</string>
     <string name="invalid_expiry_month">El mes de vencimiento de la tarjeta no es válido.</string>
@@ -165,9 +151,7 @@
     <string name="no_payment_methods">Ningún método de pago.</string>
     <string name="payment_method_add_new_card">Añadir tarjeta nueva…</string>
     <string name="price_free">Gratuito</string>
-    <string name="processing">Procesando\u2026</string>
     <string msgid="730395136688082741" name="search_menu_title">"Buscar"</string>
-    <string name="secure_checkout">Proceso de compra seguro</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
     <string name="title_add_a_card">Añadir una tarjeta</string>
     <string name="title_add_an_address">Añade una dirección</string>

@@ -1,11 +1,12 @@
 import Global from '../components/Global';
 
-const download_ward = (idDistrict) =>
-  fetch(Global.addressLink + 'download_ward', {
+const download_ward = (token, idDistrict) =>
+  fetch(Global.link + 'address/download_ward', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
+      'auth-token': token,
     },
     body: JSON.stringify({
       idDistrict: idDistrict,

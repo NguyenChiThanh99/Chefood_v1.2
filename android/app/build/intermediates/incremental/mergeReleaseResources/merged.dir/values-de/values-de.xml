@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
     <string-array name="gettipsi_currency_array">
-    <item>Währung (optional)</item>
+    <item>Currency (optional)</item>
     <item>Unspecified</item>
     <item>EUR</item>
   </string-array>
@@ -41,10 +41,7 @@
     <string msgid="9009661856846212431" name="abc_shareactionprovider_share_with_application">"Mit <ns1:g id="APPLICATION_NAME">%s</ns1:g> teilen"</string>
     <string msgid="6389460216547290468" name="abc_toolbar_collapse_description">"Minimieren"</string>
     <string name="acc_label_card_number">Kartennummer</string>
-    <string name="acc_label_card_number_node">%s, Kartennummer de carte</string>
-    <string name="acc_label_cvc_node">%s, Kartenprüfnummer</string>
     <string name="acc_label_expiry_date">Gültig bis</string>
-    <string name="acc_label_expiry_date_node">%s, Gültig bis</string>
     <string name="acc_label_zip">Postleitzahl</string>
     <string name="acc_label_zip_short">ZIP</string>
     <string name="add_card">Fügen Sie eine neue Debit- oder Kreditkarte hinzu, um in dieser App Käufe zu tätigen.</string>
@@ -92,13 +89,6 @@
     <string name="address_state_required">Bitte geben Sie Ihren Bundesland ein</string>
     <string name="address_zip_invalid">Ihre Postleitzahl ist ungültig.</string>
     <string name="address_zip_postal_invalid">Ihre Postleitzahl ist ungültig</string>
-    <string name="brand_amex">American Express</string>
-    <string name="brand_discover">Discover</string>
-    <string name="brand_mastercard">Mastercard</string>
-    <string name="brand_visa">Visa</string>
-    <string name="bzv_issuer_image_description">Bild des Ausstellers</string>
-    <string name="bzv_payment_system_image_description">Bild des Zahlungssystems</string>
-    <string name="close">Schließen</string>
     <string gender="unknown" name="com_facebook_device_auth_instructions">Gehe zu &lt;b>facebook.com/device&lt;/b> und gib den oben angezeigten Code ein.</string>
     <string gender="unknown" name="com_facebook_image_download_unknown_error">Unerwarteter Fehler beim Herunterladen eines Bildes.</string>
     <string gender="unknown" name="com_facebook_internet_permission_error_message">WebView-Anmeldung erfordert INTERNET-Berechtigung</string>
@@ -140,22 +130,18 @@
     <string msgid="5201977337835724196" name="common_open_on_phone">"Auf Smartphone öffnen"</string>
     <string msgid="3441753203274453993" name="common_signin_button_text">"Anmelden"</string>
     <string msgid="669893613918351210" name="common_signin_button_text_long">"Über Google anmelden"</string>
-    <string name="czv_whitelist_no_label">Nein</string>
-    <string name="czv_whitelist_yes_label">Ja</string>
-    <string name="ending_in">%1$s - %2$s</string>
+    <string name="ending_in">" - "</string>
     <string name="expiry_date_hint">MM/JJ</string>
     <string name="expiry_label_short">Gültig bis</string>
     <string name="gettipsi_card_cvc">CVV</string>
     <string name="gettipsi_card_enter_dialog_negative_button">Abbrechen</string>
-    <string name="gettipsi_card_enter_dialog_positive_button">Fertig</string>
+    <string name="gettipsi_card_enter_dialog_positive_button">Geschehen</string>
     <string name="gettipsi_card_enter_dialog_title">Geben Sie Ihre Karte ein</string>
     <string name="gettipsi_card_number">Kartennummer</string>
     <string name="gettipsi_card_number_label">Karte</string>
     <string name="gettipsi_google_pay_unavaliable">Google Pay ist auf Ihrem Gerät nicht verfügbar.</string>
     <string name="gettipsi_save">Speichern</string>
     <string name="gettipsi_user_cancel_dialog">Ein Benutzer hat den Dialog abgebrochen. Keine Karte hinzugefügt!</string>
-    <string name="hzv_cancel_label">Abbrechen</string>
-    <string name="hzv_header_label">Sicherer Bezahlvorgang</string>
     <string name="invalid_card_number">Die Kartennummer ist ungültig.</string>
     <string name="invalid_cvc">Der Sicherheitscode Ihrer Karte ist ungültig.</string>
     <string name="invalid_expiry_month">Die Monatsangabe Ihrer Karte ist ungültig.</string>
@@ -165,9 +151,7 @@
     <string name="no_payment_methods">Keine Zahlungsmethoden.</string>
     <string name="payment_method_add_new_card">Neue Karte hinzufügen…</string>
     <string name="price_free">Gratis</string>
-    <string name="processing">Wird verarbeitet\u2026</string>
     <string msgid="730395136688082741" name="search_menu_title">"Suche"</string>
-    <string name="secure_checkout">Sicherer Bezahlvorgang</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
     <string name="title_add_a_card">Karte hinzufügen</string>
     <string name="title_add_an_address">Adresse hinzufügen</string>

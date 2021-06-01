@@ -28,6 +28,7 @@ export default function Province({navigation}) {
   }, []);
 
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
   const addressStatus = useSelector((state) => state.addressStatus);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -45,7 +46,7 @@ export default function Province({navigation}) {
   const download_district = () => {
     setLoading(true);
     down_district
-      .download_district(addressStatus.province.id)
+      .download_district(user.token, addressStatus.province.id)
       .then((responseJson) => {
         if (responseJson.res === 'ERROR') {
           setLoading(false);
@@ -55,7 +56,7 @@ export default function Province({navigation}) {
           });
         } else {
           setLoading(false);
-          setData(responseJson.res);
+          setData(responseJson);
         }
       })
       .catch((err) => {
