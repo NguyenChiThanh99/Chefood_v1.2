@@ -17,6 +17,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {useSelector, useDispatch} from 'react-redux';
 import Toast from 'react-native-root-toast';
 import {useIsFocused} from '@react-navigation/native';
+import {Image as ImageLazy} from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Global from '../../Global';
@@ -42,8 +43,9 @@ import minus from '../../../icons/remove_circle_outline-fb5a23.png';
 import plus from '../../../icons/add_circle_outline-fb5a23.png';
 import prepareIcon from '../../../icons/TimeSquare.png';
 import performIcon from '../../../icons/TimeCircle.png';
-import arrow from '../../../icons/arrow_right-fb5a23.png';
 import doubleArrow from '../../../icons/double_arrow.png';
+import imageHolder from '../../../icons/imageHolder.png';
+import imageHolder2 from '../../../icons/imageHolder2.png';
 
 var soluong = 1;
 var type;
@@ -123,40 +125,42 @@ export default function Dish({navigation, route}) {
     {
       id: 1,
       image:
-        'https://image.thanhnien.vn/768/uploaded/minhnguyet/2019_12_01/nhanquan_wqmf.jpg',
+        'https://res.cloudinary.com/dep0t5tcf/image/upload/v1622656859/chefood/dishes/images_cixy4w.jpg',
     },
     {
       id: 2,
       image:
-        'https://daotaobeptruong.vn/wp-content/uploads/2018/08/cach-lam-cha-ca-thu.jpg',
+        'https://res.cloudinary.com/dep0t5tcf/image/upload/v1622656859/chefood/dishes/cach-lam-cha-ca-thu_wrjipr.jpg',
     },
     {
       id: 3,
       image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZBF6ynHS_AEzJPntVlnbz9EyMzXAyxta9xg&usqp=CAU',
+        'https://res.cloudinary.com/dep0t5tcf/image/upload/v1622656859/chefood/dishes/com-tam-la-mon-an-binh-dan_armqwo.jpg',
     },
     {
       id: 4,
-      image: 'https://hutieunamvangmyhung.com/upload/sanpham/446-3482.gif',
+      image:
+        'https://res.cloudinary.com/dep0t5tcf/image/upload/v1622656860/chefood/dishes/nhanquan_wqmf_kh3xk9.jpg',
     },
     {
       id: 5,
       image:
-        'https://netspace.edu.vn/upload/images/2018/08/21/hu-tieu-nam-vang-02.jpg',
+        'https://res.cloudinary.com/dep0t5tcf/image/upload/v1622656860/chefood/dishes/thanh-pham-491_e0jmwt.jpg',
     },
     {
       id: 6,
       image:
-        'https://cdn.tgdd.vn/2020/07/CookRecipe/GalleryStep/thanh-pham-491.jpg',
+        'https://res.cloudinary.com/dep0t5tcf/image/upload/v1622656860/chefood/dishes/hu-tieu-nam-vang-02_j8cwxh.jpg',
     },
     {
       id: 7,
-      image: 'https://i.ytimg.com/vi/VuZoI4WRW9Q/maxresdefault.jpg',
+      image:
+        'https://res.cloudinary.com/dep0t5tcf/image/upload/v1622656860/chefood/dishes/cach-nau-mon-hu-tieu-nam-vang-ngon-dung-dieu-nhu-ngoa%CC%80i-hang-da-an-la%CC%80-ghien-8-760x367_l3yzxd.jpg',
     },
     {
       id: 8,
       image:
-        'https://cdn.tgdd.vn/Files/2018/06/12/1094925/cach-nau-mon-hu-tieu-nam-vang-ngon-dung-dieu-nhu-ngo%C3%A0i-hang-da-an-l%C3%A0-ghien-8-760x367.jpg',
+        'https://res.cloudinary.com/dep0t5tcf/image/upload/v1622656861/chefood/dishes/maxresdefault_bbnqrg.jpg',
     },
   ];
 
@@ -706,7 +710,13 @@ export default function Dish({navigation, route}) {
         renderItem={({item, index}) => {
           return (
             <View>
-              <Image style={styles.imageDish} source={{uri: item.image}} />
+              <ImageLazy
+                PlaceholderContent={
+                  <Image style={styles.imageDish} source={imageHolder} />
+                }
+                style={styles.imageDish}
+                source={{uri: item.image}}
+              />
             </View>
           );
         }}
@@ -719,7 +729,13 @@ export default function Dish({navigation, route}) {
     <View style={styles.wrapper}>
       <ScrollView showsVerticalScrollIndicator={false} ref={scrollRef}>
         <View style={styles.cardView}>
-          <Image style={styles.image} source={{uri: dish.dish.picture}} />
+          <ImageLazy
+            PlaceholderContent={
+              <Image style={styles.image} source={imageHolder2} />
+            }
+            style={styles.image}
+            source={{uri: dish.dish.picture}}
+          />
 
           <View style={styles.generalInfo}>
             <Text style={styles.name} numberOfLines={2}>

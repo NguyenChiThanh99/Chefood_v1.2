@@ -1,10 +1,12 @@
 import React from 'react';
 import {StyleSheet, View, Image, Text} from 'react-native';
+import {Image as ImageLazy} from 'react-native-elements';
 
 import Global from '../../../Global';
 import RatingStar from './RatingStar';
 
 import avt from '../../../../images/avt.png';
+import imageHolder from '../../../../icons/imageHolder.png';
 
 export default function Comment(props) {
   const {user_name, user_avatar} = props.comment.user;
@@ -14,7 +16,10 @@ export default function Comment(props) {
     <View style={styles.wrapper}>
       <View style={styles.topInfo}>
         <View style={styles.infoUser}>
-          <Image
+          <ImageLazy
+            PlaceholderContent={
+              <Image style={styles.image} source={imageHolder} />
+            }
             style={styles.image}
             source={user_avatar === null ? avt : {uri: user_avatar}}
           />

@@ -13,6 +13,7 @@ import {
 import Toast from 'react-native-root-toast';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useSelector} from 'react-redux';
+import {Image as ImageLazy} from 'react-native-elements';
 
 import Global from '../../Global';
 import MainHeader from '../home/cardView/MainHeader';
@@ -25,6 +26,7 @@ import bookmarkIcon from '../../../icons/bookmark-gradient.png';
 import chefIcon from '../../../icons/person_add_alt-gradient.png';
 import settingIcon from '../../../icons/settings-gradient.png';
 import logoutIcon from '../../../icons/logout-gradient.png';
+import imageHolder from '../../../icons/imageHolder.png';
 
 var countExit = 0;
 
@@ -81,7 +83,13 @@ export default function User({navigation}) {
         style={[styles.userCont, styles.cardView]}
         onPress={() => navigation.navigate('CHANGE_INFORMATION')}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Image style={styles.avatar} source={{uri: user.userInfo.avatar}} />
+          <ImageLazy
+            PlaceholderContent={
+              <Image style={styles.imageHolder} source={imageHolder} />
+            }
+            style={styles.avatar}
+            source={{uri: user.userInfo.avatar}}
+          />
           <View>
             <Text style={styles.name}>{user.userInfo.name}</Text>
             <View style={[styles.infoRow, {marginBottom: 3}]}>
@@ -258,6 +266,11 @@ const styles = StyleSheet.create({
     height: width / 6,
     borderRadius: width / 12,
     marginRight: 15,
+  },
+  imageHolder: {
+    width: width / 6,
+    height: width / 6,
+    borderRadius: width / 12,
   },
   name: {
     fontFamily: 'Roboto-Medium',

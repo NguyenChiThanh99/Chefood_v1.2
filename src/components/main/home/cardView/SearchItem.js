@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, Image, Text} from 'react-native';
+import {Image as ImageLazy} from 'react-native-elements';
 
 import Global from '../../../Global';
 
@@ -9,6 +10,7 @@ import deliveryIcon from '../../../../icons/delivery_dining.png';
 import deliveryIconS from '../../../../icons/delivery_dining-2f80ed.png';
 import chartIcon from '../../../../icons/show_chart.png';
 import chartIconS from '../../../../icons/show_chart-2f80ed.png';
+import imageHolder from '../../../../icons/imageHolder.png';
 
 export default function SearchItem(props) {
   const {picture, name} = props.dish.dish;
@@ -130,7 +132,13 @@ export default function SearchItem(props) {
   return (
     <View style={styles.wrapper}>
       <View style={styles.wrapperInfo}>
-        <Image style={styles.image} source={{uri: picture}} />
+        <ImageLazy
+          PlaceholderContent={
+            <Image style={styles.imageHolder} source={imageHolder} />
+          }
+          style={styles.image}
+          source={{uri: picture}}
+        />
         <View>
           <Text style={styles.name} numberOfLines={2}>
             {name}
@@ -189,6 +197,11 @@ const styles = StyleSheet.create({
     height: width / 5,
     borderRadius: 2,
     marginRight: 12,
+  },
+  imageHolder: {
+    width: width / 5,
+    height: width / 5,
+    borderRadius: 2,
   },
   name: {
     fontFamily: 'Roboto-Medium',

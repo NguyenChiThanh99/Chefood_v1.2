@@ -5,7 +5,6 @@ import {
   Text,
   StyleSheet,
   Image,
-  ImageBackground,
   TouchableOpacity,
   Modal,
   ActivityIndicator,
@@ -14,6 +13,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import Toast from 'react-native-root-toast';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Image as ImageLazy} from 'react-native-elements';
 
 import Global from '../../../Global';
 import change_avatar from '../../../../apis/change_avatar';
@@ -23,6 +23,8 @@ import {updateUser} from '../../../../../actions';
 import arrowBack from '../../../../icons/arrow_back_ios-fb5a23.png';
 import camera from '../../../../icons/photo_camera.png';
 import arrowRight from '../../../../icons/arrow_right-82.png';
+import imageHolder from '../../../../icons/imageHolder.png';
+import imageHolder2 from '../../../../icons/imageHolder2.png';
 
 export default function ChangeInformation({navigation}) {
   const user = useSelector((state) => state.user);
@@ -202,13 +204,16 @@ export default function ChangeInformation({navigation}) {
         <Text style={styles.headerText}>Sửa thông tin</Text>
       </View>
 
-      <ImageBackground style={styles.cover} source={{uri: cover_photo}}>
-        <ImageBackground
-          imageStyle={{
-            borderRadius: width / 7.4,
-            borderColor: '#ffffff',
-            borderWidth: 2,
-          }}
+      <ImageLazy
+        PlaceholderContent={
+          <Image style={styles.cover} source={imageHolder2} />
+        }
+        style={styles.cover}
+        source={{uri: cover_photo}}>
+        <ImageLazy
+          PlaceholderContent={
+            <Image style={styles.avatar} source={imageHolder} />
+          }
           style={styles.avatar}
           source={{uri: avatar}}>
           <TouchableOpacity
@@ -222,7 +227,7 @@ export default function ChangeInformation({navigation}) {
               <Image style={styles.camera} source={camera} />
             )}
           </TouchableOpacity>
-        </ImageBackground>
+        </ImageLazy>
         <TouchableOpacity
           style={[styles.cameraCont, styles.cameraCover]}
           onPress={() => {
@@ -234,7 +239,7 @@ export default function ChangeInformation({navigation}) {
             <Image style={styles.camera} source={camera} />
           )}
         </TouchableOpacity>
-      </ImageBackground>
+      </ImageLazy>
 
       <View style={styles.cardView}>
         <View style={styles.rowCont}>
@@ -496,6 +501,9 @@ const styles = StyleSheet.create({
     height: width / 3.7,
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
+    borderRadius: width / 7.4,
+    borderColor: '#ffffff',
+    borderWidth: 2,
   },
   cameraCont: {
     borderRadius: width / 44 + 8,

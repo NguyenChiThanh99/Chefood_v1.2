@@ -968,7 +968,6 @@ export default function Home({navigation}) {
       <ScrollView
         showsVerticalScrollIndicator={false}
         refreshControl={
-          //Không dùng được trên máy ảo Android
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
         <SliderBox

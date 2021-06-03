@@ -17,6 +17,7 @@ import {AirbnbRating} from 'react-native-elements';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import Toast from 'react-native-root-toast';
 import {useSelector} from 'react-redux';
+import {Image as ImageLazy} from 'react-native-elements';
 
 import Global from '../../Global';
 import check_comment from '../../../apis/check_comment';
@@ -25,6 +26,7 @@ import get_order_detail from '../../../apis/get_order_detail';
 
 import closeIcon from '../../../icons/close.png';
 import cameraIcon from '../../../icons/photo_camera-bd.png';
+import imageHolder from '../../../icons/imageHolder.png';
 
 export default function Review({navigation, route}) {
   useEffect(() => {
@@ -299,7 +301,10 @@ export default function Review({navigation, route}) {
 
   const renderHeaderList = () => (
     <View style={styles.chefInfo}>
-      <Image
+      <ImageLazy
+        PlaceholderContent={
+          <Image style={styles.chefImg} source={imageHolder} />
+        }
         style={styles.chefImg}
         source={
           orderDetail.chef.avatar === 'Thiết lập ngay'

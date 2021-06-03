@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, Image, Text} from 'react-native';
+import {Image as ImageLazy} from 'react-native-elements';
 
 import Global from '../../../Global';
 import RatingStar from './RatingStar';
@@ -10,6 +11,7 @@ import deliveryIcon from '../../../../icons/delivery_dining.png';
 import deliveryIconS from '../../../../icons/delivery_dining-2f80ed.png';
 import chartIcon from '../../../../icons/show_chart.png';
 import chartIconS from '../../../../icons/show_chart-2f80ed.png';
+import imageHolder from '../../../../icons/imageHolder.png';
 
 export default function ChefAlsoCookItem(props) {
   const {price, orders, score, distance, time} = props.dish.dishofchef;
@@ -116,7 +118,10 @@ export default function ChefAlsoCookItem(props) {
   return (
     <View style={styles.wrapper}>
       <View style={styles.avatarCont}>
-        <Image
+        <ImageLazy
+          PlaceholderContent={
+            <Image style={styles.avatar} source={imageHolder} />
+          }
           style={styles.avatar}
           source={
             avatar === 'Thiết lập ngay'

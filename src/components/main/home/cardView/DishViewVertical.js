@@ -1,10 +1,12 @@
 import React from 'react';
-import {StyleSheet, View, Image, Text} from 'react-native';
+import {StyleSheet, View, Text, Image} from 'react-native';
+import {Image as ImageLazy} from 'react-native-elements';
 
 import Global from '../../../Global';
 
 import prepareIcon from '../../../../icons/TimeSquare.png';
 import performIcon from '../../../../icons/TimeCircle.png';
+import imageHolder from '../../../../icons/imageHolder.png';
 
 export default function DishViewVertical(props) {
   const {picture, name, prepare, perform} = props.dish.dish;
@@ -34,7 +36,13 @@ export default function DishViewVertical(props) {
   return (
     <View style={styles.wrapper}>
       <View style={styles.wrapperInfo}>
-        <Image style={styles.image} source={{uri: picture}} />
+        <ImageLazy
+          style={styles.image}
+          source={{uri: picture}}
+          PlaceholderContent={
+            <Image style={styles.imageHolder} source={imageHolder} />
+          }
+        />
         <View>
           <Text style={styles.name} numberOfLines={2}>
             {name}
@@ -89,6 +97,11 @@ const styles = StyleSheet.create({
     height: width / 5.5,
     borderRadius: 2,
     marginRight: 12,
+  },
+  imageHolder: {
+    width: width / 5.5,
+    height: width / 5.5,
+    borderRadius: 2,
   },
   name: {
     fontFamily: 'Roboto-Medium',

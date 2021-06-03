@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Image as ImageLazy} from 'react-native-elements';
 
 import Global from '../../../Global';
 import {updateCart} from '../../../../../actions';
@@ -19,6 +20,7 @@ import {updateCart} from '../../../../../actions';
 import minusDisable from '../../../../icons/remove_circle_outline-e0.png';
 import minus from '../../../../icons/remove_circle_outline-fb5a23.png';
 import plus from '../../../../icons/add_circle_outline-fb5a23.png';
+import imageHolder from '../../../../icons/imageHolder.png';
 
 var soluong = 1;
 
@@ -89,7 +91,13 @@ export default function CartItem(props) {
   return (
     <View style={styles.wrapper}>
       <View style={{flexDirection: 'row'}}>
-        <Image source={{uri: picture}} style={styles.image} />
+        <ImageLazy
+          PlaceholderContent={
+            <Image style={styles.imageHolder} source={imageHolder} />
+          }
+          source={{uri: picture}}
+          style={styles.image}
+        />
         <View style={styles.infoCont}>
           <Text style={styles.name}>{name}</Text>
           <Text style={styles.chef}>{props.cartItem.dish.chef.name}</Text>
@@ -155,6 +163,11 @@ const styles = StyleSheet.create({
     height: width / 9,
     borderRadius: 2,
     marginRight: 10,
+  },
+  imageHolder: {
+    width: width / 9,
+    height: width / 9,
+    borderRadius: 2,
   },
   infoCont: {
     width: width / 1.65,

@@ -1,12 +1,14 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {StyleSheet, View, ImageBackground, Image, Text} from 'react-native';
+import {StyleSheet, View, Image, Text} from 'react-native';
+import {Image as ImageLazy} from 'react-native-elements';
 
 import Global from '../../../Global';
 
 import hotIcon from '../../../../images/label_hot.png';
 import prepareIcon from '../../../../icons/TimeSquare.png';
 import performIcon from '../../../../icons/TimeCircle.png';
+import imageHolder from '../../../../icons/imageHolder.png';
 
 export default function DishViewHorizontal(props) {
   var picture, name, prepare, perform, price;
@@ -25,14 +27,16 @@ export default function DishViewHorizontal(props) {
   }
   return (
     <View style={styles.wrapper}>
-      <ImageBackground
+      <ImageLazy
+        PlaceholderContent={
+          <Image style={styles.imageHolder} source={imageHolder} />
+        }
         style={styles.image}
-        imageStyle={{borderTopLeftRadius: 7, borderTopRightRadius: 7}}
         source={{uri: picture}}>
         {props.flag === true ? (
           <Image source={hotIcon} style={styles.new} />
         ) : null}
-      </ImageBackground>
+      </ImageLazy>
       <Text style={styles.name} numberOfLines={2}>
         {name}
       </Text>
@@ -98,6 +102,14 @@ const styles = StyleSheet.create({
     width: width / 3.8 - 1,
     height: width / 3.8 - 1,
     alignItems: 'flex-end',
+    borderTopLeftRadius: 7,
+    borderTopRightRadius: 7,
+  },
+  imageHolder: {
+    width: width / 3.8 - 1,
+    height: width / 3.8 - 1,
+    borderTopLeftRadius: 7,
+    borderTopRightRadius: 7,
   },
   name: {
     fontFamily: 'Roboto-Medium',

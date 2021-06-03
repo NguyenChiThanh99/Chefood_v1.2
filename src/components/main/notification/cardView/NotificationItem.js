@@ -1,8 +1,10 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
+import {Image as ImageLazy} from 'react-native-elements';
 
 import Global from '../../../Global';
+import imageHolder from '../../../../icons/imageHolder.png';
 
 export default function NotificationItem(props) {
   const {chef, delivery, dish, total} = props.item;
@@ -66,7 +68,13 @@ export default function NotificationItem(props) {
 
   return (
     <View style={styles.wrapper}>
-      <Image style={styles.avatar} source={{uri: chef.avatar}} />
+      <ImageLazy
+        PlaceholderContent={
+          <Image style={styles.imageHolder} source={imageHolder} />
+        }
+        style={styles.avatar}
+        source={{uri: chef.avatar}}
+      />
       <View>
         {delivery.status === 'Đang giao hàng'
           ? shippingJSX
@@ -106,6 +114,11 @@ const styles = StyleSheet.create({
     height: width / 13.5,
     borderRadius: width / 27,
     marginRight: 10,
+  },
+  imageHolder: {
+    width: width / 13.5,
+    height: width / 13.5,
+    borderRadius: width / 27,
   },
   time: {
     fontFamily: 'Roboto-Regular',

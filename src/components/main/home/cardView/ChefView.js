@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, Image, Text} from 'react-native';
+import {Image as ImageLazy} from 'react-native-elements';
 
 import Global from '../../../Global';
 import RatingStar from './RatingStar';
@@ -7,6 +8,7 @@ import RatingStar from './RatingStar';
 import addressIcon from '../../../../icons/place-82.png';
 import phoneIcon from '../../../../icons/phone-82.png';
 import arrowIcon from '../../../../icons/arrow_right-82.png';
+import imageHolder from '../../../../icons/imageHolder.png';
 
 export default function ChefView(props) {
   const {avatar, level, name, address, phone} = props.chef;
@@ -14,7 +16,10 @@ export default function ChefView(props) {
   return (
     <View style={styles.wrapper}>
       <View style={styles.avatarCont}>
-        <Image
+        <ImageLazy
+          PlaceholderContent={
+            <Image style={styles.avatar} source={imageHolder} />
+          }
           style={styles.avatar}
           source={
             avatar === 'Thiết lập ngay'

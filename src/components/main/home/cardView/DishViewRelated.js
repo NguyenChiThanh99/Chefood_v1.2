@@ -1,13 +1,19 @@
 import React from 'react';
 import {StyleSheet, View, Image, Text} from 'react-native';
+import {Image as ImageLazy} from 'react-native-elements';
 
 import Global from '../../../Global';
+import imageHolder from '../../../../icons/imageHolder.png';
 
 export default function DishViewRelated(props) {
   const {picture, name} = props.dish.dish;
   return (
     <View style={styles.wrapper}>
-      <Image style={styles.image} source={{uri: picture}} />
+      <ImageLazy
+        style={styles.image}
+        source={{uri: picture}}
+        PlaceholderContent={<Image style={styles.image} source={imageHolder} />}
+      />
       <Text style={styles.name} numberOfLines={2}>
         {name}
       </Text>

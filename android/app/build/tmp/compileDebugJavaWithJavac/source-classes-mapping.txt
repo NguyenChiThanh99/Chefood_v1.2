@@ -1,0 +1,14 @@
+com/chefood/ReactNativeFlipper.java
+ com.chefood.ReactNativeFlipper
+ com.chefood.ReactNativeFlipper$1
+ com.chefood.ReactNativeFlipper$2
+ com.chefood.ReactNativeFlipper$2$1
+com/chefood/MainActivity.java
+ com.chefood.MainActivity
+com/chefood/MainApplication.java
+ com.chefood.MainApplication
+ com.chefood.MainApplication$1
+com/chefood/BuildConfig.java
+ com.chefood.BuildConfig
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList

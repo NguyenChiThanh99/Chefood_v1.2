@@ -1,15 +1,23 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
+import {Image as ImageLazy} from 'react-native-elements';
 
 import Global from '../../../Global';
+import imageHolder from '../../../../icons/imageHolder.png';
 
 export default function ChatItem(props) {
   const {avatar, name, time, status, content} = props.item;
   return (
     <View style={styles.wrapper}>
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <Image style={styles.avatar} source={{uri: avatar}} />
+        <ImageLazy
+          PlaceholderContent={
+            <Image style={styles.imageHolder} source={imageHolder} />
+          }
+          style={styles.avatar}
+          source={{uri: avatar}}
+        />
         <View>
           <Text style={status ? styles.nameActive : styles.name}>{name}</Text>
           <Text
@@ -31,6 +39,11 @@ const styles = StyleSheet.create({
     height: width / 8.2,
     borderRadius: width / 16.4,
     marginRight: 10,
+  },
+  imageHolder: {
+    width: width / 8.2,
+    height: width / 8.2,
+    borderRadius: width / 16.4,
   },
   name: {
     fontFamily: 'Roboto-Regular',

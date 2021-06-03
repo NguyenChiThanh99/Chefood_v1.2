@@ -7,7 +7,6 @@ import {
   Text,
   Image,
   TouchableOpacity,
-  ImageBackground,
   ScrollView,
   FlatList,
   ActivityIndicator,
@@ -15,6 +14,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import Toast from 'react-native-root-toast';
 import {useSelector, useDispatch} from 'react-redux';
+import {Image as ImageLazy} from 'react-native-elements';
 
 import Global from '../../Global';
 import RatingStar from './cardView/RatingStar';
@@ -34,6 +34,8 @@ import locationIcon from '../../../icons/place-gradient.png';
 import billIcon from '../../../icons/description-gradient.png';
 import emailIcon from '../../../icons/mail-gradient.png';
 import phoneIcon from '../../../icons/phone-gradient.png';
+import imageHolder from '../../../icons/imageHolder.png';
+import imageHolder2 from '../../../icons/imageHolder2.png';
 
 export default function Chef({navigation, route}) {
   useEffect(() => {
@@ -518,7 +520,10 @@ export default function Chef({navigation, route}) {
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        <ImageBackground
+        <ImageLazy
+          PlaceholderContent={
+            <Image style={styles.cover} source={imageHolder2} />
+          }
           style={styles.cover}
           source={
             cover_photo === 'Thiết lập ngay'
@@ -528,7 +533,10 @@ export default function Chef({navigation, route}) {
                 }
               : {uri: cover_photo}
           }>
-          <Image
+          <ImageLazy
+            PlaceholderContent={
+              <Image style={styles.imageHolder} source={imageHolder} />
+            }
             style={styles.avatar}
             source={
               avatar === 'Thiết lập ngay'
@@ -545,7 +553,7 @@ export default function Chef({navigation, route}) {
             </View>
             <Text style={styles.ratingText}>{Math.round(level * 10) / 10}</Text>
           </View>
-        </ImageBackground>
+        </ImageLazy>
 
         <View style={styles.cardView}>
           <View style={styles.nameCont}>
@@ -753,6 +761,13 @@ const styles = StyleSheet.create({
     borderColor: '#ffffff',
     borderWidth: 2,
     marginTop: height / 27,
+  },
+  imageHolder: {
+    width: width / 3.7,
+    height: width / 3.7,
+    borderRadius: width / 7.4,
+    borderColor: '#ffffff',
+    borderWidth: 2,
   },
   rating: {
     flexDirection: 'row',
