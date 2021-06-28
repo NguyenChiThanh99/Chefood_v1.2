@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {StyleSheet, View, Image, Text} from 'react-native';
 import {Image as ImageLazy} from 'react-native-elements';

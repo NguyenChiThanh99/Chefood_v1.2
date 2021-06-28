@@ -52,7 +52,13 @@ export default function Comment(props) {
       </View>
       <Text style={styles.content}>{comment}</Text>
       {image !== null ? (
-        <Image source={{uri: image}} style={styles.imageCmt} />
+        <ImageLazy
+          PlaceholderContent={
+            <Image style={styles.imageHolder} source={imageHolder} />
+          }
+          source={{uri: image}}
+          style={styles.imageCmt}
+        />
       ) : null}
     </View>
   );
@@ -101,6 +107,11 @@ const styles = StyleSheet.create({
     height: width / 6,
     marginLeft: width / 12 + 10,
     marginTop: 10,
+    borderRadius: 5,
+  },
+  imageHolder: {
+    width: width / 6,
+    height: width / 6,
     borderRadius: 5,
   },
   topInfo: {

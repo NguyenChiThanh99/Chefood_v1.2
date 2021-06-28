@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   FlatList,
   ActivityIndicator,
+  ScrollView,
 } from 'react-native';
 import {useSelector} from 'react-redux';
 import Toast from 'react-native-root-toast';
@@ -20,6 +21,7 @@ import other_chef_by_distance from '../../../apis/other_chef_by_distance';
 import other_chef_by_price from '../../../apis/other_chef_by_price';
 import other_chef_by_score from '../../../apis/other_chef_by_score';
 import other_chef_by_time from '../../../apis/other_chef_by_time';
+import other_chef_by_level from '../../../apis/other_chef_by_level';
 
 import backIcon from '../../../icons/arrow_back_ios-fb5a23.png';
 
@@ -34,6 +36,7 @@ export default function ChefAlsoCook({navigation, route}) {
     address: false,
     time: false,
     price: false,
+    level: false,
   });
   const [
     onEndReachedCalledDuringMomentum,
@@ -63,6 +66,7 @@ export default function ChefAlsoCook({navigation, route}) {
         address: false,
         time: false,
         price: false,
+        level: false,
       });
       setCoordinates({lat: 0, long: 0});
       setOnEndReachedCalledDuringMomentum(true);
@@ -107,6 +111,43 @@ export default function ChefAlsoCook({navigation, route}) {
     setLoadingChef(true);
     other_chef_by_price
       .other_chef_by_price(
+        user.token,
+        page,
+        route.params.numberDish,
+        coordinates.lat,
+        coordinates.long,
+      )
+      .then((responseJson) => {
+        setLoadingChef(false);
+        if (responseJson.length === 0 && page !== 0) {
+          return Toast.show('Đã tải đến cuối danh sách', {
+            position: 0,
+            duration: 2500,
+          });
+        } else {
+          if (page === 0) {
+            setDataChef(responseJson);
+            setPageChef(1);
+          } else {
+            setDataChef(dataChef.concat(responseJson));
+            setPageChef(page + 1);
+          }
+          setLoadingChef(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoadingChef(false);
+      });
+  };
+
+  const chefByLevel = (page) => {
+    if (page === 0) {
+      setDataChef([]);
+    }
+    setLoadingChef(true);
+    other_chef_by_level
+      .other_chef_by_level(
         user.token,
         page,
         route.params.numberDish,
@@ -218,8 +259,10 @@ export default function ChefAlsoCook({navigation, route}) {
       chefByDistance(pageChef);
     } else if (menu.time) {
       chefByTime(pageChef);
-    } else {
+    } else if (menu.price) {
       chefByPrice(pageChef);
+    } else {
+      chefByLevel(pageChef);
     }
   };
 
@@ -227,19 +270,53 @@ export default function ChefAlsoCook({navigation, route}) {
     switch (loai) {
       case 0:
         chefByPoint(0, coordinates.lat, coordinates.long);
-        setMenu({score: true, address: false, time: false, price: false});
+        setMenu({
+          score: true,
+          address: false,
+          time: false,
+          price: false,
+          level: false,
+        });
         break;
       case 1:
         chefByDistance(0);
-        setMenu({score: false, address: true, time: false, price: false});
+        setMenu({
+          score: false,
+          address: true,
+          time: false,
+          price: false,
+          level: false,
+        });
         break;
       case 2:
         chefByTime(0);
-        setMenu({score: false, address: false, time: true, price: false});
+        setMenu({
+          score: false,
+          address: false,
+          time: true,
+          price: false,
+          level: false,
+        });
+        break;
+      case 3:
+        chefByPrice(0);
+        setMenu({
+          score: false,
+          address: false,
+          time: false,
+          price: true,
+          level: false,
+        });
         break;
       default:
-        chefByPrice(0);
-        setMenu({score: false, address: false, time: false, price: true});
+        chefByLevel(0);
+        setMenu({
+          score: false,
+          address: false,
+          time: false,
+          price: false,
+          level: true,
+        });
         break;
     }
   };
@@ -250,7 +327,10 @@ export default function ChefAlsoCook({navigation, route}) {
   const menuJSX = () => {
     return (
       <View style={styles.cardView}>
-        <View style={styles.menu}>
+        <ScrollView
+          style={styles.menu}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}>
           <TouchableOpacity
             style={styles.menuItem}
             onPress={() => (loadingChef ? null : menuHandle(0))}>
@@ -283,7 +363,15 @@ export default function ChefAlsoCook({navigation, route}) {
             </Text>
             <View style={menu.price ? styles.menuLine : styles.menuNoLine} />
           </TouchableOpacity>
-        </View>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => (loadingChef ? null : menuHandle(4))}>
+            <Text style={menu.level ? styles.menuTextS : styles.menuText}>
+              Hạng đầu bếp
+            </Text>
+            <View style={menu.level ? styles.menuLine : styles.menuNoLine} />
+          </TouchableOpacity>
+        </ScrollView>
       </View>
     );
   };
@@ -312,9 +400,8 @@ export default function ChefAlsoCook({navigation, route}) {
         </View>
       ) : dataChef.length === 0 ? (
         <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-          <Text style={styles.noData}>Không tìm thấy món ăn nào!</Text>
           <Text style={styles.noData}>
-            Vui lòng thử tìm kiếm với từ khoá khác
+            Không tìm thấy đầu bếp nào khác nấu món ăn này!
           </Text>
         </View>
       ) : (
@@ -385,7 +472,6 @@ const styles = StyleSheet.create({
   },
   menu: {
     backgroundColor: 'white',
-    flexDirection: 'row',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,

@@ -254,36 +254,39 @@ MERGED from [com.google.android.gms:play-services-identity-license:11.8.0] /User
 MERGED from [com.google.android.gms:play-services-maps-license:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/f25c209feda48c1974bfa22f238750d7/jetified-play-services-maps-license-11.8.0/AndroidManifest.xml:5:5-20
 MERGED from [com.google.android.gms:play-services-maps-license:11.8.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/f25c209feda48c1974bfa22f238750d7/jetified-play-services-maps-license-11.8.0/AndroidManifest.xml:5:5-20
 	android:requestLegacyExternalStorage
-		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:221-264
-		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:221-264
+		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:246-289
+		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:246-289
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.3.1] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/378cf4aa255b47c756e15f07a5f9bbb1/core-1.3.1/AndroidManifest.xml:24:18-86
 	android:supportsRtl
 		ADDED from [com.facebook.android:facebook-android-sdk:8.2.0] /Users/nguyenchithanh/.gradle/caches/transforms-2/files-2.1/f8faa851df5430282711a6125e2c18f2/jetified-facebook-android-sdk-8.2.0/AndroidManifest.xml:28:18-44
 	android:label
-		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:47-79
-		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:47-79
+		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:72-104
+		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:72-104
 	tools:ignore
 		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/debug/AndroidManifest.xml:7:75-114
 	android:roundIcon
-		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:115-160
-		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:115-160
+		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:140-185
+		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:140-185
 	tools:targetApi
 		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/debug/AndroidManifest.xml:7:54-74
+	android:largeHeap
+		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:15-39
+		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:15-39
 	android:icon
-		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:80-114
-		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:80-114
+		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:105-139
+		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:105-139
 	android:allowBackup
-		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:161-188
-		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:161-188
+		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:186-213
+		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:186-213
 	android:theme
-		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:189-220
-		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:189-220
+		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:214-245
+		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:214-245
 	android:usesCleartextTraffic
 		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/debug/AndroidManifest.xml:7:18-53
 	android:name
-		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:15-46
-		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:15-46
+		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:40-71
+		ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:6:40-71
 meta-data#com.facebook.sdk.ApplicationId
 ADDED from /Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/AndroidManifest.xml:7:3-101
 	android:value

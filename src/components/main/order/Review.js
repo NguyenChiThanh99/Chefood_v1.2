@@ -23,6 +23,8 @@ import Global from '../../Global';
 import check_comment from '../../../apis/check_comment';
 import submit_comment from '../../../apis/submit_comment';
 import get_order_detail from '../../../apis/get_order_detail';
+import update_score from '../../../apis/update_score';
+import update_level from '../../../apis/update_level';
 
 import closeIcon from '../../../icons/close.png';
 import cameraIcon from '../../../icons/photo_camera-bd.png';
@@ -49,6 +51,8 @@ export default function Review({navigation, route}) {
   const [loading, setLoading] = useState(false);
   const [orderDetail, setOrderDetail] = useState({
     chef: {
+      level_chef: route.params.chef !== null ? route.params.chef.level_chef : 0,
+      num_chef: route.params.chef !== null ? route.params.chef.num_chef : 0,
       avatar:
         route.params.chef !== null
           ? route.params.chef.avatar
@@ -139,6 +143,48 @@ export default function Review({navigation, route}) {
     });
   };
 
+  const updateScore = (numDishOfChef, status) => {
+    update_score
+      .update_score(user.token, numDishOfChef, status)
+      .then((responseJson) => {
+        console.log('Update score for dish of chef: ', numDishOfChef);
+        if (responseJson.message !== 'Update score successfully!') {
+          return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+            position: 0,
+            duration: 2500,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log('Update score: ', err);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
+      });
+  };
+
+  const updateLevel = (numChef, levelChef, star) => {
+    update_level
+      .update_level(user.token, numChef, levelChef, star)
+      .then((responseJson) => {
+        console.log('Update level for chef: ', numChef);
+        if (responseJson.message !== 'Update level successfully!') {
+          return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+            position: 0,
+            duration: 2500,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log('Update level: ', err);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
+      });
+  };
+
   const submitComment = () => {
     setLoading(true);
     for (let i = 0; i < review.length; i++) {
@@ -193,6 +239,19 @@ export default function Review({navigation, route}) {
                     setLoading(false);
                     if (responseJson3.message === 'Add successfully!') {
                       count += 1;
+                      console.log(
+                        'Submit comment successfully for dishofchef: ',
+                        responseJson3.num_dishofchef,
+                      );
+                      updateScore(
+                        responseJson3.num_dishofchef,
+                        responseJson2.predict,
+                      );
+                      updateLevel(
+                        orderDetail.chef.num_chef,
+                        orderDetail.chef.level_chef,
+                        review[i].rating,
+                      );
                     }
                     if (count === review.length) {
                       if (route.params.chef !== null) {
@@ -205,7 +264,7 @@ export default function Review({navigation, route}) {
                     }
                   })
                   .catch((err) => {
-                    console.log(err);
+                    console.log('Lỗi tải đánh giá lên node: ' + err);
                     setLoading(false);
                     return Toast.show(
                       'Lỗi! Vui lòng kiểm tra kết nối internet',
@@ -217,7 +276,7 @@ export default function Review({navigation, route}) {
                   });
               })
               .catch((err) => {
-                console.log(err);
+                console.log('Lỗi xác định trạng thái bình luận: ' + err);
                 setLoading(false);
                 return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
                   position: 0,
@@ -226,7 +285,7 @@ export default function Review({navigation, route}) {
               });
           })
           .catch((err) => {
-            console.log(err);
+            console.log('Lỗi upload ảnh: ' + err);
             setLoading(false);
             return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
               position: 0,
@@ -251,6 +310,19 @@ export default function Review({navigation, route}) {
                 setLoading(false);
                 if (responseJson2.message === 'Add successfully!') {
                   count += 1;
+                  console.log(
+                    'Submit comment successfully for dishofchef: ',
+                    responseJson2.num_dishofchef,
+                  );
+                  updateScore(
+                    responseJson2.num_dishofchef,
+                    responseJson1.predict,
+                  );
+                  updateLevel(
+                    orderDetail.chef.num_chef,
+                    orderDetail.chef.level_chef,
+                    review[i].rating,
+                  );
                 }
                 if (count === review.length) {
                   if (route.params.chef !== null) {
@@ -263,7 +335,7 @@ export default function Review({navigation, route}) {
                 }
               })
               .catch((err) => {
-                console.log(err);
+                console.log('Lỗi tải đánh giá lên node: ' + err);
                 setLoading(false);
                 return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
                   position: 0,
@@ -272,7 +344,7 @@ export default function Review({navigation, route}) {
               });
           })
           .catch((err) => {
-            console.log(err);
+            console.log('Lỗi xác định trạng thái bình luận: ' + err);
             setLoading(false);
             return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
               position: 0,

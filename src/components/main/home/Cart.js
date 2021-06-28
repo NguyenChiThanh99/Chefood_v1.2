@@ -106,6 +106,12 @@ export default function Cart({navigation, route}) {
         position: 0,
         duration: 2500,
       });
+    } else if (shipmentInfo.phone === 'Thiết lập ngay') {
+      setLoading(false);
+      return Toast.show('Vui lòng thiết lập số điện thoại ở tab Tài khoản', {
+        position: 0,
+        duration: 3000,
+      });
     } else if (method === 'Thẻ') {
       paymentByCard(diaChi);
     } else {
@@ -198,7 +204,7 @@ export default function Cart({navigation, route}) {
             })
             .catch((err) => {
               setLoading(false);
-              console.log(err);
+              console.log('Pay by card: ', err);
               return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
                 position: 0,
                 duration: 2500,
@@ -279,6 +285,49 @@ export default function Cart({navigation, route}) {
     setTotal(temp);
   };
 
+  const addressHandle = () => {
+    if (route.params.address !== '') {
+      return {
+        address: route.params.address,
+        status: true,
+      };
+    } else {
+      if (shipmentInfo.address === 'Thiết lập ngay') {
+        return {
+          address: 'Thiết lập ngay',
+          status: false,
+        };
+      } else {
+        return {
+          address: shipmentInfo.address,
+          status: true,
+        };
+      }
+    }
+  };
+
+  const abc = async () => {
+    const params = {
+      // mandatory
+      number: '4242424242424242',
+      expMonth: 11,
+      expYear: 17,
+      cvc: '223',
+      // // optional
+      // name: 'Test User',
+      // currency: 'usd',
+      // addressLine1: '123 Test Street',
+      // addressLine2: 'Apt. 5',
+      // addressCity: 'Test City',
+      // addressState: 'Test State',
+      // addressCountry: 'Test Country',
+      // addressZip: '55555',
+    };
+
+    const token = await stripe.createTokenWithCard(params);
+    console.log(token);
+  };
+
   return (
     <View style={styles.wrapper}>
       <View style={styles.header}>
@@ -294,11 +343,18 @@ export default function Cart({navigation, route}) {
           <Text style={styles.shipmentText}>Giao hàng đến</Text>
           <View style={styles.shipmentCont}>
             <View style={styles.shipmentInfo}>
-              <Text style={styles.address}>
-                {route.params.address !== ''
-                  ? route.params.address
-                  : shipmentInfo.address}
-              </Text>
+              {addressHandle().status ? (
+                <Text style={styles.address}>{addressHandle().address}</Text>
+              ) : (
+                <TouchableOpacity
+                  onPress={() =>
+                    !loading
+                      ? navigation.navigate('CHANGE_ADDRESS', {fromCart: true})
+                      : null
+                  }>
+                  <Text style={styles.address}>{addressHandle().address}</Text>
+                </TouchableOpacity>
+              )}
               <Text style={styles.personalInfo}>
                 {shipmentInfo.name} | {shipmentInfo.phone}
               </Text>
@@ -394,7 +450,8 @@ export default function Cart({navigation, route}) {
         {cart.length !== 0 ? (
           <TouchableOpacity
             onPress={() => {
-              !loading ? orderHandle() : null;
+              // !loading ? orderHandle() : null;
+              abc();
             }}>
             <LinearGradient
               style={styles.btn}

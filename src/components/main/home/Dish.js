@@ -19,6 +19,7 @@ import Toast from 'react-native-root-toast';
 import {useIsFocused} from '@react-navigation/native';
 import {Image as ImageLazy} from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import MasonryList from '@react-native-seoul/masonry-list';
 
 import Global from '../../Global';
 import Comment from './cardView/Comment';
@@ -29,6 +30,7 @@ import view_dish from '../../../apis/view_dish';
 import get_comment_dish from '../../../apis/get_comment_dish';
 import get_other_dish_of_chef from '../../../apis/get_other_dish_of_chef';
 import get_dish_by_id from '../../../apis/get_dish_by_id';
+import get_images_dish from '../../../apis/get_images_dish';
 import get_all_dish from '../../../apis/get_all_dish';
 import get_type_dish from '../../../apis/get_type_dish';
 import add_saved_dish from '../../../apis/add_saved_dish';
@@ -46,6 +48,7 @@ import performIcon from '../../../icons/TimeCircle.png';
 import doubleArrow from '../../../icons/double_arrow.png';
 import imageHolder from '../../../icons/imageHolder.png';
 import imageHolder2 from '../../../icons/imageHolder2.png';
+import noImage from '../../../images/no_images.png';
 
 var soluong = 1;
 var type;
@@ -84,6 +87,10 @@ export default function Dish({navigation, route}) {
       });
       setDataComment([]);
       setLoadingComment(false);
+      setPageComment(0);
+      setDataImagesDish([]);
+      setLoadingImagesDish(false);
+      setPageImagesDish(0);
       setDataOtherDish([]);
       setLoadingOtherDish(false);
       setPageOtherDish(0);
@@ -109,6 +116,9 @@ export default function Dish({navigation, route}) {
   const [dataComment, setDataComment] = useState([]);
   const [loadingComment, setLoadingComment] = useState(false);
   const [pageComment, setPageComment] = useState(0);
+  const [dataImagesDish, setDataImagesDish] = useState([]);
+  const [loadingImagesDish, setLoadingImagesDish] = useState(false);
+  const [pageImagesDish, setPageImagesDish] = useState(0);
   const [dataOtherDish, setDataOtherDish] = useState([]);
   const [loadingOtherDish, setLoadingOtherDish] = useState(false);
   const [pageOtherDish, setPageOtherDish] = useState(0);
@@ -120,49 +130,6 @@ export default function Dish({navigation, route}) {
     onEndReachedCalledDuringMomentum,
     setOnEndReachedCalledDuringMomentum,
   ] = useState(true);
-
-  const dataImgDish = [
-    {
-      id: 1,
-      image:
-        'https://res.cloudinary.com/dep0t5tcf/image/upload/v1622656859/chefood/dishes/images_cixy4w.jpg',
-    },
-    {
-      id: 2,
-      image:
-        'https://res.cloudinary.com/dep0t5tcf/image/upload/v1622656859/chefood/dishes/cach-lam-cha-ca-thu_wrjipr.jpg',
-    },
-    {
-      id: 3,
-      image:
-        'https://res.cloudinary.com/dep0t5tcf/image/upload/v1622656859/chefood/dishes/com-tam-la-mon-an-binh-dan_armqwo.jpg',
-    },
-    {
-      id: 4,
-      image:
-        'https://res.cloudinary.com/dep0t5tcf/image/upload/v1622656860/chefood/dishes/nhanquan_wqmf_kh3xk9.jpg',
-    },
-    {
-      id: 5,
-      image:
-        'https://res.cloudinary.com/dep0t5tcf/image/upload/v1622656860/chefood/dishes/thanh-pham-491_e0jmwt.jpg',
-    },
-    {
-      id: 6,
-      image:
-        'https://res.cloudinary.com/dep0t5tcf/image/upload/v1622656860/chefood/dishes/hu-tieu-nam-vang-02_j8cwxh.jpg',
-    },
-    {
-      id: 7,
-      image:
-        'https://res.cloudinary.com/dep0t5tcf/image/upload/v1622656860/chefood/dishes/cach-nau-mon-hu-tieu-nam-vang-ngon-dung-dieu-nhu-ngoa%CC%80i-hang-da-an-la%CC%80-ghien-8-760x367_l3yzxd.jpg',
-    },
-    {
-      id: 8,
-      image:
-        'https://res.cloudinary.com/dep0t5tcf/image/upload/v1622656861/chefood/dishes/maxresdefault_bbnqrg.jpg',
-    },
-  ];
 
   const checkSavedStatus = (id) => {
     var found = savedDish.find((item) => item.id_dish_of_chef === id);
@@ -316,6 +283,44 @@ export default function Dish({navigation, route}) {
       .catch((err) => {
         console.log(err);
         setLoadingComment(false);
+        return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+          position: 0,
+          duration: 2500,
+        });
+      });
+  };
+
+  const getImagesDish = () => {
+    setLoadingImagesDish(true);
+    get_images_dish
+      .get_images_dish(user.token, dish.dishofchef.iddishofchef, pageImagesDish)
+      .then((responseJson) => {
+        if (responseJson.message === 'No image from user reviews!') {
+          setDataImagesDish([]);
+          setLoadingImagesDish(false);
+        } else if (responseJson.length === 0) {
+          setLoadingImagesDish(false);
+          return Toast.show('Đã tải đến cuối danh sách', {
+            position: -20,
+            duration: 2500,
+          });
+        } else {
+          var arr = [];
+          for (let i = 0; i < responseJson.length; i++) {
+            arr.push({
+              id: dataImagesDish.length + i,
+              image: responseJson[i],
+              randomInt: Math.floor(Math.random() * 100) + 1,
+            });
+          }
+          setDataImagesDish(dataImagesDish.concat(arr));
+          setPageImagesDish(pageImagesDish + 1);
+          setLoadingImagesDish(false);
+        }
+      })
+      .catch((err) => {
+        console.log('ImagesDish: ', err);
+        setLoadingImagesDish(false);
         return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
           position: 0,
           duration: 2500,
@@ -526,7 +531,7 @@ export default function Dish({navigation, route}) {
             }
           }
           setDataRelatedDish(relatedDish);
-          setPageRelatedDish(pageRelatedDish + 1);
+          setPageRelatedDish(page + 1);
           setLoadingRelatedDish(false);
         }
       })
@@ -564,7 +569,7 @@ export default function Dish({navigation, route}) {
             }
           }
           setDataRelatedDish(relatedDish);
-          setPageRelatedDish(pageRelatedDish + 1);
+          setPageRelatedDish(page + 1);
           setLoadingRelatedDish(false);
         }
       })
@@ -590,6 +595,9 @@ export default function Dish({navigation, route}) {
     setDataComment([]);
     setLoadingComment(false);
     setPageComment(0);
+    setDataImagesDish([]);
+    setLoadingImagesDish(false);
+    setPageImagesDish(0);
     setDataOtherDish([]);
     setLoadingOtherDish(false);
     setPageOtherDish(0);
@@ -637,10 +645,11 @@ export default function Dish({navigation, route}) {
         setMenu({ingredients: true, comments: false, images: false});
         break;
       case 1:
-        getCommentDish();
+        menu.comments ? null : getCommentDish();
         setMenu({ingredients: false, comments: true, images: false});
         break;
       default:
+        menu.images ? null : getImagesDish();
         setMenu({ingredients: false, comments: false, images: true});
         break;
     }
@@ -701,27 +710,67 @@ export default function Dish({navigation, route}) {
   );
   const imagesJSX = (
     <View>
-      <FlatList
-        key={'_'}
-        style={styles.listImage}
-        showsVerticalScrollIndicator={false}
-        data={dataImgDish}
-        numColumns={3}
-        renderItem={({item, index}) => {
-          return (
-            <View>
-              <ImageLazy
-                PlaceholderContent={
-                  <Image style={styles.imageDish} source={imageHolder} />
-                }
-                style={styles.imageDish}
-                source={{uri: item.image}}
-              />
-            </View>
-          );
-        }}
-        keyExtractor={(item) => '_' + item.id.toString()}
-      />
+      {dataImagesDish.length === 0 && loadingImagesDish ? (
+        <View style={{paddingVertical: 50}}>{Loading}</View>
+      ) : dataImagesDish.length === 0 ? (
+        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+          <Image source={noImage} style={styles.noImage} />
+          <Text style={styles.noImageText}>
+            Chưa có hình ảnh đánh giá từ người dùng!
+          </Text>
+        </View>
+      ) : (
+        <View>
+          <MasonryList
+            key={'_'}
+            style={styles.listImage}
+            showsVerticalScrollIndicator={false}
+            data={dataImagesDish}
+            numColumns={3}
+            ListFooterComponent={
+              <View style={{paddingTop: 5}}>
+                <View style={styles.line} />
+                {loadingImagesDish ? (
+                  <View style={{paddingVertical: 4.5}}>{Loading}</View>
+                ) : (
+                  <TouchableOpacity
+                    onPress={() => {
+                      getImagesDish();
+                    }}
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}>
+                    <Text style={styles.viewMoreTextVertical}>Xem thêm</Text>
+                  </TouchableOpacity>
+                )}
+              </View>
+            }
+            renderItem={({item, index}) => {
+              var height =
+                item.id % 2 === 0
+                  ? width / 3.5 + item.randomInt
+                  : width / 1.75 + item.randomInt;
+              return (
+                <View key={item.id}>
+                  <ImageLazy
+                    PlaceholderContent={
+                      <Image
+                        style={[styles.imageDish, {height}]}
+                        source={imageHolder}
+                      />
+                    }
+                    style={[styles.imageDish, {height}]}
+                    source={{uri: item.image}}
+                  />
+                </View>
+              );
+            }}
+            keyExtractor={(item) => '_' + item.id.toString()}
+          />
+        </View>
+      )}
     </View>
   );
 
@@ -1041,6 +1090,16 @@ export default function Dish({navigation, route}) {
 
 const {width, height, mainColor, backgroundColor, backButton} = Global;
 const styles = StyleSheet.create({
+  noImage: {
+    width: width / 1.8,
+    height: width / 1.7,
+  },
+  noImageText: {
+    fontFamily: 'Roboto-Regular',
+    fontSize: width / 30,
+    color: '#828282',
+    marginVertical: 10,
+  },
   otherChefCont: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -1115,9 +1174,7 @@ const styles = StyleSheet.create({
   },
   imageDish: {
     width: width / 3 - 40 / 3,
-    height: width / 5,
     margin: 5,
-    borderRadius: 5,
   },
   line: {
     borderColor: '#bdbdbd',
