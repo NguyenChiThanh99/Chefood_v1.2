@@ -1,7 +1,7 @@
 import Global from '../components/Global';
 
-const get_recommended_dish = (token, dishes) =>
-  fetch(Global.link + 'dish/getrecommendeddish', {
+const get_recommended_dish = (token, idUser, page) =>
+  fetch(Global.link + 'dish/getrecombyiduser', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -9,7 +9,8 @@ const get_recommended_dish = (token, dishes) =>
       'auth-token': token,
     },
     body: JSON.stringify({
-      dishes: dishes,
+      idUser: idUser,
+      page: page,
     }),
   }).then((response) => response.json());
 

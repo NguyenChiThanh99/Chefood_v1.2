@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
 import {
@@ -17,6 +18,7 @@ import stripe from 'tipsi-stripe';
 import Toast from 'react-native-root-toast';
 import {useSelector, useDispatch} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {CreditCardInput} from 'react-native-credit-card-input';
 
 import Global from '../../Global';
 import CartItem from './cardView/CartItem';
@@ -42,6 +44,8 @@ export default function Cart({navigation, route}) {
   const [loading, setLoading] = useState(false);
   const [arrowIcon, setArrowIcon] = useState(expandMoreArrow);
   const [itemSelected, setItemSelected] = useState(null);
+  const [modelPayment, setModelPayment] = useState(false);
+  const [paymentInfo, setPaymentInfo] = useState({});
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
@@ -113,7 +117,7 @@ export default function Cart({navigation, route}) {
         duration: 3000,
       });
     } else if (method === 'Thẻ') {
-      paymentByCard(diaChi);
+      setModelPayment(true);
     } else {
       var cartSeparate = separateCart();
       var count = 0;
@@ -156,70 +160,80 @@ export default function Cart({navigation, route}) {
     }
   };
 
-  const paymentByCard = (diaChi) => {
-    const options = {
-      theme: {
-        accentColor: '#fb5a23',
-      },
-    };
-    stripe
-      .paymentRequestWithCardForm(options)
-      .then((stripeTokenInfo) => {
-        var cartSeparate = separateCart();
-        var count = 0;
-        for (let i = 0; i < cartSeparate.length; i++) {
-          var totalSubOrder = 0;
-          for (let j = 0; j < cartSeparate[i].dishes.length; j++) {
-            totalSubOrder +=
-              cartSeparate[i].dishes[j].price *
-              cartSeparate[i].dishes[j].amount;
-          }
-
-          submit_order_card
-            .submit_order_card(
-              user.token,
-              diaChi,
-              cartSeparate[i].idchef,
-              method,
-              totalSubOrder,
-              cartSeparate[i].dishes,
-              stripeTokenInfo.tokenId,
-            )
-            .then((responseJson) => {
-              if (responseJson.message === 'Add successfully!') {
-                count += 1;
-                if (count === cartSeparate.length) {
-                  dispatch(updateCart([]));
-                  storeData([]);
-                  navigation.navigate('ORDER', {fromUser: true});
-                  setLoading(false);
-                }
-              } else {
-                setLoading(false);
-                return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-                  position: 0,
-                  duration: 2500,
-                });
-              }
-            })
-            .catch((err) => {
-              setLoading(false);
-              console.log('Pay by card: ', err);
-              return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-                position: 0,
-                duration: 2500,
-              });
-            });
-        }
-      })
-      .catch((err) => {
-        setLoading(false);
-        console.log(err);
-        return Toast.show('Thanh toán thất bại', {
-          position: -20,
-          duration: 2000,
-        });
+  const orderByCard = async () => {
+    if (!paymentInfo.valid) {
+      setLoading(false);
+      setModelPayment(false);
+      setPaymentInfo({});
+      return Toast.show('Thông tin thẻ thanh toán không hợp lệ!', {
+        position: 0,
+        duration: 2000,
       });
+    }
+    setModelPayment(false);
+
+    var diaChi;
+    if (route.params.address !== '') {
+      diaChi = route.params.address;
+    } else {
+      diaChi = shipmentInfo.address;
+    }
+
+    var cartSeparate = separateCart();
+    var count = 0;
+    for (let i = 0; i < cartSeparate.length; i++) {
+      var totalSubOrder = 0;
+      for (let j = 0; j < cartSeparate[i].dishes.length; j++) {
+        totalSubOrder +=
+          cartSeparate[i].dishes[j].price * cartSeparate[i].dishes[j].amount;
+      }
+
+      const expiryPayment = paymentInfo.values.expiry;
+      const params = {
+        number: paymentInfo.values.number,
+        expMonth: parseInt(expiryPayment.slice(0, 2)),
+        expYear: parseInt(expiryPayment.slice(3, 5)),
+        cvc: paymentInfo.values.cvc,
+      };
+      const token = await stripe.createTokenWithCard(params);
+
+      submit_order_card
+        .submit_order_card(
+          user.token,
+          diaChi,
+          cartSeparate[i].idchef,
+          method,
+          totalSubOrder,
+          cartSeparate[i].dishes,
+          token.tokenId,
+        )
+        .then((responseJson) => {
+          if (responseJson.message === 'Add successfully!') {
+            count += 1;
+            if (count === cartSeparate.length) {
+              dispatch(updateCart([]));
+              storeData([]);
+              navigation.navigate('ORDER', {fromUser: true});
+              setLoading(false);
+              setPaymentInfo({});
+            }
+          } else {
+            setLoading(false);
+            return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+              position: 0,
+              duration: 2500,
+            });
+          }
+        })
+        .catch((err) => {
+          setLoading(false);
+          console.log('Pay by card: ', err);
+          return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
+            position: 0,
+            duration: 2500,
+          });
+        });
+    }
   };
 
   const renderItemSeparator = () => {
@@ -304,28 +318,6 @@ export default function Cart({navigation, route}) {
         };
       }
     }
-  };
-
-  const abc = async () => {
-    const params = {
-      // mandatory
-      number: '4242424242424242',
-      expMonth: 11,
-      expYear: 17,
-      cvc: '223',
-      // // optional
-      // name: 'Test User',
-      // currency: 'usd',
-      // addressLine1: '123 Test Street',
-      // addressLine2: 'Apt. 5',
-      // addressCity: 'Test City',
-      // addressState: 'Test State',
-      // addressCountry: 'Test Country',
-      // addressZip: '55555',
-    };
-
-    const token = await stripe.createTokenWithCard(params);
-    console.log(token);
   };
 
   return (
@@ -450,8 +442,7 @@ export default function Cart({navigation, route}) {
         {cart.length !== 0 ? (
           <TouchableOpacity
             onPress={() => {
-              // !loading ? orderHandle() : null;
-              abc();
+              !loading ? orderHandle() : null;
             }}>
             <LinearGradient
               style={styles.btn}
@@ -512,6 +503,29 @@ export default function Cart({navigation, route}) {
           </View>
         </View>
       </Modal>
+
+      <Modal animationType="fade" transparent={true} visible={modelPayment}>
+        <View style={styles.modalCont}>
+          <View style={styles.modal2}>
+            <CreditCardInput onChange={(form) => setPaymentInfo(form)} />
+            <View style={[styles.btnCont, {marginTop: 28}]}>
+              <TouchableOpacity
+                onPress={() => {
+                  setModelPayment(false);
+                  setPaymentInfo({});
+                  setLoading(false);
+                }}>
+                <Text style={styles.btnCancel}>HUỶ BỎ</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => orderByCard()}>
+                <Text style={[styles.btnAgree, {marginLeft: 30}]}>
+                  HOÀN TẤT
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -541,6 +555,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 5,
     padding: 20,
+    paddingBottom: 30,
+  },
+  modal2: {
+    width: width / 1.28,
+    backgroundColor: 'white',
+    borderRadius: 5,
+    paddingHorizontal: 20,
+    paddingTop: 13,
     paddingBottom: 30,
   },
   title: {

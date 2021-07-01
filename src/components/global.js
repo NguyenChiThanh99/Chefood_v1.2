@@ -61,7 +61,7 @@ module.exports = {
   },
   commentLink: 'https://nguyenchithanh.pythonanywhere.com/',
   // commentLink: 'http://13.67.111.113:6000/',
-  relatedDishLink: 'https://17521049.pythonanywhere.com/',
+  // relatedDishLink: 'https://17521049.pythonanywhere.com/',
   link: 'https://chefood-mongo.herokuapp.com/',
 
   chatLink: 'https://chefood-chat.herokuapp.com/',

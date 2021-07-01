@@ -32,8 +32,6 @@ import get_all_dish from '../../../apis/get_all_dish';
 import get_type_dish from '../../../apis/get_type_dish';
 import get_saved_dish from '../../../apis/get_saved_dish';
 import get_following_chef from '../../../apis/get_following_chef';
-import get_name_viewed_dish from '../../../apis/get_name_viewed_dish';
-import get_related_dish from '../../../apis/get_related_dish';
 import get_recommended_dish from '../../../apis/get_recommended_dish';
 import get_today_dish from '../../../apis/get_today_dish';
 import get_hot_chef from '../../../apis/get_hot_chef';
@@ -99,6 +97,7 @@ export default function Home({navigation}) {
   useEffect(() => {
     if (!firstLoad) {
       LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+      getRecommendation(0);
       loadHotDish(0);
       getTodayDish(0);
       getAllDish(true);
@@ -109,8 +108,6 @@ export default function Home({navigation}) {
     }
     if (isFocused) {
       setOnEndReachedCalledDuringMomentum_ViewedDish(true);
-      setOnEndReachedCalledDuringMomentum_RecommendationDish(true);
-      getRecommendation(0);
       getViewedDish(0);
     }
   }, [isFocused]);
@@ -354,81 +351,34 @@ export default function Home({navigation}) {
 
   const getRecommendation = (page) => {
     setLoadingRecommendation(true);
-    get_name_viewed_dish
-      .get_name_viewed_dish(user.token, page)
-      .then((responseJson1) => {
-        if (responseJson1.message === 'No more viewed dish!' && page !== 0) {
+    get_recommended_dish
+      .get_recommended_dish(user.token, user.userInfo._id, page)
+      .then((responseJson) => {
+        if (page !== 0 && responseJson.length === 0) {
           setLoadingRecommendation(false);
           return Toast.show('Đã tải đến cuối danh sách', {
             position: 0,
             duration: 2500,
           });
         } else {
-          get_related_dish
-            .get_related_dish(responseJson1.dish_name)
-            .then((responseJson2) => {
-              get_recommended_dish
-                .get_recommended_dish(
-                  user.token,
-                  checkDataRecommendation(responseJson2),
-                )
-                .then((responseJson3) => {
-                  setLoadingRecommendation(false);
-
-                  if (page === 0) {
-                    setDataRecommendation(responseJson3);
-                    setPageRecommendation(1);
-                  } else {
-                    setDataRecommendation(
-                      dataRecommendation.concat(responseJson3),
-                    );
-                    setPageRecommendation(page + 1);
-                  }
-                })
-                .catch((err) => {
-                  console.log('Recommendation Dish: ', err);
-                  setLoadingRecommendation(false);
-                  // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-                  //   position: 0,
-                  //   duration: 2500,
-                  // });
-                });
-            })
-            .catch((err) => {
-              console.log('Recommendation Dish: ', err);
-              setLoadingRecommendation(false);
-              // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
-              //   position: 0,
-              //   duration: 2500,
-              // });
-            });
+          if (page === 0) {
+            setDataRecommendation(responseJson);
+            setPageRecommendation(1);
+          } else {
+            setDataRecommendation(dataRecommendation.concat(responseJson));
+            setPageRecommendation(page + 1);
+          }
+          setLoadingRecommendation(false);
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.log('Recommendation Dish: ', err);
         setLoadingRecommendation(false);
         // return Toast.show('Lỗi! Vui lòng kiểm tra kết nối internet', {
         //   position: 0,
         //   duration: 2500,
         // });
       });
-  };
-
-  const checkDataRecommendation = (res) => {
-    var output = [];
-    for (let i = 0; i < res.length; i++) {
-      var number = 0;
-      for (let j = 0; j < dataRecommendation.length; j++) {
-        if (res[i] === dataRecommendation[j].dish.name) {
-          number += 1;
-        }
-      }
-      output.push({
-        dish_name: res[i],
-        number: number,
-      });
-    }
-    return output;
   };
 
   const getFollowingChef = () => {
