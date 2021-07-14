@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
     fontSize: width / 34,
   },
   price: {
-    fontFamily: 'Roboto-Regular',
+    fontFamily: 'Montserrat-SemiBold',
     color: mainColor,
     fontSize: width / 31,
   },

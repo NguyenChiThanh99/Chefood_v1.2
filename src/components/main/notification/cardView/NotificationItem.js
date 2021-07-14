@@ -94,7 +94,7 @@ export default function NotificationItem(props) {
 const {width, mainColor} = Global;
 const styles = StyleSheet.create({
   price: {
-    fontFamily: 'Roboto-Regular',
+    fontFamily: 'Montserrat-SemiBold',
     fontSize: width / 32.5,
     color: mainColor,
   },

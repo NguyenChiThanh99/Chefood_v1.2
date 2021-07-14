@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   price: {
-    fontFamily: 'Roboto-Regular',
+    fontFamily: 'Montserrat-SemiBold',
     color: mainColor,
     fontSize: width / 34,
     marginHorizontal: 5,

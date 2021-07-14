@@ -44,9 +44,11 @@ const styles = StyleSheet.create({
   badgeStyle: {
     backgroundColor: mainColor,
     borderWidth: 1,
+    fontFamily: 'Montserrat-SemiBold',
   },
   badgeStyleWhite: {
     backgroundColor: 'rgba(0,0,0,0.3)',
     borderWidth: 1,
+    fontFamily: 'Montserrat-SemiBold',
   },
 });

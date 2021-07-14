@@ -98,33 +98,53 @@ export default function OrderDetail({navigation, route}) {
   };
 
   const orderAgain = () => {
-    for (let i = 0; i < dataDetail.dishes.length; i++) {
-      const newCart = {
-        dish: {
+    if (cart.length === 0) {
+      for (let i = 0; i < dataDetail.dishes.length; i++) {
+        const newCart = {
           dish: {
-            name: dataDetail.dishes[i].dish_name,
-            picture: dataDetail.dishes[i].image,
+            dish: {
+              name: dataDetail.dishes[i].dish_name,
+              picture: dataDetail.dishes[i].image,
+            },
+            chef: {
+              _id: dataDetail.chef.idchef,
+              name: dataDetail.chef.chef_name,
+            },
+            dishofchef: {
+              iddishofchef: dataDetail.dishes[i].iddishofchef,
+              price: dataDetail.dishes[i].price,
+            },
           },
-          chef: {
-            _id: dataDetail.chef.idchef,
-            name: dataDetail.chef.chef_name,
-          },
-          dishofchef: {
-            iddishofchef: dataDetail.dishes[i].iddishofchef,
-            price: dataDetail.dishes[i].price,
-          },
-        },
-        quantity: dataDetail.dishes[i].amount,
-      };
-      var flag = false;
-      if (cart.length === 0) {
-        dispatch(updateCart([newCart]));
-        storeData([newCart]);
+          quantity: dataDetail.dishes[i].amount,
+        };
+        cart.push(newCart);
+        dispatch(updateCart(cart));
+        storeData(cart);
         Toast.show('Đã thêm món ăn vào giỏ hàng', {
           position: 0,
-          duration: 2000,
+          duration: 1500,
         });
-      } else {
+      }
+    } else {
+      for (let i = 0; i < dataDetail.dishes.length; i++) {
+        const newCart = {
+          dish: {
+            dish: {
+              name: dataDetail.dishes[i].dish_name,
+              picture: dataDetail.dishes[i].image,
+            },
+            chef: {
+              _id: dataDetail.chef.idchef,
+              name: dataDetail.chef.chef_name,
+            },
+            dishofchef: {
+              iddishofchef: dataDetail.dishes[i].iddishofchef,
+              price: dataDetail.dishes[i].price,
+            },
+          },
+          quantity: dataDetail.dishes[i].amount,
+        };
+        var flag = false;
         for (var j = 0; j < cart.length; j++) {
           if (
             cart[j].dish.dishofchef.iddishofchef ===
@@ -136,7 +156,7 @@ export default function OrderDetail({navigation, route}) {
             storeData(cart);
             Toast.show('Đã tăng số lượng món ăn trong giỏ hàng', {
               position: 0,
-              duration: 2000,
+              duration: 1500,
             });
             break;
           }
@@ -147,7 +167,7 @@ export default function OrderDetail({navigation, route}) {
           storeData(cart);
           Toast.show('Đã thêm món ăn vào giỏ hàng', {
             position: 0,
-            duration: 2000,
+            duration: 1500,
           });
         }
       }
@@ -544,7 +564,7 @@ const styles = StyleSheet.create({
     marginBottom: 7,
   },
   total: {
-    fontFamily: 'Roboto-Medium',
+    fontFamily: 'Montserrat-SemiBold',
     color: mainColor,
     fontSize: width / 28,
   },

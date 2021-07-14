@@ -386,7 +386,7 @@ export default function Cart({navigation, route}) {
                 <Text style={styles.proSumsText}>
                   Tạm tính ({cart.length} món)
                 </Text>
-                <Text style={[styles.proSumsText, {fontWeight: 'bold'}]}>
+                <Text style={styles.proSumsText}>
                   {Global.currencyFormat(total)}đ
                 </Text>
               </View>
@@ -673,7 +673,7 @@ const styles = StyleSheet.create({
     fontSize: width / 30,
   },
   total: {
-    fontFamily: 'Roboto-Medium',
+    fontFamily: 'Montserrat-SemiBold',
     color: mainColor,
     fontSize: width / 28,
   },

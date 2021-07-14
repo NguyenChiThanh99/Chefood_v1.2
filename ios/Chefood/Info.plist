@@ -32,7 +32,7 @@
 		</dict>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string></string>
+			<string/>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
@@ -48,7 +48,7 @@
 	<key>FacebookDisplayName</key>
 	<string>Chefood</string>
 	<key>LSApplicationCategoryType</key>
-	<string></string>
+	<string/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -67,7 +67,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>We need access to camera as it's the core app experience.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need access to photos as it's the core app experience.</string>
 	<key>UIAppFonts</key>
@@ -107,6 +107,7 @@
 		<string>Roboto-Medium.ttf</string>
 		<string>Roboto-Regular.ttf</string>
 		<string>Roboto-Thin.ttf</string>
+		<string>Montserrat-SemiBold.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

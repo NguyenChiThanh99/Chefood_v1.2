@@ -1,0 +1,9 @@
+com/chefood/MainActivity.java
+ com.chefood.MainActivity
+com/chefood/MainApplication.java
+ com.chefood.MainApplication
+ com.chefood.MainApplication$1
+com/chefood/BuildConfig.java
+ com.chefood.BuildConfig
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList

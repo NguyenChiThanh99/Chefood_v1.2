@@ -147,7 +147,7 @@ export default function ChefAlsoCookItem(props) {
 const {width, mainColor} = Global;
 const styles = StyleSheet.create({
   price: {
-    fontFamily: 'Roboto-Regular',
+    fontFamily: 'Montserrat-SemiBold',
     color: mainColor,
     fontSize: width / 27,
   },

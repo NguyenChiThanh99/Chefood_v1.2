@@ -1,0 +1,634 @@
+[
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_word_steak.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_word_steak.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_node_modules_reactnativeratings_src_images_bell.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativeratings_src_images_bell.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_assistant_navigation.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_assistant_navigation.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_phonee0.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_phonee0.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-xhdpi_node_modules_reactnavigation_stack_src_views_assets_backicon.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-xhdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-xxhdpi_node_modules_reactnavigation_stack_src_views_assets_backicon.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-xxhdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/layout_launch_screen.xml.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/res/layout/launch_screen.xml"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_maile0.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_maile0.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_mailgradient.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_mailgradient.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_home.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_home.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_edit.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_edit.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/raw_node_modules_reactnativevectoricons_glyphmaps_fontawesome5free.json.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/raw/node_modules_reactnativevectoricons_glyphmaps_fontawesome5free.json"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_orders.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_orders.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_category_sushi.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_category_sushi.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_bookmarkgradient.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_bookmarkgradient.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_category_pork.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_category_pork.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_category_salad.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_category_salad.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_google.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_google.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/raw_node_modules_reactnativevectoricons_glyphmaps_evilicons.json.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/raw/node_modules_reactnativevectoricons_glyphmaps_evilicons.json"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_remove_circle_outlinee0.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_remove_circle_outlinee0.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_imageholder2.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_imageholder2.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_buyffffff.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_buyffffff.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_avt.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_avt.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/raw_app.json.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/raw/app.json"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_label_hot.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_label_hot.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_watch_later.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_watch_later.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_word_friedchicken.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_word_friedchicken.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-xxxhdpi_node_modules_reactnavigation_stack_src_views_assets_backicon.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-xxxhdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-hdpi_node_modules_reactnavigation_stack_src_views_assets_backicon.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-hdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_cook.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_cook.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_node_modules_reactnavigation_stack_src_views_assets_backiconmask.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnavigation_stack_src_views_assets_backiconmask.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/raw_node_modules_reactnativevectoricons_glyphmaps_feather.json.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/raw/node_modules_reactnativevectoricons_glyphmaps_feather.json"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_node_modules_reactnativeratings_src_images_airbnbstarselected.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativeratings_src_images_airbnbstarselected.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/raw_node_modules_reactnativevectoricons_glyphmaps_materialcommunityicons.json.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/raw/node_modules_reactnativevectoricons_glyphmaps_materialcommunityicons.json"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_node_modules_reactnativecreditcardinput_src_icons_stp_card_visa.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativecreditcardinput_src_icons_stp_card_visa.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_phonefb5a23.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_phonefb5a23.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_category_icecream.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_category_icecream.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_add_circle_outlinefb5a23.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_add_circle_outlinefb5a23.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_node_modules_reactnativecreditcardinput_images_cardfront.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativecreditcardinput_images_cardfront.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_descriptiongradient.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_descriptiongradient.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/raw_node_modules_reactnativevectoricons_glyphmaps_entypo.json.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/raw/node_modules_reactnativevectoricons_glyphmaps_entypo.json"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_photo_camerabd.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_photo_camerabd.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_arrow_right82.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_arrow_right82.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_placegradient.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_placegradient.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_show_chart2f80ed.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_show_chart2f80ed.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_node_modules_reactnativecreditcardinput_src_icons_stp_card_diners.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativecreditcardinput_src_icons_stp_card_diners.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_access_time2f80ed.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_access_time2f80ed.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_category_plate.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_category_plate.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_expand_morefb5a23.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_expand_morefb5a23.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_category_steak.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_category_steak.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/raw_node_modules_reactnativevectoricons_glyphmaps_simplelineicons.json.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/raw/node_modules_reactnativevectoricons_glyphmaps_simplelineicons.json"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_error.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_error.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_category_sausage.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_category_sausage.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_expand_lessfb5a23.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_expand_lessfb5a23.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_remove_circle_outlinefb5a23.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_remove_circle_outlinefb5a23.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/mipmap-ldpi_ic_launcher.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/res/mipmap-ldpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_historygradient.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_historygradient.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_node_modules_reactnativeratings_src_images_heart.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativeratings_src_images_heart.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_notification.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_notification.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_word_tempura.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_word_tempura.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_category_shrimp.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_category_shrimp.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_node_modules_reactnativecreditcardinput_src_icons_stp_card_cvc_amex.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativecreditcardinput_src_icons_stp_card_cvc_amex.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_show_chart.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_show_chart.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_word_donut.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_word_donut.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_photo_camera.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_photo_camera.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/raw_node_modules_reactnativevectoricons_glyphmaps_fontawesome5free_meta.json.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/raw/node_modules_reactnativevectoricons_glyphmaps_fontawesome5free_meta.json"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_node_modules_reactnativecreditcardinput_src_icons_stp_card_cvc.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativecreditcardinput_src_icons_stp_card_cvc.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_word_ramen.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_word_ramen.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_money.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_money.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_node_modules_reactnativecreditcardinput_src_icons_stp_card_mastercard.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativecreditcardinput_src_icons_stp_card_mastercard.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_expand_more.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_expand_more.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_expand_less.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_expand_less.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_star_borderf2c94c.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_star_borderf2c94c.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_users.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_users.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_close.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_close.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_cancel.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_cancel.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_category_roastchicken.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_category_roastchicken.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_place82.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_place82.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_timesquare.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_timesquare.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_category_spaghetti.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_category_spaghetti.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_user.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_user.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_pending.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_pending.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/raw_node_modules_reactnativevectoricons_glyphmaps_materialicons.json.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/raw/node_modules_reactnativevectoricons_glyphmaps_materialicons.json"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_facebook.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_facebook.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_settingsgradient.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_settingsgradient.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_logo2.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_logo2.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_category_soup.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_category_soup.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_atm.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_atm.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_logoutgradient.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_logoutgradient.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable_launch_screen.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/res/drawable/launch_screen.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_word_salad.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_word_salad.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_buy.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_buy.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_order.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_order.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_category_squid.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_category_squid.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/raw_node_modules_reactnativevectoricons_glyphmaps_ionicons.json.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/raw/node_modules_reactnativevectoricons_glyphmaps_ionicons.json"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_ship.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_ship.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_category_sandwich.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_category_sandwich.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_access_time.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_access_time.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_check_circle.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_check_circle.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/raw_node_modules_reactnativevectoricons_glyphmaps_fontisto.json.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/raw/node_modules_reactnativevectoricons_glyphmaps_fontisto.json"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_arrow_back_iosffffff.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_arrow_back_iosffffff.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_searchbd.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_searchbd.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_homes.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_homes.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_persone0.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_persone0.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_no_images.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_no_images.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_timecircle.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_timecircle.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_phone82.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_phone82.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_starf2c94c.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_starf2c94c.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_background.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_background.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_double_arrow.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_double_arrow.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_star_halff2c94c.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_star_halff2c94c.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_phonegradient.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_phonegradient.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_node_modules_reactnativeratings_src_images_rocket.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativeratings_src_images_rocket.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/raw_node_modules_reactnativevectoricons_glyphmaps_foundation.json.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/raw/node_modules_reactnativevectoricons_glyphmaps_foundation.json"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/raw_node_modules_reactnativevectoricons_glyphmaps_fontawesome.json.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/raw/node_modules_reactnativevectoricons_glyphmaps_fontawesome.json"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_delivery_dining2f80ed.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_delivery_dining2f80ed.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_category_rice.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_category_rice.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_node_modules_reactnativecreditcardinput_src_icons_stp_card_jcb.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativecreditcardinput_src_icons_stp_card_jcb.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_keypade0.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_keypade0.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_send.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_send.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_locke0.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_locke0.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_bookmarkfb5a23.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_bookmarkfb5a23.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_node_modules_reactnavigation_stack_src_views_assets_backicon.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_node_modules_reactnativecreditcardinput_src_icons_stp_card_discover.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativecreditcardinput_src_icons_stp_card_discover.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_imageholder.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_imageholder.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_bookmark_border82.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_bookmark_border82.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_chats.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_chats.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_node_modules_reactnativecreditcardinput_src_icons_stp_card_amex.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativecreditcardinput_src_icons_stp_card_amex.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_notifications.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_notifications.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/raw_node_modules_reactnativevectoricons_glyphmaps_octicons.json.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/raw/node_modules_reactnativevectoricons_glyphmaps_octicons.json"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_category_fish.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_category_fish.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_delivery_dining.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_delivery_dining.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_arrow_back_iosfb5a23.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_arrow_back_iosfb5a23.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_personfb5a23.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_personfb5a23.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_search.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_search.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_word_soup.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_word_soup.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/raw_node_modules_reactnativevectoricons_glyphmaps_antdesign.json.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/raw/node_modules_reactnativevectoricons_glyphmaps_antdesign.json"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_chat.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_chat.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_person_add_altgradient.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_person_add_altgradient.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_word_barbecue.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_word_barbecue.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_node_modules_reactnativeratings_src_images_star.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativeratings_src_images_star.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_mail82.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_mail82.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_node_modules_reactnativeratings_src_images_airbnbstar.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativeratings_src_images_airbnbstar.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_icons_star82.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_icons_star82.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/raw_node_modules_reactnativevectoricons_glyphmaps_zocial.json.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/raw/node_modules_reactnativevectoricons_glyphmaps_zocial.json"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_node_modules_reactnativecreditcardinput_src_icons_stp_card_unknown.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativecreditcardinput_src_icons_stp_card_unknown.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_src_images_category_cake.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/src_images_category_cake.png"
+    },
+    {
+        "merged": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/intermediates/res/merged/release/drawable-mdpi_node_modules_reactnativecreditcardinput_images_cardback.png.flat",
+        "source": "/Users/nguyenchithanh/Documents/HOC_TAP/Hoc_Ky_8/Application/Chefood/android/app/build/generated/res/react/release/drawable-mdpi/node_modules_reactnativecreditcardinput_images_cardback.png"
+    }
+]

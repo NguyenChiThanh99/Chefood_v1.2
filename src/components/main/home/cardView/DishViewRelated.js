@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   price: {
     margin: 5,
-    fontFamily: 'Roboto-Regular',
+    fontFamily: 'Montserrat-SemiBold',
     color: mainColor,
     fontSize: width / 30,
   },

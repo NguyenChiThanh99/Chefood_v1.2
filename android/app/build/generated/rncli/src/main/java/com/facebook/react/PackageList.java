@@ -21,6 +21,8 @@ import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 // react-native-fbsdk
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
+// react-native-fetch-blob
+import com.RNFetchBlob.RNFetchBlobPackage;
 // react-native-gesture-handler
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 // react-native-get-location
@@ -91,6 +93,7 @@ public class PackageList {
       new ReactNativeFirebaseAppPackage(),
       new RNGoogleSigninPackage(),
       new FBSDKPackage(),
+      new RNFetchBlobPackage(),
       new RNGestureHandlerPackage(),
       new ReactNativeGetLocationPackage(),
       new ImagePickerPackage(),
