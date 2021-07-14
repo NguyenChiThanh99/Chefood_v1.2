@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Image, Text} from 'react-native';
+import {StyleSheet, View, Image, Text, TouchableOpacity} from 'react-native';
 import {Image as ImageLazy} from 'react-native-elements';
 
 import Global from '../../../Global';
@@ -52,13 +52,20 @@ export default function Comment(props) {
       </View>
       <Text style={styles.content}>{comment}</Text>
       {image !== null ? (
-        <ImageLazy
-          PlaceholderContent={
-            <Image style={styles.imageHolder} source={imageHolder} />
-          }
-          source={{uri: image}}
-          style={styles.imageCmt}
-        />
+        <TouchableOpacity
+          onPress={() =>
+            props.navigation.navigate('FULL_IMAGE', {
+              image: image,
+            })
+          }>
+          <ImageLazy
+            PlaceholderContent={
+              <Image style={styles.imageHolder} source={imageHolder} />
+            }
+            source={{uri: image}}
+            style={styles.imageCmt}
+          />
+        </TouchableOpacity>
       ) : null}
     </View>
   );

@@ -28,7 +28,7 @@ export default function CommentDish(props) {
         data={comment}
         ItemSeparatorComponent={flatListItemSeparator}
         renderItem={({item, index}) => {
-          return <Comment comment={item} />;
+          return <Comment navigation={props.navigation} comment={item} />;
         }}
         keyExtractor={(item) => item.comment.comment}
       />

@@ -520,40 +520,62 @@ export default function Chef({navigation, route}) {
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        <ImageLazy
-          PlaceholderContent={
-            <Image style={styles.cover} source={imageHolder2} />
-          }
-          style={styles.cover}
-          source={
-            cover_photo === 'Thiết lập ngay'
-              ? {
-                  uri:
-                    'https://res.cloudinary.com/chefood/image/upload/v1614660312/cover_photo/cover_photo_tmgnhx.png',
-                }
-              : {uri: cover_photo}
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('FULL_IMAGE', {
+              image:
+                cover_photo === 'Thiết lập ngay'
+                  ? 'https://res.cloudinary.com/chefood/image/upload/v1614660312/cover_photo/cover_photo_tmgnhx.png'
+                  : cover_photo,
+            })
           }>
           <ImageLazy
             PlaceholderContent={
-              <Image style={styles.imageHolder} source={imageHolder} />
+              <Image style={styles.cover} source={imageHolder2} />
             }
-            style={styles.avatar}
+            style={styles.cover}
             source={
-              avatar === 'Thiết lập ngay'
+              cover_photo === 'Thiết lập ngay'
                 ? {
                     uri:
-                      'https://res.cloudinary.com/chefood/image/upload/v1614660200/avatar/avt_h3mm3z.png',
+                      'https://res.cloudinary.com/chefood/image/upload/v1614660312/cover_photo/cover_photo_tmgnhx.png',
                   }
-                : {uri: avatar}
-            }
-          />
-          <View style={styles.rating}>
-            <View style={styles.star}>
-              <RatingStar star={Math.round(level * 10) / 10} />
+                : {uri: cover_photo}
+            }>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('FULL_IMAGE', {
+                  image:
+                    avatar === 'Thiết lập ngay'
+                      ? 'https://res.cloudinary.com/chefood/image/upload/v1614660200/avatar/avt_h3mm3z.png'
+                      : avatar,
+                })
+              }>
+              <ImageLazy
+                PlaceholderContent={
+                  <Image style={styles.imageHolder} source={imageHolder} />
+                }
+                style={styles.avatar}
+                source={
+                  avatar === 'Thiết lập ngay'
+                    ? {
+                        uri:
+                          'https://res.cloudinary.com/chefood/image/upload/v1614660200/avatar/avt_h3mm3z.png',
+                      }
+                    : {uri: avatar}
+                }
+              />
+            </TouchableOpacity>
+            <View style={styles.rating}>
+              <View style={styles.star}>
+                <RatingStar star={Math.round(level * 10) / 10} />
+              </View>
+              <Text style={styles.ratingText}>
+                {Math.round(level * 10) / 10}
+              </Text>
             </View>
-            <Text style={styles.ratingText}>{Math.round(level * 10) / 10}</Text>
-          </View>
-        </ImageLazy>
+          </ImageLazy>
+        </TouchableOpacity>
 
         <View style={styles.cardView}>
           <View style={styles.nameCont}>

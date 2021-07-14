@@ -204,42 +204,56 @@ export default function ChangeInformation({navigation}) {
         <Text style={styles.headerText}>Sửa thông tin</Text>
       </View>
 
-      <ImageLazy
-        PlaceholderContent={
-          <Image style={styles.cover} source={imageHolder2} />
-        }
-        style={styles.cover}
-        source={{uri: cover_photo}}>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate('FULL_IMAGE', {
+            image: cover_photo,
+          })
+        }>
         <ImageLazy
           PlaceholderContent={
-            <Image style={styles.avatar} source={imageHolder} />
+            <Image style={styles.cover} source={imageHolder2} />
           }
-          style={styles.avatar}
-          source={{uri: avatar}}>
+          style={styles.cover}
+          source={{uri: cover_photo}}>
           <TouchableOpacity
-            style={styles.cameraCont}
+            onPress={() =>
+              navigation.navigate('FULL_IMAGE', {
+                image: avatar,
+              })
+            }>
+            <ImageLazy
+              PlaceholderContent={
+                <Image style={styles.avatar} source={imageHolder} />
+              }
+              style={styles.avatar}
+              source={{uri: avatar}}>
+              <TouchableOpacity
+                style={styles.cameraCont}
+                onPress={() => {
+                  loadingAvatar ? null : setModal({status: true, type: 0});
+                }}>
+                {loadingAvatar ? (
+                  LoadingAvatar
+                ) : (
+                  <Image style={styles.camera} source={camera} />
+                )}
+              </TouchableOpacity>
+            </ImageLazy>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.cameraCont, styles.cameraCover]}
             onPress={() => {
-              loadingAvatar ? null : setModal({status: true, type: 0});
+              loadingCover ? null : setModal({status: true, type: 1});
             }}>
-            {loadingAvatar ? (
-              LoadingAvatar
+            {loadingCover ? (
+              LoadingCover
             ) : (
               <Image style={styles.camera} source={camera} />
             )}
           </TouchableOpacity>
         </ImageLazy>
-        <TouchableOpacity
-          style={[styles.cameraCont, styles.cameraCover]}
-          onPress={() => {
-            loadingCover ? null : setModal({status: true, type: 1});
-          }}>
-          {loadingCover ? (
-            LoadingCover
-          ) : (
-            <Image style={styles.camera} source={camera} />
-          )}
-        </TouchableOpacity>
-      </ImageLazy>
+      </TouchableOpacity>
 
       <View style={styles.cardView}>
         <View style={styles.rowCont}>

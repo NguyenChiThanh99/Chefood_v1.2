@@ -44,6 +44,7 @@ import District from './user/address/District';
 import Ward from './user/address/Ward';
 import ChangePassword from './user/changeInfomation/ChangePassword';
 import ChatList from './chat/ChatList';
+import FullImage from './home/FullImage';
 
 const Tab = createBottomTabNavigator();
 const MainStack = createStackNavigator();
@@ -303,6 +304,14 @@ export default function MainIndex({route}) {
           ...TransitionPresets.SlideFromRightIOS,
         }}
         component={ChefAlsoCook}
+      />
+      <MainStack.Screen
+        name="FULL_IMAGE"
+        options={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+        component={FullImage}
       />
     </MainStack.Navigator>
   );

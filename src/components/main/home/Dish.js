@@ -697,7 +697,7 @@ export default function Dish({navigation, route}) {
           renderItem={({item, index}) => {
             return (
               <View>
-                <Comment comment={item} />
+                <Comment navigation={navigation} comment={item} />
               </View>
             );
           }}
@@ -753,7 +753,13 @@ export default function Dish({navigation, route}) {
                   ? width / 3.5 + item.randomInt
                   : width / 1.75 + item.randomInt;
               return (
-                <View key={item.id}>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('FULL_IMAGE', {
+                      image: item.image,
+                    })
+                  }
+                  key={item.id}>
                   <ImageLazy
                     PlaceholderContent={
                       <Image
@@ -764,7 +770,7 @@ export default function Dish({navigation, route}) {
                     style={[styles.imageDish, {height}]}
                     source={{uri: item.image}}
                   />
-                </View>
+                </TouchableOpacity>
               );
             }}
             keyExtractor={(item) => '_' + item.id.toString()}
@@ -778,13 +784,18 @@ export default function Dish({navigation, route}) {
     <View style={styles.wrapper}>
       <ScrollView showsVerticalScrollIndicator={false} ref={scrollRef}>
         <View style={styles.cardView}>
-          <ImageLazy
-            PlaceholderContent={
-              <Image style={styles.image} source={imageHolder2} />
-            }
-            style={styles.image}
-            source={{uri: dish.dish.picture}}
-          />
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('FULL_IMAGE', {image: dish.dish.picture})
+            }>
+            <ImageLazy
+              PlaceholderContent={
+                <Image style={styles.image} source={imageHolder2} />
+              }
+              style={styles.image}
+              source={{uri: dish.dish.picture}}
+            />
+          </TouchableOpacity>
 
           <View style={styles.generalInfo}>
             <Text style={styles.name} numberOfLines={2}>
