@@ -59,7 +59,7 @@ export default function SigninSocial(props) {
 
   const facebookSignin = () => {
     // Attempt a login using the Facebook login dialog asking for default permissions.
-    LoginManager.logInWithPermissions(['public_profile']).then(
+    LoginManager.logInWithPermissions(['public_profile', 'email']).then(
       (login) => {
         if (login.isCancelled) {
           console.log('Login cancelled');
@@ -89,7 +89,17 @@ export default function SigninSocial(props) {
         if (error) {
           console.log('login info has error: ' + error);
         } else {
-          signInHandle(user.email, user.name, user.picture.data.url);
+          if (user.email === undefined) {
+            return Toast.show(
+              'Đã xảy ra lỗi, vui lòng đăng nhập bằng phương pháp khác',
+              {
+                position: 0,
+                duration: 3000,
+              },
+            );
+          } else {
+            signInHandle(user.email, user.name, user.picture.data.url);
+          }
         }
       },
     );
