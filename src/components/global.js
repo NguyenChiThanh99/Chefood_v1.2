@@ -59,10 +59,8 @@ module.exports = {
       return true;
     }
   },
-  // commentLink: 'https://nguyenchithanh.pythonanywhere.com/',
-  commentLink: 'https://13.67.111.113:6060/',
-  // relatedDishLink: 'https://17521049.pythonanywhere.com/',
-  link: 'https://chefood-mongo.herokuapp.com/',
+  commentLink: 'https://nguyenchithanh.pythonanywhere.com/',
+  link: 'https://chefood-backend.herokuapp.com/',
 
   chatLink: 'https://chefood-chat.herokuapp.com/',
 };

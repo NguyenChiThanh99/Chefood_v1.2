@@ -997,7 +997,7 @@ export default function Home({navigation}) {
           </View>
         </View>
 
-        {dataRecommendation.length !== 0 ? (
+        {/* {dataRecommendation.length !== 0 ? (
           <View style={styles.cardView}>
             <Text style={styles.cardViewTitle}>Món ăn đề xuất cho bạn</Text>
             <FlatList
@@ -1040,7 +1040,7 @@ export default function Home({navigation}) {
               keyExtractor={(item) => item.dishofchef.iddishofchef}
             />
           </View>
-        ) : null}
+        ) : null} */}
 
         {dataHotDish.length !== 0 ? (
           <View style={styles.cardView}>
