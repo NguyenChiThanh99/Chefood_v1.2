@@ -5,7 +5,7 @@
 
 Hình ảnh Giao diện Trang chủ
 
-![alt text](https://res.cloudinary.com/dep0t5tcf/image/upload/v1648028059/chefood/review_app/1_zfp7u1.png | width=100)
+<img src="https://res.cloudinary.com/dep0t5tcf/image/upload/v1648028059/chefood/review_app/1_zfp7u1.png" width="1000">
 
 
 Hình ảnh Giao diện Chi tiết món ăn 
